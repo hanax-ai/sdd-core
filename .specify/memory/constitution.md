@@ -3,7 +3,7 @@ SYNC IMPACT REPORT
 ==================
 Version change: (unratified) → 1.0.0
 Bump rationale: Initial ratification of the master global constitution for the
-  Hana-X Copilot workspace. MAJOR baseline because it establishes binding
+  Hana-X SDD-Core workspace. MAJOR baseline because it establishes binding
   governance where none previously existed.
 
 Principles defined:
@@ -21,9 +21,9 @@ Follow-up TODOs: none. All paths in this document are relative to the
 workspace root (the directory containing this file's `.specify/` tree).
 -->
 
-# Hana-X Copilot Constitution
+# Hana-X SDD-Core Constitution
 
-Hana-X Copilot is an AI-native, multi-project Spec-Driven Development (SDD)
+Hana-X SDD-Core is an AI-native, multi-project Spec-Driven Development (SDD)
 workspace operated entirely through files and agents: agents read and write
 structured Markdown, and the SDD lifecycle itself requires no CLI tool,
 runtime, or build step. These principles are binding guardrails on every

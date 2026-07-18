@@ -1,9 +1,9 @@
 # Hana-X-Subsystem Constitution
-<!-- Sub-project constitution for projects/project-a/ within the Hana-X Copilot workspace -->
+<!-- Sub-project constitution for projects/project-a/ within the Hana-X SDD-Core workspace -->
 
 ## Preamble
 
-Hana-X-Subsystem is a scoped, isolated module of the Hana-X Copilot workspace, living
+Hana-X-Subsystem is a scoped, isolated module of the Hana-X SDD-Core workspace, living
 entirely within `projects/project-a/`. This sub-project **INHERITS and fully honors**
 the master root constitution located at `../../../../.specify/memory/constitution.md`
 (relative to this file). Nothing in this document repeals, weakens, or reinterprets a
