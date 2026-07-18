@@ -1,0 +1,19 @@
+# --- Dependencies ---
+node_modules/
+
+# --- Logs ---
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Heavy local repository mirrors (register them in knowledge/instructions.md) ---
+reference/repos/*
+!reference/repos/.gitkeep
+projects/*/reference/repos/
+
+# --- OS / editor noise ---
+.DS_Store
+Thumbs.db
+*.swp
