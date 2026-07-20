@@ -17,3 +17,8 @@ projects/*/reference/repos/
 .DS_Store
 Thumbs.db
 *.swp
+
+# --- Conversation sync content (local-only; directory shape and policy are committed) ---
+projects/*/conversations/*
+!projects/*/conversations/.gitkeep
+!projects/*/conversations/SYNC-POLICY.md

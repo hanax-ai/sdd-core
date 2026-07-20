@@ -29,16 +29,25 @@ sdd-core/
 │   └── memory/
 │       └── constitution.md            # GLOBAL constitution: root architectural principles
 ├── knowledge/
-│   └── instructions.md                # GLOBAL mirror registry: routes agents to local framework mirrors
+│   ├── instructions.md                # GLOBAL mirror registry: routes agents to local framework mirrors
+│   └── tooling.md                     # GLOBAL tooling requirement declaration + new-machine bootstrap
 ├── docs/                              # GLOBAL workspace-level documentation
 ├── reference/
 │   └── repos/                         # Git-ignored local mirrors of external frameworks
 │
 └── projects/
     ├── project-a/                     # Example sub-project: "Hana-X-Subsystem" (SAP S/4 HANA integration)
+    │   ├── .claude/
+    │   │   └── skills/
+    │   │       ├── mirror-sync/
+    │   │       │   └── SKILL.md       # Mirror Registry Engine (Article IV implementation aid)
+    │   │       └── skills-creator/
+    │   │           └── SKILL.md       # Workspace skill-authoring instructions
     │   ├── .specify/
     │   │   └── memory/
     │   │       └── constitution.md    # PER-PROJECT constitution: subsystem scope and rules
+    │   ├── conversations/
+    │   │   └── SYNC-POLICY.md         # Sync destination policy (other contents git-ignored)
     │   ├── docs/
     │   │   └── specs/
     │   │       └── template/          # Copy this folder to start a new feature
@@ -54,13 +63,17 @@ sdd-core/
 
 ## How Claude Code Sub-Agents Navigate This Hierarchy
 
-Agents load context in a strict order, from global governance down to the active feature:
+This is the **canonical five-step CONTEXT-LOADING order** for the workspace. Agents load context in this strict order, from global governance down to the active feature; every other document that states a load order restates this one:
 
 1.  **Root constitution** — [.specify/memory/constitution.md](.specify/memory/constitution.md): workspace-wide architectural principles (local open-source models via Ollama only; PostgreSQL for relational data and Qdrant for vector data; strict isolated agent scopes).
 2.  **Root mirror registry** — [knowledge/instructions.md](knowledge/instructions.md): the routing table pointing agents to local framework mirrors under [reference/repos/](reference/repos/).
 3.  **Project constitution** — `projects/<name>/.specify/memory/constitution.md`: the sub-project's scope, boundaries, and rules.
-4.  **Project mirror registry** — `projects/<name>/knowledge/instructions.md`: project-specific mirrors and agent guidance.
+4.  **Project mirror registry** — `projects/<name>/knowledge/instructions.md`: project-specific mirrors and agent guidance (in project-a this file is the project playbook).
 5.  **Active feature folder** — the current `projects/<name>/docs/specs/NNN-feature-name/` directory (`spec.md`, `plan.md`, `tasks.md`).
+
+Skills and plugins are **ambient, triggered tooling — not load-order steps**: they load on demand (or per machine configuration) and never displace or reorder the five steps above. Project playbooks may append project-local refinements after step 5 (project-a adds manifest-selected reference slices), always labeled as refinements.
+
+**Nested-skill activation note:** skills committed under `projects/<name>/.claude/skills/` are directory-scoped — Claude Code (v2.1.178+, refined in v2.1.181) makes them available when the session works with files under that project, even if it started at the workspace root; they are not guaranteed to be listed before any project file is touched. Sessions that need them immediately should start inside the project directory.
 
 ### Scope Rules
 
@@ -70,6 +83,8 @@ Agents load context in a strict order, from global governance down to the active
 ### Mirror-Check Mandate
 
 Before proposing any framework-dependent code, an agent **must** consult `knowledge/instructions.md` (project-level first, then root) to determine whether a local mirror of that framework exists under `reference/repos/`. If a mirror exists, the agent grounds its output in the mirrored source rather than recalled training knowledge.
+
+**Lookup order is not load order:** "project registry before global" is the MIRROR-LOOKUP precedence rule — a constitution Article IV *resolution order* applied while working on framework-dependent tasks. It does not compete with the canonical five-step context-loading order above, which reads governance global-tier-first. The `mirror-sync` skill (project-a) operationalizes these lookups as an implementation aid; the registries and their pin discipline remain normative.
 
 ## Feature Lifecycle
 
@@ -83,9 +98,11 @@ The lifecycle is entirely file-based — no tooling is required at any step:
 
 ## Provisioning a New Sub-Project
 
-1.  Copy the structure of [projects/project-a/](projects/project-a/) to `projects/<new-name>/` (or populate the [projects/project-b/](projects/project-b/) placeholder).
+1.  Copy the structure of [projects/project-a/](projects/project-a/) to `projects/<new-name>/` (or populate the [projects/project-b/](projects/project-b/) placeholder) — including the `.claude/skills/` and `conversations/` shape, with a project-specific `conversations/SYNC-POLICY.md` declaring the new project's sync destination.
 2.  Rewrite `projects/<new-name>/.specify/memory/constitution.md` for the new subsystem's scope, keeping it consistent with the root constitution.
 3.  Clear out `docs/specs/` so only the untouched `template/` folder remains, and update `knowledge/instructions.md` and `reference/` for the new project's frameworks.
+
+**Machine-tier items are per-machine, NOT template content:** plugins (caveman, superpowers), the global `conversation-sync` skill, and the `~/.claude/CLAUDE.md` conduct block never ship with this template. A new machine (or template consumer) provisions them by following the bootstrap procedure in [knowledge/tooling.md](knowledge/tooling.md), which reconciles the machine's Install Registry against the declared requirements.
 
 ## Verification
 

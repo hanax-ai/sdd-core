@@ -70,9 +70,23 @@ This constitution binds all agent and human work inside `projects/project-a/`. I
 subordinate to the master root constitution at
 `../../../../.specify/memory/constitution.md`; the stricter rule always prevails.
 Amendments MUST be documented in this file with a version bump and an updated
-amendment date. All specs, plans, and tasks authored under `docs/specs/` MUST be
+amendment date.
+
+### Amendments
+
+- **v1.1.0 (2026-07-19)** — propagation of root constitution v1.1.0 (Skills &
+  Tooling Governance). This project acknowledges its committed tooling
+  artifacts: the project skills `skills-creator` and `mirror-sync` under
+  `.claude/skills/`, and the sync policy file `conversations/SYNC-POLICY.md`
+  (the sole declared destination for conversation-sync records; other contents
+  of `conversations/` are git-ignored by workspace rule). `mirror-sync` is an
+  implementation aid for the root Mirror-Check Mandate and this project's
+  Local Context Priority article — registry consultation and pin discipline
+  remain normative. These artifacts are template content; machine-tier items
+  (plugins, global skills, conduct files) are per-machine and are recorded in
+  each machine's Install Registry, outside this constitution's jurisdiction. All specs, plans, and tasks authored under `docs/specs/` MUST be
 verifiable against these articles, and reviews MUST flag any violation before work
 proceeds. The lifecycle remains pure file-and-agent: compliance is checked by reading
 and writing Markdown, and no CLI tool or runtime is ever required.
 
-**Version**: 1.0.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-17
+**Version**: 1.1.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-19

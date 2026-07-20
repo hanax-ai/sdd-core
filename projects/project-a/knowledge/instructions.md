@@ -39,6 +39,12 @@ Oversized reference material (SAP schema/metadata exports, API contract dumps,
 integration guides) stored under [`../reference/`](../reference/) MUST be split
 into ordered slices before agents may consume it.
 
+> These slicing rules are operationalized by the `mirror-sync` skill
+> ([`../.claude/skills/mirror-sync/SKILL.md`](../.claude/skills/mirror-sync/SKILL.md)),
+> whose validation gates (d)/(e) stop work on a sliced document with a missing
+> `_index.md` or a manifest listing nonexistent slices. The skill is an
+> implementation aid — this section remains the normative slicing regime.
+
 **Rules:**
 
 1. **Naming convention:** slices are named `<doc-name>.part-NN.md` with
@@ -87,15 +93,22 @@ Source: <origin, retrieval date, version/commit if applicable>.
 
 Context budgeting rules for all agents operating in this project.
 
-**Prescribed load order** (stop as soon as the task is fully specified):
+**Prescribed load order** — the canonical five-step CONTEXT-LOADING order established
+in the workspace [`README.md`](../../../README.md), restated here verbatim (stop as soon
+as the task is fully specified). This playbook itself IS canonical step 4 (the project
+registry/playbook file), so it is not listed twice:
 
-1. Root constitution — [`../../../.specify/memory/constitution.md`](../../../.specify/memory/constitution.md)
-2. Project constitution — [`../.specify/memory/constitution.md`](../.specify/memory/constitution.md)
-3. This playbook
-4. The active feature spec — `../docs/specs/<NNN-feature-name>/spec.md` (and
-   its `plan.md` / `tasks.md` only when working those stages)
-5. Only the reference slices selected via the relevant `_index.md` manifest
-   ([Section 2](#2-file-slicing-constraints-for-long-reference-documents))
+1. **Root constitution** — [`../../../.specify/memory/constitution.md`](../../../.specify/memory/constitution.md)
+2. **Root mirror registry** — [`../../../knowledge/instructions.md`](../../../knowledge/instructions.md)
+3. **Project constitution** — [`../.specify/memory/constitution.md`](../.specify/memory/constitution.md)
+4. **Project mirror registry** — this playbook (`projects/project-a/knowledge/instructions.md`)
+5. **Active feature folder** — `../docs/specs/<NNN-feature-name>/` (`spec.md`, and its
+   `plan.md` / `tasks.md` only when working those stages)
+
+**Project-local refinement (labeled as such — an addition to, not a change of, the
+canonical order):** after step 5, load only the reference slices selected via the
+relevant `_index.md` manifest
+([Section 2](#2-file-slicing-constraints-for-long-reference-documents)).
 
 **Hard rules:**
 
@@ -142,6 +155,14 @@ and every long document inside a mirror follows the slicing rules in
 > **Precedence:** within Hana-X-Subsystem, entries in this table **override**
 > any same-named entry in the global registry. Agents resolve mirrors here
 > first and fall back to the global registry only when no local entry matches.
+> This is the MIRROR-LOOKUP precedence rule (an Article IV resolution order
+> applied during work), distinct from the context-loading order in Section 3.
+> Lookups through this table are operationalized by the `mirror-sync` skill
+> ([`../.claude/skills/mirror-sync/SKILL.md`](../.claude/skills/mirror-sync/SKILL.md)):
+> it resolves this table first, then the global registry, and stops — never
+> guesses — on its validation gates (absent framework, missing mirror path,
+> `placeholder` pin). The skill is an implementation aid; this table and the
+> global registry remain the sources of truth.
 
 > The seed row below is an **illustrative example** — the mirror directory does
 > not exist yet. Register it for real once the export lands under

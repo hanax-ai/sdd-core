@@ -1,0 +1,36 @@
+# Tooling Requirements Declaration
+<!-- Declares what this workspace REQUIRES or PERMITS. It is NOT installation state.  -->
+<!-- Machine state lives in each machine's ~/.sdd-core-ops/INSTALL-REGISTRY.md.        -->
+<!-- Schema v1. Columns are mandatory; Status ∈ {required, optional, deferred, excluded}. -->
+
+| Item | Category | Status | Tier | Expected Location | Approved Source | Defining Spec | Notes |
+|------|----------|--------|------|-------------------|-----------------|---------------|-------|
+| caveman | conduct & methodology | required | machine | plugin manager (user scope) | https://github.com/JuliusBrussee/caveman (pinned per Install Registry) | Canonical plan G2 | Conduct plugin, hook-backed. Install via marketplace `JuliusBrussee/caveman` → `caveman@caveman`. Content review before install; manifest-hash verify after. |
+| superpowers | conduct & methodology | required | machine | plugin manager (user scope) | https://github.com/obra/superpowers via marketplace `obra/superpowers-marketplace` | Canonical plan G2 | Methodology plugin (skills + hooks). Install ONLY `superpowers`; sibling marketplace plugins NOT approved. |
+| karpathy-rules | conduct & methodology | required | machine | `~/.claude/CLAUDE.md` sdd-core block | https://github.com/multica-ai/andrej-karpathy-skills (review-only) | Canonical plan G2 (review) / G3 (merge) | NOT an installed component — reviewed ruleset merged into the machine CLAUDE.md block, reviewed SHA cited in-block. |
+| conversation-sync | conversation sync | required | machine | `~/.claude/skills/conversation-sync/SKILL.md` | — (authored in-workspace) | Canonical plan G5 | The ONLY skill of this name, machine-wide. Carries all sync rules; projects contribute policy files, never a second skill. |
+| project sync policy | conversation sync | required | project | `projects/<name>/conversations/SYNC-POLICY.md` | — (authored in-workspace) | Canonical plan G6 | Committed policy file, not a skill. Declares the project's sole sync destination; may tighten, never loosen, the global skill's rules. |
+| skills-creator | workspace-native skills | required | project | `projects/project-a/.claude/skills/skills-creator/SKILL.md` | — (authored in-workspace) | Canonical plan G6 | Skill-authoring instructions: frontmatter, trigger descriptions, tier placement, mandatory registrations (this file + machine Install Registry). |
+| mirror-sync | workspace-native skills | required | project | `projects/project-a/.claude/skills/mirror-sync/SKILL.md` | — (authored in-workspace) | Canonical plan G7 | Mirror Registry Engine: operationalizes constitution Article IV; implementation aid — registries and pin discipline remain normative. |
+| playwright | MCP tools | deferred | project | `.mcp.json` (absent — deferred) | https://github.com/microsoft/playwright-mcp (`@playwright/mcp`) — NOT approved for install | Canonical plan Gate 7 (deferral) | Absent from every gating artifact. Reactivation only via a future feature spec naming a concrete browser surface + maintainer amendment (flips this row, restores source approval, adds `.mcp.json` + verify-layout entry). |
+| context7 | MCP tools | excluded | — | — | — | Canonical plan (exclusions) | Excluded: contradicts Article IV grounding/pin discipline (live external docs bypass pinned mirrors). |
+| front-end-design | conduct & methodology | excluded | — | — | — | Canonical plan (exclusions) | Excluded: project-a has no front-end surface. |
+
+## Bootstrap (new machine or template consumer)
+
+Executed on any machine that adopts the workspace (new maintainer, template consumer,
+rebuilt machine):
+
+1. Read `knowledge/tooling.md`; list rows with Status `required`.
+2. If `~/.sdd-core-ops/` is absent: create it (`review-archive/`, `artifacts/`, `backups/`) and
+   seed `INSTALL-REGISTRY.md` with one `pending` Inventory row per required item + empty Event Log
+   (this is Goal 1's machine-tier half, re-runnable standalone).
+3. For each required row, compare declared Expected Location against the machine: plugin present
+   (`claude plugin list`), skill/file present on disk. Update the registry row: `complete`
+   (present + previously reviewed), `pending` (absent), or `drift` (present but unattributed —
+   stop and review before touching it).
+4. For every `pending` row, execute that item's install goal from the canonical plan (review →
+   pin → install → verify), recording rows/events as the plan specifies.
+5. Finish by running the plan's Goal 9 audit checks for machine-tier artifacts plus
+   `./verify-layout.sh` for the repo tier. A declaration row NEVER implies installation — only a
+   `complete` registry row with a review record does.
