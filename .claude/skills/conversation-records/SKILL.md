@@ -51,6 +51,9 @@ NOT for: project-scoped records (route to the owning project's
    citations, action items with owners, and unresolved questions verbatim as questions.
 5. Add the record's line to `_index.md` (create the index from the README template if
    absent), newest first.
+6. After capture, offer a `skills-creator` mining pass over the new record: identify
+   recurring manual procedures it evidences and PROPOSE skill candidates (proposals
+   only — maintainer approves; registrations per skills-creator part 4).
 
 ### 2. Locate (retrieve)
 

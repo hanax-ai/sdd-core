@@ -36,6 +36,7 @@ REQUIRED_PATHS=(
   ".claude/skills/governed-change/SKILL.md"
   ".claude/skills/registry-logging/SKILL.md"
   ".claude/hooks/skill-reminder.sh"
+  ".claude/hooks/record-mining-reminder.sh"
   ".claude/settings.json"
   "projects/project-b/.specify/memory"
   "projects/project-b/docs/specs"

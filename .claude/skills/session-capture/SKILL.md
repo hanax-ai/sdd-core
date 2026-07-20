@@ -81,6 +81,8 @@ commit/artifact exists; index row present and correct.
 
 Then report: skill invocation status; record created/updated; index or supporting files
 changed; each validation result; any errors, ambiguities, or skill improvements found.
+Finally, offer a `skills-creator` mining pass over the new record (propose skill
+candidates only — no self-approval).
 
 ## Validation scenarios (expected behavior)
 
