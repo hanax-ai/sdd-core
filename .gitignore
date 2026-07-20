@@ -22,3 +22,7 @@ Thumbs.db
 projects/*/conversations/*
 !projects/*/conversations/.gitkeep
 !projects/*/conversations/SYNC-POLICY.md
+conversations/*
+!conversations/README.md
+!conversations/SYNC-POLICY.md
+!conversations/TEMPLATE.md

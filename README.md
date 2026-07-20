@@ -31,6 +31,10 @@ sdd-core/
 ├── knowledge/
 │   ├── instructions.md                # GLOBAL mirror registry: routes agents to local framework mirrors
 │   └── tooling.md                     # GLOBAL tooling requirement declaration + new-machine bootstrap
+├── conversations/
+│   ├── README.md                      # GLOBAL conversation records: purpose, conventions, index/archival rules
+│   ├── SYNC-POLICY.md                 # Workspace-level sync destination policy (records git-ignored)
+│   └── TEMPLATE.md                    # Standard conversation-record template
 ├── docs/                              # GLOBAL workspace-level documentation
 ├── reference/
 │   └── repos/                         # Git-ignored local mirrors of external frameworks
@@ -78,7 +82,11 @@ Skills and plugins are **ambient, triggered tooling — not load-order steps**: 
 ### Scope Rules
 
 - An agent assigned to a sub-project operates **only inside that project's tree** (`projects/<name>/`). It never writes outside it.
-- The global tier (root constitution, root `knowledge/instructions.md`, `docs/`, `reference/`) is **read-only** from within a project.
+- The global tier (root constitution, root `knowledge/instructions.md`, `conversations/`, `docs/`, `reference/`) is **read-only** from within a project.
+
+### Conversation Records
+
+Durable conversation records have exactly two homes, disambiguated by scope: workspace-level outcomes (governance, cross-project conventions, tooling) go to the root [`conversations/`](conversations/) directory — a GLOBAL-tier resource writable only at root-level scope; project-scoped outcomes go to the owning project's `projects/<name>/conversations/` under its own `SYNC-POLICY.md`. Records follow [`conversations/TEMPLATE.md`](conversations/TEMPLATE.md) and the conventions in [`conversations/README.md`](conversations/README.md); record content stays machine-local (git-ignored) — only the policy, template, and README are template content.
 
 ### Mirror-Check Mandate
 
