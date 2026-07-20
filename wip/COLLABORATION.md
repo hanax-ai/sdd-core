@@ -8,8 +8,12 @@ governs collaboration ONLY — it grants no promotion or implementation authorit
 ## 1. Contributor roles
 
 - **Contributor** — any authorized root-scoped agent or human adding research,
-  alternatives, or drafts to an item. Identity is a stable name: humans use their
-  GitHub handle; agents use `claude-<role>` (e.g. `claude-root`, `claude-research`).
+  alternatives, or drafts to an item. Identity is a stable UNIQUE name: humans use
+  their GitHub handle; agents use `claude-<role>-<assigned-name-or-short-id>`
+  (e.g. `claude-research-alpha`, `claude-research-beta`). A bare role
+  (`claude-research`) is NOT a valid identifier — multiple simultaneous agents can
+  share a role, so every agent instance gets its own suffix, used consistently in
+  claims, contribution files, item metadata, and `_index.md`.
 - **Synthesis lead** — one per item, named in the item README and `_index.md`.
   Default: the item's creator, until Agent Zero or the lead reassigns (recorded in
   both places).
@@ -27,16 +31,28 @@ governs collaboration ONLY — it grants no promotion or implementation authorit
 - A synthesis decision is an editorial act inside WIP — never a ratified workspace
   decision.
 
-## 3. Workstream claiming
+## 3. Workstream claiming — claim on `main` BEFORE any work
 
-1. Read this file, the item README, and every file under `coordination/claims/`.
+A claim is authoritative only once it is visible on `main`. A claim sitting on an
+unmerged contributor branch is invisible to everyone else and reserves nothing.
+
+1. Synchronize with the latest `main`; read this file, the item README, and every file
+   under `coordination/claims/`.
 2. Pick a bounded workstream not already claimed. If your intended work overlaps an
    existing claim: STOP and coordinate with the claim holder (or synthesis lead) —
    never proceed in parallel on a claimed scope (W9).
-3. Create ONE claim file `coordination/claims/<your-name>.md` (or
-   `<workstream-name>.md` for a shared workstream with a named owner) stating: owner,
-   scope (files + topic), start date, expected completion.
-4. One active claim file per workstream. Remove or close the claim after integration.
+3. Create ONE claim file `coordination/claims/<your-unique-name>.md` (or
+   `<workstream-name>.md` for a shared workstream with a named owner) stating: owner
+   (unique identifier), scope (files + topic), start date, expected completion.
+4. **Publish the claim to `main` FIRST** — a small claim-only commit (or claim-only
+   PR), containing nothing but the claim file. Only after the claim is on `main` may
+   the contribution branch be created.
+5. **Push-race rule:** if the claim push is rejected (non-fast-forward), someone else
+   just published — pull, re-read ALL claims, and only re-attempt if your workstream
+   is still free. Git's push atomicity makes the first published claim win; the loser
+   re-plans, never force-pushes.
+6. One active claim file per workstream. Remove or close the claim (via `main`) after
+   integration.
 
 ## 4. Branch and worktree conventions
 
@@ -60,7 +76,8 @@ governs collaboration ONLY — it grants no promotion or implementation authorit
 
 1. Synchronize with latest `main`.
 2. Read the WIP policy (`README.md`), this protocol, the item README, active claims.
-3. Claim a bounded workstream (§3).
+3. Claim a bounded workstream and PUBLISH the claim to `main` (§3) — the branch comes
+   only after the claim is visible to everyone.
 4. Create your isolated branch/worktree (§4).
 5. Write only within the claimed files and scope (§5).
 6. Commit ONE coherent contribution.

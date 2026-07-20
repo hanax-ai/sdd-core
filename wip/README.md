@@ -70,14 +70,19 @@ wip/
     ├── coordination/
     │   ├── README.md
     │   └── claims/              # One claim file per active workstream
+    │       ├── README.md        # Claim schema + publish-to-main-first rule (committed placeholder)
     │       └── <agent-or-workstream>.md
     └── supporting-materials/    # Diagrams, examples, non-operational pseudocode
 ```
 
 Collaboration happens ONLY through the protocol in
-[`COLLABORATION.md`](COLLABORATION.md): claimed workstreams, isolated branches,
-contributor-owned files, synthesis-lead integration, no force-pushes. `wip/.local/`,
-temporary files, and generated evaluation outputs stay git-ignored.
+[`COLLABORATION.md`](COLLABORATION.md): claims published to `main` before any branch,
+contributor-owned files, synthesis-lead integration, no force-pushes.
+
+**Generated outputs:** all machine-generated material (evaluation outputs, logs,
+reports, build artifacts) MUST live under `wip/.local/<item>/…` — never inside a
+committed item directory. As a backstop, any `generated/` directory inside an item is
+also git-ignored (`wip/**/generated/`), along with `wip/.local/` and `wip/**/*.tmp`.
 
 ## Statuses
 
@@ -159,9 +164,10 @@ not invent variants:
 ```
 
 One row per item, newest first. `Synthesis lead` and `Active contributors` use stable
-names (humans: GitHub handle; agents: `claude-<role>`). `Status` and `Approval state`
-stay distinct columns — a merged item is still `NOT APPROVED` until Gate 1. The index
-never implies approval.
+UNIQUE names (humans: GitHub handle; agents:
+`claude-<role>-<assigned-name-or-short-id>`, e.g. `claude-research-alpha` — never a
+bare role). `Status` and `Approval state` stay distinct columns — a merged item is
+still `NOT APPROVED` until Gate 1. The index never implies approval.
 
 ## Scope (constitution Article III)
 

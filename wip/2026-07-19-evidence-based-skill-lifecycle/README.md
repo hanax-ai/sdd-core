@@ -10,11 +10,11 @@
 - **Scope:** workspace
 - **Status:** exploring
 - **Created:** 2026-07-19 · **Last touched:** 2026-07-20
-- **Synthesis lead:** claude-root (item creator, per default rule)
-- **Active contributors:** claude-root
+- **Synthesis lead:** claude-root-alpha (item creator, per default rule)
+- **Active contributors:** claude-root-alpha
 - **Current workstreams:** — (none claimed)
 - **Contribution status:** open-for-contributions
-- **Last synchronized commit:** —
+- **Last synchronized commit:** 8afd8c1 (main HEAD the initial synthesis integrated against)
 - **Approval state:** NOT APPROVED — exploration only
 - **Gate 1 (promotion) evidence:** —
 - **Promotion target:** —

@@ -63,6 +63,31 @@ for p in "${REQUIRED_PATHS[@]}"; do
 done
 
 echo
+echo "Verifying collaborative WIP items..."
+echo
+ITEM_REQUIRED=("README.md" "contributions/README.md" "coordination/README.md" "coordination/claims/README.md" "supporting-materials")
+for item in wip/[0-9]*/; do
+  [ -d "$item" ] || continue
+  name=$(basename "$item")
+  for req in "${ITEM_REQUIRED[@]}"; do
+    total=$((total + 1))
+    if [ -e "$item$req" ]; then
+      printf '[OK]      %s%s\n' "$item" "$req"
+    else
+      printf '[MISSING] %s%s\n' "$item" "$req"
+      missing=$((missing + 1))
+    fi
+  done
+  total=$((total + 1))
+  if grep -q "^| $name " wip/_index.md 2>/dev/null; then
+    printf '[OK]      %s indexed in wip/_index.md\n' "$name"
+  else
+    printf '[MISSING] %s row in wip/_index.md\n' "$name"
+    missing=$((missing + 1))
+  fi
+done
+
+echo
 if [ "$missing" -eq 0 ]; then
   echo "RESULT: 100% compliance — all $total required paths present."
 else

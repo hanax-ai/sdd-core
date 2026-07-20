@@ -30,3 +30,4 @@ conversations/*
 # --- WIP collaborative content is tracked; only machine-local scratch stays ignored ---
 wip/.local/
 wip/**/*.tmp
+wip/**/generated/
