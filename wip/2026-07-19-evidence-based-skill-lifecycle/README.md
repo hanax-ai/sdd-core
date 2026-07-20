@@ -142,7 +142,10 @@ artifact.
 3. Author the eval runner skill + evals.json schema v1 (positions 2, 5); register both.
 4. Pilot: convert session-capture S1–S6 into executable evals with baselines,
    trigger/near-miss tests, synthetic fixtures; finish with a fresh-session live
-   integration test. Evidence to Ops Home.
+   integration test. Trigger evaluation includes root-skill DISCOVERABILITY: runs
+   from repo-root vs out-of-repo session contexts (closes the tracked
+   discoverability question per maintainer decision "1 now + 3 later", 2026-07-20).
+   Evidence to Ops Home.
 5. Backfill conversation-sync and mirror-sync evals (position 4). Report results;
    maintainer reviews before the lifecycle becomes required practice.
 

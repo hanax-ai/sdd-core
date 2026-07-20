@@ -5,7 +5,9 @@ This file is the **mandatory first stop** for any agent — global or per-projec
 Workspace tooling requirements (skills, plugins, conduct rulesets, MCP tools) are declared
 separately in [`tooling.md`](tooling.md) — the committed requirement declaration with its
 new-machine bootstrap procedure. A declaration row never implies installation; machine
-state lives in each machine's `~/.sdd-core-ops/INSTALL-REGISTRY.md`.
+state lives in each machine's `~/.sdd-core-ops/INSTALL-REGISTRY.md`. Workspace-root
+skills are reliably discovered only by sessions started inside the repository — start
+governance-work sessions in the repo root (README, activation note).
 
 **WIP routing and approval gate:** early-stage ideas live in the root
 [`../wip/`](../wip/) directory and are NON-AUTHORITATIVE — nothing there is a spec,
