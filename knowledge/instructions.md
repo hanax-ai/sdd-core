@@ -2,6 +2,11 @@
 
 This file is the **mandatory first stop** for any agent — global or per-project — before writing, proposing, or planning code that depends on an external framework. Its job is to route agents to local, offline mirrors of framework source code and documentation held under [`../reference/repos/`](../reference/repos/), so that every framework-facing claim (API names, signatures, config keys, file layouts) is grounded in real files rather than recalled from training data. Consulting this registry before touching framework-dependent code is a hard requirement of the workspace constitution ([`../.specify/memory/constitution.md`](../.specify/memory/constitution.md)); it exists to eliminate hallucinated APIs. Mirrors are plain directories on disk — reading them requires no tools beyond opening files.
 
+Workspace tooling requirements (skills, plugins, conduct rulesets, MCP tools) are declared
+separately in [`tooling.md`](tooling.md) — the committed requirement declaration with its
+new-machine bootstrap procedure. A declaration row never implies installation; machine
+state lives in each machine's `~/.sdd-core-ops/INSTALL-REGISTRY.md`.
+
 ---
 
 ## 1. Mirror Registry
@@ -28,6 +33,13 @@ For developers adding a framework mirror (a one-time human setup step; the SDD w
 5. **(If project-scoped)** If the mirror is only relevant to one sub-project, place it under `projects/<name>/reference/` and register it in that project's `knowledge/instructions.md` instead of here.
 
 ## 3. Lookup Protocol for Agents
+
+> **Lookup order is not load order.** This section defines the MIRROR-LOOKUP precedence
+> rule — project registry before global — a constitution Article IV *resolution order*
+> applied while working on framework-dependent tasks. It is distinct from, and does not
+> compete with, the canonical five-step CONTEXT-LOADING order established in the
+> workspace `README.md` (constitutions and registries loaded global-tier-first). Loading
+> reads governance top-down; lookups resolve mirrors bottom-up.
 
 Follow these rules **in order** whenever a task involves an external framework:
 

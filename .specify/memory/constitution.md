@@ -1,21 +1,40 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version change: (unratified) → 1.0.0
-Bump rationale: Initial ratification of the master global constitution for the
-  Hana-X SDD-Core workspace. MAJOR baseline because it establishes binding
-  governance where none previously existed.
+Version change: 1.0.0 → 1.1.0
+Bump rationale: MINOR — adds a new section (Skills & Tooling Governance),
+  materially extends Article V (advisory planning/validation-evidence
+  expectation), and annotates Article IV (mirror-sync implementation aid).
+  No article is removed, renumbered, or redefined.
 
-Principles defined:
-  I.   Local Open-Source Models Only
-  II.  Standardized Data Layer
-  III. Isolated Agent Scopes
-  IV.  Mirror-Check Mandate
-  V.   Spec-First Lifecycle
+Amendment rationale: integrate the skill/tooling infrastructure delivered by
+  the canonical plan (Canonical_Claude_Code_Goals_v3.md, Goals 1–7) into
+  governance: recognize the tooling inventory categories, acknowledge the
+  machine tier as adjacent infrastructure outside constitutional
+  jurisdiction, and record the decided ADVISORY enforcement level (PEDR
+  D4/D5). Executed under the plan's GLOBAL executing scope with maintainer
+  approval (Goal 8).
 
-Added sections:
-  - Inheritance
-  - Governance (with Amendment Procedure)
+Impact note — files changed in this same amendment:
+  - .specify/memory/constitution.md (this file: new section, Article IV
+    annotation, Article V extension, version/footer)
+  - projects/project-a/.specify/memory/constitution.md (amendment note,
+    version/footer)
+  - knowledge/tooling.md (created: committed requirement declaration,
+    PEDR Gate 2 schema + Gate 3 bootstrap)
+  - knowledge/instructions.md (tooling.md link; lookup-vs-load distinction)
+  - projects/project-a/knowledge/instructions.md (mirror-sync references in
+    §2/§4; §3 restated to the canonical load order)
+  - README.md (canonical context-loading order, nested-skill activation
+    note, layout tree, provisioning)
+  - verify-layout.sh (five REQUIRED_PATHS additions)
+  No template under projects/<name>/docs/specs/template/ references the
+  amended text; templates are unchanged.
+
+Previous report (1.0.0, initial ratification) — principles defined:
+  I. Local Open-Source Models Only · II. Standardized Data Layer
+  III. Isolated Agent Scopes · IV. Mirror-Check Mandate
+  V. Spec-First Lifecycle; sections: Inheritance, Governance.
 
 Follow-up TODOs: none. All paths in this document are relative to the
 workspace root (the directory containing this file's `.specify/` tree).
@@ -115,6 +134,13 @@ framework checkouts) are the workspace's ground truth for third-party code.
 Mandatory mirror-checks convert "plausible" agent output into verifiable
 output and eliminate hallucinated dependencies at the source.
 
+> **Annotation (v1.1.0):** the `mirror-sync` skill
+> (`projects/project-a/.claude/skills/mirror-sync/`) is an *implementation
+> aid* for this article — it routes lookups through the registries and stops
+> on validation failures. Registry consultation and pin discipline remain
+> normative under this article whether or not that skill loads; the skill
+> adds convenience, never authority.
+
 ### V. Spec-First Lifecycle
 
 No implementation work without an approved spec and plan.
@@ -134,6 +160,16 @@ No implementation work without an approved spec and plan.
 durable contract between intent and output. Skipping it produces code that
 no reviewer, agent, or future session can trace to a requirement.
 
+**Extension (v1.1.0 — material amendment):** agents are additionally
+expected to plan before implementing and to produce validation evidence
+(verifiable success criteria, test-first work where applicable) for feature
+work under this article. This expectation is **ADVISORY**: it is delivered
+as guidance via installed methodology skills and machine-tier conduct rules
+(see Skills & Tooling Governance), and no mechanical enforcement (hooks,
+settings gates) is installed by the workspace. Hard enforcement, if ever
+required, must arrive as a separately reviewed hook-design specification
+scoped to project settings — never as a silent addition.
+
 ## Inheritance
 
 Every project constitution at `projects/<name>/.specify/memory/constitution.md`
@@ -147,6 +183,43 @@ document in full.
   article of this document. A project-level clause that conflicts with the
   global tier is void, and the global clause prevails.
 - Where a project constitution is silent, this document applies directly.
+
+## Skills & Tooling Governance
+
+The workspace recognizes a governed tooling inventory, declared in the
+committed requirement declaration `knowledge/tooling.md` and grouped into
+four categories:
+
+- **Conduct & methodology (3):** caveman (conduct plugin), superpowers
+  (methodology plugin), karpathy-rules (conduct ruleset merged into the
+  machine-tier `~/.claude/CLAUDE.md` sdd-core block).
+- **Conversation sync (2):** the global `conversation-sync` skill plus the
+  per-project sync policy file
+  (`projects/<name>/conversations/SYNC-POLICY.md`).
+- **Workspace-native skills (2):** `skills-creator` and `mirror-sync` under
+  `projects/project-a/.claude/skills/`.
+- **MCP tools (0 active, 1 deferred):** no MCP server is active; playwright
+  is deferred and absent from every gating artifact, reactivatable only via
+  a future feature spec naming a concrete browser surface plus a maintainer
+  amendment.
+
+Rules:
+
+- **Machine tier acknowledged, not governed.** Machine-tier items
+  (`~/.claude/` plugins, skills, and conduct files) are adjacent
+  infrastructure OUTSIDE constitutional jurisdiction. Their state is
+  recorded in each machine's Install Registry
+  (`~/.sdd-core-ops/INSTALL-REGISTRY.md`); this constitution claims no
+  authority over them and template content never includes them.
+- **Declaration vs installation.** A `knowledge/tooling.md` row declares
+  what the workspace requires or permits; it NEVER implies installation.
+  Only a `complete` row in a machine's Install Registry, with a review
+  record, means installed there.
+- **Additions.** Any new skill, plugin, policy file, or MCP tool enters
+  governance by adding a row to `knowledge/tooling.md` and registering in
+  the machine Install Registry; external sources additionally require
+  maintainer-approved source, pinned revision, and pre-install content
+  review. No agent self-approves.
 
 ## Governance
 
@@ -182,4 +255,4 @@ guidance; it operates under this constitution, never above it.
   to every inheriting project constitution and any dependent template under
   `projects/<name>/docs/specs/template/` that references the amended text.
 
-**Version**: 1.0.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-17
+**Version**: 1.1.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-19
