@@ -180,12 +180,22 @@ artifact.
    them.
 3. Author the `skill-evaluator` runner skill + evals.json schema v1 + the central
    `.claude/skill-evals/` registry (positions 2, 5, 6); register all of it.
-4. Pilot: convert session-capture S1–S6 into executable evals with baselines,
-   trigger/near-miss tests, synthetic fixtures; finish with a fresh-session live
-   integration test. Trigger evaluation includes root-skill DISCOVERABILITY: runs
-   from repo-root vs out-of-repo session contexts (closes the tracked
-   discoverability question per maintainer decision "1 now + 3 later", 2026-07-20).
-   Evidence to Ops Home.
+4. Pilot (scope decided by Agent Zero, 2026-07-20 — Option B, two skills across two
+   tiers):
+   - **session-capture** (root tier): convert S1–S6 into executable evals with
+     baselines, trigger/near-miss tests, synthetic fixtures; finish with a
+     fresh-session live integration test. Trigger evaluation includes root-skill
+     DISCOVERABILITY: runs from repo-root vs out-of-repo session contexts (closes
+     the tracked discoverability question per maintainer decision "1 now + 3
+     later", 2026-07-20).
+   - **mirror-sync** (project tier): mechanically assertable evals over its five
+     validation gates (missing mirror path, placeholder pin, missing `_index.md`,
+     phantom slices, absent-framework routing), reusing the G7 dry-run fixtures
+     and registry seed rows. This leg proves the central registry's tier claims
+     and the position-7 Article III isolation property (harness runs a
+     project-tier subject without touching root or sibling artifacts).
+   Evidence to Ops Home. Machine tier is deliberately NOT in the pilot;
+   conversation-sync backfill covers it post-pilot (step 5).
 5. Backfill conversation-sync and mirror-sync evals (position 4). Report results;
    maintainer reviews before the lifecycle becomes required practice.
 
@@ -193,8 +203,11 @@ artifact.
 
 - ~~Article I interpretation vs amendment~~ — **RESOLVED**: constitution v2.0.0
   amended Article I (2026-07-20); evaluations under hosted models are constitutional.
-- Pilot scope: session-capture only, or include one project-tier skill to exercise
-  Article III isolation in the harness design?
+- ~~Pilot scope~~ — **RESOLVED** (Agent Zero, 2026-07-20): Option B —
+  session-capture (root tier) + mirror-sync (project tier), folded into adoption
+  plan step 4. Machine tier via post-pilot conversation-sync backfill.
+
+**No open questions remain.** The item is fully scoped for the Gate 1 decision.
 
 ## Proposed next step
 
