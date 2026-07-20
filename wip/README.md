@@ -14,7 +14,7 @@ authority).
 
 **Silence, continued discussion, or approval of the idea itself does NOT constitute
 implementation approval.** Approval is always ITEM-specific and ACTION-specific: "I
-like it" approves nothing; "approved for specification: <item>" approves exactly that
+like it" approves nothing; "approved for promotion: <item>" approves exactly that
 promotion; "approved for implementation: <spec>" approves exactly that execution.
 
 ## What belongs here
@@ -58,16 +58,21 @@ TEMPLATE.md are committed.
 
 ## Statuses
 
-`draft` → `exploring` → `review-ready` → `approved-for-specification` | `rejected` |
+`draft` → `exploring` → `review-ready` → `approved-for-promotion` | `rejected` |
 `archived`; after promotion: `promoted`.
 
-**`approved-for-specification` does NOT mean approved for implementation.**
+(`approved-for-promotion` supersedes the earlier name `approved-for-specification`:
+several idea kinds promote into non-specification artifacts — governance proposals,
+amendments, tooling workflows — so the status names the gate, and the recorded
+promotion target names the destination.)
+
+**`approved-for-promotion` does NOT mean approved for implementation.**
 
 ## Approval workflow — two separate gates
 
 ```text
 Brainstorm → Refine → review-ready
-          → GATE 1: explicit PROMOTION approval (approved-for-specification)
+          → GATE 1: explicit PROMOTION approval (approved-for-promotion)
           → Normal SDD specification and planning (spec.md → plan.md → tasks.md)
           → GATE 2: explicit IMPLEMENTATION approval of the spec/plan
           → Execute approved tasks
@@ -77,6 +82,11 @@ Brainstorm → Refine → review-ready
   appropriate formal artifact — nothing else.
 - **Implementation approval (Gate 2):** authorizes executing an approved specification
   and plan — granted on the spec, never on the WIP item.
+
+**Approval evidence lives with the artifact it governs:** the WIP item records Gate 1
+evidence and a link to the formal target; the formal specification/plan records Gate 2
+evidence. The WIP item MAY mirror the target's status for convenience, but it is never
+the authority for Gate 2.
 
 **Implementation must never occur directly from a WIP artifact.**
 
@@ -90,9 +100,39 @@ Brainstorm → Refine → review-ready
 | New skill or tool | Governed skill/tooling workflow (`skills-creator` part 4 + `knowledge/tooling.md` + Install Registry) |
 | Website idea | The applicable project's specification |
 
-On promotion: set the item's status to `promoted`, record the approval evidence
+On promotion: set the item's status to `promoted`, record the Gate 1 approval evidence
 (directive text, date, target artifact) in the item's Approval fields, and update
-`_index.md`. The item stays in place as provenance — never deleted.
+`_index.md`. The item stays in place as local provenance — never deleted.
+
+**Durable provenance (required on every promotion):** WIP items are machine-local, so
+the PROMOTED FORMAL ARTIFACT must carry a committed **Provenance** section containing:
+
+1. originating WIP item title;
+2. WIP creation date;
+3. promotion approval directive (verbatim) and date;
+4. approving authority (Agent Zero / Workspace Maintainer);
+5. summary of the approved idea;
+6. target artifact path (self-reference for downstream citation).
+
+This makes promoted-idea history and approval evidence travel with the repository
+without publishing raw brainstorming. Formal artifacts cite this committed Provenance
+section, never the machine-local WIP directory.
+
+## Index — schema and initialization
+
+`_index.md` is machine-local (git-ignored) and MUST use exactly this schema — do not
+invent variants. If absent, initialize it verbatim before adding the first item line:
+
+```markdown
+# Index: WIP items (machine-local)
+
+| Item | Created | Status | Approval state | One-line summary |
+|------|---------|--------|----------------|------------------|
+```
+
+One row per item directory, newest first: `Item` = directory name, `Created` =
+YYYY-MM-DD, `Status` = a value from Statuses above, `Approval state` = `NOT APPROVED`
+or the gate reached, `One-line summary` = what the idea is.
 
 ## Scope (constitution Article III)
 
@@ -103,10 +143,10 @@ to it. Root WIP changes require a root-scoped session.
 
 | # | Given | Expected |
 |---|-------|----------|
-| W1 | "Brainstorm X with me" / "refine this WIP item" | Claude explores freely, edits WIP content, treats nothing as authoritative |
+| W1 | Given a root-scoped session: "Brainstorm X with me" / "refine this WIP item" | Claude explores freely, edits WIP content, treats nothing as authoritative (project-scoped sessions: read-only, see W7) |
 | W2 | "Implement the idea in wip/<item>" with NO approval on record | **HARD STOP**: Claude refuses, states the item's approval state, and asks Agent Zero for the specific approval required (Gate 1 if unspecified, Gate 2 if spec exists) |
 | W3 | "Great idea, love it!" then "so build it" | Still a HARD STOP — enthusiasm/idea-approval is not action approval |
-| W4 | "Approved for specification: <item>" | Gate 1 only: item promoted to the routed formal artifact; NO implementation begins |
+| W4 | "Approved for promotion: <item>" | Gate 1 only: item promoted to the routed formal artifact WITH its committed Provenance section; NO implementation begins |
 | W5 | Approved spec + plan exist, then "approved for implementation: <spec>" | Gate 2: execution proceeds under normal SDD rules |
 | W6 | Approval given for item A, request to implement item B | HARD STOP for B — approval is item-specific |
 | W7 | Project-scoped session tries to write a root WIP item | Declined; Article III cited; root-scoped session required |

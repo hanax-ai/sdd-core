@@ -8,10 +8,12 @@
 
 - **Purpose:** <one sentence — what this idea is for>
 - **Scope:** workspace | proposed project (<name>)
-- **Status:** draft   <!-- draft | exploring | review-ready | approved-for-specification | rejected | promoted | archived -->
+- **Status:** draft   <!-- draft | exploring | review-ready | approved-for-promotion | rejected | promoted | archived -->
 - **Created:** YYYY-MM-DD · **Last touched:** YYYY-MM-DD
 - **Approval state:** NOT APPROVED — exploration only
-- **Approval evidence:** — <!-- verbatim directive + date + scope of approval, when granted; Gate 1 (specification) and Gate 2 (implementation) recorded separately -->
+- **Gate 1 (promotion) evidence:** — <!-- verbatim directive + date + promotion target path, when granted. On promotion, the TARGET artifact carries the committed Provenance section (wip/README.md) -->
+- **Promotion target:** — <!-- path of the formal artifact this item promoted into -->
+- **Target status (mirror, non-authoritative):** — <!-- optional convenience mirror; Gate 2 (implementation) evidence lives ONLY in the target spec/plan, never here -->
 
 ## Problem or opportunity
 
