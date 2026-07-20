@@ -9,15 +9,19 @@ state lives in each machine's `~/.sdd-core-ops/INSTALL-REGISTRY.md`.
 
 **WIP routing and approval gate:** early-stage ideas live in the root
 [`../wip/`](../wip/) directory and are NON-AUTHORITATIVE — nothing there is a spec,
-decision, plan, or authorization. Agents may explore and refine WIP content on request
-but MUST NOT implement, install, promote, or modify authoritative artifacts from it
-without the explicit, item-and-action-specific approvals defined in
-[`../wip/README.md`](../wip/README.md): Gate 1 (approved-for-specification) authorizes
-promotion into the routed formal artifact (feature spec, workspace proposal, amendment
-procedure, or governed tooling workflow); Gate 2 (implementation approval on the
-resulting spec/plan) authorizes execution. Requests to implement unapproved WIP content
-get a hard stop and an approval request. WIP never bypasses this registry, the
-constitution, or the spec-first lifecycle.
+decision, plan, or authorization, **regardless of being committed, reviewed, or merged
+on GitHub**. WIP items are Git-tracked and collaborative: root-scoped contributors work
+under the protocol in [`../wip/COLLABORATION.md`](../wip/COLLABORATION.md) (claims,
+contributor-owned files, synthesis-lead integration); project-scoped agents read only
+(Article III). Agents may explore and refine WIP content on request but MUST NOT
+implement, install, promote, or modify authoritative artifacts from it without Agent
+Zero's explicit, item-and-action-specific approvals defined in
+[`../wip/README.md`](../wip/README.md): Gate 1 (`Approved for promotion: <item> →
+<target>`) authorizes promotion into the routed formal artifact (feature spec,
+workspace proposal, amendment procedure, or governed tooling workflow); Gate 2
+(`Approved for implementation: <spec>`) authorizes execution. Requests to implement
+unapproved WIP content get a hard stop and an approval request. WIP never bypasses
+this registry, the constitution, or the spec-first lifecycle.
 
 ---
 

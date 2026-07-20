@@ -1,21 +1,28 @@
-# Work In Progress — `wip/` (GLOBAL tier, NON-AUTHORITATIVE)
+# Work In Progress — `wip/` (GLOBAL tier, NON-AUTHORITATIVE, collaborative)
 
-The canonical workspace for brainstorming and developing early-stage ideas with Claude.
-This directory supports exploration and grants **no implementation authority of any
-kind**.
+The canonical, team-accessible workspace for brainstorming and developing early-stage
+ideas. WIP items are **tracked in Git and shared through GitHub** so multiple
+authorized root-scoped agents and human contributors can collaborate on the same
+items. This directory supports exploration and grants **no implementation authority of
+any kind**.
 
 ## Core rule
 
-Content in `wip/` is **exploratory only**. Claude may discuss, research, organize, and
-refine WIP content when requested, but it MUST NOT implement, install, deploy, promote,
-or modify authoritative workspace artifacts based on that content without **Agent
-Zero's explicit approval** (Agent Zero = the Workspace Maintainer's directing
-authority).
+Content in `wip/` is **exploratory only** — and stays exploratory **regardless of
+whether it is committed, pushed, reviewed, or merged**. GitHub publication and team
+agreement do NOT constitute Gate 1 promotion approval or Gate 2 implementation
+approval. Claude may discuss, research, organize, and refine WIP content when
+requested, but MUST NOT implement, install, deploy, promote, or modify authoritative
+workspace artifacts based on it without **Agent Zero's explicit approval** (Agent
+Zero = the Workspace Maintainer's directing authority).
 
-**Silence, continued discussion, or approval of the idea itself does NOT constitute
-implementation approval.** Approval is always ITEM-specific and ACTION-specific: "I
-like it" approves nothing; "approved for promotion: <item>" approves exactly that
-promotion; "approved for implementation: <spec>" approves exactly that execution.
+**Silence, continued discussion, praise, or a merged pull request is NOT approval.**
+Approval is always ITEM-specific and ACTION-specific, in exactly these forms:
+
+- Gate 1: `Approved for promotion: <exact WIP item> → <exact target artifact>`
+- Gate 2: `Approved for implementation: <exact specification or plan>`
+
+Only Agent Zero may issue either.
 
 ## What belongs here
 
@@ -23,6 +30,11 @@ Feature ideas · process improvements · methodology experiments · skill and ag
 concepts · website or architecture ideas · research notes · alternative designs ·
 questions and unresolved possibilities · early diagrams, examples, and non-operational
 pseudocode.
+
+**Public visibility:** this repository is a public template — WIP items are publicly
+readable and inherited by template consumers (maintainer-accepted). Secrets,
+credentials, customer data, private transcripts, and sensitive machine information
+must NEVER be committed here; Endpoint Discipline applies to every file.
 
 ## Prohibited assumptions
 
@@ -38,57 +50,73 @@ A WIP artifact must NEVER be treated as:
 
 WIP material cannot bypass the constitution, specifications, plans, registries, or
 scope boundaries. A WIP item that contradicts an authoritative artifact is an idea to
-evaluate — never an override.
+evaluate — never an override. A synthesis decision inside WIP is not a ratified
+workspace decision.
 
 ## Structure
 
 ```text
 wip/
 ├── README.md                    # This file (purpose + approval policy) — committed
+├── COLLABORATION.md             # Multi-agent collaboration protocol — committed
 ├── TEMPLATE.md                  # Standard WIP-item template — committed
-├── _index.md                    # Local index of items (machine-local, git-ignored)
-└── YYYY-MM-DD-topic-name/       # One directory per WIP item (machine-local)
-    ├── README.md                # The item, from TEMPLATE.md
-    └── supporting-materials...  # Diagrams, examples, non-operational pseudocode
+├── _index.md                    # Committed canonical index of team WIP items
+├── .local/                      # Machine-only scratch — git-ignored
+└── YYYY-MM-DD-topic-name/       # One directory per WIP item — committed
+    ├── README.md                # Canonical synthesis (synthesis lead integrates)
+    ├── contributions/           # One uniquely named file per contributor/workstream
+    │   ├── README.md
+    │   └── <agent-or-workstream>.md
+    ├── coordination/
+    │   ├── README.md
+    │   └── claims/              # One claim file per active workstream
+    │       └── <agent-or-workstream>.md
+    └── supporting-materials/    # Diagrams, examples, non-operational pseudocode
 ```
 
-Item content and `_index.md` are **git-ignored** (machine-local, like conversation
-records): raw brainstorms never ship with the public template. Only this README and
-TEMPLATE.md are committed.
+Collaboration happens ONLY through the protocol in
+[`COLLABORATION.md`](COLLABORATION.md): claimed workstreams, isolated branches,
+contributor-owned files, synthesis-lead integration, no force-pushes. `wip/.local/`,
+temporary files, and generated evaluation outputs stay git-ignored.
 
 ## Statuses
 
 `draft` → `exploring` → `review-ready` → `approved-for-promotion` | `rejected` |
 `archived`; after promotion: `promoted`.
 
-(`approved-for-promotion` supersedes the earlier name `approved-for-specification`:
-several idea kinds promote into non-specification artifacts — governance proposals,
-amendments, tooling workflows — so the status names the gate, and the recorded
-promotion target names the destination.)
-
-**`approved-for-promotion` does NOT mean approved for implementation.**
+**`approved-for-promotion` does NOT mean approved for implementation.** A merged WIP
+item remains **NOT APPROVED** until Agent Zero issues the Gate 1 directive.
 
 ## Approval workflow — two separate gates
 
 ```text
-Brainstorm → Refine → review-ready
-          → GATE 1: explicit PROMOTION approval (approved-for-promotion)
+Brainstorm → Collaborate (COLLABORATION.md) → review-ready
+          → GATE 1: Agent Zero — "Approved for promotion: <item> → <target>"
           → Normal SDD specification and planning (spec.md → plan.md → tasks.md)
-          → GATE 2: explicit IMPLEMENTATION approval of the spec/plan
+          → GATE 2: Agent Zero — "Approved for implementation: <spec>"
           → Execute approved tasks
 ```
-
-- **Promotion approval (Gate 1):** authorizes converting the WIP idea into the
-  appropriate formal artifact — nothing else.
-- **Implementation approval (Gate 2):** authorizes executing an approved specification
-  and plan — granted on the spec, never on the WIP item.
 
 **Approval evidence lives with the artifact it governs:** the WIP item records Gate 1
 evidence and a link to the formal target; the formal specification/plan records Gate 2
 evidence. The WIP item MAY mirror the target's status for convenience, but it is never
-the authority for Gate 2.
+the authority for Gate 2. **Implementation must never occur directly from a WIP
+artifact.**
 
-**Implementation must never occur directly from a WIP artifact.**
+### Allowed WITHOUT Gate 1 (authorized root-scoped contributors)
+
+Create WIP items · add research and alternatives · submit contribution files · review
+and comment · synthesize WIP content · commit and push WIP collaboration changes ·
+merge reviewed WIP contributions.
+
+### Requires Gate 1 (Agent Zero only)
+
+Promotion into: a feature specification · a workspace proposal · a constitutional
+amendment · a governed skill or tooling workflow · any other authoritative artifact.
+
+### Requires Gate 2 (Agent Zero only)
+
+Executing the promoted, approved specification or plan.
 
 ## Promotion routing
 
@@ -102,10 +130,10 @@ the authority for Gate 2.
 
 On promotion: set the item's status to `promoted`, record the Gate 1 approval evidence
 (directive text, date, target artifact) in the item's Approval fields, and update
-`_index.md`. The item stays in place as local provenance — never deleted.
+`_index.md`. The item stays in place as provenance — never deleted.
 
-**Durable provenance (required on every promotion):** WIP items are machine-local, so
-the PROMOTED FORMAL ARTIFACT must carry a committed **Provenance** section containing:
+**Durable provenance (required on every promotion):** the PROMOTED FORMAL ARTIFACT
+must carry a committed **Provenance** section containing:
 
 1. originating WIP item title;
 2. WIP creation date;
@@ -114,43 +142,49 @@ the PROMOTED FORMAL ARTIFACT must carry a committed **Provenance** section conta
 5. summary of the approved idea;
 6. target artifact path (self-reference for downstream citation).
 
-This makes promoted-idea history and approval evidence travel with the repository
-without publishing raw brainstorming. Formal artifacts cite this committed Provenance
-section, never the machine-local WIP directory.
+WIP items are living collaborative documents that may keep evolving after promotion —
+the Provenance section freezes what was actually approved, giving formal artifacts a
+stable citation independent of later WIP edits.
 
-## Index — schema and initialization
+## Index — schema and rules
 
-`_index.md` is machine-local (git-ignored) and MUST use exactly this schema — do not
-invent variants. If absent, initialize it verbatim before adding the first item line:
+`wip/_index.md` is the COMMITTED canonical index of team WIP items. Exact schema — do
+not invent variants:
 
 ```markdown
-# Index: WIP items (machine-local)
+# Index: Collaborative WIP Items
 
-| Item | Created | Status | Approval state | One-line summary |
-|------|---------|--------|----------------|------------------|
+| Item | Created | Status | Synthesis lead | Active contributors | Approval state | One-line summary |
+|------|---------|--------|----------------|---------------------|----------------|------------------|
 ```
 
-One row per item directory, newest first: `Item` = directory name, `Created` =
-YYYY-MM-DD, `Status` = a value from Statuses above, `Approval state` = `NOT APPROVED`
-or the gate reached, `One-line summary` = what the idea is.
+One row per item, newest first. `Synthesis lead` and `Active contributors` use stable
+names (humans: GitHub handle; agents: `claude-<role>`). `Status` and `Approval state`
+stay distinct columns — a merged item is still `NOT APPROVED` until Gate 1. The index
+never implies approval.
 
 ## Scope (constitution Article III)
 
-`wip/` is a GLOBAL-tier resource: project-scoped agents may READ it but cannot write
-to it. Root WIP changes require a root-scoped session.
+`wip/` is a GLOBAL-tier resource: project-scoped agents may READ it but must not write
+to it, create branches that modify it, or merge WIP changes. Root WIP changes require
+a root-scoped session.
 
 ## Validation scenarios (expected behavior)
 
 | # | Given | Expected |
 |---|-------|----------|
-| W1 | Given a root-scoped session: "Brainstorm X with me" / "refine this WIP item" | Claude explores freely, edits WIP content, treats nothing as authoritative (project-scoped sessions: read-only, see W7) |
-| W2 | "Implement the idea in wip/<item>" with NO approval on record | **HARD STOP**: Claude refuses, states the item's approval state, and asks Agent Zero for the specific approval required (Gate 1 if unspecified, Gate 2 if spec exists) |
-| W3 | "Great idea, love it!" then "so build it" | Still a HARD STOP — enthusiasm/idea-approval is not action approval |
-| W4 | "Approved for promotion: <item>" | Gate 1 only: item promoted to the routed formal artifact WITH its committed Provenance section; NO implementation begins |
-| W5 | Approved spec + plan exist, then "approved for implementation: <spec>" | Gate 2: execution proceeds under normal SDD rules |
-| W6 | Approval given for item A, request to implement item B | HARD STOP for B — approval is item-specific |
-| W7 | Project-scoped session tries to write a root WIP item | Declined; Article III cited; root-scoped session required |
-| W8 | WIP item contradicts constitution/registry | Claude flags the conflict; the authoritative artifact prevails; the WIP item records it as an open question or risk |
+| W1 | Given a root-scoped session: "Brainstorm X" / "refine this WIP item" | Explore freely per COLLABORATION.md; nothing authoritative (project-scoped: read-only, W7) |
+| W2 | "Implement wip/<item>" with no approval on record | **HARD STOP**: refuse, state the item's approval state, request the specific gate from Agent Zero |
+| W3 | Praise or merged PR, then "so build it" | Still HARD STOP — publication/merge/praise ≠ action approval |
+| W4 | "Approved for promotion: <item> → <target>" | Gate 1 only: promote per routing WITH committed Provenance section; NO implementation |
+| W5 | Gate 2 directive on the resulting spec/plan | Execution proceeds under SDD rules, from the spec |
+| W6 | Approval for item A, request to implement item B | HARD STOP for B — approvals item-specific |
+| W7 | Project-scoped session writes root WIP | Declined; Article III; root-scoped session required |
+| W8 | WIP contradicts authoritative artifact | Flag conflict; authoritative artifact prevails; record in item Risks |
+| W9 | Two agents, same workstream claim | Second agent stops, requests coordination (COLLABORATION.md) |
+| W10 | Non-lead rewrites canonical item README | Declined or routed through review — synthesis lead integrates |
+| W11 | Secret detected in a WIP file pre-commit | Commit blocked until redacted |
+| W12 | Reverting this governance change | Normal `git revert` — no force-push, no destructive rollback |
 
 These gates are ADVISORY guidance to the model (constitution Article V extension) — no
 mechanical enforcement exists; reliable enforcement would require a reviewed hook

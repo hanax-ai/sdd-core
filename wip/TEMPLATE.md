@@ -10,6 +10,11 @@
 - **Scope:** workspace | proposed project (<name>)
 - **Status:** draft   <!-- draft | exploring | review-ready | approved-for-promotion | rejected | promoted | archived -->
 - **Created:** YYYY-MM-DD · **Last touched:** YYYY-MM-DD
+- **Synthesis lead:** <stable name — humans: GitHub handle; agents: claude-<role>. Default: item creator>
+- **Active contributors:** <stable names, comma-separated; — if none yet>
+- **Current workstreams:** <claimed workstreams per coordination/claims/; — if none>
+- **Contribution status:** <open-for-contributions | synthesizing | frozen-for-review>
+- **Last synchronized commit:** <short SHA of main at last synthesis; — initially>
 - **Approval state:** NOT APPROVED — exploration only
 - **Gate 1 (promotion) evidence:** — <!-- verbatim directive + date + promotion target path, when granted. On promotion, the TARGET artifact carries the committed Provenance section (wip/README.md) -->
 - **Promotion target:** — <!-- path of the formal artifact this item promoted into -->

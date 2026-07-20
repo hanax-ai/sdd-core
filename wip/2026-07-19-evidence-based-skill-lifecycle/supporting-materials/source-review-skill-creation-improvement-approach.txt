@@ -1,0 +1,96 @@
+Yes—this file materially strengthens our approach to skill creation and improvement. However, it should complement, not replace, SDD-Core’s existing governance.
+
+I reviewed the 
+SKILL.md against SDD-Core at current main, commit 5d74df1.
+
+Main finding
+
+SDD-Core currently governs:
+
+Where skills belong.
+How they are named and triggered.
+How tier boundaries work.
+Which registries must be updated.
+What validation scenarios are expected.
+
+The attached Skill Creator adds the missing empirical improvement lifecycle:
+
+Capture intent.
+Draft the skill.
+Create realistic tests.
+Run skill-enabled and baseline tests.
+Grade objective requirements.
+Obtain human qualitative feedback.
+Revise and repeat.
+Optimize trigger accuracy separately.
+
+That is the major contribution worth adopting.
+
+Practices SDD-Core should adopt
+Treat a written SKILL.md as a draft—not a completed capability.
+Commit realistic behavioral tests in evals/evals.json.
+Test against both:
+the new skill;
+no skill or the previous skill version.
+Use objective assertions only where behavior is mechanically verifiable.
+Preserve human review for quality, judgment, and usefulness.
+Inspect execution transcripts, not only final outputs.
+Use fresh isolated test contexts to prevent authoring context from masking defects.
+Test skill triggering independently with:
+should-trigger prompts;
+difficult should-not-trigger prompts;
+natural phrasing, abbreviations, and spelling mistakes;
+near-miss requests that could activate the wrong skill.
+Keep SKILL.md lean and move detailed guidance into references/, deterministic work into scripts/, and reusable templates into assets/.
+Iterate until feedback is clear, progress stops, or the maintainer approves completion.
+Important cautions
+
+The attached file should not be copied into SDD-Core by itself.
+
+It depends on companion resources that were not attached, including:
+
+evaluation and aggregation scripts;
+the evaluation viewer;
+grader, comparator, and analyzer agent instructions;
+JSON schemas;
+packaging and trigger-optimization scripts.
+
+Without those resources, it is guidance—not a complete functioning evaluation system.
+
+There are also SDD-Core-specific conflicts to resolve:
+
+Article I conflict: The attached workflow uses Claude subagents and claude -p. That appears incompatible with the constitution’s local-open-source-model-only requirement unless the evaluation environment is explicitly exempted or redesigned to use Ollama.
+Article III scope: Evaluation agents must run against isolated fixtures or worktrees and must not receive permission to modify root or sibling-project artifacts.
+Artifact location: Generated evaluation workspaces should not pollute committed skill directories. I recommend:
+Committed:
+.claude/skills/<skill>/evals/evals.json
+
+Machine-local evidence:
+~/.sdd-core-ops/artifacts/skill-evals/<skill>/<iteration>/
+Trigger overlap: The official skill-creator and SDD-Core’s skills-creator both respond to “create a skill.” Their responsibilities must be explicit:
+skill-creator: drafting, evaluation, benchmarking, iteration.
+SDD-Core governance skill: tier placement, scope, naming, registries, constitutional compliance.
+Root availability: SDD-Core’s current skills-creator lives under projects/project-a/. It will not reliably govern root-level skill creation from sessions operating at the workspace root. This placement should be reconsidered.
+Effect on the new session-capture skill
+
+session-capture has six well-designed validation scenarios, but they are currently specified scenarios, not measured evaluations.
+
+Its next maturity step should be:
+
+Convert S1–S6 into executable evaluation cases.
+Add baseline comparisons.
+Add trigger and near-miss tests.
+Use synthetic conversation fixtures for scope, deduplication, missing dependencies, secrets, and unratified chat.
+Finish with a fresh-session live integration test because current-session visibility cannot be fully validated through an isolated subagent.
+Recommended new goal
+
+Goal — Establish an Evidence-Based Skill Lifecycle
+
+Extend SDD-Core’s skill governance so every new or materially changed skill progresses through:
+
+Intent → Placement → Draft → Structural validation
+→ Trigger evaluation → Behavioral evaluation
+→ Human review → Revision → Live verification
+→ Registration
+
+The attached file is an excellent upstream reference for that goal, but its operational mechanics must be adapted to SDD-Core’s Ollama-only inference rule, tier isolation, machine registry, and evidence-storage model.

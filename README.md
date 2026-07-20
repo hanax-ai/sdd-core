@@ -37,7 +37,9 @@ sdd-core/
 │   └── TEMPLATE.md                    # Standard conversation-record template
 ├── wip/
 │   ├── README.md                      # GLOBAL brainstorming space: purpose + two-gate approval policy
-│   └── TEMPLATE.md                    # Standard WIP-item template (item content git-ignored)
+│   ├── COLLABORATION.md               # Multi-agent collaboration protocol
+│   ├── TEMPLATE.md                    # Standard WIP-item template
+│   └── _index.md                      # Committed canonical index of team WIP items
 ├── docs/                              # GLOBAL workspace-level documentation
 ├── reference/
 │   └── repos/                         # Git-ignored local mirrors of external frameworks
@@ -87,9 +89,9 @@ Skills and plugins are **ambient, triggered tooling — not load-order steps**: 
 - An agent assigned to a sub-project operates **only inside that project's tree** (`projects/<name>/`). It never writes outside it.
 - The global tier (root constitution, root `knowledge/instructions.md`, `conversations/`, `wip/`, `docs/`, `reference/`) is **read-only** from within a project.
 
-### Work In Progress (non-authoritative)
+### Work In Progress (non-authoritative, collaborative)
 
-Early-stage ideas are brainstormed in the root [`wip/`](wip/) directory — a GLOBAL-tier, **non-authoritative** space that grants no implementation authority. WIP content is exploratory only: it is never an approved spec, ratified decision, plan, amendment, tooling declaration, or authorization to change anything. Promotion out of `wip/` requires an explicit, item-specific approval (Gate 1: approved-for-specification), and execution additionally requires implementation approval of the resulting spec/plan (Gate 2) — see [`wip/README.md`](wip/README.md) for the policy, statuses, and routing. Item content stays machine-local (git-ignored); only the policy README and template are template content.
+Early-stage ideas are brainstormed in the root [`wip/`](wip/) directory — a GLOBAL-tier, **non-authoritative** space that grants no implementation authority. WIP items are Git-tracked and shared through GitHub so authorized root-scoped agents and human contributors can collaborate on them under the protocol in [`wip/COLLABORATION.md`](wip/COLLABORATION.md) (claimed workstreams, contributor-owned files, synthesis-lead integration, no force-pushes). Committing, reviewing, or merging a WIP item grants NO authority: promotion requires Agent Zero's explicit item-specific Gate 1 directive, and execution additionally requires Gate 2 implementation approval of the resulting spec/plan — see [`wip/README.md`](wip/README.md) for the policy, statuses, and routing. Only `wip/.local/` scratch stays machine-local (git-ignored).
 
 ### Conversation Records
 

@@ -34,6 +34,8 @@ REQUIRED_PATHS=(
   "wip"
   "wip/README.md"
   "wip/TEMPLATE.md"
+  "wip/COLLABORATION.md"
+  "wip/_index.md"
   ".claude/skills/conversation-records/SKILL.md"
   ".claude/skills/session-capture/SKILL.md"
   ".claude/skills/governed-change/SKILL.md"
