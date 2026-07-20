@@ -74,7 +74,7 @@ sdd-core/
 
 This is the **canonical five-step CONTEXT-LOADING order** for the workspace. Agents load context in this strict order, from global governance down to the active feature; every other document that states a load order restates this one:
 
-1.  **Root constitution** — [.specify/memory/constitution.md](.specify/memory/constitution.md): workspace-wide architectural principles (local open-source models via Ollama only; PostgreSQL for relational data and Qdrant for vector data; strict isolated agent scopes).
+1.  **Root constitution** — [.specify/memory/constitution.md](.specify/memory/constitution.md): workspace-wide architectural principles (context-split inference governance — Ollama-only as the product/runtime TARGET, maintainer-approved hosted models for development/workspace agents; PostgreSQL for relational data and Qdrant for vector data; strict isolated agent scopes).
 2.  **Root mirror registry** — [knowledge/instructions.md](knowledge/instructions.md): the routing table pointing agents to local framework mirrors under [reference/repos/](reference/repos/).
 3.  **Project constitution** — `projects/<name>/.specify/memory/constitution.md`: the sub-project's scope, boundaries, and rules.
 4.  **Project mirror registry** — `projects/<name>/knowledge/instructions.md`: project-specific mirrors and agent guidance (in project-a this file is the project playbook).

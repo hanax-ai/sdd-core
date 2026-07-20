@@ -74,6 +74,15 @@ amendment date.
 
 ### Amendments
 
+- **v2.0.0 (2026-07-20)** — propagation of root constitution v2.0.0 (Article I
+  redefined). For this project: PRODUCT/runtime inference — any implemented
+  S/4 HANA-adjacent pipeline — remains bound to the Ollama-only TARGET
+  architecture when built (no Ollama exists yet; the requirement is deferred,
+  not satisfied). Development and workspace agents operating this project's
+  SDD lifecycle may use maintainer-approved hosted models under the root
+  Article I controls; this project's Endpoint Discipline (Article II) and
+  Mock-First Integration (Article III) articles are unchanged and continue to
+  apply in full to all agent work regardless of inference backend.
 - **v1.1.0 (2026-07-19)** — propagation of root constitution v1.1.0 (Skills &
   Tooling Governance). This project acknowledges its committed tooling
   artifacts: the project skills `skills-creator` and `mirror-sync` under
@@ -89,4 +98,4 @@ verifiable against these articles, and reviews MUST flag any violation before wo
 proceeds. The lifecycle remains pure file-and-agent: compliance is checked by reading
 and writing Markdown, and no CLI tool or runtime is ever required.
 
-**Version**: 1.1.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-19
+**Version**: 2.0.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-20

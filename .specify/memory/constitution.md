@@ -1,40 +1,45 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version change: 1.0.0 → 1.1.0
-Bump rationale: MINOR — adds a new section (Skills & Tooling Governance),
-  materially extends Article V (advisory planning/validation-evidence
-  expectation), and annotates Article IV (mirror-sync implementation aid).
-  No article is removed, renumbered, or redefined.
+Version change: 1.1.0 → 2.0.0
+Bump rationale: MAJOR — Article I is REDEFINED (backward-incompatible under
+  this document's own SemVer rule): the Ollama-only mandate is narrowed to
+  product/runtime inference as a TARGET architecture, and development/
+  workspace agents are expressly permitted to use maintainer-approved
+  hosted models under controls. Also (MINOR-class, carried in the same
+  amendment): Skills & Tooling Governance category list refreshed to the
+  tooling.md-declared model, and the GLOBAL-tier enumeration updated to
+  include conversations/ and wip/.
 
-Amendment rationale: integrate the skill/tooling infrastructure delivered by
-  the canonical plan (Canonical_Claude_Code_Goals_v3.md, Goals 1–7) into
-  governance: recognize the tooling inventory categories, acknowledge the
-  machine tier as adjacent infrastructure outside constitutional
-  jurisdiction, and record the decided ADVISORY enforcement level (PEDR
-  D4/D5). Executed under the plan's GLOBAL executing scope with maintainer
-  approval (Goal 8).
+Amendment rationale (maintainer directive, 2026-07-20): SDD-Core has NO
+  Ollama access today, so Article I could not be followed literally — taken
+  as written, operating SDD-Core with Claude already contradicted it, and
+  no interpretation could fix binding text containing no exception.
+  Ollama-only was a workspace architectural policy (data sovereignty,
+  offline operation, credential/egress avoidance, one backend, cost
+  control), not an SDD requirement — SDD requires only governed specs,
+  plans, tasks, validation, and scope control. Resolution: distinguish
+  product/runtime inference (Ollama-only remains the target/deferred
+  requirement) from development/workspace agents (maintainer-approved
+  hosted models permitted under privacy, scope, credential, and
+  data-egress controls).
 
 Impact note — files changed in this same amendment:
-  - .specify/memory/constitution.md (this file: new section, Article IV
-    annotation, Article V extension, version/footer)
+  - .specify/memory/constitution.md (this file: Article I redefinition,
+    GLOBAL-tier enumeration, Skills & Tooling category model,
+    version/footer)
   - projects/project-a/.specify/memory/constitution.md (amendment note,
     version/footer)
-  - knowledge/tooling.md (created: committed requirement declaration,
-    PEDR Gate 2 schema + Gate 3 bootstrap)
-  - knowledge/instructions.md (tooling.md link; lookup-vs-load distinction)
-  - projects/project-a/knowledge/instructions.md (mirror-sync references in
-    §2/§4; §3 restated to the canonical load order)
-  - README.md (canonical context-loading order, nested-skill activation
-    note, layout tree, provisioning)
-  - verify-layout.sh (five REQUIRED_PATHS additions)
+  - README.md (canonical-order step 1 description no longer states
+    Ollama-only as an operational fact)
+  - knowledge/tooling.md (wip policy row: category-mismatch note resolved)
   No template under projects/<name>/docs/specs/template/ references the
-  amended text; templates are unchanged.
+  amended text. Machine-local conversation records citing the old Article I
+  are point-in-time documents and are intentionally not rewritten.
 
-Previous report (1.0.0, initial ratification) — principles defined:
-  I. Local Open-Source Models Only · II. Standardized Data Layer
-  III. Isolated Agent Scopes · IV. Mirror-Check Mandate
-  V. Spec-First Lifecycle; sections: Inheritance, Governance.
+Previous reports: 1.1.0 (Skills & Tooling Governance section; Article IV
+  annotation; Article V advisory extension — 2026-07-19); 1.0.0 (initial
+  ratification: Articles I–V, Inheritance, Governance — 2026-07-17).
 
 Follow-up TODOs: none. All paths in this document are relative to the
 workspace root (the directory containing this file's `.specify/` tree).
@@ -47,29 +52,53 @@ workspace operated entirely through files and agents: agents read and write
 structured Markdown, and the SDD lifecycle itself requires no CLI tool,
 runtime, or build step. These principles are binding guardrails on every
 agent, human contributor, and sub-project under `projects/`. They govern the
-GLOBAL tier (`.specify/memory/`, `knowledge/`, `docs/`, `reference/`) and,
-through inheritance, every PER-PROJECT tier (`projects/<name>/`).
+GLOBAL tier (`.specify/memory/`, `knowledge/`, `conversations/`, `wip/`,
+`docs/`, `reference/`) and, through inheritance, every PER-PROJECT tier
+(`projects/<name>/`). (`wip/` is GLOBAL-tier but expressly NON-AUTHORITATIVE —
+see Skills & Tooling Governance and `wip/README.md`.)
 
 ## Core Principles
 
-### I. Local Open-Source Models Only
+### I. Inference Governance (v2.0.0 — redefined)
 
-All model inference MUST run on locally hosted open-source models served via
-Ollama.
+Model inference is governed by CONTEXT. Two contexts exist, with different rules:
 
-- No subsystem, agent, script, or generated artifact MAY call a proprietary
-  or external LLM API (hosted inference endpoints, cloud model gateways, or
-  third-party completion/embedding services).
-- Model selection, prompting, and embedding pipelines MUST assume an
-  Ollama-served local model as the only inference backend.
-- Specs and plans that require model capabilities MUST name the local model
-  family they target; a plan that silently depends on an external model API
-  is invalid.
+**Product/runtime inference** — inference performed by implemented subsystems,
+customer-adjacent pipelines, or any artifact this workspace ships:
+
+- The TARGET architecture is locally hosted open-source models served via Ollama.
+  This is a deferred product requirement: no Ollama infrastructure exists in the
+  workspace today, and this document does not claim otherwise. The requirement
+  binds when product inference is implemented.
+- Once implemented, product inference MUST NOT call proprietary or external LLM
+  APIs (hosted inference endpoints, cloud model gateways, third-party
+  completion/embedding services); pipelines MUST assume an Ollama-served local
+  model as the only product inference backend.
+- Specs and plans that require product model capabilities MUST name the local
+  model family they target; a plan that silently depends on an external model API
+  for product inference is invalid. A spec that genuinely needs hosted product
+  inference raises it as a proposed amendment — never implements it unilaterally.
+
+**Development and workspace agents** — agents and tooling operating the SDD
+lifecycle itself (spec/plan/task authoring, verification probes, skill
+evaluation, workspace maintenance):
+
+- MAY use maintainer-approved hosted models, including Claude, subject to ALL of:
+  Endpoint Discipline (no credentials, hostnames, tenant identifiers, or customer
+  data in prompts or generated artifacts); Article III scope isolation; tooling
+  governance (approved sources, `knowledge/tooling.md` declaration, machine
+  Install Registry); and no customer-data egress of any kind.
+- Approval is per tool/model via the existing tooling governance path; no agent
+  self-approves a new inference provider.
 
 **Rationale:** The workspace handles customer-adjacent systems (e.g. SAP
-S/4 HANA integrations in `projects/project-a/`). Keeping inference local
-guarantees data sovereignty, offline operability, and cost predictability,
-and removes an entire class of credential and egress risk.
+S/4 HANA integrations in `projects/project-a/`). Keeping PRODUCT inference local
+(when built) preserves data sovereignty, offline operability, cost
+predictability, and credential/egress hygiene. But Ollama-only was an
+architectural policy, not an SDD requirement — SDD needs governed specs, plans,
+tasks, validation, and scope control, regardless of which approved model operates
+the workspace. The prior text mandated infrastructure that does not exist and, read
+literally, forbade the very agents operating this workspace.
 
 ### II. Standardized Data Layer
 
@@ -99,8 +128,8 @@ Agents operate in strictly isolated directory scopes.
   project's directory tree (`projects/<name>/`), including its
   `.specify/memory/`, `docs/specs/`, `knowledge/`, and `reference/`.
 - The same agent MAY read the GLOBAL tier (`.specify/memory/constitution.md`,
-  `knowledge/instructions.md`, `docs/`, `reference/`) but MUST treat it as
-  read-only.
+  `knowledge/instructions.md`, `conversations/`, `wip/`, `docs/`, `reference/`)
+  but MUST treat it as read-only.
 - An agent MUST NOT edit another project's tree. Any cross-project edit is a
   constitution violation and MUST be reverted, not rationalized.
 - Changes that genuinely span projects (shared conventions, global
@@ -187,21 +216,18 @@ document in full.
 ## Skills & Tooling Governance
 
 The workspace recognizes a governed tooling inventory, declared in the
-committed requirement declaration `knowledge/tooling.md` and grouped into
-four categories:
-
-- **Conduct & methodology (3):** caveman (conduct plugin), superpowers
-  (methodology plugin), karpathy-rules (conduct ruleset merged into the
-  machine-tier `~/.claude/CLAUDE.md` sdd-core block).
-- **Conversation sync (2):** the global `conversation-sync` skill plus the
-  per-project sync policy file
-  (`projects/<name>/conversations/SYNC-POLICY.md`).
-- **Workspace-native skills (2):** `skills-creator` and `mirror-sync` under
-  `projects/project-a/.claude/skills/`.
-- **MCP tools (0 active, 1 deferred):** no MCP server is active; playwright
-  is deferred and absent from every gating artifact, reactivatable only via
-  a future feature spec naming a concrete browser surface plus a maintainer
-  amendment.
+committed requirement declaration `knowledge/tooling.md`. Items are grouped
+into categories DECLARED IN that file (v2.0.0: the category list lives with
+the declaration, so additions no longer require constitutional churn).
+Categories at this amendment: **conduct & methodology** (plugins and merged
+conduct rulesets), **conversation sync** (the global skill plus per-tier
+policy files), **workspace-native skills** (committed lifecycle/governance
+skills and their advisory hooks), **workspace governance** (policy-bearing
+directories such as `wip/`), and **MCP tools** (none active; playwright
+deferred and absent from every gating artifact, reactivatable only via a
+future feature spec naming a concrete browser surface plus a maintainer
+amendment). `knowledge/tooling.md` is authoritative for the current
+category list and row inventory.
 
 Rules:
 
@@ -255,4 +281,4 @@ guidance; it operates under this constitution, never above it.
   to every inheriting project constitution and any dependent template under
   `projects/<name>/docs/specs/template/` that references the amended text.
 
-**Version**: 1.1.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-19
+**Version**: 2.0.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-20
