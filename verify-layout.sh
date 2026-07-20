@@ -31,6 +31,7 @@ REQUIRED_PATHS=(
   "conversations/README.md"
   "conversations/SYNC-POLICY.md"
   "conversations/TEMPLATE.md"
+  ".claude/skills/conversation-records/SKILL.md"
   "projects/project-b/.specify/memory"
   "projects/project-b/docs/specs"
   "projects/project-b/knowledge"
