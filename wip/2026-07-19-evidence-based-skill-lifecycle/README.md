@@ -74,10 +74,11 @@ optimization.
 
 ## Risks and constraints
 
-- **Article I conflict:** upstream workflow uses Claude subagents and `claude -p`;
-  SDD-Core's constitution requires local open-source models via Ollama only. Needs an
-  explicit exemption for the evaluation environment or a redesign to Ollama-driven
-  evaluation. Authoritative artifact prevails until amended.
+- **Article I conflict — RESOLVED (constitution v2.0.0, 2026-07-20):** development/
+  workspace-agent inference with maintainer-approved hosted models is now expressly
+  permitted; the evaluation environment needs no exemption or Ollama redesign.
+  Remaining obligation: evaluations honor Endpoint Discipline, Article III isolation,
+  and tooling governance like any other workspace agent activity.
 - **Article III scope:** evaluation agents must run against isolated fixtures or
   worktrees; they must not receive permission to modify root or sibling-project
   artifacts.
@@ -97,17 +98,15 @@ Each former open question now carries a recommended position for Agent Zero to a
 modify, or reject at Gate 1 review. None is a decision until ratified in the promoted
 artifact.
 
-1. **Article I vs `claude -p` evaluation → documented interpretation, amendment as
-   fallback.** Skill evaluations probe CLAUDE behavior — running them on Ollama
-   measures the wrong system. Article I's rationale targets the workspace's PRODUCT
-   inference (subsystems, customer-adjacent pipelines); machine-tier verification
-   probes are development tooling. Precedent: the maintainer-ratified canonical plan
-   itself mandated `claude -p` probe sessions (G3/G4 probes, dry-runs, fresh-session
-   validations) — the workspace already operates on this interpretation. Proposal:
-   the promoted artifact records this interpretation explicitly (machine-tier skill
-   evaluation exempt from Article I; product inference unchanged); if the maintainer
-   prefers hard text, a PATCH/MINOR Article I clarification via the Amendment
-   Procedure is the fallback.
+1. **Article I vs `claude -p` evaluation → RESOLVED by constitution v2.0.0
+   (2026-07-20, commit `000eec6`).** The maintainer went further than this item's
+   interpretation proposal: Article I was amended to context-split inference
+   governance — development/workspace agents (including skill evaluation) may use
+   maintainer-approved hosted models under Endpoint Discipline, Article III, tooling
+   governance, and no-egress controls; Ollama-only survives as the product/runtime
+   TARGET architecture. Skill evaluations with `claude -p` are now expressly
+   constitutional. No exemption text is needed in the promoted artifact — it simply
+   cites Article I v2.0.0.
 2. **Harness location → split committed/machine like everything else.** Committed:
    per-skill `.claude/skills/<skill>/evals/evals.json` (expected-behavior
    declaration) + a governed runner skill (root tier) once authored. Machine-local:
@@ -151,8 +150,8 @@ artifact.
 
 ## Remaining open questions (for Gate 1 review)
 
-- Does the maintainer accept the Article I interpretation route, or require the
-  amendment fallback up front?
+- ~~Article I interpretation vs amendment~~ — **RESOLVED**: constitution v2.0.0
+  amended Article I (2026-07-20); evaluations under hosted models are constitutional.
 - Pilot scope: session-capture only, or include one project-tier skill to exercise
   Article III isolation in the harness design?
 
