@@ -26,3 +26,8 @@ conversations/*
 !conversations/README.md
 !conversations/SYNC-POLICY.md
 !conversations/TEMPLATE.md
+
+# --- WIP brainstorming content (local-only; purpose/policy and template are committed) ---
+wip/*
+!wip/README.md
+!wip/TEMPLATE.md

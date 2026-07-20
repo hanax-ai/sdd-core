@@ -35,6 +35,9 @@ sdd-core/
 │   ├── README.md                      # GLOBAL conversation records: purpose, conventions, index/archival rules
 │   ├── SYNC-POLICY.md                 # Workspace-level sync destination policy (records git-ignored)
 │   └── TEMPLATE.md                    # Standard conversation-record template
+├── wip/
+│   ├── README.md                      # GLOBAL brainstorming space: purpose + two-gate approval policy
+│   └── TEMPLATE.md                    # Standard WIP-item template (item content git-ignored)
 ├── docs/                              # GLOBAL workspace-level documentation
 ├── reference/
 │   └── repos/                         # Git-ignored local mirrors of external frameworks
@@ -82,7 +85,11 @@ Skills and plugins are **ambient, triggered tooling — not load-order steps**: 
 ### Scope Rules
 
 - An agent assigned to a sub-project operates **only inside that project's tree** (`projects/<name>/`). It never writes outside it.
-- The global tier (root constitution, root `knowledge/instructions.md`, `conversations/`, `docs/`, `reference/`) is **read-only** from within a project.
+- The global tier (root constitution, root `knowledge/instructions.md`, `conversations/`, `wip/`, `docs/`, `reference/`) is **read-only** from within a project.
+
+### Work In Progress (non-authoritative)
+
+Early-stage ideas are brainstormed in the root [`wip/`](wip/) directory — a GLOBAL-tier, **non-authoritative** space that grants no implementation authority. WIP content is exploratory only: it is never an approved spec, ratified decision, plan, amendment, tooling declaration, or authorization to change anything. Promotion out of `wip/` requires an explicit, item-specific approval (Gate 1: approved-for-specification), and execution additionally requires implementation approval of the resulting spec/plan (Gate 2) — see [`wip/README.md`](wip/README.md) for the policy, statuses, and routing. Item content stays machine-local (git-ignored); only the policy README and template are template content.
 
 ### Conversation Records
 
