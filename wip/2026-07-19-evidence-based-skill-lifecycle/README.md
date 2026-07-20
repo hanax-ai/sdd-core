@@ -107,12 +107,18 @@ artifact.
    TARGET architecture. Skill evaluations with `claude -p` are now expressly
    constitutional. No exemption text is needed in the promoted artifact — it simply
    cites Article I v2.0.0.
-2. **Harness location → split committed/machine like everything else.** Committed:
-   per-skill `.claude/skills/<skill>/evals/evals.json` (expected-behavior
-   declaration) + a governed runner skill (root tier) once authored. Machine-local:
-   all run outputs under `~/.sdd-core-ops/artifacts/skill-evals/<skill>/<iteration>/`.
-   The runner enters `knowledge/tooling.md` as a governed tool at authoring time
-   (skills-creator part 4 applies to it like any other skill).
+2. **Harness location → CENTRAL committed evaluation registry (revised per review —
+   per-skill `evals/` dirs fail across tiers).** A path like
+   `.claude/skills/<skill>/evals/` only works for root skills; machine-tier
+   conversation-sync (`~/.claude/skills/`, uncommitted) and project-tier mirror-sync
+   (`projects/project-a/.claude/skills/`) have no committable sibling location.
+   Revised proposal: workspace-root central registry
+   `.claude/skill-evals/registry.md` (one row per skill: name | tier | canonical
+   skill path | evals path | fixtures path) plus
+   `.claude/skill-evals/<skill>/evals.json` — one committed home for every tier,
+   including machine-tier skills whose SKILL.md itself is per-machine. Run outputs
+   stay machine-local under `~/.sdd-core-ops/artifacts/skill-evals/<skill>/<iteration>/`.
+   The runner enters `knowledge/tooling.md` as a governed tool at authoring time.
 3. **skills-creator root placement → move to workspace root.** Single source at
    `.claude/skills/skills-creator/` (root tier reliably serves root + sub-project
    sessions via ancestor discovery — the same conclusion reached for session-capture);
@@ -124,21 +130,56 @@ artifact.
    blanket backfill of all 8+ workspace skills; opportunistic backfill starts with the
    three highest-behavioral-risk skills (conversation-sync, mirror-sync,
    session-capture — the ones whose failures corrupt records or ground truth).
-5. **evals.json schema → defined fresh, minimal.** Upstream schemas were never
-   attached, so nothing to borrow. Proposed minimal v1:
-   `[{ "id", "type": "behavioral" | "trigger" | "negative-trigger", "prompt",
-   "context": "<fixture ref, optional>", "expect": ["<assertion>", …],
-   "baseline": true|false }]` — extensible later; assertions objective-only, with
-   human review reserved for judgment calls (per the source reference).
+5. **evals.json schema → defined fresh; v1 must be reproducibility-complete (revised
+   per review — string assertions + boolean baseline cannot produce measured
+   evidence).** Upstream schemas were never attached, so nothing to borrow. The
+   promoted specification MUST define schema v1 with at least: per-case `id` and
+   `type` (trigger expectations SEPARATE from behavioral expectations); assertions as
+   objects — assertion id, type, check method (exact-match | regex | file-exists |
+   command-exit | transcript-grep | human-graded), expected result; baseline identity
+   (`none` | `previous-release@<ref>` | `previous-iteration@<n>`); fixture path +
+   content hash; required output/artifact definitions; model + evaluator versions;
+   timeout and repetition count; result-evidence and grading fields; and
+   acceptance + non-regression thresholds. Sketch:
+   `{ "id", "type": "trigger"|"negative-trigger"|"behavioral", "prompt",
+   "fixture": {"path", "sha1"}, "baseline": {"kind", "ref"},
+   "assertions": [{"id", "check", "expect"}], "run": {"model", "evaluator",
+   "timeout_s", "repeats"}, "thresholds": {"accept", "non_regression"},
+   "results": {…filled by runner…} }` — objective checks only; human review reserved
+   for judgment calls (per the source reference).
+6. **Trigger overlap with upstream skill-creator → resolve by NAME + precedence
+   before any root move (added per review).** The evaluation lifecycle skill is NOT
+   named `skill-creator` (upstream's name) nor `skills-creator` (SDD-Core's
+   governance skill): proposed name `skill-evaluator`, description triggering on
+   evaluate/benchmark/iterate phrasings only. Routing: `skills-creator` remains the
+   single entry point for "create a skill" (placement, naming, registration) and
+   HANDS OFF to `skill-evaluator` at the draft→evaluate stage; `skill-evaluator`
+   never fires on creation phrasings. Precedence: governance first (placement before
+   evaluation), evaluator during draft/iterate/regression. The upstream skill-creator
+   is NOT installed — it stays a reviewed reference only.
+7. **External-inference safety controls (added per review — Article I v2.0.0 permits
+   hosted models; the eval environment still needs its own controls beyond Article
+   III filesystem isolation).** The promoted spec MUST define: fixture isolation
+   (fixtures + working dirs under Ops Home only, never repo or customer material);
+   SYNTHETIC-DATA-ONLY rule for fixtures (no real records, hosts, tenants, personal
+   data — Endpoint Discipline applied to eval inputs); network/tool restrictions for
+   eval runs (no MCP servers, no web access, minimal tool set); secret scanning of
+   prompts AND outputs before retention; transcript redaction rules; retention
+   (align with the Gate 6 backup policy: until acceptance + 30 days, maintainer
+   prunes); evidence cleanup procedure for failed/abandoned iterations.
 
 ## Proposed adoption plan (outline for the promoted artifact)
 
-1. Ratify the Article I interpretation (position 1) and the lifecycle stages:
+1. Ratify the lifecycle stages (Article I already resolved by v2.0.0 — cite it):
    Intent → Placement → Draft → Structural validation → Trigger evaluation →
    Behavioral evaluation → Human review → Revision → Live verification → Registration.
-2. Governed change: move skills-creator to root (position 3); extend its part 4 with
-   the lifecycle stages so every new/materially-changed skill inherits them.
-3. Author the eval runner skill + evals.json schema v1 (positions 2, 5); register both.
+   Ratify the eval-environment safety controls (position 7).
+2. Governed change: move skills-creator to root (position 3) with the
+   naming/routing/precedence split versus `skill-evaluator` (position 6); extend its
+   part 4 with the lifecycle stages so every new/materially-changed skill inherits
+   them.
+3. Author the `skill-evaluator` runner skill + evals.json schema v1 + the central
+   `.claude/skill-evals/` registry (positions 2, 5, 6); register all of it.
 4. Pilot: convert session-capture S1–S6 into executable evals with baselines,
    trigger/near-miss tests, synthetic fixtures; finish with a fresh-session live
    integration test. Trigger evaluation includes root-skill DISCOVERABILITY: runs
@@ -157,11 +198,12 @@ artifact.
 
 ## Proposed next step
 
-Request Gate 1. Exact directive for Agent Zero, if approved:
+Request Gate 1. Exact directive for Agent Zero, if approved (one line, exact target
+path per WIP policy):
 
-`Approved for promotion: 2026-07-19-evidence-based-skill-lifecycle → formal workspace
-proposal "Establish an Evidence-Based Skill Lifecycle"`
+`Approved for promotion: 2026-07-19-evidence-based-skill-lifecycle → docs/proposals/evidence-based-skill-lifecycle.md`
 
-(A suggestion, not an authorization. Promotion produces the proposal artifact with its
-committed Provenance section; implementation would additionally require Gate 2 on the
-resulting specification.)
+(A suggestion, not an authorization. The target is the concrete committed proposal
+artifact — created at promotion under `docs/proposals/` with its committed Provenance
+section; implementation would additionally require Gate 2 on the resulting
+specification.)
