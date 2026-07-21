@@ -33,6 +33,10 @@ this skill is the operational checklist.
 - Exactly ONE commit per governed change-set. Stage only the listed files —
   never `git add -A` / `git add .`.
 - Commit message: what changed and why, normal prose (no style compression).
+- Deterministic tail available: `scripts/commit-governed.sh <message-file>
+  <paths…>` — refuses a dirty index, stages exactly the declared set, commits
+  via `-F` (immune to shell quote-splitting), re-runs verify-layout. Prefer it
+  over hand-typed `git commit -m` with quoted prose.
 - After committing: `git status --short` must be empty again, and
   `git show --stat HEAD` must list exactly the declared edit set.
 
