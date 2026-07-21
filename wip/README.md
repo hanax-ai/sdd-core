@@ -123,6 +123,16 @@ amendment · a governed skill or tooling workflow · any other authoritative art
 
 Executing the promoted, approved specification or plan.
 
+### Maintenance changes (not a third gate)
+
+Maintainer-directed bounded changes — repairs, alignment, registrations, and
+execution of ALREADY-RATIFIED decisions — run under the route defined in the
+root constitution's Governance § **Maintenance Changes** (v2.1.0): explicit
+Agent Zero directive recorded verbatim in the commit, bounded scope, git
+history as audit. That route never promotes, approves, or implements WIP
+content on the strength of WIP text alone; a WIP item MAY track such work
+(as a checklist with commit citations) without gaining any authority from it.
+
 ## Promotion routing
 
 | WIP idea kind | Promotes into |

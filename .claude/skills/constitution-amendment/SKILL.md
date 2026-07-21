@@ -43,8 +43,13 @@ amendment date.
 ## 4. Propagation
 
 Approved amendments propagate IN THE SAME CHANGE to every inheriting project
-constitution and any template referencing the amended text — or the impact
-note explicitly documents the deviation and which commit closes it.
+constitution and any template referencing the amended text. Per the v2.1.0
+propagation exception, the root amendment plus its mandated propagation is
+ONE root-authority act and lands as one commit (this is not a per-scope
+violation — the constitution itself provides the exception). Where
+same-change propagation is impracticable, the Sync Impact Report documents
+the deviation and names the follow-up commits (the constitutional fallback,
+v2.1.0).
 
 ## 5. Authority and audit
 

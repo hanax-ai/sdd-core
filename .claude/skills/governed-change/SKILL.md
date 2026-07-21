@@ -11,6 +11,11 @@ this skill is the operational checklist.
 
 ## 1. Preconditions (before any edit)
 
+- **Authorization:** a governed change runs under one of the constitution's
+  defined routes — an Amendment, a Gate 2 execution, or the Maintenance
+  Changes route (root constitution Governance, v2.1.0: explicit maintainer
+  directive, its VERBATIM text recorded in the commit message; bounded
+  scope; never a gate or amendment substitute).
 - `git status --short` is EMPTY (clean tree). Dirty → stop and report; never mix a
   governed change with unrelated modifications.
 - Correct branch confirmed (`git branch --show-current`). Feature-scale work gets a
