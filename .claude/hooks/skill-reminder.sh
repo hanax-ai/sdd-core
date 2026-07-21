@@ -10,11 +10,11 @@ shopt -s nocasematch
 out=""
 
 if [[ $input =~ (commit|merge|atomic|governed[-\ ]change|clean[-\ ]tree) ]]; then
-  out+="ADVISORY: governed-change skill applies — follow .claude/skills/governed-change/SKILL.md (clean tree, scoped edit set, one atomic commit, ownership logging, verify-layout, done-when evidence). "
+  out+="ADVISORY: governed-change skill applies — follow .claude/skills/governed-change/SKILL.md (clean tree, scoped edit set, one atomic commit, git-history audit, verify-layout, done-when evidence). "
 fi
 
 if [[ $input =~ (install[-\ ]registry|event[-\ ]log|inventory[-\ ]row|ownership[-\ ]manifest|registry[-\ ]logging|hash-object) ]]; then
-  out+="ADVISORY: registry-logging skill applies — follow .claude/skills/registry-logging/SKILL.md (UTC timestamps, append-only Event Log, hash-object ownership entries, no secrets)."
+  out+="ADVISORY: registry-logging skill applies — follow .claude/skills/registry-logging/SKILL.md (tooling-scope events only, UTC timestamps, append-only Event Log, no secrets)."
 fi
 
 [ -n "$out" ] && printf '%s\n' "$out"

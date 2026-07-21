@@ -1,6 +1,6 @@
 ---
 name: governed-change
-description: Use when making ANY governed change to this repository — "commit this", "apply this change", "make a tracked change", "merge the branch", "commit under governance", or any edit that will end in a git commit. Encodes the workspace's repo-writing discipline (clean tree, atomic commit, ownership logging, verification) so no governed change skips a step.
+description: Use when making ANY governed change to this repository — "commit this", "apply this change", "make a tracked change", "merge the branch", "commit under governance", or any edit that will end in a git commit. Encodes the workspace's repo-writing discipline (clean tree, atomic commit, git-history audit, verification) so no governed change skips a step.
 ---
 
 # Governed Change — Repo-Writing Discipline
@@ -36,12 +36,16 @@ this skill is the operational checklist.
 - After committing: `git status --short` must be empty again, and
   `git show --stat HEAD` must list exactly the declared edit set.
 
-## 4. Log ownership (delegate to registry-logging)
+## 4. Audit trail (scope narrowed 2026-07-20)
 
-- Every touched file: `git hash-object <path>` recorded in the machine Install
-  Registry Event Log at write time, with the commit SHA. Follow the
-  `registry-logging` skill for entry shapes; machine-tier file edits additionally
-  need a Gate 6 backup BEFORE modification.
+- Repository changes are audited by GIT HISTORY: the atomic commit and its message
+  ARE the ownership record — no Install Registry row for routine repo commits.
+- Install Registry rows are required only for TOOLING-scope events (new, changed,
+  or removed skills, plugins, hooks, policy files, tool installs — per the
+  `registry-logging` skill) and for machine-tier file edits (Gate 6 backup BEFORE
+  modification, then the entry).
+- Governance-control evidence never enters the registry — it belongs to the
+  governance-ops evidence system (the constitutions' routing tables).
 
 ## 5. Verify
 

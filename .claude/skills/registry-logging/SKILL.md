@@ -5,9 +5,10 @@ description: Use when recording ANYTHING in the machine Install Registry — "lo
 
 # Registry Logging — Install Registry Procedures
 
-Procedures for `~/.sdd-core-ops/INSTALL-REGISTRY.md`, the machine-local installation
-and audit record. The registry is the ownership manifest: "belongs to the plan/workspace"
-is a lookup here, never a presumption.
+Procedures for `~/.sdd-core-ops/INSTALL-REGISTRY.md`, the machine-local TOOLING
+installation and ownership audit. The registry is the tooling ownership manifest:
+"this tool/skill belongs to the plan/workspace" is a lookup here, never a
+presumption. It is NOT a general governance audit log (see §2 scope).
 
 ## 1. Structure (never change it)
 
@@ -19,12 +20,19 @@ is a lookup here, never a presumption.
 
 ## 2. When to log
 
-- **At write time, not later.** Every artifact created or modified under governance
-  gets its Event Log entry in the same work step that wrote it.
+- **Scope (narrowed 2026-07-20, maintainer cleanup directive):** the registry audits
+  TOOLING installation and ownership only — tool/skill/plugin/hook/policy-file
+  installs, removals, and content changes; machine-tier file operations; source
+  reviews and tooling sign-offs; drift findings. Repository governed changes are
+  audited by GIT HISTORY (the atomic commit and its message) — routine repo commits
+  get NO registry row. Governance-control evidence, including evidence pruning,
+  lives in the governance-ops evidence system, never here (the project
+  constitutions' routing tables). Gate 1/Gate 2 evidence lives with the artifacts
+  it governs (WIP item, promoted artifact, spec/plan).
+- **At write time, not later.** In-scope events get their Event Log entry in the
+  same work step that performed them.
 - Machine-tier file modifications: log the Gate 6 backup (path + hash) BEFORE the
   modification entry.
-- Sign-offs, approvals, verification results, and proposal records are events too —
-  log them when they occur, citing the directive or evidence.
 
 ## 3. Entry shapes
 

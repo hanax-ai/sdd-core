@@ -41,9 +41,12 @@ tenant paths, or query tokens (root Endpoint Discipline).
 Machine-local evidence is retained until the owning control's NEXT successful
 review + 30 days, then the maintainer prunes; per-control overrides are
 declared in the Runbook & Cadence Register row. Pruning is a maintainer act,
-logged in the machine Install Registry Event Log. (Default set by maintainer
-direction 2026-07-20; adjust by updating this policy through a governed
-change.)
+recorded in the ops evidence system itself — a dated pruning note in the
+machine-local evidence home (e.g.
+`~/.sdd-core-ops/artifacts/gov-ops-evidence/<control-id>/PRUNING-LOG.md`) —
+NEVER in the Install Registry, which audits tooling only (the constitutions'
+routing tables). (Default set by maintainer direction 2026-07-20; adjust by
+updating this policy through a governed change.)
 
 ## Sync note
 
