@@ -2,15 +2,17 @@
 
 The workspace's governance DESIGN layer. Relatively stable; changes deliberately.
 This project owns the definitional artifacts of governance: principles, policies,
-standards, specifications, decision-rights and RACI models, control definitions,
-maturity models, and the methodology documentation itself. Its operational
+standards, framework-definition specifications, decision-rights and RACI models,
+control definitions, maturity models, and the methodology documentation itself. Its operational
 counterpart is [`../governance-ops/`](../governance-ops/) — the "how and when" —
 which puts this framework into recurring practice.
 
 **The boundary test (constitution Article II):** does the artifact DEFINE a
 standard (belongs here), or EVIDENCE execution (belongs in governance-ops)?
-Specs live here; the process of reviewing and maintaining specs runs in
-governance-ops. The full boundary table is in
+Framework-definition specifications live here; operational-capability
+specifications live in governance-ops; neither project's specifications
+authorize root GLOBAL edits. The process of reviewing and maintaining specs
+runs in governance-ops. The full boundary table is in
 [`.specify/memory/constitution.md`](.specify/memory/constitution.md).
 
 ## Structure

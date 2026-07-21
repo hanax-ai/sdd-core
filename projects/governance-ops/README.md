@@ -9,8 +9,10 @@ whose standards every activity here operationalizes and cites.
 
 **The boundary test (constitution Article II):** does the artifact EVIDENCE or
 OPERATE execution (belongs here), or DEFINE a standard (belongs in
-governance-framework)? The spec review/approval/maintenance process runs here;
-the specs themselves live in governance-framework. The full boundary table —
+governance-framework)? Operational-capability specifications live here;
+framework-definition specifications live in governance-framework; neither
+project's specifications authorize root GLOBAL edits. The spec
+review/approval/maintenance process runs here. The full boundary table —
 including what stays at the root GLOBAL tier (conversations/, wip/, the machine
 Install Registry) — is in
 [`.specify/memory/constitution.md`](.specify/memory/constitution.md).
