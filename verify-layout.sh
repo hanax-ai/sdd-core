@@ -47,6 +47,7 @@ REQUIRED_PATHS=(
   ".claude/hooks/skill-reminder.sh"
   ".claude/hooks/record-mining-reminder.sh"
   ".claude/settings.json"
+  ".github/workflows/verify-layout.yml"
   "projects/governance-ops/README.md"
   "projects/governance-ops/.specify/memory/constitution.md"
   "projects/governance-ops/docs/specs"

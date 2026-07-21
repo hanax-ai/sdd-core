@@ -1,0 +1,30 @@
+# Advisory CI — structural layout verification.
+#
+# POLICY (Agent Zero, 2026-07-20, maturity backlog item 2): this workflow is
+# OPTIONAL FEEDBACK, not a required merge gate. Do not mark it required in
+# branch protection without a maintainer decision — the workspace's governance
+# is advisory-by-design (root constitution Article V extension: mechanical
+# enforcement arrives only as a separately reviewed specification).
+#
+# Hardening: least-privilege permissions; actions pinned to full commit SHAs.
+
+name: verify-layout
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-layout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          persist-credentials: false
+      - name: Run structural verification
+        run: bash verify-layout.sh

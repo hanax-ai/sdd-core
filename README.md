@@ -140,6 +140,8 @@ An optional convenience script is provided for humans to confirm structural comp
 
 This checks that the directory layout matches the expected structure. It is **not** part of the SDD workflow — agents operate on the files directly and never depend on it.
 
+The same script runs in CI (`.github/workflows/verify-layout.yml`) as **advisory feedback** on pushes and pull requests — deliberately not a required merge gate, per the workspace's advisory-by-design governance (maintainer decision, 2026-07-20).
+
 ## License
 
 This template is licensed under the [Apache License 2.0](LICENSE).
