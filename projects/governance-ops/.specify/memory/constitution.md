@@ -139,6 +139,13 @@ reading and writing Markdown, and no CLI tool or runtime is ever required.
 
 ### Amendments
 
+- **v1.1.1 (2026-07-21)** — propagation of root constitution v2.1.0 (PATCH:
+  no project article changes). Root additions binding here through
+  inheritance: the Maintenance Changes route (maintainer-directed bounded
+  changes — directive verbatim in the commit, bounded scope, never a gate or
+  amendment substitute); the one-commit propagation exception for root
+  amendments; and `.claude/` joining the GLOBAL-tier enumeration (read-only
+  from this project's scope).
 - **v1.1.0 (2026-07-20)** — refinement round from the maintainer-supplied external
   assessment (MINOR: materially expanded guidance, no article redefined). Added:
   Root GLOBAL supremacy statement (preamble); three-way authoritative routing
@@ -152,4 +159,4 @@ reading and writing Markdown, and no CLI tool or runtime is ever required.
   provisioned as the workspace governance operational layer, paired with the
   sibling `governance-framework` design layer.
 
-**Version**: 1.1.0 | **Ratified**: 2026-07-20 | **Last Amended**: 2026-07-20
+**Version**: 1.1.1 | **Ratified**: 2026-07-20 | **Last Amended**: 2026-07-21

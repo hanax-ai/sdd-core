@@ -1,29 +1,43 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version change: 2.0.0 → 2.0.1
-Bump rationale: PATCH — non-semantic path and example refresh after the
-  sub-project renames (project-a → governance-framework, project-b →
-  governance-ops; maintainer-approved rescope design, 2026-07-20). No
-  article's rules change.
+Version change: 2.0.1 → 2.1.0
+Bump rationale: MINOR — new Governance subsection (Maintenance Changes) and
+  materially expanded Amendment Procedure guidance (cross-scope propagation
+  exception); GLOBAL-tier enumeration expanded to include .claude/. No
+  article redefined.
+
+Amendment rationale (maintainer directive, recorded verbatim: "i approve,
+  WP-R1 amendment" — Agent Zero, 2026-07-21, approving work package WP-R1 of
+  the consolidated go-forward plan v4 after four-review convergence): the
+  workspace's maintainer-directed bounded-change practice existed without an
+  authoritative definition (defect D4a), and the per-scope commit discipline
+  conflicted with this procedure's own same-change propagation mandate.
+  Establishing the route THROUGH the Amendment Procedure grounds it in an
+  already-defined authority path.
 
 Changes in this amendment:
-  - Article I rationale: the SAP S/4 HANA `projects/project-a/` example is
-    retired with the rescope; the customer-adjacent-systems rationale is
-    stated generically.
-  - Article IV annotation: mirror-sync skill path updated to
-    projects/governance-framework/.claude/skills/mirror-sync/.
-  - Inheritance: example project-constitution path updated to
-    projects/governance-framework/.specify/memory/constitution.md.
+  - Governance: new "Maintenance Changes" subsection defining the
+    maintainer-directed bounded-change route (directive form, scope,
+    exclusions, evidence, relationship to the wip/ gates).
+  - Amendment Procedure, Propagation: a root amendment plus its mandated
+    propagation is ONE root-authority act and MAY land as one commit
+    (express exception to per-scope commit discipline); documented
+    deviation with named follow-up commits remains the fallback.
+  - GLOBAL-tier enumeration (preamble and Article III) now includes
+    .claude/ (root workspace skills, hooks, settings) — read-only from
+    project scope like the rest of the tier.
 
-Impact note — files changed in this same amendment: this file only. The
-  governance-framework project constitution is rewritten in the immediately
-  following rescope commit (a project-tier constitutional change under the
-  same approved design, citing v2.0.1). Historical artifacts (conversation
-  records, WIP item, promoted proposal) cite the old paths as point-in-time
-  documents and are intentionally not rewritten.
+Impact note — files changed in this same amendment (one commit, per the
+  propagation exception this amendment itself establishes — a practice the
+  prior text already mandated): this file; both inheriting project
+  constitutions receive propagation entries (governance-framework → 3.1.1,
+  governance-ops → 1.1.1, PATCH — no project article changes). A separate
+  alignment commit under the new route updates wip/README.md and the
+  governed-change and constitution-amendment skills to cite this text.
 
-Previous reports: 2.0.0 (Article I redefined as context-split inference
+Previous reports: 2.0.1 (path/example refresh after sub-project renames —
+  2026-07-20); 2.0.0 (Article I redefined as context-split inference
   governance; category list delegated to tooling.md; GLOBAL-tier enumeration
   expanded — 2026-07-20); 1.1.0 (Skills & Tooling Governance section;
   Article IV annotation; Article V advisory extension — 2026-07-19);
@@ -42,7 +56,7 @@ structured Markdown, and the SDD lifecycle itself requires no CLI tool,
 runtime, or build step. These principles are binding guardrails on every
 agent, human contributor, and sub-project under `projects/`. They govern the
 GLOBAL tier (`.specify/memory/`, `knowledge/`, `conversations/`, `wip/`,
-`docs/`, `reference/`) and, through inheritance, every PER-PROJECT tier
+`docs/`, `reference/`, `.claude/`) and, through inheritance, every PER-PROJECT tier
 (`projects/<name>/`). (`wip/` is GLOBAL-tier but expressly NON-AUTHORITATIVE —
 see Skills & Tooling Governance and `wip/README.md`.)
 
@@ -117,8 +131,8 @@ Agents operate in strictly isolated directory scopes.
   project's directory tree (`projects/<name>/`), including its
   `.specify/memory/`, `docs/specs/`, `knowledge/`, and `reference/`.
 - The same agent MAY read the GLOBAL tier (`.specify/memory/constitution.md`,
-  `knowledge/instructions.md`, `conversations/`, `wip/`, `docs/`, `reference/`)
-  but MUST treat it as read-only.
+  `knowledge/instructions.md`, `conversations/`, `wip/`, `docs/`, `reference/`,
+  `.claude/`) but MUST treat it as read-only.
 - An agent MUST NOT edit another project's tree. Any cross-project edit is a
   constitution violation and MUST be reverted, not rationalized.
 - Changes that genuinely span projects (shared conventions, global
@@ -251,6 +265,32 @@ guidance; it operates under this constitution, never above it.
   MUST be recorded in the affected feature folder and remediated before any
   dependent work proceeds.
 
+### Maintenance Changes (v2.1.0)
+
+Between the wip/ approval gates and this Amendment Procedure sits a third,
+narrower path: the **maintainer-directed bounded change** — the route for
+repairs and registrations that implement ALREADY-RATIFIED decisions or
+correct defects against EXISTING binding text.
+
+- **Authorization:** an explicit directive from the Workspace Maintainer's
+  directing authority (Agent Zero). The directive's VERBATIM text MUST be
+  recorded in the commit message (or the commit MUST cite the committed
+  artifact carrying it). No directive, no change.
+- **Permitted scope:** bounded repairs, documentation alignment, tooling and
+  registry registrations, and execution of decisions already ratified by an
+  amendment, gate, or recorded maintainer decision.
+- **Exclusions:** this route NEVER amends a constitution (Amendment
+  Procedure only); NEVER substitutes for Gate 1 or Gate 2; NEVER creates a
+  new authoritative standard or policy (those arrive spec-first or through
+  promotion); NEVER implements WIP content on the strength of WIP text
+  alone.
+- **Evidence and audit:** git history is the audit trail (the atomic commit
+  and its message are the record); commits are scoped per authority boundary
+  (root GLOBAL / single project), except as the Propagation exception below
+  provides.
+- **Relationship to gates:** the route operates UNDER the gates and this
+  procedure — it can never grant what they grant.
+
 ### Amendment Procedure
 
 - **Proposal.** Amendments are proposed as a Markdown change to this file,
@@ -269,5 +309,11 @@ guidance; it operates under this constitution, never above it.
 - **Propagation.** Approved amendments MUST be propagated in the same change
   to every inheriting project constitution and any dependent template under
   `projects/<name>/docs/specs/template/` that references the amended text.
+  A root amendment plus its mandated propagation constitutes ONE
+  root-authority act and MAY land as one commit — an express exception
+  (v2.1.0) to per-scope commit discipline; Article III's cross-project-edit
+  ban targets sub-project agents, not root-scoped propagation this document
+  itself requires. Where same-change propagation is impracticable, the Sync
+  Impact Report documents the deviation and names the follow-up commits.
 
-**Version**: 2.0.1 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-20
+**Version**: 2.1.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-21
