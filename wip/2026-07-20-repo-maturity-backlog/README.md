@@ -14,7 +14,7 @@
 - **Active contributors:** claude-root-alpha
 - **Current workstreams:** — (none claimed)
 - **Contribution status:** open-for-contributions
-- **Last synchronized commit:** 5158888 (main HEAD this synthesis integrated against)
+- **Last synchronized commit:** cba817f (main HEAD this synthesis integrated against)
 - **Approval state:** NOT APPROVED — exploration only
 - **Gate 1 (promotion) evidence:** —
 - **Promotion target:** —
@@ -60,20 +60,29 @@ scope here.
    issue templates (defect, idea-with-wip-routing), PR template with
    governance checklist.
 
-**Next:**
+**Next (maintainer-ordered 2026-07-20: 5 → 6 → 8 → 7):**
 
-5. **Evidence-class operationalization** — the three classes are defined in the
-   governance-ops constitution (v1.1.0); still missing: matching `.gitignore`
-   patterns, retention/sync policy elaboration, and the concrete evidence-system
-   directory structure under governance-ops (spec-first, per its constitution).
-6. **Deliverables inventory / living ownership map** — first-class artifact,
-   three-layered (Root GLOBAL / framework / ops), valid identities only.
+5. **Evidence-class operationalization** — ✅ DONE as POLICY operationalization
+   (commit `cba817f`): `.gitignore` class patterns (real records ignored by
+   default; policy README + synthetic `*.template.md` re-included — verified
+   mechanically), `records/README.md` policy home (record shape,
+   safe-reference format `[EXT] alias · id · date`, class-2 retention default:
+   next successful review + 30 days, maintainer prunes), class-1
+   control-execution template. The evidence SYSTEM itself (intake, dashboards,
+   pipelines) remains spec-first per the ops constitution.
+6. **Deliverables inventory / living ownership map** — shape RESOLVED
+   (maintainer, 2026-07-20): paired model — governance-framework holds the
+   authoritative deliverable definitions, ownership roles, decision rights,
+   and maintenance standard; governance-ops holds the living assignment
+   register (actual owners, operational status, review dates, exceptions);
+   Root GLOBAL gets a concise navigation index only, never a competing
+   authority. Valid identities only.
 7. **Portability adapters** — AGENTS.md or equivalent, explicit precedence
    statement BENEATH the constitution and five-step loading order, compatibility
-   matrix, minimal smoke tests.
+   matrix, minimal smoke tests. (Ordered LAST.)
 8. **verify-layout content checks** — harden beyond existence-only: selected
    content checks for constitutional invariants (supremacy statements, routing
-   tables, version footers).
+   tables, version footers). (Ordered before item 7.)
 
 ## Assumptions
 
@@ -108,12 +117,14 @@ scope here.
   2026-07-20; commit `981f0a2`).
 - ~~CI: optional feedback or required merge gate?~~ — RESOLVED: optional
   feedback (Agent Zero, 2026-07-20; commit `017f811`).
-- Item 6 shape: standalone committed artifact at root, or governance-framework
-  standard + governance-ops register pair?
+- ~~Item 6 shape?~~ — RESOLVED: paired model (framework definitions + ops
+  living register + root navigation index only; maintainer, 2026-07-20).
 
 ## Proposed next step
 
-Immediate tier complete (items 1, 2, 4; item 3 rides the lifecycle spec). Next
-tier (5–8) awaits Agent Zero's pick; item 6's shape question above should be
-answered first. Each executes as its own governed change with registry logging;
-items promoting into formal artifacts follow the normal Gate 1 routing.
+Immediate tier complete (1, 2, 4) and item 5 done; maintainer verified the
+tier read-only (2026-07-20) — LICENSE text confirmed matching canonical
+Apache-2.0 (leading blank line added afterward for byte-parity), CI hardening
+confirmed, hygiene pack confirmed aligned. Remaining order: 6 → 8 → 7, each as
+its own governed change. Item 3 (demonstrator) stays UNTOUCHED until Agent
+Zero intentionally authorizes lifecycle specification authoring.
