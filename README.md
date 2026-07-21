@@ -24,7 +24,11 @@ sdd-core/
 ├── .gitignore
 ├── LICENSE                            # Apache License 2.0
 ├── README.md                          # This file
+├── CONTRIBUTING.md                    # Contribution flow under the workspace's own governance
+├── SECURITY.md                        # Reporting channel + threat model
+├── CHANGELOG.md                       # Notable template changes
 ├── verify-layout.sh                   # Optional human convenience script (structural checks only)
+├── .github/                           # Advisory CI (verify-layout) + issue/PR templates
 │
 ├── .specify/
 │   └── memory/
