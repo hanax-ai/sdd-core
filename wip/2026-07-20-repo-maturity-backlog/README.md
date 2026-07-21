@@ -14,7 +14,7 @@
 - **Active contributors:** claude-root-alpha
 - **Current workstreams:** — (none claimed)
 - **Contribution status:** open-for-contributions
-- **Last synchronized commit:** 61ba05e (main HEAD this synthesis integrated against)
+- **Last synchronized commit:** 5158888 (main HEAD this synthesis integrated against)
 - **Approval state:** NOT APPROVED — exploration only
 - **Gate 1 (promotion) evidence:** —
 - **Promotion target:** —
@@ -36,22 +36,29 @@ scope here.
 
 **Immediate / framework-first:**
 
-1. **LICENSE** — no license file; primary legal blocker for safe external reuse.
-   Maintainer-suggested candidates: MIT or Apache-2.0. Plus README reference and
-   softening of any success language to the previously agreed safe criterion.
-   OPEN DECISION: license choice (Agent Zero).
-2. **CI policy + workflow** — no `.github/`, no CI. Decide optional-feedback vs
-   required-merge-gate; if required, implement least-privilege, full-SHA-pinned
-   Actions workflow around `verify-layout.sh`. OPEN DECISION: CI policy
-   (Agent Zero).
+1. **LICENSE** — ✅ DONE (commit `981f0a2`): Agent Zero chose Apache-2.0
+   (2026-07-20); canonical text added, README License section + layout tree,
+   verify-layout entry. Success-language sub-item: grep found no over-claiming
+   language in the current README (only lifecycle instructions matched) — the
+   "previously agreed safe criterion" could not be located in any session
+   record; checked and closed with that caveat, reopen if the criterion
+   resurfaces.
+2. **CI policy + workflow** — ✅ DONE (commit `017f811`): Agent Zero chose
+   OPTIONAL FEEDBACK, not a required merge gate (2026-07-20). Workflow
+   `.github/workflows/verify-layout.yml`: contents:read only, checkout pinned
+   to full SHA, persist-credentials false; policy documented in the workflow
+   header and README.
 3. **First concrete framework-definition demonstrator** — the
    evidence-based-skill-lifecycle normative standard spec is the natural
    candidate. Already staged: three-way spec split ratified; spec-authoring
    riders committed in the lifecycle WIP item (commit `fe05792`). This backlog
    item tracks it only as a dependency — the work itself stays coordinated with
    the promoted proposal.
-4. **OSS hygiene pack** — CONTRIBUTING.md, SECURITY.md (with threat model),
-   CHANGELOG.md, basic issue/PR templates.
+4. **OSS hygiene pack** — ✅ DONE (commit `5158888`): CONTRIBUTING.md (routes
+   through workspace governance), SECURITY.md (private vulnerability reporting
+   + public-template threat model), CHANGELOG.md (Keep-a-Changelog style),
+   issue templates (defect, idea-with-wip-routing), PR template with
+   governance checklist.
 
 **Next:**
 
@@ -97,14 +104,16 @@ scope here.
 
 ## Open questions
 
-- LICENSE: MIT or Apache-2.0? (Agent Zero)
-- CI: optional feedback or required merge gate? (Agent Zero)
+- ~~LICENSE: MIT or Apache-2.0?~~ — RESOLVED: Apache-2.0 (Agent Zero,
+  2026-07-20; commit `981f0a2`).
+- ~~CI: optional feedback or required merge gate?~~ — RESOLVED: optional
+  feedback (Agent Zero, 2026-07-20; commit `017f811`).
 - Item 6 shape: standalone committed artifact at root, or governance-framework
   standard + governance-ops register pair?
 
 ## Proposed next step
 
-Agent Zero picks the immediate items to execute now (1, 2, 4 are independent
-bounded changes; 3 rides the lifecycle spec). Each executes as its own governed
-change with registry logging; items promoting into formal artifacts follow the
-normal Gate 1 routing.
+Immediate tier complete (items 1, 2, 4; item 3 rides the lifecycle spec). Next
+tier (5–8) awaits Agent Zero's pick; item 6's shape question above should be
+answered first. Each executes as its own governed change with registry logging;
+items promoting into formal artifacts follow the normal Gate 1 routing.
