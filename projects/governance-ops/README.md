@@ -38,6 +38,12 @@ governance-ops/
 and `records/` are created by this project's first real features — each arrives
 through the spec lifecycle below, not by empty scaffolding.
 
+**Evidence classes (constitution Article III — this repo is PUBLIC):** committed
+content is limited to templates and synthetic examples; REAL evidence lives
+machine-local (git-ignored, retention-governed) or in approved external systems
+of record cited by safe reference only. Real control-execution evidence is never
+committed by default.
+
 ## Methodology
 
 New operational CAPABILITIES (a workflow system, dashboard, intake mechanism) are

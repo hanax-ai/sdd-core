@@ -13,6 +13,15 @@ constitution overlaps with a rule in the root constitution, **the stricter rule
 wins** — agents MUST resolve any apparent conflict by applying whichever constraint
 is more restrictive.
 
+**Root GLOBAL supremacy (v3.1.0):** this project governs the governance DOMAIN; it
+does not supersede the root SDD-Core constitution, the `wip/` approval policy, the
+`knowledge/tooling.md` declaration, or the workspace approval gates. Agent Zero's
+Gate 1 and Gate 2 authority cannot be delegated through any decision-rights or RACI
+model defined here. A specification in this project CANNOT authorize edits to root
+GLOBAL artifacts (`.specify/`, `knowledge/`, `.claude/`, `docs/`, `wip/`,
+`conversations/`) or to another project — root-scoped changes require root-scoped
+authorization (root Article III).
+
 ## Core Principles
 
 ### I. Scope Boundary
@@ -36,19 +45,37 @@ that EVIDENCE execution (runbooks, checklists, cadences, intake workflows, logs,
 dashboards, control-execution records) belong to `governance-ops` and MUST NOT be
 created here. The authoritative boundary:
 
-| Artifact kind | Home |
+| Artifact or activity | Authoritative home |
 |---|---|
-| Specs, policies, standards, decision-rights/RACI, control definitions, maturity models, methodology | governance-framework |
-| Runbooks, checklists, review cadences, intake/approval workflows, dashboards, control-execution evidence | governance-ops |
+| Root constitution, WIP policy, tooling declaration, workspace proposals | Root GLOBAL |
+| Governance principles, policies, standards, control objectives, maturity models | governance-framework |
+| Role definitions and decision-rights models | governance-framework |
+| Named role assignments, rotations, operational ownership | governance-ops |
+| Required cadences, thresholds, SLAs, review frequencies (the definitions) | governance-framework |
+| Actual calendars, review instances, checklist executions, and results | governance-ops |
+| Framework-definition feature specifications | `governance-framework/docs/specs/` |
+| Operational-capability feature specifications | `governance-ops/docs/specs/` |
+| Runbooks, intake procedures, recurring workflows | governance-ops |
 | Spec review/approval/maintenance PROCESS execution | governance-ops |
-| The specs themselves (all definitional artifacts) | governance-framework |
-| Workspace conversation records | root `conversations/` (SYNC-POLICY) |
-| Exploration and brainstorms | root `wip/` (two-gate policy) |
-| Audit/ownership log | machine Install Registry (`~/.sdd-core-ops/`) |
+| Workspace-wide conversation records | root `conversations/` (SYNC-POLICY) |
+| Project-scoped conversation records | owning project's `conversations/` |
+| Gate 1 evidence | originating WIP item + promoted artifact |
+| Gate 2 evidence | the authoritative specification or plan |
+| Tool installation and ownership audit | machine Install Registry (`~/.sdd-core-ops/`) |
+| Governance-control execution evidence | governance-ops evidence system (per its evidence classes) — NOT the Install Registry |
+| Exploration and competing ideas | root `wip/` (two-gate policy) |
+
+**Spec routing (v3.1.0):** not every `spec.md` is a framework artifact. A
+specification DEFINING a governance standard, model, or control belongs here; a
+specification for an operational capability (dashboard, evidence pipeline, intake
+service, scheduler, automation) belongs in `governance-ops/docs/specs/`; and a
+specification whose implementation changes root GLOBAL artifacts cannot be
+authorized from either project (see Root GLOBAL supremacy above).
 
 *Rationale*: A single mechanical test ("does it define a standard, or evidence
-execution?") keeps the two governance layers from absorbing each other and prevents
-duplicate record homes across the root GLOBAL tier and the project tier.
+execution?") keeps the two governance layers from absorbing each other, and the
+explicit three-way routing (root GLOBAL / framework / ops) prevents this project
+from duplicating or silently displacing root-tier governance.
 
 ### III. Deliberate-Change Discipline
 This layer is deliberately stable. Every standard, policy, or model authored here
@@ -58,6 +85,12 @@ spec-first lifecycle (root Article V) — `spec.md` → `plan.md` → `tasks.md`
 two-gate approvals (Gate 1 promotion, Gate 2 implementation) where the wip/ policy
 applies. High-churn operational records MUST NOT accumulate here; recurring
 activity belongs to `governance-ops` (Article II).
+
+Released framework artifacts are consumed by `governance-ops` read-only under a
+one-way dependency contract: a material change to a released standard, policy, or
+control definition MUST trigger an operational impact assessment (recorded in
+governance-ops) and declare a migration window before the change binds operations.
+Ops never redefines a standard; this layer never executes one.
 
 *Rationale*: The framework layer is what everything else is checked against; if it
 churns, nothing downstream can be stable. Versioned, deliberate change keeps every
@@ -87,6 +120,15 @@ reading and writing Markdown, and no CLI tool or runtime is ever required.
 
 ### Amendments
 
+- **v3.1.0 (2026-07-20)** — refinement round from the maintainer-supplied external
+  assessment (MINOR: materially expanded guidance, no article redefined). Added:
+  Root GLOBAL supremacy statement (preamble); three-way authoritative routing
+  table replacing the two-layer table (Install Registry row narrowed to tool
+  installation/ownership audit; governance-control execution evidence routed to
+  the governance-ops evidence system); spec-routing rule (framework-definition
+  specs here, operational-capability specs in ops, no project spec authorizes
+  root GLOBAL edits); one-way dependency contract with ops impact assessment on
+  released-artifact changes.
 - **v3.0.0 (2026-07-20)** — complete rescope (MAJOR: every article redefined).
   Maintainer-approved design, 2026-07-20: the former Hana-X-Subsystem
   (SAP S/4 HANA integration exemplar; illustrative template content, never
@@ -106,4 +148,4 @@ reading and writing Markdown, and no CLI tool or runtime is ever required.
 - **v1.1.0 (2026-07-19)** — propagation of root constitution v1.1.0 (Skills &
   Tooling Governance); project tooling artifacts acknowledged.
 
-**Version**: 3.0.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-20
+**Version**: 3.1.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-20

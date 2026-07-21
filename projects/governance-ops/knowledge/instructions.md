@@ -34,15 +34,22 @@ Shapes for control-execution evidence (constitution Article III):
 
 - **Dated and append-oriented:** records carry their execution date; corrections
   append or supersede — never silently rewrite an execution record.
-- **Traceable:** every record names the control or runbook exercised (register
-  row ID), the date, and the operator ROLE (never personal data beyond public
-  maintainer roles).
+- **Traceable (one-way dependency contract):** every record identifies what it
+  implements with at least: control ID; policy/standard version; effective
+  date; execution date; responsible ROLE (never personal data beyond public
+  maintainer roles); result; evidence location; exception or remediation
+  status.
 - **Alias-only:** no credentials, hostnames, tenant identifiers, or customer
   data — environment aliases only, per the root Endpoint Discipline controls.
+- **Classed (public repo):** committed content = templates and synthetic
+  examples ONLY. Real evidence is machine-local (git-ignored,
+  retention-governed) or lives in an approved external system of record cited
+  by safe reference. Never commit real evidence without explicit maintainer
+  approval plus a secrets/identity scan.
 - **Homed correctly:** operational records live in this tree once their owning
   feature creates `records/`. Workspace conversation records, brainstorms, and
-  the audit/ownership log stay at their root/machine homes (constitution
-  Article II boundary table) — never duplicated here.
+  the tooling-audit Install Registry stay at their root/machine homes
+  (constitution Article II boundary table) — never duplicated here.
 
 ---
 

@@ -53,10 +53,18 @@ Standards authored here are versioned with change rationales
 (constitution Article III). High-churn operational records never accumulate in
 this tree — they belong to governance-ops.
 
-**Spec placement rule (Agent Zero, 2026-07-20):** specs live at sub-project
-level, never at the workspace root. Workspace/tooling deliverables are owned by
-this project. First planned feature:
-`docs/specs/001-evidence-based-skill-lifecycle/` — the specification derived
-from the Gate-1-promoted proposal
+**Spec placement rule (Agent Zero, 2026-07-20; refined 2026-07-20):** specs live
+at sub-project level, never at the workspace root — routed by kind, not
+defaulted here. FRAMEWORK-DEFINITION specs (standards, models, controls) belong
+in this project's `docs/specs/`; operational-capability specs belong in
+`governance-ops/docs/specs/`; and no project spec authorizes edits to root
+GLOBAL artifacts (constitution Root GLOBAL supremacy statement — root-scoped
+changes need root-scoped authorization).
+
+First planned feature: `docs/specs/001-evidence-based-skill-lifecycle/` — the
+NORMATIVE STANDARD specification derived from the Gate-1-promoted proposal
 [`../../docs/proposals/evidence-based-skill-lifecycle.md`](../../docs/proposals/evidence-based-skill-lifecycle.md)
-(folder created when spec authoring begins).
+(folder created when spec authoring begins). The lifecycle's operational
+evaluation procedures route to governance-ops, and its root-GLOBAL
+implementation changes require root-scoped authorization — that split is
+resolved before Gate 2.
