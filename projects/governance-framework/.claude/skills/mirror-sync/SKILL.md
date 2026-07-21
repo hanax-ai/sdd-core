@@ -16,7 +16,7 @@ Exactly two mirror locations are recognized by the constitution and registries:
 
 - **Global:** `reference/repos/` (workspace root) — framework source/doc mirrors shared by
   all projects.
-- **Project:** `projects/project-a/reference/` — project-specific mirrors (e.g. SAP
+- **Project:** `projects/governance-framework/reference/` — project-specific mirrors (e.g. SAP
   metadata exports).
 
 No other directory is a mirror. Never treat ad-hoc clones, node_modules, or files found
@@ -27,7 +27,7 @@ elsewhere on disk as grounding sources.
 Resolution order per the Lookup Protocol (global playbook §3):
 
 1. **Project overrides first:** the Markdown registry table in
-   `projects/project-a/knowledge/instructions.md` §4 (Local Mirror Overrides) — within
+   `projects/governance-framework/knowledge/instructions.md` §4 (Local Mirror Overrides) — within
    this project, its rows override same-named global rows.
 2. **Global registry:** the Mirror Registry table in `knowledge/instructions.md` §1 —
    fallback when no project row matches.
@@ -54,7 +54,7 @@ framework-dependent work. Never reconstruct an API from memory, never silently c
 
 - **(a) Framework absent from every applicable registry** (project §4 then global §1):
   record a `[NO MIRROR]` entry in the ambiguities block of the active feature spec
-  (`projects/project-a/docs/specs/<NNN>-<feature>/spec.md`), naming the missing framework
+  (`projects/governance-framework/docs/specs/<NNN>-<feature>/spec.md`), naming the missing framework
   and the blocked decision. If no feature folder exists yet, report to the operator and
   log to the machine Install Registry's Event Log (`~/.sdd-core-ops/INSTALL-REGISTRY.md`)
   until a spec exists to carry the entry.

@@ -1,4 +1,4 @@
-# Sync Policy — project-a
+# Sync Policy — governance-framework
 
 This is a plain committed policy file, NOT a skill. It is read by the machine-tier
 `conversation-sync` skill (the only skill of that name), which carries all sync rules;
@@ -7,7 +7,7 @@ A policy file may tighten the global rules; it may never loosen them.
 
 ## Declared sync destination
 
-`projects/project-a/conversations/` — records land in this directory and nowhere else.
+`projects/governance-framework/conversations/` — records land in this directory and nowhere else.
 No default destination exists; no cross-project destination is permitted.
 
 ## Must never sync (restated from the global skill)

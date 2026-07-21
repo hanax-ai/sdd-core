@@ -16,6 +16,6 @@ printf '%s' "$fp" | grep -Eiq 'conversations[/\\][^"]*\.md' || exit 0
 printf '%s' "$fp" | grep -Eiq '(README|SYNC-POLICY|TEMPLATE|_index)\.md' && exit 0
 
 cat <<'JSON'
-{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"ADVISORY: a new conversation record was just written. Consider a skills-creator mining pass over it (.claude/skills/skills-creator + projects/project-a/.claude/skills/skills-creator): identify recurring manual procedures in the record and PROPOSE skill candidates (proposals only — no self-approval; registrations per skills-creator part 4 on maintainer approval)."}}
+{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"ADVISORY: a new conversation record was just written. Consider a skills-creator mining pass over it (.claude/skills/skills-creator + projects/governance-framework/.claude/skills/skills-creator): identify recurring manual procedures in the record and PROPOSE skill candidates (proposals only — no self-approval; registrations per skills-creator part 4 on maintainer approval)."}}
 JSON
 exit 0

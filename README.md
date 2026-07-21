@@ -46,7 +46,7 @@ sdd-core/
 │   └── repos/                         # Git-ignored local mirrors of external frameworks
 │
 └── projects/
-    ├── project-a/                     # Example sub-project: "Hana-X-Subsystem" (SAP S/4 HANA integration)
+    ├── governance-framework/                     # Example sub-project: "Hana-X-Subsystem" (SAP S/4 HANA integration)
     │   ├── .claude/
     │   │   └── skills/
     │   │       ├── mirror-sync/
@@ -68,7 +68,7 @@ sdd-core/
     │   │   └── instructions.md        # PER-PROJECT mirror registry and agent guidance
     │   └── reference/                 # PER-PROJECT local reference material
     │
-    └── project-b/                     # Empty placeholder slot for the next sub-project
+    └── governance-ops/                     # Empty placeholder slot for the next sub-project
 ```
 
 ## How Claude Code Sub-Agents Navigate This Hierarchy
@@ -78,10 +78,10 @@ This is the **canonical five-step CONTEXT-LOADING order** for the workspace. Age
 1.  **Root constitution** — [.specify/memory/constitution.md](.specify/memory/constitution.md): workspace-wide architectural principles (context-split inference governance — Ollama-only as the product/runtime TARGET, maintainer-approved hosted models for development/workspace agents; PostgreSQL for relational data and Qdrant for vector data; strict isolated agent scopes).
 2.  **Root mirror registry** — [knowledge/instructions.md](knowledge/instructions.md): the routing table pointing agents to local framework mirrors under [reference/repos/](reference/repos/).
 3.  **Project constitution** — `projects/<name>/.specify/memory/constitution.md`: the sub-project's scope, boundaries, and rules.
-4.  **Project mirror registry** — `projects/<name>/knowledge/instructions.md`: project-specific mirrors and agent guidance (in project-a this file is the project playbook).
+4.  **Project mirror registry** — `projects/<name>/knowledge/instructions.md`: project-specific mirrors and agent guidance (in governance-framework this file is the project playbook).
 5.  **Active feature folder** — the current `projects/<name>/docs/specs/NNN-feature-name/` directory (`spec.md`, `plan.md`, `tasks.md`).
 
-Skills and plugins are **ambient, triggered tooling — not load-order steps**: they load on demand (or per machine configuration) and never displace or reorder the five steps above. Project playbooks may append project-local refinements after step 5 (project-a adds manifest-selected reference slices), always labeled as refinements.
+Skills and plugins are **ambient, triggered tooling — not load-order steps**: they load on demand (or per machine configuration) and never displace or reorder the five steps above. Project playbooks may append project-local refinements after step 5 (governance-framework adds manifest-selected reference slices), always labeled as refinements.
 
 **Nested-skill activation note:** skills committed under `projects/<name>/.claude/skills/` are directory-scoped — Claude Code (v2.1.178+, refined in v2.1.181) makes them available when the session works with files under that project, even if it started at the workspace root; they are not guaranteed to be listed before any project file is touched. Sessions that need them immediately should start inside the project directory. The same applies one level up: workspace-root skills (`.claude/skills/` — conversation-records, session-capture, governed-change, registry-logging) are reliably listed only in sessions started inside the repository — **sessions doing workspace governance work start in the repo root**, not a parent directory.
 
@@ -102,7 +102,7 @@ Durable conversation records have exactly two homes, disambiguated by scope: wor
 
 Before proposing any framework-dependent code, an agent **must** consult `knowledge/instructions.md` (project-level first, then root) to determine whether a local mirror of that framework exists under `reference/repos/`. If a mirror exists, the agent grounds its output in the mirrored source rather than recalled training knowledge.
 
-**Lookup order is not load order:** "project registry before global" is the MIRROR-LOOKUP precedence rule — a constitution Article IV *resolution order* applied while working on framework-dependent tasks. It does not compete with the canonical five-step context-loading order above, which reads governance global-tier-first. The `mirror-sync` skill (project-a) operationalizes these lookups as an implementation aid; the registries and their pin discipline remain normative.
+**Lookup order is not load order:** "project registry before global" is the MIRROR-LOOKUP precedence rule — a constitution Article IV *resolution order* applied while working on framework-dependent tasks. It does not compete with the canonical five-step context-loading order above, which reads governance global-tier-first. The `mirror-sync` skill (governance-framework) operationalizes these lookups as an implementation aid; the registries and their pin discipline remain normative.
 
 ## Feature Lifecycle
 
@@ -116,7 +116,7 @@ The lifecycle is entirely file-based — no tooling is required at any step:
 
 ## Provisioning a New Sub-Project
 
-1.  Copy the structure of [projects/project-a/](projects/project-a/) to `projects/<new-name>/` (or populate the [projects/project-b/](projects/project-b/) placeholder) — including the `.claude/skills/` and `conversations/` shape, with a project-specific `conversations/SYNC-POLICY.md` declaring the new project's sync destination.
+1.  Copy the structure of [projects/governance-framework/](projects/governance-framework/) to `projects/<new-name>/` (or populate the [projects/governance-ops/](projects/governance-ops/) placeholder) — including the `.claude/skills/` and `conversations/` shape, with a project-specific `conversations/SYNC-POLICY.md` declaring the new project's sync destination.
 2.  Rewrite `projects/<new-name>/.specify/memory/constitution.md` for the new subsystem's scope, keeping it consistent with the root constitution.
 3.  Clear out `docs/specs/` so only the untouched `template/` folder remains, and update `knowledge/instructions.md` and `reference/` for the new project's frameworks.
 

@@ -38,7 +38,7 @@ Registry rules:
 
 - One row per mirrored framework. The table above is the single source of truth for what is mirrored globally.
 - The **Pinned Version/Commit** column must always reflect the exact commit or tag checked out on disk. If it says "placeholder", the mirror is unverified — treat it as suspect and confirm against the actual files.
-- Sub-projects may maintain additional or overriding rows in their own `projects/<name>/knowledge/instructions.md` (see [`../projects/project-a/knowledge/instructions.md`](../projects/project-a/knowledge/instructions.md) for the example sub-project).
+- Sub-projects may maintain additional or overriding rows in their own `projects/<name>/knowledge/instructions.md` (see [`../projects/governance-framework/knowledge/instructions.md`](../projects/governance-framework/knowledge/instructions.md) for the example sub-project).
 
 ## 2. Registering a New Mirror
 
