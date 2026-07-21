@@ -14,7 +14,7 @@
 - **Active contributors:** claude-root-alpha
 - **Current workstreams:** — (none claimed)
 - **Contribution status:** frozen-for-review
-- **Last synchronized commit:** 7f23f16 (main HEAD this synthesis integrated against)
+- **Last synchronized commit:** cf77599 (main HEAD this synthesis integrated against)
 - **Approval state:** NOT APPROVED — exploration only
 - **Gate 1 (promotion) evidence:** —
 - **Promotion target:** —
@@ -38,9 +38,10 @@ optimization.
   Registration.
 - Treat every SKILL.md as a draft until evaluated; iterate until feedback is clear,
   progress stops, or the maintainer approves completion.
-- Commit realistic behavioral tests at `.claude/skills/<skill>/evals/evals.json`;
-  keep generated evaluation evidence machine-local at
-  `~/.sdd-core-ops/artifacts/skill-evals/<skill>/<iteration>/`.
+- Commit realistic behavioral tests in the central registry at
+  `.claude/skill-evals/<skill>/evals.json`, indexed in
+  `.claude/skill-evals/registry.md` (see position 2); keep generated evaluation
+  evidence machine-local at `~/.sdd-core-ops/artifacts/skill-evals/<skill>/<iteration>/`.
 - Test against BOTH the new skill and a baseline (no skill / previous version);
   objective assertions only where mechanically verifiable; human review preserved for
   quality/judgment; inspect execution transcripts, not just final outputs; fresh
@@ -60,8 +61,10 @@ optimization.
   grader/comparator/analyzer agent instructions, JSON schemas, packaging and
   trigger-optimization scripts) were NOT attached — without them the reference is
   guidance, not a functioning evaluation system; SDD-Core would build or adapt its own.
-- Evaluation runs can be made compatible with SDD-Core's inference constraints
-  (unvalidated — see Risks).
+- Evaluation runs can satisfy the position-7 safety controls (Endpoint Discipline on
+  eval inputs, Article III isolation, no customer-data egress) — to be demonstrated
+  in the pilot. Article I compatibility itself is resolved (constitution v2.0.0 —
+  see Risks).
 
 ## Alternatives
 
@@ -78,16 +81,19 @@ optimization.
   workspace-agent inference with maintainer-approved hosted models is now expressly
   permitted; the evaluation environment needs no exemption or Ollama redesign.
   Remaining obligation: evaluations honor Endpoint Discipline, Article III isolation,
-  and tooling governance like any other workspace agent activity.
+  tooling governance, and the no-customer-data-egress control like any other
+  workspace agent activity.
 - **Article III scope:** evaluation agents must run against isolated fixtures or
   worktrees; they must not receive permission to modify root or sibling-project
   artifacts.
 - **Artifact hygiene:** generated evaluation workspaces must not pollute committed
   skill directories (hence the committed-evals / machine-local-evidence split).
 - **Trigger overlap:** upstream "skill-creator" and SDD-Core's `skills-creator` both
-  answer "create a skill" — responsibilities must be split explicitly (upstream:
-  drafting/evaluation/benchmarking/iteration; SDD-Core: tier placement, scope, naming,
-  registries, constitutional compliance).
+  answer "create a skill" — mitigation proposed in position 6 (name + precedence):
+  the upstream skill is NOT installed (reviewed reference only); `skills-creator`
+  remains the single creation entry point (placement, naming, registration) and
+  hands off to the proposed `skill-evaluator` at the draft→evaluate stage;
+  `skill-evaluator` triggers only on evaluate/benchmark/iterate phrasings.
 - **Root availability:** SDD-Core's `skills-creator` lives under
   `projects/project-a/.claude/skills/` — it does not reliably govern root-level skill
   creation from workspace-root sessions; placement should be reconsidered.
@@ -127,7 +133,8 @@ artifact.
    registry + tooling.md updates.
 4. **Retroactive evaluation → on material change only, plus targeted backfill.**
    Evals become mandatory for NEW skills and MATERIAL changes to existing ones. No
-   blanket backfill of all 8+ workspace skills; opportunistic backfill starts with the
+   blanket backfill of all existing workspace skills (currently 7 across root,
+   project, and machine tiers); opportunistic backfill starts with the
    three highest-behavioral-risk skills (conversation-sync, mirror-sync,
    session-capture — the ones whose failures corrupt records or ground truth).
 5. **evals.json schema → defined fresh; v1 must be reproducibility-complete (revised
@@ -165,8 +172,10 @@ artifact.
    data — Endpoint Discipline applied to eval inputs); network/tool restrictions for
    eval runs (no MCP servers, no web access, minimal tool set); secret scanning of
    prompts AND outputs before retention; transcript redaction rules; retention
-   (align with the Gate 6 backup policy: until acceptance + 30 days, maintainer
-   prunes); evidence cleanup procedure for failed/abandoned iterations.
+   window (proposed by this item: until acceptance + 30 days, maintainer prunes —
+   the existing Gate 6 backup discipline defines pre-edit backup + hash logging
+   only, no retention window); evidence cleanup procedure for failed/abandoned
+   iterations.
 
 ## Proposed adoption plan (outline for the promoted artifact)
 
@@ -196,7 +205,8 @@ artifact.
      project-tier subject without touching root or sibling artifacts).
    Evidence to Ops Home. Machine tier is deliberately NOT in the pilot;
    conversation-sync backfill covers it post-pilot (step 5).
-5. Backfill conversation-sync and mirror-sync evals (position 4). Report results;
+5. Backfill conversation-sync evals (position 4; mirror-sync evals are already
+   produced by the pilot's project-tier leg in step 4). Report results;
    maintainer reviews before the lifecycle becomes required practice.
 
 ## Remaining open questions (for Gate 1 review)
