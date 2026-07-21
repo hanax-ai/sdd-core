@@ -22,6 +22,7 @@ The methodology implemented here is based on [github/spec-kit](https://github.co
 ```text
 sdd-core/
 ├── .gitignore
+├── LICENSE                            # Apache License 2.0
 ├── README.md                          # This file
 ├── verify-layout.sh                   # Optional human convenience script (structural checks only)
 │
@@ -138,3 +139,7 @@ An optional convenience script is provided for humans to confirm structural comp
 ```
 
 This checks that the directory layout matches the expected structure. It is **not** part of the SDD workflow — agents operate on the files directly and never depend on it.
+
+## License
+
+This template is licensed under the [Apache License 2.0](LICENSE).

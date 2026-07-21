@@ -7,6 +7,7 @@ cd "$(dirname "$0")" || exit 1
 
 REQUIRED_PATHS=(
   ".gitignore"
+  "LICENSE"
   "README.md"
   "verify-layout.sh"
   ".specify/memory/constitution.md"
