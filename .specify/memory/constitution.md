@@ -1,45 +1,34 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version change: 1.1.0 → 2.0.0
-Bump rationale: MAJOR — Article I is REDEFINED (backward-incompatible under
-  this document's own SemVer rule): the Ollama-only mandate is narrowed to
-  product/runtime inference as a TARGET architecture, and development/
-  workspace agents are expressly permitted to use maintainer-approved
-  hosted models under controls. Also (MINOR-class, carried in the same
-  amendment): Skills & Tooling Governance category list refreshed to the
-  tooling.md-declared model, and the GLOBAL-tier enumeration updated to
-  include conversations/ and wip/.
+Version change: 2.0.0 → 2.0.1
+Bump rationale: PATCH — non-semantic path and example refresh after the
+  sub-project renames (project-a → governance-framework, project-b →
+  governance-ops; maintainer-approved rescope design, 2026-07-20). No
+  article's rules change.
 
-Amendment rationale (maintainer directive, 2026-07-20): SDD-Core has NO
-  Ollama access today, so Article I could not be followed literally — taken
-  as written, operating SDD-Core with Claude already contradicted it, and
-  no interpretation could fix binding text containing no exception.
-  Ollama-only was a workspace architectural policy (data sovereignty,
-  offline operation, credential/egress avoidance, one backend, cost
-  control), not an SDD requirement — SDD requires only governed specs,
-  plans, tasks, validation, and scope control. Resolution: distinguish
-  product/runtime inference (Ollama-only remains the target/deferred
-  requirement) from development/workspace agents (maintainer-approved
-  hosted models permitted under privacy, scope, credential, and
-  data-egress controls).
+Changes in this amendment:
+  - Article I rationale: the SAP S/4 HANA `projects/project-a/` example is
+    retired with the rescope; the customer-adjacent-systems rationale is
+    stated generically.
+  - Article IV annotation: mirror-sync skill path updated to
+    projects/governance-framework/.claude/skills/mirror-sync/.
+  - Inheritance: example project-constitution path updated to
+    projects/governance-framework/.specify/memory/constitution.md.
 
-Impact note — files changed in this same amendment:
-  - .specify/memory/constitution.md (this file: Article I redefinition,
-    GLOBAL-tier enumeration, Skills & Tooling category model,
-    version/footer)
-  - projects/project-a/.specify/memory/constitution.md (amendment note,
-    version/footer)
-  - README.md (canonical-order step 1 description no longer states
-    Ollama-only as an operational fact)
-  - knowledge/tooling.md (wip policy row: category-mismatch note resolved)
-  No template under projects/<name>/docs/specs/template/ references the
-  amended text. Machine-local conversation records citing the old Article I
-  are point-in-time documents and are intentionally not rewritten.
+Impact note — files changed in this same amendment: this file only. The
+  governance-framework project constitution is rewritten in the immediately
+  following rescope commit (a project-tier constitutional change under the
+  same approved design, citing v2.0.1). Historical artifacts (conversation
+  records, WIP item, promoted proposal) cite the old paths as point-in-time
+  documents and are intentionally not rewritten.
 
-Previous reports: 1.1.0 (Skills & Tooling Governance section; Article IV
-  annotation; Article V advisory extension — 2026-07-19); 1.0.0 (initial
-  ratification: Articles I–V, Inheritance, Governance — 2026-07-17).
+Previous reports: 2.0.0 (Article I redefined as context-split inference
+  governance; category list delegated to tooling.md; GLOBAL-tier enumeration
+  expanded — 2026-07-20); 1.1.0 (Skills & Tooling Governance section;
+  Article IV annotation; Article V advisory extension — 2026-07-19);
+  1.0.0 (initial ratification: Articles I–V, Inheritance, Governance —
+  2026-07-17).
 
 Follow-up TODOs: none. All paths in this document are relative to the
 workspace root (the directory containing this file's `.specify/` tree).
@@ -91,8 +80,8 @@ evaluation, workspace maintenance):
 - Approval is per tool/model via the existing tooling governance path; no agent
   self-approves a new inference provider.
 
-**Rationale:** The workspace handles customer-adjacent systems (e.g. SAP
-S/4 HANA integrations in `projects/project-a/`). Keeping PRODUCT inference local
+**Rationale:** The workspace handles customer-adjacent systems (any sub-project
+integrating customer endpoints). Keeping PRODUCT inference local
 (when built) preserves data sovereignty, offline operability, cost
 predictability, and credential/egress hygiene. But Ollama-only was an
 architectural policy, not an SDD requirement — SDD needs governed specs, plans,
@@ -163,8 +152,8 @@ framework checkouts) are the workspace's ground truth for third-party code.
 Mandatory mirror-checks convert "plausible" agent output into verifiable
 output and eliminate hallucinated dependencies at the source.
 
-> **Annotation (v1.1.0):** the `mirror-sync` skill
-> (`projects/project-a/.claude/skills/mirror-sync/`) is an *implementation
+> **Annotation (v1.1.0; path updated v2.0.1):** the `mirror-sync` skill
+> (`projects/governance-framework/.claude/skills/mirror-sync/`) is an *implementation
 > aid* for this article — it routes lookups through the registries and stops
 > on validation failures. Registry consultation and pin discipline remain
 > normative under this article whether or not that skill loads; the skill
@@ -202,7 +191,7 @@ scoped to project settings — never as a silent addition.
 ## Inheritance
 
 Every project constitution at `projects/<name>/.specify/memory/constitution.md`
-(e.g. `projects/project-a/.specify/memory/constitution.md`) inherits this
+(e.g. `projects/governance-framework/.specify/memory/constitution.md`) inherits this
 document in full.
 
 - A project constitution MAY add new project-specific principles and MAY
@@ -281,4 +270,4 @@ guidance; it operates under this constitution, never above it.
   to every inheriting project constitution and any dependent template under
   `projects/<name>/docs/specs/template/` that references the amended text.
 
-**Version**: 2.0.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-20
+**Version**: 2.0.1 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-20
