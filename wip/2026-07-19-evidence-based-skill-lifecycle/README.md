@@ -233,3 +233,20 @@ provenance.
 Next: normal SDD specification and planning derived from the proposal, then Gate 2
 (`Approved for implementation: <exact specification or plan>`) before any
 implementation. No implementation authority exists yet.
+
+**Spec-authoring riders (Agent Zero decisions, 2026-07-20 — actions the specs
+MUST carry):**
+
+- Three-way spec split: the framework spec
+  (`governance-framework/docs/specs/001-evidence-based-skill-lifecycle/`)
+  carries the normative lifecycle standard; a governance-ops spec carries the
+  operational evaluation procedures and evidence handling; root-GLOBAL
+  implementation changes (skills-creator move, `.claude/skill-evals/`) are
+  REQUESTED by the specs but authorized only by a root-scoped governed change
+  at Gate 2.
+- mirror-sync root-move decision point: current decision is framework-only for
+  now (governance-ops has no mirrors). The spec MUST present an explicit
+  decision on folding the mirror-sync root move in alongside R3's
+  skills-creator move (both governance projects then covered by ancestor
+  discovery). Escalation trigger: a governance-ops mirror-validation need
+  materializing. Decision authority: Agent Zero.
