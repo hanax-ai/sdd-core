@@ -80,6 +80,7 @@ sdd-core/
         ├── conversations/SYNC-POLICY.md
         ├── docs/specs/template/       # spec.md / plan.md / tasks.md
         ├── knowledge/instructions.md  # Playbook: runbook register, record conventions
+        ├── records/                   # Evidence policy + class-1 templates (real evidence git-ignored)
         └── reference/
 ```
 

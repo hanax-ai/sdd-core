@@ -33,12 +33,16 @@ governance-ops/
 │       └── template/            # Copy to NNN-feature-name/ to start a feature
 ├── knowledge/
 │   └── instructions.md          # Project playbook: runbook register, record conventions
+├── records/                     # Evidence POLICY scaffold: README (policy) + templates/ (class 1)
+│   └── templates/               # Committed synthetic record templates (*.template.md)
 └── reference/                   # Project-local reference material (sliced, manifest-first)
 ```
 
-**Intended operational directories (documented, not yet scaffolded):** `runbooks/`
-and `records/` are created by this project's first real features — each arrives
-through the spec lifecycle below, not by empty scaffolding.
+**Operational directories:** `records/` holds the evidence POLICY and class-1
+templates only (see `records/README.md`); real evidence is git-ignored by
+default. `runbooks/` and the evidence SYSTEM itself (intake flows, dashboards,
+record pipelines) are created by this project's first real features — each
+arrives through the spec lifecycle below, not by scaffolding.
 
 **Evidence classes (constitution Article III — this repo is PUBLIC):** committed
 content is limited to templates and synthetic examples; REAL evidence lives

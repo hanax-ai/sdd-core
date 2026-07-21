@@ -45,11 +45,15 @@ Shapes for control-execution evidence (constitution Article III):
   examples ONLY. Real evidence is machine-local (git-ignored,
   retention-governed) or lives in an approved external system of record cited
   by safe reference. Never commit real evidence without explicit maintainer
-  approval plus a secrets/identity scan.
-- **Homed correctly:** operational records live in this tree once their owning
-  feature creates `records/`. Workspace conversation records, brainstorms, and
-  the tooling-audit Install Registry stay at their root/machine homes
-  (constitution Article II boundary table) — never duplicated here.
+  approval plus a secrets/identity scan. Operational policy, the
+  safe-reference format, and the class-2 retention default live in
+  [`../records/README.md`](../records/README.md); class-1 templates in
+  [`../records/templates/`](../records/templates/).
+- **Homed correctly:** the evidence policy home is `../records/` (system
+  capabilities still arrive spec-first). Workspace conversation records,
+  brainstorms, and the tooling-audit Install Registry stay at their
+  root/machine homes (constitution Article II boundary table) — never
+  duplicated here.
 
 ---
 

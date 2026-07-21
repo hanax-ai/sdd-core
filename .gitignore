@@ -31,3 +31,14 @@ conversations/*
 wip/.local/
 wip/**/*.tmp
 wip/**/generated/
+
+# --- Governance-ops evidence (Article III evidence classes; policy + synthetic templates are committed) ---
+# Class 1 (committed): records/README.md (policy), records/templates/** (synthetic only).
+# Class 2 (machine-local): everything else under records/ stays ignored by default.
+# Class 3 (external): only safe references appear in committed files.
+projects/governance-ops/records/*
+!projects/governance-ops/records/README.md
+!projects/governance-ops/records/templates/
+projects/governance-ops/records/templates/*
+!projects/governance-ops/records/templates/README.md
+!projects/governance-ops/records/templates/*.template.md

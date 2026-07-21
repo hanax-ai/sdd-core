@@ -64,6 +64,9 @@ REQUIRED_PATHS=(
   "projects/governance-ops/reference"
   "projects/governance-ops/conversations"
   "projects/governance-ops/conversations/SYNC-POLICY.md"
+  "projects/governance-ops/records/README.md"
+  "projects/governance-ops/records/templates/README.md"
+  "projects/governance-ops/records/templates/control-execution.template.md"
 )
 
 missing=0
