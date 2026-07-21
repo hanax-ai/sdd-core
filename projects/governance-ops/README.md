@@ -35,6 +35,7 @@ governance-ops/
 │   └── instructions.md          # Project playbook: runbook register, record conventions
 ├── records/                     # Evidence POLICY scaffold: README (policy) + templates/ (class 1)
 │   └── templates/               # Committed synthetic record templates (*.template.md)
+├── registers/                   # Living registers (deliverables assignment register, …)
 └── reference/                   # Project-local reference material (sliced, manifest-first)
 ```
 

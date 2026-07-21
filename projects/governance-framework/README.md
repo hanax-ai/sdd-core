@@ -35,6 +35,7 @@ governance-framework/
 │       └── template/            # Copy to NNN-feature-name/ to start a feature
 ├── knowledge/
 │   └── instructions.md          # Project playbook: standards register, slicing, token rules
+├── standards/                   # Authored standards (registered in playbook §1; ST-001 …)
 └── reference/                   # Project-local reference mirrors (sliced, manifest-first)
 ```
 

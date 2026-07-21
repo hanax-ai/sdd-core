@@ -46,6 +46,7 @@ sdd-core/
 │   ├── TEMPLATE.md                    # Standard WIP-item template
 │   └── _index.md                      # Committed canonical index of team WIP items
 ├── docs/                              # GLOBAL workspace-level documentation
+│   ├── deliverables-index.md          # Navigation-only index to the deliverables standard + register
 │   └── proposals/                     # Gate-1-promoted workspace proposals (with Provenance)
 ├── reference/
 │   └── repos/                         # Git-ignored local mirrors of external frameworks
@@ -81,6 +82,7 @@ sdd-core/
         ├── docs/specs/template/       # spec.md / plan.md / tasks.md
         ├── knowledge/instructions.md  # Playbook: runbook register, record conventions
         ├── records/                   # Evidence policy + class-1 templates (real evidence git-ignored)
+        ├── registers/                 # Living deliverables assignment register
         └── reference/
 ```
 

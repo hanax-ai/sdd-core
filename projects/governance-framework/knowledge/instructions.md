@@ -18,10 +18,11 @@ the moment it is created — even before it stabilizes (use status `draft`).
 Every row MUST link the owning spec under [`../docs/specs/`](../docs/specs/)
 once one exists.
 
-> No live entries yet — this project's first feature
-> (`001-evidence-based-skill-lifecycle`, from the Gate-1-promoted proposal
-> `../../../docs/proposals/evidence-based-skill-lifecycle.md`) begins at spec
-> authoring. Register its standards here as they are defined.
+| ID | Artifact | Kind | Version | Status | Owning Spec |
+|----|----------|------|---------|--------|-------------|
+| ST-001 | [`../standards/deliverables-ownership.md`](../standards/deliverables-ownership.md) — Deliverables & Ownership (paired with the governance-ops living register) | standard | 1.0.0 | active | — (direct governed change on maintainer directive 2026-07-20; material changes spec-first) |
+
+**Template row (copy, fill, append above):**
 
 | ID | Artifact | Kind | Version | Status | Owning Spec |
 |----|----------|------|---------|--------|-------------|
