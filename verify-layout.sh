@@ -12,6 +12,8 @@ REQUIRED_PATHS=(
   ".specify/memory/constitution.md"
   "knowledge/instructions.md"
   "docs"
+  "docs/proposals"
+  "docs/proposals/evidence-based-skill-lifecycle.md"
   "reference"
   "reference/repos"
   "projects"

@@ -41,6 +41,7 @@ sdd-core/
 │   ├── TEMPLATE.md                    # Standard WIP-item template
 │   └── _index.md                      # Committed canonical index of team WIP items
 ├── docs/                              # GLOBAL workspace-level documentation
+│   └── proposals/                     # Gate-1-promoted workspace proposals (with Provenance)
 ├── reference/
 │   └── repos/                         # Git-ignored local mirrors of external frameworks
 │

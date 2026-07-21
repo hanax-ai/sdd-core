@@ -8,17 +8,21 @@
 
 - **Purpose:** extend SDD-Core skill governance so every new or materially changed skill progresses through an empirical draft → evaluate → revise lifecycle instead of being treated as finished at authoring time.
 - **Scope:** workspace
-- **Status:** review-ready
+- **Status:** promoted
 - **Created:** 2026-07-19 · **Last touched:** 2026-07-20
 - **Synthesis lead:** claude-root-alpha (item creator, per default rule)
 - **Active contributors:** claude-root-alpha
 - **Current workstreams:** — (none claimed)
-- **Contribution status:** frozen-for-review
-- **Last synchronized commit:** cf77599 (main HEAD this synthesis integrated against)
-- **Approval state:** NOT APPROVED — exploration only
-- **Gate 1 (promotion) evidence:** —
-- **Promotion target:** —
-- **Target status (mirror, non-authoritative):** —
+- **Contribution status:** open-for-contributions
+- **Last synchronized commit:** bc7bb91 (main HEAD this synthesis integrated against)
+- **Approval state:** Gate 1 APPROVED (promotion only) — NOT approved for
+  implementation; Gate 2 evidence lives only in the target spec/plan
+- **Gate 1 (promotion) evidence:** `Approved for promotion:
+  2026-07-19-evidence-based-skill-lifecycle → docs/proposals/evidence-based-skill-lifecycle.md`
+  — Agent Zero, 2026-07-20, issued against item revision `bc7bb91`
+- **Promotion target:** `docs/proposals/evidence-based-skill-lifecycle.md`
+- **Target status (mirror, non-authoritative):** proposed — awaiting maintainer
+  review / Gate 2
 
 ## Problem or opportunity
 
@@ -221,12 +225,11 @@ artifact.
 
 ## Proposed next step
 
-Request Gate 1. Exact directive for Agent Zero, if approved (one line, exact target
-path per WIP policy):
+Gate 1 GRANTED (2026-07-20) — the item promoted into
+`docs/proposals/evidence-based-skill-lifecycle.md`, which carries the committed
+Provenance section freezing what was approved. This item stays in place as living
+provenance.
 
-`Approved for promotion: 2026-07-19-evidence-based-skill-lifecycle → docs/proposals/evidence-based-skill-lifecycle.md`
-
-(A suggestion, not an authorization. The target is the concrete committed proposal
-artifact — created at promotion under `docs/proposals/` with its committed Provenance
-section; implementation would additionally require Gate 2 on the resulting
-specification.)
+Next: normal SDD specification and planning derived from the proposal, then Gate 2
+(`Approved for implementation: <exact specification or plan>`) before any
+implementation. No implementation authority exists yet.
