@@ -1,6 +1,6 @@
 ---
 name: mirror-sync
-description: Use before citing, reading, or planning against any external framework or reference document in this workspace — "check the mirror", "is this framework mirrored", "ground this API claim", "load the SAP metadata", or any task that depends on external framework/source facts. Operationalizes constitution Article IV — routes lookups through the mirror registries and manifests, and stops on validation failures instead of guessing.
+description: Use before citing, reading, or planning against any external framework or reference document in this workspace — "check the mirror", "is this framework mirrored", "ground this API claim", "load the mirrored metadata", or any task that depends on external framework/source facts. Operationalizes constitution Article IV — routes lookups through the mirror registries and manifests, and stops on validation failures instead of guessing.
 ---
 
 # Mirror Sync — Mirror Registry Engine
@@ -16,8 +16,8 @@ Exactly two mirror locations are recognized by the constitution and registries:
 
 - **Global:** `reference/repos/` (workspace root) — framework source/doc mirrors shared by
   all projects.
-- **Project:** `projects/governance-framework/reference/` — project-specific mirrors (e.g. SAP
-  metadata exports).
+- **Project:** `projects/governance-framework/reference/` — project-specific mirrors (e.g.
+  pinned exports of external standards or framework documents).
 
 No other directory is a mirror. Never treat ad-hoc clones, node_modules, or files found
 elsewhere on disk as grounding sources.

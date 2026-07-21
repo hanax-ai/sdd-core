@@ -9,7 +9,7 @@ An AI-native Spec-Driven Development (SDD) workspace template optimized for Clau
 *   **Local Repository Mirroring Playbooks:** Includes a dedicated context routing directory (`knowledge/instructions.md`) to guide agents directly to local offline frameworks (e.g., UI component libraries or API schemas), eliminating context hallucinations.
 *   **Modular Sub-Projects:** Pre-scaffolded template modules allowing instant provisioning of independent, isolated backend/frontend services that honor global architectural constraints.
 
-![SDD-Core process flow: the global constitution and mirror registry feed the workspace, which drives the Project A feature lifecycle (1. Scaffold template → 2. Specify + Clarify spec.md → 3. Plan plan.md → 4. Tasks tasks.md → 5. Execute) alongside the empty Project B slot](docs/assets/process_flow.png)
+![SDD-Core process flow: the global constitution and mirror registry feed the workspace, which drives each sub-project's feature lifecycle (1. Scaffold template → 2. Specify + Clarify spec.md → 3. Plan plan.md → 4. Tasks tasks.md → 5. Execute). Diagram predates the governance-framework/governance-ops rescope and shows the former Project A / Project B labels.](docs/assets/process_flow.png)
 
 ## What is Spec-Driven Development
 
@@ -46,7 +46,8 @@ sdd-core/
 │   └── repos/                         # Git-ignored local mirrors of external frameworks
 │
 └── projects/
-    ├── governance-framework/                     # Example sub-project: "Hana-X-Subsystem" (SAP S/4 HANA integration)
+    ├── governance-framework/          # Governance DESIGN layer: principles, policies, standards, specs ("what & why")
+    │   ├── README.md                  # Project structure + methodology
     │   ├── .claude/
     │   │   └── skills/
     │   │       ├── mirror-sync/
@@ -68,7 +69,13 @@ sdd-core/
     │   │   └── instructions.md        # PER-PROJECT mirror registry and agent guidance
     │   └── reference/                 # PER-PROJECT local reference material
     │
-    └── governance-ops/                     # Empty placeholder slot for the next sub-project
+    └── governance-ops/                # Governance OPERATIONAL layer: runbooks, cadences, evidence ("how & when")
+        ├── README.md                  # Project structure + methodology
+        ├── .specify/memory/constitution.md
+        ├── conversations/SYNC-POLICY.md
+        ├── docs/specs/template/       # spec.md / plan.md / tasks.md
+        ├── knowledge/instructions.md  # Playbook: runbook register, record conventions
+        └── reference/
 ```
 
 ## How Claude Code Sub-Agents Navigate This Hierarchy
@@ -116,7 +123,7 @@ The lifecycle is entirely file-based — no tooling is required at any step:
 
 ## Provisioning a New Sub-Project
 
-1.  Copy the structure of [projects/governance-framework/](projects/governance-framework/) to `projects/<new-name>/` (or populate the [projects/governance-ops/](projects/governance-ops/) placeholder) — including the `.claude/skills/` and `conversations/` shape, with a project-specific `conversations/SYNC-POLICY.md` declaring the new project's sync destination.
+1.  Copy the structure of [projects/governance-framework/](projects/governance-framework/) to `projects/<new-name>/` — including the `.claude/skills/` and `conversations/` shape, with a project-specific `conversations/SYNC-POLICY.md` declaring the new project's sync destination.
 2.  Rewrite `projects/<new-name>/.specify/memory/constitution.md` for the new subsystem's scope, keeping it consistent with the root constitution.
 3.  Clear out `docs/specs/` so only the untouched `template/` folder remains, and update `knowledge/instructions.md` and `reference/` for the new project's frameworks.
 

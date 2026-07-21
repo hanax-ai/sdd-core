@@ -17,6 +17,7 @@ REQUIRED_PATHS=(
   "reference"
   "reference/repos"
   "projects"
+  "projects/governance-framework/README.md"
   "projects/governance-framework/.specify/memory/constitution.md"
   "projects/governance-framework/docs/specs"
   "projects/governance-framework/docs/specs/template/spec.md"
@@ -45,10 +46,16 @@ REQUIRED_PATHS=(
   ".claude/hooks/skill-reminder.sh"
   ".claude/hooks/record-mining-reminder.sh"
   ".claude/settings.json"
-  "projects/governance-ops/.specify/memory"
+  "projects/governance-ops/README.md"
+  "projects/governance-ops/.specify/memory/constitution.md"
   "projects/governance-ops/docs/specs"
-  "projects/governance-ops/knowledge"
+  "projects/governance-ops/docs/specs/template/spec.md"
+  "projects/governance-ops/docs/specs/template/plan.md"
+  "projects/governance-ops/docs/specs/template/tasks.md"
+  "projects/governance-ops/knowledge/instructions.md"
   "projects/governance-ops/reference"
+  "projects/governance-ops/conversations"
+  "projects/governance-ops/conversations/SYNC-POLICY.md"
 )
 
 missing=0
