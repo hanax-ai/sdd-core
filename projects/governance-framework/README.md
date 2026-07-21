@@ -64,7 +64,9 @@ changes need root-scoped authorization).
 First planned feature: `docs/specs/001-evidence-based-skill-lifecycle/` — the
 NORMATIVE STANDARD specification derived from the Gate-1-promoted proposal
 [`../../docs/proposals/evidence-based-skill-lifecycle.md`](../../docs/proposals/evidence-based-skill-lifecycle.md)
-(folder created when spec authoring begins). The lifecycle's operational
-evaluation procedures route to governance-ops, and its root-GLOBAL
-implementation changes require root-scoped authorization — that split is
-resolved before Gate 2.
+(folder created when spec authoring begins). Split RESOLVED (Agent Zero,
+2026-07-20 — three-way): this project's spec carries the normative lifecycle
+standard; the operational evaluation procedures and recurring evidence handling
+are specified in `governance-ops/docs/specs/`; root-GLOBAL implementation
+changes (e.g. the skills-creator move, `.claude/skill-evals/`) are REQUESTED by
+those specs but authorized only by a root-scoped governed change at Gate 2.

@@ -9,7 +9,7 @@ An AI-native Spec-Driven Development (SDD) workspace template optimized for Clau
 *   **Local Repository Mirroring Playbooks:** Includes a dedicated context routing directory (`knowledge/instructions.md`) to guide agents directly to local offline frameworks (e.g., UI component libraries or API schemas), eliminating context hallucinations.
 *   **Modular Sub-Projects:** Pre-scaffolded template modules allowing instant provisioning of independent, isolated backend/frontend services that honor global architectural constraints.
 
-![SDD-Core process flow: the global constitution and mirror registry feed the workspace, which drives each sub-project's feature lifecycle (1. Scaffold template → 2. Specify + Clarify spec.md → 3. Plan plan.md → 4. Tasks tasks.md → 5. Execute). Diagram predates the governance-framework/governance-ops rescope and shows the former Project A / Project B labels.](docs/assets/process_flow.png)
+![SDD-Core process flow: root GLOBAL governance (constitution, mirror registry, tooling declaration, conversations, wip gates, proposals) feeds both sub-projects — governance-framework (the what and why: principles, policies, standards, framework-definition specs) and governance-ops (the how and when: runbooks, cadences, evidence, operational-capability specs), with a one-way released-standards dependency from framework to ops — and each project runs the five-step feature lifecycle: 1. Scaffold template → 2. Specify + Clarify spec.md → 3. Plan plan.md → 4. Tasks tasks.md → 5. Execute](docs/assets/process_flow.svg)
 
 ## What is Spec-Driven Development
 
