@@ -14,7 +14,7 @@
 - **Active contributors:** claude-root-alpha
 - **Current workstreams:** — (none claimed)
 - **Contribution status:** open-for-contributions
-- **Last synchronized commit:** bc7bb91 (main HEAD this synthesis integrated against)
+- **Last synchronized commit:** 7fa33c0 (main HEAD this synthesis integrated against)
 - **Approval state:** Gate 1 APPROVED (promotion only) — NOT approved for
   implementation; Gate 2 evidence lives only in the target spec/plan
 - **Gate 1 (promotion) evidence:** `Approved for promotion:
