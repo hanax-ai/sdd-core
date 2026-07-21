@@ -112,10 +112,54 @@ for item in wip/[0-9]*/; do
 done
 
 echo
+echo "Verifying constitutional invariants (content checks)..."
+echo
+ROOT_CONST=".specify/memory/constitution.md"
+FW_CONST="projects/governance-framework/.specify/memory/constitution.md"
+OPS_CONST="projects/governance-ops/.specify/memory/constitution.md"
+
+check_content() {
+  # $1 = file, $2 = grep -E pattern, $3 = label
+  total=$((total + 1))
+  if [ -f "$1" ] && grep -Eq "$2" "$1"; then
+    printf '[OK]      %s: %s\n' "$1" "$3"
+  else
+    printf '[MISSING] %s: %s\n' "$1" "$3"
+    missing=$((missing + 1))
+  fi
+}
+
+# Version footers (pattern, not pinned number — amendments must keep the shape)
+for c in "$ROOT_CONST" "$FW_CONST" "$OPS_CONST"; do
+  check_content "$c" '^\*\*Version\*\*: [0-9]+\.[0-9]+\.[0-9]+ \| \*\*Ratified\*\*: [0-9]{4}-[0-9]{2}-[0-9]{2} \| \*\*Last Amended\*\*: [0-9]{4}-[0-9]{2}-[0-9]{2}$' 'SemVer version footer'
+done
+# Root GLOBAL supremacy + non-delegable gates + inheritance strictness (both projects)
+for c in "$FW_CONST" "$OPS_CONST"; do
+  check_content "$c" 'Root GLOBAL supremacy' 'Root GLOBAL supremacy statement'
+  check_content "$c" 'cannot be delegated' 'non-delegable gate authority'
+  check_content "$c" 'stricter rule' 'stricter-rule inheritance clause'
+  check_content "$c" '\| Root constitution, WIP policy, tooling declaration, workspace proposals \| Root GLOBAL \|' 'three-way routing table sentinel row'
+done
+# Layer boundary tests
+check_content "$FW_CONST" 'Definitional-Artifact Test' 'framework boundary test article'
+check_content "$OPS_CONST" 'Execution-Evidence Test' 'ops boundary test article'
+check_content "$OPS_CONST" 'Evidence classes' 'evidence-class definitions'
+check_content "$OPS_CONST" 'One-way dependency contract' 'one-way dependency contract'
+# Root constitution load-bearing articles
+check_content "$ROOT_CONST" 'Isolated Agent Scopes' 'Article III present'
+check_content "$ROOT_CONST" 'Mirror-Check Mandate' 'Article IV present'
+# Gate directive formats (wip policy)
+check_content "wip/README.md" 'Approved for promotion:' 'Gate 1 directive format'
+check_content "wip/README.md" 'Approved for implementation:' 'Gate 2 directive format'
+# Paired deliverables model wired both ways
+check_content "projects/governance-ops/registers/deliverables.md" 'ST-001' 'register cites its standard'
+check_content "projects/governance-framework/standards/deliverables-ownership.md" 'registers/deliverables\.md' 'standard cites its register'
+
+echo
 if [ "$missing" -eq 0 ]; then
-  echo "RESULT: 100% compliance — all $total required paths present."
+  echo "RESULT: 100% compliance — all $total required checks pass (paths + content invariants)."
 else
-  echo "RESULT: $missing of $total required paths missing."
+  echo "RESULT: $missing of $total required checks failing."
 fi
 
 echo

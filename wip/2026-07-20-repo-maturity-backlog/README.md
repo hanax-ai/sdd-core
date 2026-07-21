@@ -14,7 +14,7 @@
 - **Active contributors:** claude-root-alpha
 - **Current workstreams:** — (none claimed)
 - **Contribution status:** open-for-contributions
-- **Last synchronized commit:** cba817f (main HEAD this synthesis integrated against)
+- **Last synchronized commit:** 0bf341d (main HEAD this synthesis integrated against)
 - **Approval state:** NOT APPROVED — exploration only
 - **Gate 1 (promotion) evidence:** —
 - **Promotion target:** —
@@ -70,19 +70,21 @@ scope here.
    next successful review + 30 days, maintainer prunes), class-1
    control-execution template. The evidence SYSTEM itself (intake, dashboards,
    pipelines) remains spec-first per the ops constitution.
-6. **Deliverables inventory / living ownership map** — shape RESOLVED
-   (maintainer, 2026-07-20): paired model — governance-framework holds the
-   authoritative deliverable definitions, ownership roles, decision rights,
-   and maintenance standard; governance-ops holds the living assignment
-   register (actual owners, operational status, review dates, exceptions);
-   Root GLOBAL gets a concise navigation index only, never a competing
-   authority. Valid identities only.
+6. **Deliverables inventory / living ownership map** — ✅ DONE (commit
+   `0bf341d`, paired model per maintainer decision; direct-governed-change
+   route per maintainer decision): framework standard ST-001 v1.0.0
+   (definitions, roles, decision rights, maintenance rules — first live
+   Standards & Policy Register row; material changes spec-first), ops living
+   register with 14 seeded real-assignment rows, root navigation-only index.
 7. **Portability adapters** — AGENTS.md or equivalent, explicit precedence
    statement BENEATH the constitution and five-step loading order, compatibility
    matrix, minimal smoke tests. (Ordered LAST.)
-8. **verify-layout content checks** — harden beyond existence-only: selected
-   content checks for constitutional invariants (supremacy statements, routing
-   tables, version footers). (Ordered before item 7.)
+8. **verify-layout content checks** — ✅ DONE: 21 grep-based invariant checks
+   added (SemVer footers by pattern, supremacy statements, non-delegable
+   authority, stricter-rule clauses, routing-table sentinel rows, boundary-test
+   articles, evidence classes, dependency contract, root Articles III/IV, Gate
+   directive formats, paired-model cross-citations). All green at add time;
+   totals fold into the same compliance count CI runs.
 
 ## Assumptions
 
@@ -122,9 +124,9 @@ scope here.
 
 ## Proposed next step
 
-Immediate tier complete (1, 2, 4) and item 5 done; maintainer verified the
-tier read-only (2026-07-20) — LICENSE text confirmed matching canonical
-Apache-2.0 (leading blank line added afterward for byte-parity), CI hardening
-confirmed, hygiene pack confirmed aligned. Remaining order: 6 → 8 → 7, each as
-its own governed change. Item 3 (demonstrator) stays UNTOUCHED until Agent
+Items 1, 2, 4, 5, 6, 8 complete (maintainer verified 1/2/4 read-only,
+2026-07-20). Remaining: item 7 (portability adapters — AGENTS.md or
+equivalent, precedence BENEATH the constitution and five-step load order,
+compatibility matrix, minimal smoke tests) — scope details to confirm with
+Agent Zero before authoring. Item 3 (demonstrator) stays UNTOUCHED until Agent
 Zero intentionally authorizes lifecycle specification authoring.
