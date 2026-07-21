@@ -8,6 +8,7 @@ cd "$(dirname "$0")" || exit 1
 REQUIRED_PATHS=(
   ".gitignore"
   "LICENSE"
+  "AGENTS.md"
   "README.md"
   "verify-layout.sh"
   ".specify/memory/constitution.md"
@@ -154,6 +155,10 @@ check_content "wip/README.md" 'Approved for implementation:' 'Gate 2 directive f
 # Paired deliverables model wired both ways
 check_content "projects/governance-ops/registers/deliverables.md" 'ST-001' 'register cites its standard'
 check_content "projects/governance-framework/standards/deliverables-ownership.md" 'registers/deliverables\.md' 'standard cites its register'
+# Portability adapter smoke checks (item 7): precedence beneath governance + canonical order anchor
+check_content "AGENTS.md" 'BENEATH the governance' 'adapter precedence statement'
+check_content "AGENTS.md" 'canonical five-step CONTEXT-LOADING order' 'adapter cites canonical load order'
+check_content "AGENTS.md" '\.specify/memory/constitution\.md' 'adapter points to root constitution'
 
 echo
 if [ "$missing" -eq 0 ]; then

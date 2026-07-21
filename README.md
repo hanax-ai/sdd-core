@@ -23,6 +23,7 @@ The methodology implemented here is based on [github/spec-kit](https://github.co
 sdd-core/
 ├── .gitignore
 ├── LICENSE                            # Apache License 2.0
+├── AGENTS.md                          # Harness adapter (precedence BENEATH constitution + load order)
 ├── README.md                          # This file
 ├── CONTRIBUTING.md                    # Contribution flow under the workspace's own governance
 ├── SECURITY.md                        # Reporting channel + threat model

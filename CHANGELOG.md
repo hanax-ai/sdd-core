@@ -15,6 +15,12 @@ consumed from `main` (no version tags yet — preservation tags like
   `evidence-based-skill-lifecycle.md` (committed Provenance section).
 - `wip/2026-07-20-repo-maturity-backlog/` — maintainer-prioritized maturity
   backlog as a collaborative WIP item.
+- Evidence-class operationalization: `.gitignore` class patterns, evidence
+  policy home `projects/governance-ops/records/` with class-1 templates.
+- Paired deliverables model: framework standard ST-001, governance-ops living
+  register, root navigation index.
+- `verify-layout.sh` content checks (constitutional invariants) and `AGENTS.md`
+  harness adapter with precedence beneath the constitution and load order.
 
 ### Changed
 - Sub-projects rescoped: `project-a` → `governance-framework` (design layer)

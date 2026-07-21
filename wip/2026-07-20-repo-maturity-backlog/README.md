@@ -76,9 +76,13 @@ scope here.
    (definitions, roles, decision rights, maintenance rules — first live
    Standards & Policy Register row; material changes spec-first), ops living
    register with 14 seeded real-assignment rows, root navigation-only index.
-7. **Portability adapters** — AGENTS.md or equivalent, explicit precedence
-   statement BENEATH the constitution and five-step loading order, compatibility
-   matrix, minimal smoke tests. (Ordered LAST.)
+7. **Portability adapters** — ✅ DONE (maintainer scope decisions 2026-07-20:
+   AGENTS.md only; smoke tests folded into verify-layout): root `AGENTS.md`
+   with explicit precedence BENEATH the constitution and five-step load order,
+   harness non-negotiables, and an HONEST compatibility matrix (only Claude
+   Code marked exercised; AGENTS.md-readers marked expected/untested). Three
+   verify-layout smoke checks (precedence statement, canonical-order anchor,
+   constitution pointer).
 8. **verify-layout content checks** — ✅ DONE: 21 grep-based invariant checks
    added (SemVer footers by pattern, supremacy statements, non-delegable
    authority, stricter-rule clauses, routing-table sentinel rows, boundary-test
@@ -124,9 +128,10 @@ scope here.
 
 ## Proposed next step
 
-Items 1, 2, 4, 5, 6, 8 complete (maintainer verified 1/2/4 read-only,
-2026-07-20). Remaining: item 7 (portability adapters — AGENTS.md or
-equivalent, precedence BENEATH the constitution and five-step load order,
-compatibility matrix, minimal smoke tests) — scope details to confirm with
-Agent Zero before authoring. Item 3 (demonstrator) stays UNTOUCHED until Agent
-Zero intentionally authorizes lifecycle specification authoring.
+**Backlog complete except item 3.** Items 1, 2, 4, 5, 6, 7, 8 all executed
+(maintainer verified 1/2/4 read-only, 2026-07-20; decisions and commits cited
+per item above). Item 3 (demonstrator = lifecycle normative-standard spec)
+stays UNTOUCHED until Agent Zero intentionally authorizes lifecycle
+specification authoring; it is tracked in the lifecycle WIP item's
+spec-authoring riders, not here. This item is a candidate for `archived`
+status once Agent Zero confirms no further maturity work rides it.
