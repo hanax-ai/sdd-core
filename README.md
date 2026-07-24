@@ -30,6 +30,7 @@ sdd-core/
 ├── CHANGELOG.md                       # Notable template changes
 ├── verify-layout.sh                   # Optional human convenience script (structural checks only)
 ├── .github/                           # Advisory CI (verify-layout) + issue/PR templates
+├── .claude/                           # Claude Code harness: root governance skills (canonical), advisory hooks, project settings
 ├── .agents/                           # Harness-adapter skill mirrors for non-Claude agents (canonical copies live in .claude/skills/)
 ├── .codex/                            # Codex CLI harness hooks (advisory skill/record-mining reminders)
 │
