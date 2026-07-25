@@ -139,6 +139,19 @@ reading and writing Markdown, and no CLI tool or runtime is ever required.
 
 ### Amendments
 
+- **v1.1.2 (2026-07-25)** — propagation of root constitution v3.0.0 (PATCH:
+  no project article changes). Root changes binding here through inheritance:
+  Article I rescoped to workspace-bounded Inference Governance with
+  adopter-owned inference; Article II redefined as Persistence Governance
+  (file-native authority for SDD-Core records; universal PostgreSQL/Qdrant
+  mandate removed; non-authoritative rebuildable indexes/caches via the
+  reviewed spec/plan route; adopter-owned operational persistence); Article IV
+  redefined as Authoritative-Source Grounding (grounding outcomes mandated,
+  mechanisms project-owned — this workspace retains its mirror registries);
+  new Methodology Core & Adoption section (source-project role, mandatory
+  local installation, non-waivable core, tailoring classes, adoption
+  manifest). CENTCOM's G-05 mirror requirement is expressly not disposed by
+  the root amendment — re-reviewed under CENTCOM governance (PAD-001 §12).
 - **v1.1.1 (2026-07-21)** — propagation of root constitution v2.1.0 (PATCH:
   no project article changes). Root additions binding here through
   inheritance: the Maintenance Changes route (maintainer-directed bounded
@@ -159,4 +172,4 @@ reading and writing Markdown, and no CLI tool or runtime is ever required.
   provisioned as the workspace governance operational layer, paired with the
   sibling `governance-framework` design layer.
 
-**Version**: 1.1.1 | **Ratified**: 2026-07-20 | **Last Amended**: 2026-07-21
+**Version**: 1.1.2 | **Ratified**: 2026-07-20 | **Last Amended**: 2026-07-25

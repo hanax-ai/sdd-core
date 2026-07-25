@@ -5,6 +5,32 @@ Notable changes to the sdd-core template. Format follows
 consumed from `main` (no version tags yet — preservation tags like
 `pre-rescope-sap-exemplar` mark historical states, not releases).
 
+## 2026-07-25
+
+### Changed
+- Root constitution amended to **v3.0.0** (MAJOR, Agent Zero directive
+  2026-07-25, consolidated R2 amendment proposal): Article I rescoped to
+  workspace-bounded **Inference Governance** (adopter-owned inference;
+  SDD-Core's local-model target retained as project-local only); Article II
+  redefined as **Persistence Governance** (file-native authoritative SDD-Core
+  records; universal PostgreSQL/Qdrant mandate removed; reviewed-spec route
+  for non-authoritative rebuildable indexes/caches; adopter-owned operational
+  persistence; shared-database and cross-project-write prohibitions
+  preserved); Article IV redefined as **Authoritative-Source Grounding**
+  (grounding outcomes mandated, mechanisms project-owned — this workspace
+  retains its local-mirror registries); new **Methodology Core & Adoption**
+  section (source-project role, mandatory local installation, non-waivable
+  core, tailoring classes, adoption manifest, jurisdiction).
+- Same-change propagation (one commit, v2.1.0 propagation exception):
+  project constitutions → governance-framework v3.1.2, governance-ops v1.1.2
+  (PATCH entries); both plan templates (Storage / Complexity Tracking rows,
+  grounding-registry wording); both tasks templates (grounding-check
+  wording); `README.md` (load-order step 1, Authoritative-Source Grounding
+  section, process-flow alt text); `AGENTS.md` (grounding wording);
+  `knowledge/instructions.md` (reframed as the project-owned Article IV
+  mechanism); `docs/assets/process_flow.svg` (grounding-registry label);
+  `verify-layout.sh` (Article IV sentinel replaced; six v3 sentinels added).
+
 ## 2026-07-20
 
 ### Added

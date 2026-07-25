@@ -120,6 +120,19 @@ reading and writing Markdown, and no CLI tool or runtime is ever required.
 
 ### Amendments
 
+- **v3.1.2 (2026-07-25)** — propagation of root constitution v3.0.0 (PATCH:
+  no project article changes). Root changes binding here through inheritance:
+  Article I rescoped to workspace-bounded Inference Governance with
+  adopter-owned inference; Article II redefined as Persistence Governance
+  (file-native authority for SDD-Core records; universal PostgreSQL/Qdrant
+  mandate removed; non-authoritative rebuildable indexes/caches via the
+  reviewed spec/plan route; adopter-owned operational persistence); Article IV
+  redefined as Authoritative-Source Grounding (grounding outcomes mandated,
+  mechanisms project-owned — this workspace retains its mirror registries and
+  this project's `mirror-sync` skill remains the chosen implementation aid);
+  new Methodology Core & Adoption section (source-project role, mandatory
+  local installation, non-waivable core, tailoring classes, adoption
+  manifest).
 - **v3.1.1 (2026-07-21)** — propagation of root constitution v2.1.0 (PATCH:
   no project article changes). Root additions binding here through
   inheritance: the Maintenance Changes route (maintainer-directed bounded
@@ -155,4 +168,4 @@ reading and writing Markdown, and no CLI tool or runtime is ever required.
 - **v1.1.0 (2026-07-19)** — propagation of root constitution v1.1.0 (Skills &
   Tooling Governance); project tooling artifacts acknowledged.
 
-**Version**: 3.1.1 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-21
+**Version**: 3.1.2 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-25

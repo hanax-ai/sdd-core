@@ -15,9 +15,9 @@
 3. Consult context (files only — no tools required):
    → Root constitution: .specify/memory/constitution.md
    → Project constitution: projects/[project-name]/.specify/memory/constitution.md
-   → Mirror-check instructions: knowledge/instructions.md (before any
-     framework-dependent task, confirm the framework is mirrored under
-     reference/repos/)
+   → Grounding-check instructions: knowledge/instructions.md (before any
+     framework-dependent task, confirm a registered grounding source per
+     root Article IV — this workspace's mechanism: mirrors under reference/repos/)
 4. Generate tasks by phase (Setup → Tests First → Core → Integration → Polish):
    → Every requirement in spec.md maps to at least one task
    → Every task cites the exact repository file path(s) it touches
@@ -118,7 +118,7 @@ Agent D → T007: [Integration test ...] — projects/[project-name]/[test path]
 - [P] tasks = different files, no dependencies; never mark two tasks [P] if they modify the same file
 - Verify tests fail before implementing the code they cover
 - Record completion by checking the task box in this file; note deviations inline
-- Framework-dependent tasks require a prior mirror-check per [`../../../../../knowledge/instructions.md`](../../../../../knowledge/instructions.md) — the framework must exist under `reference/repos/` before code that depends on it is proposed
+- Framework-dependent tasks require a prior grounding-check per [`../../../../../knowledge/instructions.md`](../../../../../knowledge/instructions.md) (root Article IV, Authoritative-Source Grounding) — a registered grounding source must exist before code that depends on it is proposed
 - Avoid: vague tasks, missing file paths, same-file [P] conflicts, out-of-scope paths
 
 ## Validation Checklist

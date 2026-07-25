@@ -19,9 +19,9 @@ This adapter only points; it holds no authority. Binding order:
 ## The canonical five-step CONTEXT-LOADING order
 
 1. **Root constitution** — `.specify/memory/constitution.md`
-2. **Root mirror registry** — `knowledge/instructions.md`
+2. **Root grounding registry** — `knowledge/instructions.md`
 3. **Project constitution** — `projects/<name>/.specify/memory/constitution.md`
-4. **Project mirror registry/playbook** — `projects/<name>/knowledge/instructions.md`
+4. **Project grounding registry/playbook** — `projects/<name>/knowledge/instructions.md`
 5. **Active feature folder** — `projects/<name>/docs/specs/NNN-feature-name/`
 
 ## Non-negotiables for every harness
@@ -33,8 +33,9 @@ This adapter only points; it holds no authority. Binding order:
   are issued only by the Workspace Maintainer's directing authority
   (Agent Zero) — no harness, agent, or merged PR substitutes.
 - **Spec-first:** no implementation without an approved `spec.md` + `plan.md`.
-- **Mirror grounding:** framework-dependent code cites registered local
-  mirrors (`knowledge/instructions.md`), never recall.
+- **Source grounding:** framework-dependent work cites registered grounding
+  sources at their pins (`knowledge/instructions.md`, root Article IV —
+  this workspace's mechanism: local mirrors), never recall.
 - **No secrets:** no credentials, hostnames, tenant identifiers, or personal
   data beyond public maintainer roles — environment aliases only. Public repo.
 - **Verification:** `bash verify-layout.sh` must stay green (CI runs it as

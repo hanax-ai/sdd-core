@@ -4,7 +4,7 @@
   <!-- Root GLOBAL tier -->
   <rect x="80" y="24" width="800" height="96" rx="10" fill="#1f3a5f"/>
   <text x="480" y="54" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="600">Root GLOBAL governance</text>
-  <text x="480" y="78" text-anchor="middle" fill="#c9d7ea" font-size="13">constitution (.specify/memory) · mirror registry (knowledge/instructions.md) · tooling declaration</text>
+  <text x="480" y="78" text-anchor="middle" fill="#c9d7ea" font-size="13">constitution (.specify/memory) · grounding registry (knowledge/instructions.md) · tooling declaration</text>
   <text x="480" y="98" text-anchor="middle" fill="#c9d7ea" font-size="13">conversations/ · wip/ (Gate 1 / Gate 2) · docs/proposals/</text>
 
   <!-- arrows from root to projects -->

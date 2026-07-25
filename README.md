@@ -9,7 +9,7 @@ An AI-native Spec-Driven Development (SDD) workspace template optimized for Clau
 *   **Local Repository Mirroring Playbooks:** Includes a dedicated context routing directory (`knowledge/instructions.md`) to guide agents directly to local offline frameworks (e.g., UI component libraries or API schemas), eliminating context hallucinations.
 *   **Modular Sub-Projects:** Pre-scaffolded template modules allowing instant provisioning of independent, isolated backend/frontend services that honor global architectural constraints.
 
-![SDD-Core process flow: root GLOBAL governance (constitution, mirror registry, tooling declaration, conversations, wip gates, proposals) feeds both sub-projects — governance-framework (the what and why: principles, policies, standards, framework-definition specs) and governance-ops (the how and when: runbooks, cadences, evidence, operational-capability specs), with a one-way released-standards dependency from framework to ops — and each project runs the five-step feature lifecycle: 1. Scaffold template → 2. Specify + Clarify spec.md → 3. Plan plan.md → 4. Tasks tasks.md → 5. Execute](docs/assets/process_flow.svg)
+![SDD-Core process flow: root GLOBAL governance (constitution, grounding registry, tooling declaration, conversations, wip gates, proposals) feeds both sub-projects — governance-framework (the what and why: principles, policies, standards, framework-definition specs) and governance-ops (the how and when: runbooks, cadences, evidence, operational-capability specs), with a one-way released-standards dependency from framework to ops — and each project runs the five-step feature lifecycle: 1. Scaffold template → 2. Specify + Clarify spec.md → 3. Plan plan.md → 4. Tasks tasks.md → 5. Execute](docs/assets/process_flow.svg)
 
 ## What is Spec-Driven Development
 
@@ -94,7 +94,7 @@ sdd-core/
 
 This is the **canonical five-step CONTEXT-LOADING order** for the workspace. Agents load context in this strict order, from global governance down to the active feature; every other document that states a load order restates this one:
 
-1.  **Root constitution** — [.specify/memory/constitution.md](.specify/memory/constitution.md): workspace-wide architectural principles (context-split inference governance — Ollama-only as the product/runtime TARGET, maintainer-approved hosted models for development/workspace agents; PostgreSQL for relational data and Qdrant for vector data; strict isolated agent scopes).
+1.  **Root constitution** — [.specify/memory/constitution.md](.specify/memory/constitution.md): workspace-wide architectural principles (scope-bounded inference governance — SDD-Core's own deferred local-model target plus maintainer-approved hosted models for development/workspace agents, adopter-owned inference; persistence governance — file-native authoritative records, adopter-owned operational persistence; strict isolated agent scopes).
 2.  **Root mirror registry** — [knowledge/instructions.md](knowledge/instructions.md): the routing table pointing agents to local framework mirrors under [reference/repos/](reference/repos/).
 3.  **Project constitution** — `projects/<name>/.specify/memory/constitution.md`: the sub-project's scope, boundaries, and rules.
 4.  **Project mirror registry** — `projects/<name>/knowledge/instructions.md`: project-specific mirrors and agent guidance (in governance-framework this file is the project playbook).
@@ -117,11 +117,11 @@ Early-stage ideas are brainstormed in the root [`wip/`](wip/) directory — a GL
 
 Durable conversation records have exactly two homes, disambiguated by scope: workspace-level outcomes (governance, cross-project conventions, tooling) go to the root [`conversations/`](conversations/) directory — a GLOBAL-tier resource writable only at root-level scope; project-scoped outcomes go to the owning project's `projects/<name>/conversations/` under its own `SYNC-POLICY.md`. Records follow [`conversations/TEMPLATE.md`](conversations/TEMPLATE.md) and the conventions in [`conversations/README.md`](conversations/README.md); record content stays machine-local (git-ignored) — only the policy, template, and README are template content. The root-scoped [`conversation-records`](.claude/skills/conversation-records/SKILL.md) skill governs the record lifecycle (capture, locate, update, summarize, archive) at the workspace root, and the [`session-capture`](.claude/skills/session-capture/SKILL.md) skill turns the current working session into a validated record at either tier (routing by scope).
 
-### Mirror-Check Mandate
+### Authoritative-Source Grounding
 
-Before proposing any framework-dependent code, an agent **must** consult `knowledge/instructions.md` (project-level first, then root) to determine whether a local mirror of that framework exists under `reference/repos/`. If a mirror exists, the agent grounds its output in the mirrored source rather than recalled training knowledge.
+Before proposing any framework-dependent code, an agent **must** consult `knowledge/instructions.md` (project-level first, then root) for a registered grounding source (root constitution Article IV). Grounding mechanisms are project-owned; this workspace's chosen mechanism is local mirrors under `reference/repos/`. If a grounding source is registered, the agent grounds its output in that source at its pin rather than recalled training knowledge; if none is registered, the agent stops and requests registration.
 
-**Lookup order is not load order:** "project registry before global" is the MIRROR-LOOKUP precedence rule — a constitution Article IV *resolution order* applied while working on framework-dependent tasks. It does not compete with the canonical five-step context-loading order above, which reads governance global-tier-first. The `mirror-sync` skill (governance-framework) operationalizes these lookups as an implementation aid; the registries and their pin discipline remain normative.
+**Lookup order is not load order:** "project registry before global" is the GROUNDING-LOOKUP precedence rule — a constitution Article IV *resolution order* applied while working on framework-dependent tasks. It does not compete with the canonical five-step context-loading order above, which reads governance global-tier-first. The `mirror-sync` skill (governance-framework) operationalizes these lookups as an implementation aid; the registries and their pin discipline remain normative.
 
 ## Feature Lifecycle
 

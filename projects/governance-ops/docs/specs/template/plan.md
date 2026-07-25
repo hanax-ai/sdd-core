@@ -45,9 +45,9 @@
 
 **Language/Version**: [e.g., Python 3.11, TypeScript 5.x or NEEDS CLARIFICATION]
 
-**Primary Dependencies**: [e.g., FastAPI, LangGraph or NEEDS CLARIFICATION — confirm framework availability via the mirror-check in `knowledge/instructions.md` before committing to any framework]
+**Primary Dependencies**: [e.g., FastAPI, LangGraph or NEEDS CLARIFICATION — confirm framework availability via the grounding-registry check in `knowledge/instructions.md` before committing to any framework]
 
-**Storage**: [if applicable, e.g., PostgreSQL (relational), Qdrant (vector), files or N/A]
+**Storage**: [per the governing plan's reviewed storage decision (root Article II), e.g., Git-managed files, project datastore, or N/A]
 
 **Testing**: [e.g., pytest, vitest or NEEDS CLARIFICATION]
 
@@ -147,7 +147,7 @@ frontend/
 2. **Resolve each unknown by reading workspace knowledge first**:
    - Global guidance: `knowledge/instructions.md`, `docs/`, `reference/` (workspace root)
    - Project guidance: `projects/[project]/knowledge/instructions.md`, `projects/[project]/reference/`
-   - Framework mirror-check: before proposing framework-dependent code, verify the framework is mirrored under `reference/repos/` as directed by `knowledge/instructions.md`
+   - Framework grounding-check: before proposing framework-dependent code, verify a registered grounding source per `knowledge/instructions.md` (root Article IV, Authoritative-Source Grounding; this workspace's mechanism: mirrors under `reference/repos/`)
 
 3. **Write findings to `research.md`** in this feature directory, one entry per unknown:
    - **Decision**: [what was chosen]
@@ -205,7 +205,7 @@ frontend/
 | Violation | Why Needed | Simpler Alternative Rejected Because |
 |-----------|------------|-------------------------------------|
 | [e.g., 4th service] | [current need] | [why 3 services insufficient] |
-| [e.g., new datastore] | [specific problem] | [why PostgreSQL/Qdrant insufficient] |
+| [e.g., new datastore] | [specific problem] | [why the storage decision recorded in this plan and its invariants do not cover it] |
 
 ## Progress Tracking
 

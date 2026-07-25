@@ -1,48 +1,76 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version change: 2.0.1 → 2.1.0
-Bump rationale: MINOR — new Governance subsection (Maintenance Changes) and
-  materially expanded Amendment Procedure guidance (cross-scope propagation
-  exception); GLOBAL-tier enumeration expanded to include .claude/. No
-  article redefined.
+Version change: 2.1.0 → 3.0.0
+Bump rationale: MAJOR — three articles redefined: Article I rescoped to
+  workspace-bounded inference governance with adopter-owned inference;
+  Article II redefined from a universal fixed data layer to persistence
+  governance (file-native SDD-Core authority, no universal PostgreSQL/Qdrant
+  mandate, no reserved product-context stack, adopter-owned operational
+  persistence, amendment trigger limited to new authoritative/operational
+  SDD-Core storage); Article IV redefined from mandatory local mirrors to
+  authoritative-source grounding with project-owned mechanisms. New
+  Methodology Core & Adoption section (source-project role, mandatory local
+  installation, non-waivable core, tailoring classes, adoption manifest).
 
-Amendment rationale (maintainer directive, recorded verbatim: "i approve,
-  WP-R1 amendment" — Agent Zero, 2026-07-21, approving work package WP-R1 of
-  the consolidated go-forward plan v4 after four-review convergence): the
-  workspace's maintainer-directed bounded-change practice existed without an
-  authoritative definition (defect D4a), and the per-scope commit discipline
-  conflicted with this procedure's own same-change propagation mandate.
-  Establishing the route THROUGH the Amendment Procedure grounds it in an
-  already-defined authority path.
+Amendment rationale (maintainer directive, recorded verbatim: "Approved
+  amendment: adopt and implement the consolidated SDD-Core v3.0.0
+  constitutional amendment defined by the approved proposal at
+  `C:\Users\JarvisRichardson\Desktop\SDD-Over-Watch\Implementation\Roadmap-Feedback\v1\SDD-Core\Inbound\sdd-core-v3-consolidated-amendment-proposal-2026-07-25.md`,
+  SHA-256 `59B178937DD820719925D60B95A8259A373ACC1533558D3DB90E4FBAEE99F072`."
+  — Agent Zero, 2026-07-25; operative approval paragraph of the issued
+  directive, whose full five-paragraph text is recorded verbatim in this
+  amendment's commit message): the accepted three-project program
+  architecture (PAD-001, §3 and §12; settled decision DEC-006) reclassifies
+  Ollama, PostgreSQL/Qdrant, and mandatory local mirrors as project
+  architecture choices, not universal SDD methodology, while requiring
+  complete pinned-release installation, the methodology core, source
+  grounding, reproducibility, security, and human gate authority to remain
+  binding (RAID D-001, I-002, I-004, I-006, R-001, R-002, A-004, I-017,
+  I-019).
 
 Changes in this amendment:
-  - Governance: new "Maintenance Changes" subsection defining the
-    maintainer-directed bounded-change route (directive form, scope,
-    exclusions, evidence, relationship to the wip/ gates).
-  - Amendment Procedure, Propagation: a root amendment plus its mandated
-    propagation is ONE root-authority act and MAY land as one commit
-    (express exception to per-scope commit discipline); documented
-    deviation with named follow-up commits remains the fallback.
-  - GLOBAL-tier enumeration (preamble and Article III) now includes
-    .claude/ (root workspace skills, hooks, settings) — read-only from
-    project scope like the rest of the tier.
+  - Article I retitled "Inference Governance (v3.0.0 — scope-bounded)";
+    workspace-bounded mandates; adopting-projects context added; SDD-Core's
+    local-inference target retained as project-local only.
+  - Article II retitled "Persistence Governance (v3.0.0 — redefined)";
+    file-native authority for SDD-Core records; universal PostgreSQL/Qdrant
+    mandate removed (including any reserved product-context stack);
+    project-governed non-authoritative rebuildable indexes/caches permitted
+    via the reviewed spec/plan route; amendment required only for a new
+    authoritative system of record or operational datastore outside that
+    class; adopter-owned persistence; shared-database and
+    cross-project-write prohibitions preserved.
+  - Article IV retitled "Authoritative-Source Grounding (v3.0.0 —
+    redefined)"; grounding outcomes mandated; mechanisms project-owned;
+    this workspace retains local mirrors as its chosen control; G-05 left to
+    CENTCOM governance.
+  - New "Methodology Core & Adoption" section (source-project role,
+    mandatory local installation list, non-waivable core with the no-silent-
+    omission/rename/collapse/bypass rule, tailoring classes, adoption
+    manifest, jurisdiction incl. unrelated-external-project exclusion and
+    no-live-coupling rule).
+  - No change to Articles III and V, Inheritance, Skills & Tooling
+    Governance, Maintenance Changes, or the Amendment Procedure.
 
 Impact note — files changed in this same amendment (one commit, per the
-  propagation exception this amendment itself establishes — a practice the
-  prior text already mandated): this file; both inheriting project
-  constitutions receive propagation entries (governance-framework → 3.1.1,
-  governance-ops → 1.1.1, PATCH — no project article changes). A separate
-  alignment commit under the new route updates wip/README.md and the
-  governed-change and constitution-amendment skills to cite this text.
+  v2.1.0 propagation exception): this file; both project constitutions
+  (appended propagation entries; governance-framework → 3.1.2,
+  governance-ops → 1.1.2, PATCH — no project article changes); both plan
+  templates (Storage and Complexity Tracking rows) and both tasks templates
+  (grounding-check wording); README.md (incl. process-flow image alt text);
+  AGENTS.md; knowledge/instructions.md (reframed as the project-owned
+  Article IV mechanism); docs/assets/process_flow.svg (mirror-registry
+  terminology updated to grounding-registry terminology — same change, no
+  deferral); verify-layout.sh (Article IV sentinel replaced; v3 sentinels
+  added); CHANGELOG.md.
 
-Previous reports: 2.0.1 (path/example refresh after sub-project renames —
-  2026-07-20); 2.0.0 (Article I redefined as context-split inference
-  governance; category list delegated to tooling.md; GLOBAL-tier enumeration
-  expanded — 2026-07-20); 1.1.0 (Skills & Tooling Governance section;
-  Article IV annotation; Article V advisory extension — 2026-07-19);
-  1.0.0 (initial ratification: Articles I–V, Inheritance, Governance —
-  2026-07-17).
+Previous reports: 2.1.0 (Maintenance Changes route; propagation exception;
+  .claude/ tier — 2026-07-21); 2.0.1 (path/example refresh after sub-project
+  renames — 2026-07-20); 2.0.0 (Article I redefined as context-split
+  inference governance — 2026-07-20); 1.1.0 (Skills & Tooling Governance;
+  Article IV annotation; Article V advisory extension — 2026-07-19); 1.0.0
+  (initial ratification — 2026-07-17).
 
 Follow-up TODOs: none. All paths in this document are relative to the
 workspace root (the directory containing this file's `.specify/` tree).
@@ -62,24 +90,21 @@ see Skills & Tooling Governance and `wip/README.md`.)
 
 ## Core Principles
 
-### I. Inference Governance (v2.0.0 — redefined)
+### I. Inference Governance (v3.0.0 — scope-bounded)
 
-Model inference is governed by CONTEXT. Two contexts exist, with different rules:
+Model inference is governed by CONTEXT, and this article's technology mandates
+bind ONLY this workspace — the SDD-Core repository and its sub-projects. SDD-Core
+imposes NO portfolio-wide or adopter-wide inference architecture. Three contexts:
 
-**Product/runtime inference** — inference performed by implemented subsystems,
-customer-adjacent pipelines, or any artifact this workspace ships:
+**SDD-Core product/runtime inference** — inference performed by subsystems this
+workspace itself ships (none exist today):
 
-- The TARGET architecture is locally hosted open-source models served via Ollama.
-  This is a deferred product requirement: no Ollama infrastructure exists in the
-  workspace today, and this document does not claim otherwise. The requirement
-  binds when product inference is implemented.
-- Once implemented, product inference MUST NOT call proprietary or external LLM
-  APIs (hosted inference endpoints, cloud model gateways, third-party
-  completion/embedding services); pipelines MUST assume an Ollama-served local
-  model as the only product inference backend.
-- Specs and plans that require product model capabilities MUST name the local
-  model family they target; a plan that silently depends on an external model API
-  for product inference is invalid. A spec that genuinely needs hosted product
+- The TARGET architecture for SDD-Core's own shipped inference remains locally
+  hosted open-source models served via Ollama. This is a deferred, PROJECT-LOCAL
+  requirement — SDD-Core's own architectural choice, binding only if SDD-Core
+  implements product inference, and never a rule for any other project.
+- Once implemented, SDD-Core product inference MUST NOT silently call
+  proprietary or external LLM APIs; a spec that genuinely needs hosted product
   inference raises it as a proposed amendment — never implements it unilaterally.
 
 **Development and workspace agents** — agents and tooling operating the SDD
@@ -94,34 +119,77 @@ evaluation, workspace maintenance):
 - Approval is per tool/model via the existing tooling governance path; no agent
   self-approves a new inference provider.
 
-**Rationale:** The workspace handles customer-adjacent systems (any sub-project
-integrating customer endpoints). Keeping PRODUCT inference local
-(when built) preserves data sovereignty, offline operability, cost
-predictability, and credential/egress hygiene. But Ollama-only was an
-architectural policy, not an SDD requirement — SDD needs governed specs, plans,
-tasks, validation, and scope control, regardless of which approved model operates
-the workspace. The prior text mandated infrastructure that does not exist and, read
-literally, forbade the very agents operating this workspace.
+**Adopting projects** — projects that adopt a pinned SDD-Core release
+(see Methodology Core & Adoption):
 
-### II. Standardized Data Layer
+- Each adopting project selects and governs its OWN inference architecture under
+  its own constitution and reviewed spec/plan artifacts. Nothing in this article
+  transfers SDD-Core's project-local choices to an adopter.
+- Non-waivable outcomes still bind through the Methodology Core: inference
+  choices are recorded in reviewed artifacts, grounded per Article IV,
+  reproducible, security-reviewed, and subject to endpoint discipline. A plan
+  that silently depends on an undeclared inference provider is invalid in any
+  adopting project.
 
-The data layer is fixed: PostgreSQL for relational and transactional state,
-Qdrant for vector and semantic storage.
+**Rationale:** The v2.0.0 context split fixed this article for the workspace's
+own agents; the three-project program architecture (PAD-001 §12) requires the
+same fix outward. Inference architecture is a project decision; governed specs,
+grounding, reproducibility, and endpoint discipline are the methodology. SDD-Core
+keeps its own local-first target without exporting it.
 
-- All relational, transactional, and structured application state MUST live
-  in PostgreSQL.
-- All embeddings, vector indexes, and semantic-search storage MUST live in
-  Qdrant.
-- Agents MUST NOT introduce ad-hoc datastores (SQLite files, alternate
-  vector databases, bespoke JSON/CSV persistence layers, in-process caches
-  promoted to durable storage) in any spec, plan, or implementation.
-- A sub-project needing a genuinely new storage capability MUST raise it as
-  a proposed amendment to this constitution, not implement it unilaterally.
+### II. Persistence Governance (v3.0.0 — redefined)
 
-**Rationale:** Two well-understood stores keep operational surface, backup
-strategy, and agent grounding uniform across every sub-project. Datastore
-sprawl is the fastest way for a multi-project workspace to become
-unmaintainable.
+Persistence is governed by AUTHORITY and OWNERSHIP, not by a fixed portfolio
+stack. No universal datastore mandate exists: PostgreSQL and Qdrant are no
+longer required of SDD-Core, its sub-projects, or any adopting project — and no
+fixed product-context stack is reserved for SDD-Core's currently nonexistent
+product systems.
+
+**SDD-Core authoritative records — file-native:**
+
+- The authoritative form of SDD-Core's methodology and governance records —
+  constitutions, specs, plans, tasks, templates, standards, registers, gate and
+  amendment records, provenance — is Git-managed flat files (Markdown and
+  similar plain text). They MUST remain diffable, reviewable, and hash-bindable
+  without any runtime.
+- No datastore may become the system of record for any SDD-Core authoritative
+  artifact. External architecture (including CENTCOM or Agent Workflow /
+  coordination-harness designs) is NEVER justification for operational storage
+  inside SDD-Core.
+
+**Non-authoritative indexes and caches (expressly permitted class):**
+
+- A derived, non-authoritative, rebuildable index or cache (e.g., a search or
+  telemetry read-model) MAY exist only when a reviewed, project-governed
+  `spec.md`/`plan.md` (Article V) declares it. It MUST be rebuildable from the
+  canonical files, MUST NOT be committed as authority, and never substitutes
+  for the file-native record. No agent introduces a durable store outside a
+  reviewed artifact. This class requires the reviewed spec/plan route — it does
+  NOT require a constitutional amendment.
+
+**Adopting projects:**
+
+- Each adopting project OWNS and governs its operational persistence under its
+  own constitution and reviewed artifacts (choice, schema, security, backup,
+  recovery, migration). SDD-Core neither selects nor approves an adopter's
+  datastore.
+
+**Boundaries (preserved and binding on all of the above):**
+
+- No shared operational database across projects.
+- No unauthorized cross-project write of any kind (Article III).
+- A constitutional amendment is required ONLY for a new AUTHORITATIVE system of
+  record or a new OPERATIONAL datastore for SDD-Core itself — that is, any
+  SDD-Core storage outside the expressly permitted non-authoritative,
+  rebuildable index/cache class above. Such storage MUST be raised as a
+  proposed amendment to this constitution, never implemented unilaterally.
+
+**Rationale:** Two fixed stores made sense when one workspace was the whole
+program. The accepted architecture gives each peer project its own authoritative
+persistence (Git files, PostgreSQL/Supabase, SQLite respectively) with no shared
+database; what generalizes is the DISCIPLINE — single authoritative home,
+reviewed storage decisions, rebuildable secondaries, hard cross-project
+boundaries — not the brand of database.
 
 ### III. Isolated Agent Scopes
 
@@ -143,35 +211,51 @@ Agents operate in strictly isolated directory scopes.
 It guarantees that a sub-project agent cannot corrupt global memory or a
 sibling project, and makes every change attributable to exactly one scope.
 
-### IV. Mirror-Check Mandate
+### IV. Authoritative-Source Grounding (v3.0.0 — redefined)
 
-Framework-dependent code MUST be grounded in locally mirrored sources.
+Framework- and external-source-dependent claims MUST be grounded in
+authoritative sources with immutable, verifiable identity — never in recall.
 
-- Before proposing any code that depends on an external framework, library,
-  or API, an agent MUST consult `knowledge/instructions.md` (global tier) —
-  and the corresponding `projects/<name>/knowledge/instructions.md` when
-  working inside a sub-project — for a registered local mirror under
-  `reference/repos/`.
-- If a mirror is registered, all proposed API usage MUST be grounded in the
-  mirrored sources: signatures, module paths, and behaviors are taken from
-  the mirror, not from recall.
-- If no mirror is registered, the agent MUST NOT invent API usage. It MUST
-  instead flag the missing mirror and request that one be registered before
-  producing framework-dependent code.
-- Ungrounded (hallucinated) API usage is a constitution violation regardless
-  of whether it happens to be correct.
+- Before proposing any code, spec text, or plan step that depends on an
+  external framework, library, or API, an agent MUST consult the applicable
+  grounding registry — `knowledge/instructions.md` (global tier) and the
+  corresponding `projects/<name>/knowledge/instructions.md` — for a registered
+  grounding source.
+- Every grounded claim carries source identity: source name, pinned version /
+  commit / tag, path or URL, and — where the source is retrieved rather than
+  content-addressed — retrieval evidence and a content digest. Signatures,
+  module paths, and behaviors are taken from the registered source at its pin,
+  not from memory.
+- If no grounding source is registered, the agent MUST NOT invent API usage.
+  It MUST stop, flag the missing source, and request registration before
+  producing dependent work.
+- Ungrounded (hallucinated) API usage is a constitution violation regardless of
+  whether it happens to be correct.
 
-**Rationale:** Mirrors under `reference/repos/` (git-ignored local
-framework checkouts) are the workspace's ground truth for third-party code.
-Mandatory mirror-checks convert "plausible" agent output into verifiable
-output and eliminate hallucinated dependencies at the source.
+**Grounding mechanisms are project-owned.** Each project (this workspace and
+every adopting project) selects the mechanism its registry rows use: local
+mirrors, pinned upstream checkouts, vendored snapshots, or content-pinned
+official documentation. THIS workspace retains local mirrors under
+`reference/repos/` with the registries in `knowledge/instructions.md` as its
+chosen, project-owned control — retained by choice, not exported as a mandate.
+Adopting projects choose and govern their own mechanism in their own
+registries; the grounding OUTCOMES above are non-waivable either way.
 
-> **Annotation (v1.1.0; path updated v2.0.1):** the `mirror-sync` skill
-> (`projects/governance-framework/.claude/skills/mirror-sync/`) is an *implementation
-> aid* for this article — it routes lookups through the registries and stops
-> on validation failures. Registry consultation and pin discipline remain
-> normative under this article whether or not that skill loads; the skill
-> adds convenience, never authority.
+> **Annotation (v1.1.0; paths updated v2.0.1; retained under v3.0.0):** the
+> `mirror-sync` skill
+> (`projects/governance-framework/.claude/skills/mirror-sync/`) remains an
+> *implementation aid* for this workspace's mirror-based mechanism — it routes
+> lookups through the registries and stops on validation failures. Registry
+> consultation and pin discipline remain normative whether or not that skill
+> loads; the skill adds convenience, never authority.
+
+**Rationale:** What eliminates hallucinated dependencies is the verifiable pin
+and the stop-when-ungrounded rule, not the physical location of the copy.
+Mirrors remain this workspace's mechanism of choice; the constitution now
+mandates the outcome (immutable identity, provenance, verification,
+reproducibility) and leaves the mechanism to each project's governance.
+CENTCOM's existing G-05 mirror requirement is expressly NOT disposed here — it
+is re-reviewed under CENTCOM governance (PAD-001 §12).
 
 ### V. Spec-First Lifecycle
 
@@ -215,6 +299,80 @@ document in full.
   article of this document. A project-level clause that conflicts with the
   global tier is void, and the global clause prevails.
 - Where a project constitution is silent, this document applies directly.
+
+## Methodology Core & Adoption (v3.0.0)
+
+SDD-Core is the methodology SOURCE project: it authors, versions, and releases
+the methodology, and records its own release version and immutable commit. It
+is NOT an adopter of itself and maintains no self-referential adoption
+manifest. Downstream projects deliberately admitted to the portfolio adopt
+PINNED SDD-Core releases — a reviewed snapshot, deliberately re-pinned on
+upgrade. Pinned adoption creates NO live coupling: no dynamic dependence on a
+sibling checkout and no unpinned flow of future SDD-Core changes.
+
+**Mandatory local installation.** Every portfolio project, and every future
+project deliberately admitted under SDD-Core, MUST install locally from its
+pinned release:
+
+1. the canonical SDD-Core constitution;
+2. the canonical templates;
+3. the canonical process and feature lifecycle definition;
+4. the governance gates;
+5. the required deliverables; and
+6. the conformance validation rules needed to prove conformance.
+
+Core requirements CANNOT be silently omitted, renamed away, collapsed, or bypassed.
+A project may extend the baseline or explicitly tailor it to its
+product boundary only through the recorded tailoring classes below.
+
+**Non-waivable methodology core.** No adoption, tailoring, or project
+constitution may waive, dilute, or silently omit:
+
+1. Structured specifications as the primary source of truth, and the canonical
+   lifecycle `spec.md` → `plan.md` → `tasks.md` → execute → validate for
+   substantive feature work — three DISTINCT artifacts, never collapsed into
+   one document.
+2. The bounded Maintenance Changes route and its exclusions (Governance
+   section): maintainer-directed bounded changes never amend a constitution,
+   never substitute for Gate 1 or Gate 2, never create new policy, never
+   implement WIP content on WIP authority alone.
+3. Human gate authority: Gate 1 promotion and Gate 2 implementation approval
+   are issued only by the designated human authority and cannot be delegated
+   to agents, CI, reviews, merges, or workflow state.
+4. Spec-first discipline: no implementation without an approved spec and plan
+   (Article V).
+5. Authoritative-source grounding outcomes (Article IV).
+6. Endpoint Discipline: no credentials, hostnames, tenant identifiers, or
+   customer data in committed artifacts.
+
+**Permitted tailoring classes.** An adopting project MAY, with recorded
+rationale and authority:
+
+- (a) select its own technology (inference, persistence, runtime, tooling)
+  within Articles I, II, and IV as rescoped;
+- (b) map directory naming and layout to its repository conventions;
+- (c) ADD stricter gates, artifacts, or checks;
+- (d) adapt template fields to its product domain;
+- (e) exclude a genuinely inapplicable non-core provision — explicitly, per
+  provision, with rationale and approving authority.
+
+Tailoring is never silent: an omission without a manifest record is a
+conformance failure, not a tailoring.
+
+**Adoption manifest.** Every adopting repository maintains a version-controlled
+adoption manifest recording, at minimum: adopted SDD-Core release and immutable
+commit; source repository and canonical paths; installed artifact paths and
+SHA-256 content digests; local installation paths; every extension and every
+tailored or excluded provision with class, rationale, and approving authority;
+the repository-local authority order; effective date; and supersession history.
+Conformance is checkable against the manifest; a project that cannot produce
+one has not adopted SDD-Core.
+
+**Jurisdiction.** These provisions bind this workspace and projects that adopt
+SDD-Core into this portfolio. They claim no authority over unrelated external
+projects that have not deliberately adopted SDD-Core or joined the portfolio,
+and adoption grants SDD-Core no authority over an adopter's implementation,
+repository, releases, or datastores.
 
 ## Skills & Tooling Governance
 
@@ -316,4 +474,4 @@ correct defects against EXISTING binding text.
   itself requires. Where same-change propagation is impracticable, the Sync
   Impact Report documents the deviation and names the follow-up commits.
 
-**Version**: 2.1.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-21
+**Version**: 3.0.0 | **Ratified**: 2026-07-17 | **Last Amended**: 2026-07-25
