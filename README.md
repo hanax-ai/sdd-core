@@ -127,7 +127,7 @@ Before proposing any framework-dependent code, an agent **must** consult `knowle
 
 The lifecycle is entirely file-based — no tooling is required at any step:
 
-1.  **Scaffold** — Copy `projects/<name>/docs/specs/template/` to `projects/<name>/docs/specs/001-feature-name/` (increment the numeric prefix for each new feature).
+1.  **Scaffold** — Pick the template set matching the artifact class, then copy it to `projects/<name>/docs/specs/001-feature-name/` (increment the numeric prefix for each new feature). Template classes: `projects/governance-framework/docs/specs/template/` (normative-standard shape, Validation Mode `file-native`); `projects/governance-ops/docs/specs/template/` (operational-capability shape, `file-native`); `projects/governance-framework/docs/specs/template-software/` (the single canonical software/product template for future product projects, Validation Mode `test-runtime`). Completed synthetic examples live under each project's `docs/specs/examples/` — banner-marked, outside feature numbering, granting no authority.
 2.  **Specify + Clarify** — Complete `spec.md`. Resolve **every** row in its ambiguity/clarification table before proceeding; an unresolved ambiguity blocks the next phase.
 3.  **Plan** — Complete `plan.md`, deriving architecture and design decisions from the finished spec and the applicable constitutions.
 4.  **Tasks** — Complete `tasks.md`, breaking the plan into small, ordered, independently verifiable tasks.

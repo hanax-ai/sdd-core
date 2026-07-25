@@ -26,6 +26,15 @@ REQUIRED_PATHS=(
   "projects/governance-framework/docs/specs/template/spec.md"
   "projects/governance-framework/docs/specs/template/plan.md"
   "projects/governance-framework/docs/specs/template/tasks.md"
+  "projects/governance-framework/docs/specs/template-software/spec.md"
+  "projects/governance-framework/docs/specs/template-software/plan.md"
+  "projects/governance-framework/docs/specs/template-software/tasks.md"
+  "projects/governance-framework/docs/specs/examples/normative-standard-fixture/spec.md"
+  "projects/governance-framework/docs/specs/examples/normative-standard-fixture/plan.md"
+  "projects/governance-framework/docs/specs/examples/normative-standard-fixture/tasks.md"
+  "projects/governance-framework/docs/specs/examples/software-product-fixture/spec.md"
+  "projects/governance-framework/docs/specs/examples/software-product-fixture/plan.md"
+  "projects/governance-framework/docs/specs/examples/software-product-fixture/tasks.md"
   "projects/governance-framework/knowledge/instructions.md"
   "projects/governance-framework/reference"
   "projects/governance-framework/standards/deliverables-ownership.md"
@@ -76,6 +85,9 @@ REQUIRED_PATHS=(
   "projects/governance-ops/docs/specs/template/spec.md"
   "projects/governance-ops/docs/specs/template/plan.md"
   "projects/governance-ops/docs/specs/template/tasks.md"
+  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/spec.md"
+  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/plan.md"
+  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/tasks.md"
   "projects/governance-ops/knowledge/instructions.md"
   "projects/governance-ops/reference"
   "projects/governance-ops/conversations"
@@ -178,6 +190,54 @@ check_content "projects/governance-framework/standards/deliverables-ownership.md
 check_content "AGENTS.md" 'BENEATH the governance' 'adapter precedence statement'
 check_content "AGENTS.md" 'canonical five-step CONTEXT-LOADING order' 'adapter cites canonical load order'
 check_content "AGENTS.md" '\.specify/memory/constitution\.md' 'adapter points to root constitution'
+
+# WP-T1 template invariants
+check_absent() {
+  # $1 = file, $2 = grep -E pattern that must NOT match, $3 = label
+  total=$((total + 1))
+  if [ -f "$1" ] && ! grep -Eq "$2" "$1"; then
+    printf '[OK]      %s: %s\n' "$1" "$3"
+  else
+    printf '[MISSING] %s: %s\n' "$1" "$3"
+    missing=$((missing + 1))
+  fi
+}
+
+FW_TPL="projects/governance-framework/docs/specs/template"
+OPS_TPL="projects/governance-ops/docs/specs/template"
+SW_TPL="projects/governance-framework/docs/specs/template-software"
+
+check_absent "$FW_TPL/tasks.md" 'MUST FAIL' 'no unconditional TDD gate (framework governance set)'
+check_absent "$OPS_TPL/tasks.md" 'MUST FAIL' 'no unconditional TDD gate (ops governance set)'
+check_content "$FW_TPL/tasks.md" 'Validation Mode' 'framework tasks reference Validation Mode'
+check_content "$OPS_TPL/tasks.md" 'Validation Mode' 'ops tasks reference Validation Mode'
+check_content "$FW_TPL/plan.md" 'Validation Mode.*file-native' 'framework plan declares file-native mode'
+check_content "$OPS_TPL/plan.md" 'Validation Mode.*file-native' 'ops plan declares file-native mode'
+check_content "$SW_TPL/plan.md" 'Validation Mode.*test-runtime' 'software plan declares test-runtime mode'
+check_content "$FW_TPL/spec.md" 'Normative Requirements' 'framework spec carries the normative-standard shape'
+check_content "$OPS_TPL/spec.md" 'Evidence & Records' 'ops spec carries the operational-capability shape'
+
+total=$((total + 1))
+sw_homes=$(ls -d projects/*/docs/specs/template-software 2>/dev/null | wc -l)
+if [ "$sw_homes" -eq 1 ]; then
+  printf '[OK]      single canonical software/product template home (%s found)\n' "$sw_homes"
+else
+  printf '[MISSING] single canonical software/product template home (%s found, expected exactly 1)\n' "$sw_homes"
+  missing=$((missing + 1))
+fi
+
+for fixture_file in \
+  "projects/governance-framework/docs/specs/examples/normative-standard-fixture/spec.md" \
+  "projects/governance-framework/docs/specs/examples/normative-standard-fixture/plan.md" \
+  "projects/governance-framework/docs/specs/examples/normative-standard-fixture/tasks.md" \
+  "projects/governance-framework/docs/specs/examples/software-product-fixture/spec.md" \
+  "projects/governance-framework/docs/specs/examples/software-product-fixture/plan.md" \
+  "projects/governance-framework/docs/specs/examples/software-product-fixture/tasks.md" \
+  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/spec.md" \
+  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/plan.md" \
+  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/tasks.md"; do
+  check_content "$fixture_file" 'SYNTHETIC EXAMPLE.*grants no authority' 'synthetic banner present'
+done
 
 echo
 if [ "$missing" -eq 0 ]; then

@@ -7,6 +7,25 @@ consumed from `main` (no version tags yet — preservation tags like
 
 ## 2026-07-25
 
+### Added
+- **WP-T1 template re-baseline** (Agent Zero bounded authorization,
+  2026-07-25; three per-scope commits): governance-framework templates
+  re-baselined to the normative-standard shape and governance-ops templates
+  to the operational-capability shape — three distinct artifacts each, with
+  a declared **Validation Mode** (`file-native` in both governance projects)
+  resolving the TDD-versus-file-only contradiction (D5-1); the
+  software/product template retained at the single canonical home
+  `projects/governance-framework/docs/specs/template-software/` (Validation
+  Mode `test-runtime`, Article II couplings removed, no duplicate);
+  completed banner-marked synthetic fixtures added outside numbered feature
+  folders (`examples/normative-standard-fixture/`,
+  `examples/software-product-fixture/`,
+  `examples/operational-capability-fixture/`); scaffold instructions in both
+  project `docs/specs/README.md` files and the root Feature Lifecycle;
+  `verify-layout.sh` REQUIRED_PATHS +18 and WP-T1 template invariants
+  (mode sentinels, shape sentinels, no-TDD-gate absence checks,
+  single-software-home count, fixture banners).
+
 ### Changed
 - Root constitution amended to **v3.0.0** (MAJOR, Agent Zero directive
   2026-07-25, consolidated R2 amendment proposal): Article I rescoped to
