@@ -6,9 +6,9 @@
 
 | Field | Type | Rules |
 |---|---|---|
-| entries | dict[int, str] | keys 1–366 (day of year, leap-day 366 explicit); values non-empty plain-text messages |
+| entries | dict[tuple[int, int], str] | keys are calendar days `(month, day)` — all 366 including `(2, 29)`; values non-empty plain-text messages |
 
-- **Validation rules**: every key present exactly once; every value non-empty, no user data, no external content (FR-004).
+- **Validation rules**: every calendar day present exactly once (366 keys incl. `(2, 29)`); every value non-empty, no user data, no external content (FR-004); a given calendar date returns the same message in every year (FR-001, R-002).
 - **Relationships**: consumed read-only by the API functions; never mutated at runtime.
 - **State transitions**: none — the catalog is immutable after module load.
 

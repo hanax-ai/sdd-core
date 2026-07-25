@@ -24,7 +24,7 @@
 
 ## Phase 3.3: Core Implementation (ONLY after tests are failing)
 
-- [x] T008 MessageCatalog with 366 entries incl. leap day — `src/motd/catalog.py` (blocks T009–T010: sequential)
+- [x] T008 MessageCatalog keyed by calendar day `(month, day)`, 366 entries incl. `(2, 29)` — `src/motd/catalog.py` (blocks T009–T010: sequential)
 - [x] T009 `get_message(date)` with validation — `src/motd/api.py`
 - [x] T010 `get_message_today(clock)` — `src/motd/api.py`
 

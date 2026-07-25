@@ -53,7 +53,7 @@ An end user supplies no date; the application calls the library with its explici
 
 ### Key Entities
 
-- **MessageCatalog**: the fixed mapping from day-of-year to message text; no external storage.
+- **MessageCatalog**: the fixed mapping from calendar day (month and day) to message text — stable across years, including leap years; no external storage.
 
 ## Success Criteria
 

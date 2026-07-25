@@ -12,8 +12,8 @@
 
 ## R-002 — Catalog storage shape
 
-- **Decision**: in-memory fixed dictionary, day-of-year → message, 366 entries with an explicit leap-day entry.
-- **Rationale**: no datastore is introduced (root Article II: reviewed storage decision = N/A); lookup stays under the 1 ms performance goal.
-- **Alternatives considered**: external JSON catalog file (rejected: adds a load path and a mutable surface for no benefit at this size).
+- **Decision**: in-memory fixed dictionary keyed by calendar day `(month, day)` → message, 366 entries with an explicit `(2, 29)` entry — the same calendar date maps to the same message in every year, leap or not.
+- **Rationale**: no datastore is introduced (root Article II: reviewed storage decision = N/A); lookup stays under the 1 ms performance goal; `(month, day)` keying avoids the day-of-year shift that would give one calendar date different messages in leap versus non-leap years.
+- **Alternatives considered**: day-of-year keying (rejected: dates after February shift by one in leap years, breaking FR-001 determinism across years); external JSON catalog file (rejected: adds a load path and a mutable surface for no benefit at this size).
 
 **Output**: all NEEDS CLARIFICATION items resolved; Phase 1 design may begin.

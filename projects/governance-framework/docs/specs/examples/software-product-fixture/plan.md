@@ -89,7 +89,7 @@ Single unknown (timezone) resolved at the clarify gate; the decisions, rationale
 
 ## Phase 1: Design & Contracts
 
-- **data-model**: recorded in [`data-model.md`](./data-model.md) — `MessageCatalog` dict[day-of-year → str], 366 entries, leap-day explicit; application-supplied Clock value object.
+- **data-model**: recorded in [`data-model.md`](./data-model.md) — `MessageCatalog` dict keyed by calendar day `(month, day)`, 366 entries incl. `(2, 29)`; application-supplied Clock value object.
 - **contracts**: recorded in [`contracts/message-of-the-day-api.md`](./contracts/message-of-the-day-api.md) — `get_message(date) -> str` (raises `ValueError` on invalid date, FR-003); `get_message_today(clock) -> str` with the application-injected clock (FR-002). Contract test scenarios fail until implementation (tasks T004–T007).
 - **quickstart**: recorded in [`quickstart.md`](./quickstart.md) — import, call with a date, call with the injected clock; verified by the integration test.
 

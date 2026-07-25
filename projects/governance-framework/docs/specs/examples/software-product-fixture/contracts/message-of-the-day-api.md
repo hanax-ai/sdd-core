@@ -16,4 +16,4 @@
 - **Output**: `get_message(clock.today())`.
 - **Errors**: propagates `get_message` errors; a clock returning an invalid date raises the same `ValueError`.
 
-**Contract test scenario** (fails until implemented): with a fixed clock pinned to 2026-03-01, the returned string equals `get_message(2026-03-01)`.
+**Contract test scenario** (fails until implemented): with a fixed clock pinned to the ISO date 2026-03-01, the returned string equals `get_message(date(2026, 3, 1))`.
