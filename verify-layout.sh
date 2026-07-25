@@ -35,6 +35,10 @@ REQUIRED_PATHS=(
   "projects/governance-framework/docs/specs/examples/software-product-fixture/spec.md"
   "projects/governance-framework/docs/specs/examples/software-product-fixture/plan.md"
   "projects/governance-framework/docs/specs/examples/software-product-fixture/tasks.md"
+  "projects/governance-framework/docs/specs/examples/software-product-fixture/research.md"
+  "projects/governance-framework/docs/specs/examples/software-product-fixture/data-model.md"
+  "projects/governance-framework/docs/specs/examples/software-product-fixture/contracts/message-of-the-day-api.md"
+  "projects/governance-framework/docs/specs/examples/software-product-fixture/quickstart.md"
   "projects/governance-framework/knowledge/instructions.md"
   "projects/governance-framework/reference"
   "projects/governance-framework/standards/deliverables-ownership.md"
@@ -88,6 +92,7 @@ REQUIRED_PATHS=(
   "projects/governance-ops/docs/specs/examples/operational-capability-fixture/spec.md"
   "projects/governance-ops/docs/specs/examples/operational-capability-fixture/plan.md"
   "projects/governance-ops/docs/specs/examples/operational-capability-fixture/tasks.md"
+  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/research.md"
   "projects/governance-ops/knowledge/instructions.md"
   "projects/governance-ops/reference"
   "projects/governance-ops/conversations"
@@ -238,6 +243,30 @@ for fixture_file in \
   "projects/governance-ops/docs/specs/examples/operational-capability-fixture/tasks.md"; do
   check_content "$fixture_file" 'SYNTHETIC EXAMPLE.*grants no authority' 'synthetic banner present'
 done
+
+# B-11 review-remediation invariants
+FW_FIX="projects/governance-framework/docs/specs/examples/normative-standard-fixture"
+SW_FIX="projects/governance-framework/docs/specs/examples/software-product-fixture"
+OPS_FIX="projects/governance-ops/docs/specs/examples/operational-capability-fixture"
+
+check_absent "$ROOT_CONST" 'Users.JarvisRichardson' 'no machine-local provenance path in constitution'
+check_absent "knowledge/instructions.md" '[Mm]irror [Rr]egistry' 'no obsolete mirror-registry label (instructions)'
+check_absent "README.md" '[Mm]irror [Rr]egistry' 'no obsolete mirror-registry label (README)'
+for fx in "$FW_FIX" "$SW_FIX" "$OPS_FIX"; do
+  check_content "$fx/spec.md" '(\.\./){6}\.specify/memory/constitution\.md' "root-constitution link uses six parents ($fx)"
+  check_content "$fx/spec.md" '`(\.\./){4}\.specify/memory/constitution\.md' "project-constitution link uses four parents ($fx)"
+  check_content "$fx/spec.md" '`(\.\./){4}knowledge/instructions\.md' "project-instructions link uses four parents ($fx)"
+  check_absent "$fx/spec.md" '`(\.\./){3}\.specify' "no three-parent constitution link ($fx)"
+done
+check_absent "$FW_TPL/tasks.md" 'T00[3-5] \[P\]|recorded in this file' 'no same-file [P] or vague outputs (framework template)'
+check_absent "$OPS_TPL/tasks.md" 'T00[3-5] \[P\]|recorded in this file' 'no same-file [P] or vague outputs (ops template)'
+check_absent "$FW_FIX/tasks.md" 'T00[3-5] \[P\]|recorded in this file' 'no same-file [P] or vague outputs (normative fixture)'
+check_absent "$OPS_FIX/tasks.md" 'T00[3-5] \[P\]|recorded in this file' 'no same-file [P] or vague outputs (ops fixture)'
+check_absent "$SW_FIX/tasks.md" 'T003 \[P\]|T004 \[P\]|T005 \[P\]|T006 \[P\]|T008 \[P\]|T012 \[P\]' 'no same-file or dependency-conflicting [P] (software fixture)'
+check_content "$OPS_FIX/spec.md" 'class-2 execution record' 'execution records classified class-2 (ops fixture)'
+check_absent "$OPS_FIX/spec.md" 'produce one class-1-conformant record' 'no class-1 execution-record wording (ops fixture)'
+check_absent "$SW_TPL/spec.md" 'no command-line tools or scripts are required at any step' 'no blanket no-CLI rule in software spec'
+check_content "README.md" '\*\*Validate\*\*' 'lifecycle ends with an explicit Validate step (README)'
 
 echo
 if [ "$missing" -eq 0 ]; then

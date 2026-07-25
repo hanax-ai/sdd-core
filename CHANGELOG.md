@@ -7,6 +7,26 @@ consumed from `main` (no version tags yet — preservation tags like
 
 ## 2026-07-25
 
+### Fixed
+- **B-11 review remediation** (Agent Zero remediation directive, 2026-07-25;
+  all 19 validated v3.0.0-rc.1 review findings): constitutional amendment
+  audit trail now cites an opaque directive/proposal identity (SHA-256
+  preserved) instead of a machine-local path; remaining root
+  "Mirror Registry" labels renamed to grounding-registry terminology
+  (`knowledge/instructions.md`, `README.md` — local mirrors remain this
+  workspace's chosen mechanism); all fixture governance links corrected to
+  their real traversal depths and mechanically validated; same-file and
+  dependency-conflicting `[P]` markers removed across templates and fixtures
+  with exact output paths replacing "recorded in this file"; software fixture
+  gains its template-required `research.md`, `data-model.md`, `contracts/`,
+  and `quickstart.md` (ops fixture gains `research.md`); injected-clock
+  contract made explicit end-to-end; execution records consistently
+  class-2-instantiated-from-class-1-template; software-spec no-CLI guidance
+  narrowed to specification authoring (`test-runtime` commands preserved);
+  MD040 language tags added to instructional fences; lifecycle extended to an
+  explicit sixth **Validate** step (README caption, scaffold steps, process-flow
+  SVG); `verify-layout.sh` gains 29 B-11 regression invariants (181 checks).
+
 ### Added
 - **WP-T1 template re-baseline** (Agent Zero bounded authorization,
   2026-07-25; three per-scope commits): governance-framework templates

@@ -53,10 +53,11 @@ A quarterly audit runbook checking the synthetic glossary against SYN-ST-900, pr
 projects/governance-ops/docs/specs/examples/operational-capability-fixture/
 ├── spec.md              # Completed (fixture)
 ├── plan.md              # This file (fixture)
+├── research.md          # Completed (fixture) — Phase 0 decision record
 └── tasks.md             # Completed (fixture)
 ```
 
-(`research.md`, `data-model.md`, `contracts/` omitted: single unknown resolved at the clarify gate; no schemas beyond the record template — recorded here as the Phase 0/1 outcome.)
+(`data-model.md` and `contracts/` omitted: no schemas beyond the record template — a recorded Phase 1 outcome, not an omission.)
 
 ### Authored / Modified Artifacts (project tree)
 
@@ -76,7 +77,7 @@ projects/governance-ops/
 
 ## Phase 0: Outline & Research
 
-Single unknown (on-demand clock reset) resolved at the clarify gate. **Decision**: fixed calendar quarters. **Rationale**: predictable audit windows. **Alternatives considered**: rolling window from last run (rejected: silently stretches cadence).
+Single unknown (on-demand clock reset) resolved at the clarify gate; the decision, rationale, and rejected alternatives are recorded in [`research.md`](./research.md).
 
 ## Phase 1: Design (runbook outline, record templates, register rows)
 
@@ -98,7 +99,7 @@ No violations — table intentionally empty.
 
 **Phase Status**:
 
-- [x] Phase 0: Research complete (no unknowns; decision recorded above)
+- [x] Phase 0: Research complete (`research.md` written)
 - [x] Phase 1: Design complete (runbook outline + record/register designs above)
 - [x] Phase 2: Task planning approach described (this plan only)
 

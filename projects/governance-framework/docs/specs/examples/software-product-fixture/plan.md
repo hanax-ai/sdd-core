@@ -57,10 +57,13 @@ A pure-function library mapping dates to a fixed message catalog, with an inject
 examples/software-product-fixture/
 ├── spec.md              # Completed (fixture)
 ├── plan.md              # This file (fixture)
+├── research.md          # Completed (fixture) — Phase 0 output
+├── data-model.md        # Completed (fixture) — Phase 1 output
+├── contracts/
+│   └── message-of-the-day-api.md   # Completed (fixture) — Phase 1 output
+├── quickstart.md        # Completed (fixture) — Phase 1 output
 └── tasks.md             # Completed (fixture)
 ```
-
-(`research.md`, `data-model.md`, `contracts/`, `quickstart.md` summarized inline: one unknown resolved in the clarify table; entities and contracts small enough to record here for a fixture.)
 
 ### Source Code (project root)
 
@@ -82,13 +85,13 @@ tests/
 
 ## Phase 0: Outline & Research
 
-Single unknown (timezone) resolved at the clarify gate: injected clock, no system time. **Decision**: pure functions + injected clock. **Rationale**: determinism and testability. **Alternatives considered**: reading system time (rejected: untestable, violates FR-001 determinism guarantees under test).
+Single unknown (timezone) resolved at the clarify gate; the decisions, rationale, and rejected alternatives are recorded in [`research.md`](./research.md) (R-001 injected clock, R-002 catalog shape).
 
 ## Phase 1: Design & Contracts
 
-- **data-model**: `MessageCatalog` = dict[day-of-year → str], 366 entries, leap-day explicit (FR edge case).
-- **contracts**: `get_message(date) -> str` (raises `ValueError` on invalid date, FR-003); `get_message_today(clock) -> str` (FR-002). Contract test scenarios recorded in tasks T004–T007 and failing until implementation.
-- **quickstart**: import, call with a date, call with a clock — three lines, verified by the integration test.
+- **data-model**: recorded in [`data-model.md`](./data-model.md) — `MessageCatalog` dict[day-of-year → str], 366 entries, leap-day explicit; application-supplied Clock value object.
+- **contracts**: recorded in [`contracts/message-of-the-day-api.md`](./contracts/message-of-the-day-api.md) — `get_message(date) -> str` (raises `ValueError` on invalid date, FR-003); `get_message_today(clock) -> str` with the application-injected clock (FR-002). Contract test scenarios fail until implementation (tasks T004–T007).
+- **quickstart**: recorded in [`quickstart.md`](./quickstart.md) — import, call with a date, call with the injected clock; verified by the integration test.
 
 ## Phase 2: Task Planning Approach
 
@@ -106,8 +109,8 @@ No violations — table intentionally empty.
 
 **Phase Status**:
 
-- [x] Phase 0: Research complete (recorded inline)
-- [x] Phase 1: Design complete (recorded inline)
+- [x] Phase 0: Research complete (`research.md` written)
+- [x] Phase 1: Design complete (`data-model.md`, `contracts/`, `quickstart.md` written)
 - [x] Phase 2: Task planning approach described (this plan only)
 
 **Gate Status**:

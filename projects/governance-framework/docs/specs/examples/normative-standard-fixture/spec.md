@@ -79,9 +79,9 @@
 
 ### Consistency
 
-- [x] Spec conforms to the project constitution (`../../../.specify/memory/constitution.md`)
-- [x] Spec conforms to the global constitution (`../../../../../.specify/memory/constitution.md`)
-- [x] Project instructions were consulted (`../../../knowledge/instructions.md`)
+- [x] Spec conforms to the project constitution (`../../../../.specify/memory/constitution.md`)
+- [x] Spec conforms to the global constitution (`../../../../../../.specify/memory/constitution.md`)
+- [x] Project instructions were consulted (`../../../../knowledge/instructions.md`)
 - [x] Artifact class confirmed against the Definitional-Artifact Test (framework owns the what/why)
 
 ---

@@ -12,7 +12,7 @@
 
 ## Execution Flow (agent instructions)
 
-```
+```text
 1. Start a new feature by COPYING this template folder:
    projects/governance-framework/docs/specs/template/  ->  projects/governance-framework/docs/specs/[###-standard-name]/
    (Use the next available zero-padded number, e.g., 001, 002, 003.)

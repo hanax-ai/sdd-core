@@ -37,7 +37,7 @@
 
 ## Operational Requirements
 
-- **FR-001**: Each audit run MUST produce one class-1-conformant record from the synthetic-audit record template.
+- **FR-001**: Each audit run MUST produce one class-2 execution record instantiated from the committed class-1 synthetic-audit record template (machine-local, per the evidence policy).
 - **FR-002**: A missed cadence window MUST be recorded as a deviation record.
 - **FR-003**: Every nonconforming glossary entry MUST be listed in the record with its exact line reference.
 - **FR-004**: The audit MUST NOT modify the glossary — findings only; fixes are separate governed changes.
@@ -51,7 +51,7 @@
 
 ## Success / Verification Criteria
 
-- **SC-001**: after one execution, exactly one record exists conforming to the template, and the register row cites it.
+- **SC-001**: after one execution, exactly one class-2 execution record instantiated from the template exists, and the register row cites it.
 - **SC-002**: the runbook names every step's executor and evidence output — no step lacks either.
 - **SC-003**: a simulated missed window produces a deviation record per FR-002.
 
@@ -87,9 +87,9 @@
 
 ### Consistency
 
-- [x] Spec conforms to the project constitution (`../../../.specify/memory/constitution.md`)
-- [x] Spec conforms to the global constitution (`../../../../../.specify/memory/constitution.md`)
-- [x] Project instructions were consulted (`../../../knowledge/instructions.md`)
+- [x] Spec conforms to the project constitution (`../../../../.specify/memory/constitution.md`)
+- [x] Spec conforms to the global constitution (`../../../../../../.specify/memory/constitution.md`)
+- [x] Project instructions were consulted (`../../../../knowledge/instructions.md`)
 - [x] Artifact class confirmed against the Execution-Evidence Test (ops owns the how/when)
 
 ---

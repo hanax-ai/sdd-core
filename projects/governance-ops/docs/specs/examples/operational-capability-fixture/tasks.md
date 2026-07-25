@@ -14,9 +14,9 @@
 
 ## Phase 3.2: Validation First — enumerate checks BEFORE authoring
 
-- [x] T003 [P] Define check SC-001: exactly one template-conformant record per run; register row cites it — recorded in this file
-- [x] T004 [P] Define check SC-002: every runbook step names executor + evidence output — recorded in this file
-- [x] T005 [P] Define check SC-003: simulated missed window yields a deviation record; review gate = Workspace Maintainer quarterly review — recorded in this file
+- [x] T003 Define check SC-001: exactly one class-2 execution record instantiated from the template per run; register row cites it — `projects/governance-ops/docs/specs/examples/operational-capability-fixture/tasks.md`
+- [x] T004 Define check SC-002: every runbook step names executor + evidence output — `projects/governance-ops/docs/specs/examples/operational-capability-fixture/tasks.md`
+- [x] T005 Define check SC-003: simulated missed window yields a deviation record; review gate = Workspace Maintainer quarterly review — `projects/governance-ops/docs/specs/examples/operational-capability-fixture/tasks.md`
 
 ## Phase 3.3: Core Authoring
 
@@ -30,15 +30,15 @@
 
 ## Phase 3.5: Review & Polish
 
-- [x] T010 Run SC-001..SC-003 checks; results: one conformant record, all steps carry executor+evidence, deviation path verified on the simulated miss — recorded inline
-- [x] T011 Review gate passed: Workspace Maintainer reviewed record + register wiring against both constitutions and the evidence classes — recorded inline
+- [x] T010 Run SC-001..SC-003 checks; results: one class-2 execution record instantiated from the template, all steps carry executor+evidence, deviation path verified on the simulated miss — `projects/governance-ops/docs/specs/examples/operational-capability-fixture/tasks.md`
+- [x] T011 Review gate passed: Workspace Maintainer reviewed record + register wiring against both constitutions and the evidence classes — `projects/governance-ops/docs/specs/examples/operational-capability-fixture/tasks.md`
 
 ---
 
 ## Dependencies
 
 - Setup (T001–T002) before everything else
-- Validation First (T003–T005) before Core Authoring (T006–T008)
+- Validation First (T003–T005, sequential — same output file) before Core Authoring (T006–T008)
 - Core Authoring before Integration (T009); everything before Review (T010–T011)
 
 ## Notes
@@ -55,7 +55,7 @@
 - [x] Evidence outputs bind to a declared evidence class and record template
 - [x] Every task cites at least one exact repository file path
 - [x] Every cited path is inside `projects/governance-ops/` (Scope Rule satisfied)
-- [x] No [P] task modifies the same file as another [P] task
+- [x] No [P] task modifies the same file as another [P] task (T003–T005 are sequential for this reason)
 - [x] Parallel [P] tasks are truly independent (no hidden ordering)
 - [x] Dependencies section reflects all ordering constraints
 - [x] Validation Mode is `file-native` and honored — file-native mode: no task requires a CLI tool, script, or runtime

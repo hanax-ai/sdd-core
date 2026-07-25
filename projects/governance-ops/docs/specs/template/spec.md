@@ -12,7 +12,7 @@
 
 ## Execution Flow (agent instructions)
 
-```
+```text
 1. Start a new feature by COPYING this template folder:
    projects/governance-ops/docs/specs/template/  ->  projects/governance-ops/docs/specs/[###-capability-name]/
    (Use the next available zero-padded number, e.g., 001, 002, 003.)
@@ -79,7 +79,7 @@
   in ops-domain terms.
 -->
 
-- **FR-001**: [e.g., "Each control execution MUST produce a class-1 record from the control-execution template"]
+- **FR-001**: [e.g., "Each control execution MUST produce a class-2 execution record instantiated from the class-1 control-execution template"]
 - **FR-002**: [e.g., "A missed cadence window MUST be recorded as a deviation, never silently skipped"]
 - **FR-003**: [e.g., "The register row MUST be updated with the review date in the same change as the evidence record"]
 - **FR-004**: [e.g., "Execution MUST NOT modify surfaces outside projects/governance-ops/ (Scope Rule)"]
@@ -108,7 +108,7 @@
   tasks.md.
 -->
 
-- **SC-001**: [e.g., "after one execution, exactly one class-1-conformant record exists and its register row cites it"]
+- **SC-001**: [e.g., "after one execution, exactly one class-2 execution record instantiated from the class-1 template exists and its register row cites it"]
 - **SC-002**: [e.g., "the runbook names every step's executor and evidence output — no step lacks either"]
 - **SC-003**: [e.g., "a simulated missed window produces a deviation record per FR-002"]
 

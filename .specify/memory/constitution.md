@@ -13,14 +13,13 @@ Bump rationale: MAJOR — three articles redefined: Article I rescoped to
   Methodology Core & Adoption section (source-project role, mandatory local
   installation, non-waivable core, tailoring classes, adoption manifest).
 
-Amendment rationale (maintainer directive, recorded verbatim: "Approved
-  amendment: adopt and implement the consolidated SDD-Core v3.0.0
-  constitutional amendment defined by the approved proposal at
-  `C:\Users\JarvisRichardson\Desktop\SDD-Over-Watch\Implementation\Roadmap-Feedback\v1\SDD-Core\Inbound\sdd-core-v3-consolidated-amendment-proposal-2026-07-25.md`,
-  SHA-256 `59B178937DD820719925D60B95A8259A373ACC1533558D3DB90E4FBAEE99F072`."
-  — Agent Zero, 2026-07-25; operative approval paragraph of the issued
-  directive, whose full five-paragraph text is recorded verbatim in this
-  amendment's commit message): the accepted three-project program
+Amendment rationale (maintainer directive: Agent Zero's issued SDD-Core
+  v3.0.0 amendment directive of 2026-07-25, approving the consolidated R2
+  amendment proposal identified by SHA-256
+  `59B178937DD820719925D60B95A8259A373ACC1533558D3DB90E4FBAEE99F072`;
+  the directive's full five-paragraph text is recorded verbatim in this
+  amendment's commit message, which is the durable authority record): the
+  accepted three-project program
   architecture (PAD-001, §3 and §12; settled decision DEC-006) reclassifies
   Ollama, PostgreSQL/Qdrant, and mandatory local mirrors as project
   architecture choices, not universal SDD methodology, while requiring

@@ -7,7 +7,7 @@
 
 ## Execution Flow (agent instructions)
 
-```
+```text
 1. Read plan.md in this feature folder
    → If not found: STOP with "plan.md required before tasks can be authored"
    → Extract: runbook approach, affected files, declared Validation Mode
@@ -67,9 +67,9 @@ Per the *Isolated Agent Scopes* article of the root constitution
 
 **Enumerate every mechanical check, evidence expectation, and review gate this package must pass, derived from spec.md Success/Verification Criteria. These checks gate the phases below; they are file checks and review gates, not runtime tests.**
 
-- [ ] T003 [P] [Define check: evidence record conforms to its class-1 template (SC-###)] — recorded in this file / `projects/governance-ops/docs/specs/[###-capability-name]/tasks.md`
-- [ ] T004 [P] [Define check: register row cites its evidence record (SC-###)] — recorded in this file
-- [ ] T005 [P] [Name the review gate(s) and the approving authority (SC-###)] — recorded in this file
+- [ ] T003 [Define check: the class-2 execution record conforms to its class-1 template (SC-###)] — `projects/governance-ops/docs/specs/[###-capability-name]/tasks.md`
+- [ ] T004 [Define check: register row cites its evidence record (SC-###)] — `projects/governance-ops/docs/specs/[###-capability-name]/tasks.md`
+- [ ] T005 [Name the review gate(s) and the approving authority (SC-###)] — `projects/governance-ops/docs/specs/[###-capability-name]/tasks.md`
 
 ## Phase 3.3: Core Authoring
 
@@ -93,19 +93,19 @@ Per the *Isolated Agent Scopes* article of the root constitution
 ## Dependencies
 
 - Setup (T001–T002) before everything else
-- Validation First (T003–T005) before Core Authoring (T006–T008) — checks and evidence expectations are defined before the work they gate
+- Validation First (T003–T005, sequential — same output file) before Core Authoring (T006–T008) — checks and evidence expectations are defined before the work they gate
 - Core Authoring before Integration & Cross-references (T009–T010)
 - Everything before Review & Polish (T011–T013)
 - [List any additional capability-specific ordering constraints here]
 
 ## Parallel Example
 
-```
-# T003–T005 record independent checks and share no dependency, so separate
-# agents (or one agent in any order) may define them concurrently:
-Agent A → T003: [record-conformance check] — .../tasks.md
-Agent B → T004: [register-citation check] — .../tasks.md
-Agent C → T005: [review gate naming] — .../tasks.md
+```text
+# [P] applies ONLY to tasks that touch DIFFERENT files and share no
+# dependency. Checks T003–T005 share this tasks.md and are therefore
+# SEQUENTIAL, never [P]. A valid parallel pair touches distinct files:
+Agent A → T007: [class-1 record template] — projects/governance-ops/records/templates/[record].template.md
+Agent B → T008: [register rows] — projects/governance-ops/registers/[register-file].md
 ```
 
 ## Notes

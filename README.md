@@ -9,7 +9,7 @@ An AI-native Spec-Driven Development (SDD) workspace template optimized for Clau
 *   **Local Repository Mirroring Playbooks:** Includes a dedicated context routing directory (`knowledge/instructions.md`) to guide agents directly to local offline frameworks (e.g., UI component libraries or API schemas), eliminating context hallucinations.
 *   **Modular Sub-Projects:** Pre-scaffolded template modules allowing instant provisioning of independent, isolated backend/frontend services that honor global architectural constraints.
 
-![SDD-Core process flow: root GLOBAL governance (constitution, grounding registry, tooling declaration, conversations, wip gates, proposals) feeds both sub-projects — governance-framework (the what and why: principles, policies, standards, framework-definition specs) and governance-ops (the how and when: runbooks, cadences, evidence, operational-capability specs), with a one-way released-standards dependency from framework to ops — and each project runs the five-step feature lifecycle: 1. Scaffold template → 2. Specify + Clarify spec.md → 3. Plan plan.md → 4. Tasks tasks.md → 5. Execute](docs/assets/process_flow.svg)
+![SDD-Core process flow: root GLOBAL governance (constitution, grounding registry, tooling declaration, conversations, wip gates, proposals) feeds both sub-projects — governance-framework (the what and why: principles, policies, standards, framework-definition specs) and governance-ops (the how and when: runbooks, cadences, evidence, operational-capability specs), with a one-way released-standards dependency from framework to ops — and each project runs the six-step feature lifecycle: 1. Scaffold template → 2. Specify + Clarify spec.md → 3. Plan plan.md → 4. Tasks tasks.md → 5. Execute → 6. Validate](docs/assets/process_flow.svg)
 
 ## What is Spec-Driven Development
 
@@ -38,7 +38,7 @@ sdd-core/
 │   └── memory/
 │       └── constitution.md            # GLOBAL constitution: root architectural principles
 ├── knowledge/
-│   ├── instructions.md                # GLOBAL mirror registry: routes agents to local framework mirrors
+│   ├── instructions.md                # GLOBAL grounding registry: routes agents to local framework mirrors
 │   └── tooling.md                     # GLOBAL tooling requirement declaration + new-machine bootstrap
 ├── conversations/
 │   ├── README.md                      # GLOBAL conversation records: purpose, conventions, index/archival rules
@@ -61,7 +61,7 @@ sdd-core/
     │   ├── .claude/
     │   │   └── skills/
     │   │       ├── mirror-sync/
-    │   │       │   └── SKILL.md       # Mirror Registry Engine (Article IV implementation aid)
+    │   │       │   └── SKILL.md       # Grounding-registry engine, mirror mechanism (Article IV implementation aid)
     │   │       └── skills-creator/
     │   │           └── SKILL.md       # Workspace skill-authoring instructions
     │   ├── .specify/
@@ -76,7 +76,7 @@ sdd-core/
     │   │           ├── plan.md        # How (architecture and design decisions)
     │   │           └── tasks.md       # Ordered, executable task breakdown
     │   ├── knowledge/
-    │   │   └── instructions.md        # PER-PROJECT mirror registry and agent guidance
+    │   │   └── instructions.md        # PER-PROJECT grounding registry and agent guidance
     │   └── reference/                 # PER-PROJECT local reference material
     │
     └── governance-ops/                # Governance OPERATIONAL layer: runbooks, cadences, evidence ("how & when")
@@ -95,9 +95,9 @@ sdd-core/
 This is the **canonical five-step CONTEXT-LOADING order** for the workspace. Agents load context in this strict order, from global governance down to the active feature; every other document that states a load order restates this one:
 
 1.  **Root constitution** — [.specify/memory/constitution.md](.specify/memory/constitution.md): workspace-wide architectural principles (scope-bounded inference governance — SDD-Core's own deferred local-model target plus maintainer-approved hosted models for development/workspace agents, adopter-owned inference; persistence governance — file-native authoritative records, adopter-owned operational persistence; strict isolated agent scopes).
-2.  **Root mirror registry** — [knowledge/instructions.md](knowledge/instructions.md): the routing table pointing agents to local framework mirrors under [reference/repos/](reference/repos/).
+2.  **Root grounding registry** — [knowledge/instructions.md](knowledge/instructions.md): the routing table pointing agents to registered grounding sources — this workspace's mechanism: local framework mirrors under [reference/repos/](reference/repos/).
 3.  **Project constitution** — `projects/<name>/.specify/memory/constitution.md`: the sub-project's scope, boundaries, and rules.
-4.  **Project mirror registry** — `projects/<name>/knowledge/instructions.md`: project-specific mirrors and agent guidance (in governance-framework this file is the project playbook).
+4.  **Project grounding registry** — `projects/<name>/knowledge/instructions.md`: project-specific grounding sources and agent guidance (in governance-framework this file is the project playbook).
 5.  **Active feature folder** — the current `projects/<name>/docs/specs/NNN-feature-name/` directory (`spec.md`, `plan.md`, `tasks.md`).
 
 Skills and plugins are **ambient, triggered tooling — not load-order steps**: they load on demand (or per machine configuration) and never displace or reorder the five steps above. Project playbooks may append project-local refinements after step 5 (governance-framework adds manifest-selected reference slices), always labeled as refinements.
@@ -132,6 +132,7 @@ The lifecycle is entirely file-based — no tooling is required at any step:
 3.  **Plan** — Complete `plan.md`, deriving architecture and design decisions from the finished spec and the applicable constitutions.
 4.  **Tasks** — Complete `tasks.md`, breaking the plan into small, ordered, independently verifiable tasks.
 5.  **Execute** — Work through the tasks strictly in order, keeping the three documents updated as the source of truth.
+6.  **Validate** — Prove the implemented result against the spec, plan, tasks, and the Validation Mode declared in `plan.md` (mechanical file checks and review gates in `file-native` mode; the full test suite in `test-runtime` mode) before the feature is complete.
 
 ## Provisioning a New Sub-Project
 

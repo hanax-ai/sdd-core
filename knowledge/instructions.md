@@ -27,7 +27,7 @@ this registry, the constitution, or the spec-first lifecycle.
 
 ---
 
-## 1. Mirror Registry
+## 1. Grounding Registry (local-mirror mechanism)
 
 | Framework | Local Mirror Path | Upstream URL | Pinned Version/Commit | Notes |
 |-----------|-------------------|--------------|-----------------------|-------|
@@ -62,7 +62,7 @@ For developers adding a framework mirror (a one-time human setup step; the SDD w
 Follow these rules **in order** whenever a task involves an external framework:
 
 1. **Check for local overrides first.** When working inside a sub-project (`projects/<name>/`), read that project's `knowledge/instructions.md` before this file. Project-level entries override global ones for that project's scope.
-2. **Consult the Mirror Registry** (Section 1, plus any project-level registry) before proposing any framework-dependent code, spec text, or plan step. Never rely on memory of a framework's API.
+2. **Consult the Grounding Registry** (Section 1, plus any project-level registry) before proposing any framework-dependent code, spec text, or plan step. Never rely on memory of a framework's API.
 3. **Ground every claim in mirror files.** When a spec (`spec.md`), plan (`plan.md`), or task list (`tasks.md`) references framework behavior, cite the concrete mirror file path you verified it against — e.g. `reference/repos/shadcn/apps/www/registry/new-york/ui/button.tsx` — not just the framework name.
 4. **No mirror? STOP.** If the framework is absent from every applicable registry, do not guess or reconstruct its API. Halt framework-dependent work and record a `[NO MIRROR]` entry in the ambiguities block of the active feature spec (`projects/<name>/docs/specs/<NNN>-<feature>/spec.md`), naming the missing framework and the decision that is blocked. A developer then registers the mirror per Section 2 before work resumes.
 5. **Respect the pin.** Verify behavior against the pinned commit listed in the registry, not against newer upstream knowledge. If the pinned version genuinely lacks something the task needs, surface that as a spec ambiguity — do not silently assume a newer API.

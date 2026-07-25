@@ -7,7 +7,7 @@
 
 ## Execution Flow (agent instructions)
 
-```
+```text
 1. Read plan.md in this feature folder
    → If not found: STOP with "plan.md required before tasks can be authored"
    → Extract: technical approach, project structure, affected files
@@ -105,7 +105,7 @@ Per the *Isolated Agent Scopes* article of the root constitution
 
 ## Parallel Example
 
-```
+```text
 # T004–T007 touch different files and share no dependency, so separate
 # agents (or one agent in any order) may execute them concurrently:
 Agent A → T004: [Contract test ...] — projects/[project-name]/[test path]

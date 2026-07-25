@@ -7,7 +7,7 @@
 
 ## Execution Flow (agent instructions)
 
-```
+```text
 1. Read plan.md in this feature folder
    → If not found: STOP with "plan.md required before tasks can be authored"
    → Extract: authoring approach, affected files, declared Validation Mode
@@ -66,9 +66,9 @@ Per the *Isolated Agent Scopes* article of the root constitution
 
 **Enumerate every mechanical check and review gate this package must pass, derived from spec.md Conformance Criteria. These checks gate the phases below; they are file checks and review gates, not runtime tests.**
 
-- [ ] T003 [P] [Define check: cross-references resolve both directions (CC-###)] — recorded in this file / `projects/governance-framework/docs/specs/[###-standard-name]/tasks.md`
-- [ ] T004 [P] [Define check: required sentinel present in governed register (CC-###)] — recorded in this file
-- [ ] T005 [P] [Name the review gate(s): who reviews, against what checklist (CC-###)] — recorded in this file
+- [ ] T003 [Define check: cross-references resolve both directions (CC-###)] — `projects/governance-framework/docs/specs/[###-standard-name]/tasks.md`
+- [ ] T004 [Define check: required sentinel present in governed register (CC-###)] — `projects/governance-framework/docs/specs/[###-standard-name]/tasks.md`
+- [ ] T005 [Name the review gate(s): who reviews, against what checklist (CC-###)] — `projects/governance-framework/docs/specs/[###-standard-name]/tasks.md`
 
 ## Phase 3.3: Core Authoring
 
@@ -93,19 +93,19 @@ Per the *Isolated Agent Scopes* article of the root constitution
 ## Dependencies
 
 - Setup (T001–T002) before everything else
-- Validation First (T003–T005) before Core Authoring (T006–T008) — checks are defined before the work they gate
+- Validation First (T003–T005, sequential — same output file) before Core Authoring (T006–T008) — checks are defined before the work they gate
 - Core Authoring before Integration & Cross-references (T009–T011)
 - Everything before Review & Polish (T012–T014)
 - [List any additional feature-specific ordering constraints here]
 
 ## Parallel Example
 
-```
-# T003–T005 record independent checks and share no dependency, so separate
-# agents (or one agent in any order) may define them concurrently:
-Agent A → T003: [cross-reference check] — .../tasks.md
-Agent B → T004: [sentinel check] — .../tasks.md
-Agent C → T005: [review gate naming] — .../tasks.md
+```text
+# [P] applies ONLY to tasks that touch DIFFERENT files and share no
+# dependency. Checks T003–T005 share this tasks.md and are therefore
+# SEQUENTIAL, never [P]. A valid parallel pair touches distinct files:
+Agent A → T008: [register schema or record template] — projects/governance-framework/[path A]
+Agent B → [an independent authoring task] — projects/governance-framework/[different path B]
 ```
 
 ## Notes

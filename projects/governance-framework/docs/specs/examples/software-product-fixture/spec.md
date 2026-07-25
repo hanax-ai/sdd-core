@@ -27,15 +27,15 @@ A demo-application developer calls the library with a date and always receives t
 
 ### User Story 2 - Friendly default for missing date (Priority: P2)
 
-A developer calling without a date receives the message for the current day rather than an error.
+An end user supplies no date; the application calls the library with its explicitly injected clock and receives the current-day message rather than an error.
 
 **Why this priority**: convenience path; builds on P1.
 
-**Independent Test**: call without arguments; assert a non-empty string is returned.
+**Independent Test**: call `get_message_today(clock)` with a fixed injected clock; assert the returned string equals that clock date's catalog message.
 
 **Acceptance Scenarios**:
 
-1. **Given** no date argument, **When** the message is requested, **Then** the current-day message is returned.
+1. **Given** an end user supplies no date and the application injects its clock, **When** the message is requested via `get_message_today(clock)`, **Then** the clock's current-day message is returned.
 
 ### Edge Cases
 
@@ -47,7 +47,7 @@ A developer calling without a date receives the message for the current day rath
 ### Functional Requirements
 
 - **FR-001**: The library MUST return a deterministic message for any valid date.
-- **FR-002**: The library MUST return the current-day message when no date is supplied.
+- **FR-002**: When the end user supplies no date, the library MUST return the current-day message via the application-injected clock (`get_message_today(clock)`); the library never reads system time.
 - **FR-003**: The library MUST reject invalid dates with a descriptive error.
 - **FR-004**: Messages MUST be plain text with no user data or external content.
 
@@ -66,7 +66,7 @@ A developer calling without a date receives the message for the current day rath
 ## Assumptions
 
 - Synthetic demo context only; no localization, no persistence, no network.
-- Host application supplies its own clock for "current day" (injected, testable).
+- The application (not the end user) always supplies the injected clock for "current day"; the clock is a required application-level input, keeping the library deterministic and testable.
 
 ## Ambiguities & Clarifications (Clarify Phase)
 
@@ -94,9 +94,9 @@ A developer calling without a date receives the message for the current day rath
 
 ### Consistency
 
-- [x] Spec conforms to the project constitution (`../../../.specify/memory/constitution.md`)
-- [x] Spec conforms to the global constitution (`../../../../../.specify/memory/constitution.md`)
-- [x] Project instructions were consulted (`../../../knowledge/instructions.md`)
+- [x] Spec conforms to the project constitution (`../../../../.specify/memory/constitution.md`)
+- [x] Spec conforms to the global constitution (`../../../../../../.specify/memory/constitution.md`)
+- [x] Project instructions were consulted (`../../../../knowledge/instructions.md`)
 
 ---
 

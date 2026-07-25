@@ -10,7 +10,7 @@
 
 ## Execution Flow (agent instructions)
 
-```
+```text
 1. Start a new SOFTWARE/PRODUCT feature by COPYING this template folder:
    projects/governance-framework/docs/specs/template-software/  ->  projects/<product-project>/docs/specs/[###-feature-name]/
    (This is the workspace's single canonical software/product template home,
@@ -41,7 +41,7 @@
 - Focus on **WHAT** users need and **WHY**; avoid **HOW** to implement (no tech stack, APIs, code structure).
 - Written for business stakeholders, not developers.
 - Do not guess: any ambiguity MUST become a `[NEEDS CLARIFICATION: ...]` marker and a row in the Clarify table below.
-- This workflow is file-and-agent only — no command-line tools or scripts are required at any step; agents read and write these Markdown files directly.
+- Specification authoring and clarification are file-and-agent only (agents read and write these Markdown files directly); implementation and validation follow the `test-runtime` Validation Mode declared in `plan.md` and `tasks.md`, including required test commands.
 
 ---
 

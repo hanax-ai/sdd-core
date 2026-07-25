@@ -14,9 +14,9 @@
 
 ## Phase 3.2: Validation First — enumerate checks BEFORE authoring
 
-- [x] T003 [P] Define check CC-001: entry count equals `(defined by:` citation count in the glossary — recorded in this file
-- [x] T004 [P] Define check CC-002: every cited `SYN-ST-###` resolves to a file in `standards/` — recorded in this file
-- [x] T005 [P] Name the review gate: project owner reviews against the spec's Review & Acceptance Checklist and both constitutions — recorded in this file
+- [x] T003 Define check CC-001: entry count equals `(defined by:` citation count in the glossary — `projects/governance-framework/docs/specs/examples/normative-standard-fixture/tasks.md`
+- [x] T004 Define check CC-002: every cited `SYN-ST-###` resolves to a file in `standards/` — `projects/governance-framework/docs/specs/examples/normative-standard-fixture/tasks.md`
+- [x] T005 Name the review gate: project owner reviews against the spec's Review & Acceptance Checklist and both constitutions — `projects/governance-framework/docs/specs/examples/normative-standard-fixture/tasks.md`
 
 ## Phase 3.3: Core Authoring
 
@@ -30,14 +30,14 @@
 
 ## Phase 3.5: Review & Polish
 
-- [x] T010 Run CC-001..CC-003 checks; results: CC-001 12/12 entries cited; CC-002 all IDs resolve; CC-003 sentinel present. Review gate passed by project owner — recorded inline in this file
+- [x] T010 Run CC-001..CC-003 checks; results: CC-001 12/12 entries cited; CC-002 all IDs resolve; CC-003 sentinel present. Review gate passed by project owner — `projects/governance-framework/docs/specs/examples/normative-standard-fixture/tasks.md`
 
 ---
 
 ## Dependencies
 
 - Setup (T001–T002) before everything else
-- Validation First (T003–T005) before Core Authoring (T006–T008)
+- Validation First (T003–T005, sequential — same output file) before Core Authoring (T006–T008)
 - Core Authoring before Integration (T009); everything before Review (T010)
 
 ## Notes
@@ -52,7 +52,7 @@
 - [x] Validation-First checks are enumerated before the authoring tasks they gate
 - [x] Every task cites at least one exact repository file path
 - [x] Every cited path is inside `projects/governance-framework/` (Scope Rule satisfied)
-- [x] No [P] task modifies the same file as another [P] task
+- [x] No [P] task modifies the same file as another [P] task (T003–T005 are sequential for this reason)
 - [x] Parallel [P] tasks are truly independent (no hidden ordering)
 - [x] Dependencies section reflects all ordering constraints
 - [x] Validation Mode is `file-native` and honored — file-native mode: no task requires a CLI tool, script, or runtime
