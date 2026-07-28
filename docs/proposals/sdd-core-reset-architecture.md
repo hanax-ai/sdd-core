@@ -258,6 +258,13 @@ The adoption contract must identify:
 - CI/CD profile status;
 - supersession history.
 
+Gate 2, WIP non-authority, scope isolation, and cross-repository authority
+boundaries form the protected provision set. The schema must require every
+protected provision to remain classified as `required` and must reject its
+omission, exclusion, or placement in `tailored`. A later constitutional
+amendment may change the protected set only through a new schema version and
+the normal SDD-Core amendment process.
+
 Contract objects must reject undeclared properties. Secrets, credentials,
 tokens, connection strings, and personal machine paths are prohibited.
 
@@ -311,18 +318,31 @@ Opening an operationalized project may automatically:
 
 - verify identities, versions, digests, and compatibility;
 - assemble applicable governance context;
-- discover agents, skills, hooks, models, tools, and MCP capabilities;
+- inspect allowlisted manifest and configuration metadata that describes
+  agents, skills, hooks, models, tools, and MCP capabilities;
 - calculate capability policy;
 - report missing prerequisites.
+
+Capability discovery is metadata-only. It may not execute plugin or adapter
+code, make network calls, invoke hooks, initialize connections, or read secret
+values. Prerequisite reporting must use only the inspected allowlisted
+metadata.
 
 Readiness may not:
 
 - call models;
-- modify project files;
+- mutate repository or governed state, including project files, global
+  governance, adoption or registration records, authority or evidence state,
+  branches, and worktrees;
 - execute arbitrary hooks;
 - invoke state-changing MCP operations;
 - start an agent team;
 - advance a governance gate.
+
+When necessary, readiness may use explicitly non-authoritative, disposable
+ephemeral caching outside governed repositories and durable governed state.
+Such caching cannot contain secret values or become evidence, authority, or
+registration state.
 
 ## 8. Shared contract model
 
@@ -331,8 +351,14 @@ Readiness may not:
 `contracts/authority/mission-envelope.schema.json` defines the bounded authority
 passed to an executor. It must cover:
 
-- initiating authority and trigger;
-- project identity, base commit, and branch;
+- a unique mission ID and nonce;
+- authenticated issuer identity, initiating authority, authority reference,
+  and trigger;
+- issuance time, expiration time, and revocation or supersession status;
+- canonical serialization, digest, and a verifiable issuer signature under the
+  approved trust profile;
+- replay-protection and consumption state;
+- project identity, frozen policy version, base commit, and branch;
 - allowed paths, repositories, environments, capabilities, tools, and MCP
   operations;
 - prohibited actions;
@@ -341,7 +367,9 @@ passed to an executor. It must cover:
 - expiration and completion conditions;
 - next authority boundary.
 
-No agent, model, hook, tool, integration, or workflow may expand this envelope.
+The envelope must be pre-issued, immutable, unexpired, and mechanically
+verifiable before execution. No agent, model, hook, tool, integration, or
+workflow may mint, refresh, reinterpret, or expand it.
 
 ### R13 — Evidence envelope
 
@@ -412,10 +440,17 @@ invoke project mutations, or mint authority.
 
 ### R18 — Degraded local execution
 
-When Agent Workflow is unavailable, already-authorized local Fusion Harness
-execution may continue only when the adopted policy explicitly permits it. The
-project reports `DEGRADED`. Portfolio coordination, cross-project state, and
-centralized scheduling stop until reconciliation is safe.
+When Agent Workflow is unavailable, local Fusion Harness execution may continue
+only when the adopted policy explicitly permits degraded execution and a
+pre-issued mission envelope remains authenticated, unexpired, unrevoked,
+unsuperseded, and unused or otherwise replay-safe. The Harness must verify the
+issuer, canonical digest and signature, mission ID and nonce, issuance and
+expiration times, revocation or supersession status, replay state, frozen
+policy, and base commit before continuing. Degraded mode may not create
+missions, refresh expired envelopes, expand authority, alter frozen policy or
+the base commit, or bypass reconciliation requirements. The project reports
+`DEGRADED`. Portfolio coordination, cross-project state, and centralized
+scheduling stop until reconciliation is safe.
 
 Agent Workflow's SQLite-versus-PostgreSQL choice remains its own governed
 implementation decision behind the service boundary and is not part of the
