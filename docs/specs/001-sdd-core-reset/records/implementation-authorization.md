@@ -1,6 +1,6 @@
 ---
 title: SDD-Core Reset Implementation Authorization
-status: implementation-complete-evidence-closure-prepared
+status: implementation-merged
 record_type: gate-2-implementation-authorization
 issuer: Agent Zero
 authorized_on: 2026-07-28
@@ -34,11 +34,13 @@ planning_commit: cc4f4b17ccca428334689cc5ab381741470168c0
 - Do not remove legacy project material unless its required preservation is
   proved.
 
-## Next authority boundary
+## Original next authority boundary
 
-The authorized implementation is complete, but merge and release remain
-unauthorized. They require separate, explicit authorization after the
-evidence-closure commit exists and its post-push checks are reported in T024.
+The Gate 2 implementation authorization stopped before merge and release.
+Agent Zero subsequently issued separate authority for merge, release, adopter
+updates, and runtime activation. The resulting merge and remaining
+prerequisites are recorded in the
+[v4.0.0-rc.1 transition record](../../../releases/sdd-core-v4.0.0-rc.1-transition.md).
 
 ## Implementation outcome
 
@@ -48,19 +50,23 @@ evidence-closure commit exists and its post-push checks are reported in T024.
 - T021 independent governance review: R10 **ACCEPT**.
 - Local deterministic validation: **122/122**.
 - Source closure: **60/60** dispositions and **39/39** moved-target hashes.
-- Draft [PR #17](https://github.com/hanax-ai/sdd-core/pull/17): base
+- Merged [PR #17](https://github.com/hanax-ai/sdd-core/pull/17): base
   `release/sdd-core-v3.0.0-rc.1`, head
-  `codex/sdd-core-reset-v4-final-clean-rebuild`; pre-closure Ubuntu and Windows
-  checks passed.
+  `codex/sdd-core-reset-v4-final-clean-rebuild`; pre-closure and post-closure
+  Ubuntu and Windows checks passed.
 - CodeRabbit evidence is cumulative across the PR #7 full-base review,
   remediation PRs #10, #12, #14, and #16, and final exact-tree one-file
   [PR #18](https://github.com/hanax-ai/sdd-core/pull/18#issuecomment-5113801614),
   which was clean with no actionable finding.
-- The evidence-closure commit is `SELF`, meaning the commit introducing the
-  closed evidence table. T024 records its exact SHA and the post-closure PR #17
-  CI and CodeRabbit results after creation and push.
+- The evidence-closure commit is
+  `2f8d9b523c20f354387bc3a03053071ccc50b283`.
+- The separate merge authority produced commit
+  `98c3c8fdfd77e9361911d97050c5a42dc5adc1b2`, preserving the atomic and
+  evidence-closure commits.
 - Fusion Harness, Agent Workflow, machine-tier routing, remediation, Autofix,
-  merge, release, and deployment remain outside this authorization.
+  release, adopter propagation, and runtime activation remained outside the
+  original Gate 2 authorization. Their later authority does not waive
+  compatibility, identity, evidence, or readiness prerequisites.
 
 ## Entry verification
 
