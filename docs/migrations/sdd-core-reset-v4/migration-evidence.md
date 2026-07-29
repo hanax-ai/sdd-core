@@ -1,6 +1,6 @@
 ---
 title: SDD-Core Reset v4 Migration Evidence
-status: pre-commit-validated
+status: evidence-closure-prepared
 topic: reset-migration-provenance
 scope: GLOBAL
 base_commit: d3363238bb2d2f513f09b364926ff4146cc376ff
@@ -110,19 +110,28 @@ and write-capable automation, verifies adapter parity, and confirms that
 
 ## Evidence-closure fields
 
-These fields have a defined producer and transition; they are not inferred or
-represented by placeholder identifiers.
+These fields have a defined producer and transition. `SELF` means the
+evidence-closure commit that introduces this closed table; a commit cannot
+contain its own SHA. T024 records that exact SHA after the commit is created.
 
 | Field | Current state | Producer |
 |---|---|---|
-| Atomic migration commit SHA | `NOT_YET_CREATED` | T022 creates it after T021 acceptance; T023 records it |
-| Atomic migration tree SHA | `NOT_YET_CREATED` | T022 reads it without amending the commit; T023 records it |
-| Draft pull request | `NOT_YET_CREATED` | T023 after the atomic commit |
-| Linux CI result/URL | `NOT_YET_RUN` | T023 remote matrix |
-| Windows CI result/URL | `NOT_YET_RUN` | T023 remote matrix |
-| Advisory CodeRabbit verdict | `NOT_YET_RUN` | T023 remote review |
-| Independent governance verdict | `NOT_YET_PERFORMED` | T021 independent reviewer |
-| Evidence-closure commit | `NOT_YET_CREATED` | T023 after remote evidence exists |
+| Atomic migration commit SHA | `740a5e3a7623916f97d96f3f0cb0dff9cdcf18d0` | T022 atomic commit |
+| Atomic migration tree SHA | `50c9ec59e60f3a33b30ada846a240cfce5d58378` | Tree of the T022 atomic commit |
+| Atomic migration parent SHA | `cc4f4b17ccca428334689cc5ab381741470168c0` | Planning commit identified by Gate 2 |
+| Draft pull request | [PR #17](https://github.com/hanax-ai/sdd-core/pull/17) — base `release/sdd-core-v3.0.0-rc.1`; head `codex/sdd-core-reset-v4-final-clean-rebuild` | T023 publication |
+| Ubuntu CI result/URL | **PASS** — [job 90494370752](https://github.com/hanax-ai/sdd-core/actions/runs/30426623093/job/90494370752) | PR #17 pre-closure matrix |
+| Windows CI result/URL | **PASS** — [job 90494370794](https://github.com/hanax-ai/sdd-core/actions/runs/30426623093/job/90494370794) | PR #17 pre-closure matrix |
+| Independent governance verdict | **ACCEPT** — T021 R10 | Independent reviewer |
+| Local deterministic validation | **PASS** — `122/122` | Atomic committed tree |
+| Advisory CodeRabbit verdict | **PASS** — cumulative chain: PR #7 full-base review; remediation reviews in PRs #10, #12, #14, and #16; final exact-tree one-file [PR #18](https://github.com/hanax-ai/sdd-core/pull/18#issuecomment-5113801614) clean with no actionable finding | T023 remote review |
+| Evidence-closure commit | `SELF` — the commit introducing this closed table; exact SHA is recorded in the T024 handoff after creation | T023 evidence closure |
+| Post-closure PR #17 CI | `PENDING` — verify after `SELF` is pushed; report exact results in T024 | T024 handoff |
+| Post-closure CodeRabbit | `PENDING` — verify after `SELF` is pushed; report exact verdict in T024 | T024 handoff |
+
+The path map closes all **60/60** source dispositions. All **39** moved-target
+hashes were recomputed and match this atomic tree. The CentCom preservation
+package remains the separately owned external dependency recorded above.
 
 ## Unresolved external dependencies
 
@@ -132,6 +141,8 @@ represented by placeholder identifiers.
 - Machine-tier independent-repository conversation routing remains deferred.
 - Agentic remediation, Autofix, scheduling, Harness remediation, automatic
   commit/push/PR/merge, release, and deployment remain disabled.
-- Remote Linux/Windows CI and CodeRabbit review await T023.
+- Post-closure PR #17 CI and CodeRabbit review cannot run until `SELF` is
+  created and pushed. They must be verified and reported in T024, not
+  pre-claimed by this file.
 
 See [rollback.md](rollback.md) for recovery boundaries.

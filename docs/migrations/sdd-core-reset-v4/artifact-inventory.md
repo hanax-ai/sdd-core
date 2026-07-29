@@ -1,6 +1,6 @@
 ---
 title: SDD-Core Reset v4 Legacy Artifact Inventory
-status: implementation-candidate
+status: atomic-migration-verified
 topic: legacy-artifact-disposition
 base_commit: d3363238bb2d2f513f09b364926ff4146cc376ff
 source_count: 60
@@ -114,7 +114,17 @@ preservation evidence are recorded in
 [migration-evidence.md](migration-evidence.md). No tracked `projects/`
 artifact remains.
 
-The atomic migration commit/tree and remote validation fields are
-evidence-closure fields. T023 populates them only after T022 creates the
-validated atomic commit; their absence at this pre-commit stage is explicit
-and grants no merge or release authority.
+The closed inventory is implemented by atomic commit
+`740a5e3a7623916f97d96f3f0cb0dff9cdcf18d0`, tree
+`50c9ec59e60f3a33b30ada846a240cfce5d58378`, whose parent is planning commit
+`cc4f4b17ccca428334689cc5ab381741470168c0`. All **39** moved-target SHA-256
+values were recomputed against that tree. T021 R10 returned **ACCEPT**, and
+local deterministic validation passed **122/122** checks.
+
+Draft [PR #17](https://github.com/hanax-ai/sdd-core/pull/17) targets
+`release/sdd-core-v3.0.0-rc.1` from
+`codex/sdd-core-reset-v4-final-clean-rebuild`; its pre-closure Ubuntu and
+Windows jobs passed. The evidence-closure commit is `SELF`: the commit
+introducing the closed evidence table. Its exact SHA and post-closure PR
+checks are recorded in T024 after creation and push, never pre-claimed here.
+None of this grants merge or release authority.
