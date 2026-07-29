@@ -1,6 +1,6 @@
 ---
 title: SDD-Core v4.0.0-rc.1 Release Transition
-status: release-authorized-activation-blocked
+status: released-activation-blocked
 topic: release-transition
 scope: GLOBAL
 authority_tier: root-global
@@ -45,25 +45,33 @@ requirements, and it does not activate autonomous remediation.
 
 The merge commit preserves both governed commits without squashing.
 
-## Required release sequence
+## Completed release
 
-1. Commit this bounded handoff correction under the maintenance route.
-2. Replace the stale v3 release-candidate PR with a v4 release branch and PR
-   from merge commit `98c3c8fdfd77e9361911d97050c5a42dc5adc1b2`.
-3. Validate the exact release tree against `main`.
-4. Merge the reviewed v4 release PR.
-5. Create immutable tag `v4.0.0-rc.1` and a GitHub prerelease whose record
-   includes constitution `4.0.0`, commit, tree, verification, unresolved
-   dependencies, and rollback.
+| Field | Value |
+|---|---|
+| Mainline pull request | [PR #21](https://github.com/hanax-ai/sdd-core/pull/21) |
+| Release commit | `61d51a7f8f3d43397678073e9ba6dc21770c2c27` |
+| Release tree | `2e93ff1415a97bf0dd17c16ccca5bb259a90962a` |
+| Annotated tag | `v4.0.0-rc.1` |
+| Tag object | `7be64b888d087a6bcd2ad56919b4df7fe546edb2` |
+| GitHub prerelease | [SDD-Core v4.0.0-rc.1](https://github.com/hanax-ai/sdd-core/releases/tag/v4.0.0-rc.1) |
+| Post-merge main CI | **PASS** — [run 30429349490](https://github.com/hanax-ai/sdd-core/actions/runs/30429349490) |
 
-The existing `release/sdd-core-v3.0.0-rc.1` name and PR #1 description are
-historical v3 identities and must not be presented as the v4 release.
+The release sequence completed under the recorded authority:
+
+1. the bounded handoff correction merged through
+   [PR #20](https://github.com/hanax-ai/sdd-core/pull/20);
+2. historical v3 PR #1 closed unmerged and remained preserved;
+3. the correctly named `release/sdd-core-v4.0.0-rc.1` branch targeted `main`;
+4. PR #21 passed Ubuntu and Windows validation and merged; and
+5. the annotated tag and GitHub prerelease were created at the exact merged
+   `main` commit.
 
 ## Adopter and runtime state
 
 | Action | Authority | Readiness |
 |---|---|---|
-| SDD-Core v4 release | Authorized | Ready after the release sequence above passes |
+| SDD-Core v4 release | Authorized and completed | `v4.0.0-rc.1` published |
 | Adopter contract updates | Authorized | `BLOCKED` until exact adopter repositories and immutable integration pins are inventoried |
 | Fusion Harness activation | Authorized | `BLOCKED` because no compatible immutable Harness release is verified |
 | Agent Workflow registration | Authorized | `BLOCKED` because no compatible immutable Workflow release is verified |
@@ -75,9 +83,8 @@ unverified binding into `READY`.
 
 ## Rollback
 
-Before the v4 release reaches `main`, abandon the new release PR and retain
-merge commit `98c3c8fdfd77e9361911d97050c5a42dc5adc1b2` on the release branch for
-forensic evidence. After release, use the governed whole-commit procedure in
+The v4 release has reached `main`. Any rollback now requires separate exact
+human authority and the governed whole-commit procedure in
 [rollback.md](../migrations/sdd-core-reset-v4/rollback.md); do not partially
 restore the legacy `projects/` model.
 
