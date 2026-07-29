@@ -1,0 +1,28 @@
+schemaVersion: "4.0.0"
+integration: "agent-workflow"
+requestedVersion: "1.0.0"
+release:
+  version: "1.0.0"
+  commit: "6666666666666666666666666666666666666666666666666666666666666666"
+  available: false
+  compatible: true
+readiness: "DEGRADED"
+states:
+  registration: "UNAVAILABLE"
+  execution: "DORMANT"
+  evidence: "REFERENCE_ONLY"
+  authority: "NOT_GRANTED"
+execution:
+  modelCalls: false
+  networkAccess: false
+  hookInvocation: false
+  governedMutation: false
+  agentStarts: false
+outage:
+  adoptedDegradedPolicy: true
+  missionBinding:
+    missionId: "mission-001"
+    nonce: "nonce-001"
+    envelopeReference: "contracts/authority/fixtures/valid/authorized.json"
+    envelopeDigest: "sha256:7f2fc6fbec26df253c7c09606ad3cb85d1845ed4b3ef38113664c2dc37143e8b"
+  reconciliationRequired: true

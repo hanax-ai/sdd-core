@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.hana-x.ai/sdd-core/v4/mission-envelope.schema.json",
+  "title": "SDD-Core mission authority envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "missionId",
+    "issuer",
+    "trustProfile",
+    "integrity",
+    "signature",
+    "nonce",
+    "issuedAt",
+    "notBefore",
+    "expiresAt",
+    "revocation",
+    "supersession",
+    "replay",
+    "authorization",
+    "request",
+    "frozenPolicy",
+    "base",
+    "resources",
+    "validation",
+    "evidence",
+    "completion",
+    "nextBoundary"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "4.0.0" },
+    "missionId": { "type": "string", "pattern": "^mission-[A-Za-z0-9._-]+$" },
+    "issuer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "id", "initiatingAuthority", "authorityReference", "trigger"],
+      "properties": {
+        "type": { "const": "human" },
+        "id": { "const": "agent-zero" },
+        "initiatingAuthority": { "const": "human:agent-zero" },
+        "authorityReference": { "type": "string", "pattern": "^authority:[A-Za-z0-9:._-]+$" },
+        "trigger": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "reference"],
+          "properties": {
+            "type": { "enum": ["gate-2", "mission-order"] },
+            "reference": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "trustProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "digest", "keyId"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9:._-]+$" },
+        "digest": { "$ref": "#/$defs/sha256" },
+        "keyId": { "type": "string", "pattern": "^[A-Za-z0-9:._-]+$" }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonicalization", "digestAlgorithm", "canonicalDigest"],
+      "properties": {
+        "canonicalization": { "const": "sdd-core-canonical-json-v1" },
+        "digestAlgorithm": { "const": "sha256" },
+        "canonicalDigest": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "keyId", "value"],
+      "properties": {
+        "algorithm": { "const": "RS256" },
+        "keyId": { "type": "string", "pattern": "^[A-Za-z0-9:._-]+$" },
+        "value": { "type": "string", "pattern": "^[A-Za-z0-9+/]+={0,2}$" }
+      }
+    },
+    "nonce": { "type": "string", "minLength": 8 },
+    "issuedAt": { "type": "string", "format": "date-time" },
+    "notBefore": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" },
+    "revocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["revoked", "checkedAt", "registryReference"],
+      "properties": {
+        "revoked": { "type": "boolean" },
+        "checkedAt": { "type": "string", "format": "date-time" },
+        "registryReference": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string" }
+      }
+    },
+    "supersession": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["superseded", "checkedAt", "registryReference"],
+      "properties": {
+        "superseded": { "type": "boolean" },
+        "checkedAt": { "type": "string", "format": "date-time" },
+        "registryReference": { "type": "string", "minLength": 1 },
+        "replacementMissionId": { "type": "string" }
+      }
+    },
+    "replay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "previousUses", "registryReference", "checkedAt"],
+      "properties": {
+        "status": { "enum": ["fresh", "replayed"] },
+        "previousUses": { "type": "integer", "minimum": 0 },
+        "registryReference": { "type": "string", "minLength": 1 },
+        "checkedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repositories",
+        "branches",
+        "paths",
+        "actions",
+        "environments",
+        "capabilities",
+        "tools",
+        "mcpOperations",
+        "prohibitedActions"
+      ],
+      "properties": {
+        "repositories": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "branches": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "paths": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "actions": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "environments": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "capabilities": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "tools": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "mcpOperations": { "$ref": "#/$defs/uniqueStrings" },
+        "prohibitedActions": { "$ref": "#/$defs/nonEmptyUniqueStrings" }
+      }
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "branch", "paths", "actions", "environment", "capabilities", "tools", "mcpOperations"],
+      "properties": {
+        "repository": { "type": "string" },
+        "branch": { "type": "string" },
+        "paths": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "actions": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "environment": { "type": "string" },
+        "capabilities": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "tools": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "mcpOperations": { "$ref": "#/$defs/uniqueStrings" }
+      }
+    },
+    "frozenPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "authorizedDigest", "currentDigest"],
+      "properties": {
+        "version": { "type": "string", "minLength": 1 },
+        "authorizedDigest": { "$ref": "#/$defs/sha256" },
+        "currentDigest": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "base": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authorizedCommit", "currentCommit", "branch"],
+      "properties": {
+        "authorizedCommit": { "$ref": "#/$defs/commit" },
+        "currentCommit": { "$ref": "#/$defs/commit" },
+        "branch": { "type": "string", "minLength": 1 }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modelCalls", "networkAccess", "secretAccess", "timeLimitSeconds", "attemptLimit", "retryLimit", "modelCostLimitUsd", "memoryLimitMiB"],
+      "properties": {
+        "modelCalls": { "type": "boolean" },
+        "networkAccess": { "type": "boolean" },
+        "secretAccess": { "type": "boolean" },
+        "timeLimitSeconds": { "type": "integer", "minimum": 1 },
+        "attemptLimit": { "type": "integer", "minimum": 1 },
+        "retryLimit": { "type": "integer", "minimum": 0 },
+        "modelCostLimitUsd": { "type": "number", "minimum": 0 },
+        "memoryLimitMiB": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required"],
+      "properties": {
+        "required": { "$ref": "#/$defs/nonEmptyUniqueStrings" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "projectOwned", "contractVersion"],
+      "properties": {
+        "required": { "const": true },
+        "projectOwned": { "const": true },
+        "contractVersion": { "const": "4.0.0" }
+      }
+    },
+    "completion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["conditions", "onExpiration"],
+      "properties": {
+        "conditions": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "onExpiration": { "const": "stop-and-report" }
+      }
+    },
+    "nextBoundary": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "commit": { "type": "string", "pattern": "^[0-9a-f]{40,64}$" },
+    "uniqueStrings": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "nonEmptyUniqueStrings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

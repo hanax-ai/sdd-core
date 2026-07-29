@@ -1,0 +1,4 @@
+name: Claude \ Windows Action
+on: workflow_dispatch
+permissions:
+  contents: read

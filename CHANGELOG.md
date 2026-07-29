@@ -5,6 +5,92 @@ Notable changes to the sdd-core template. Format follows
 consumed from `main` (no version tags yet — preservation tags like
 `pre-rescope-sap-exemplar` mark historical states, not releases).
 
+## 2026-07-28 — v4.0.0-rc.1 candidate
+
+### Changed
+
+- Reset SDD-Core from an embedded multi-project workspace to a source-framework
+  repository with FRAMEWORK-DEFINITION and OPERATIONAL-GOVERNANCE internal
+  domains.
+- Replaced project inheritance with explicit adopter-owned contracts,
+  architecture-neutral templates, deterministic operationalization, and
+  versioned Fusion Harness and Agent Workflow compatibility profiles.
+- Preserved the 15-file CentCom Phase 2 planning package byte-for-byte at
+  independent repository commit
+  `201dde50268650e6ad489f483d5c57d3eeef2f3f` (draft PR #20).
+- Removed the live portfolio deliverables register while preserving its base
+  blob and SHA-256 in the reset migration inventory.
+- Added review-only CI/CD policy; autonomous remediation remains disabled.
+
+All `projects/` paths in entries dated before 2026-07-28 are **superseded
+historical references**, not live paths or authority. Their exact dispositions
+are recorded in `docs/migrations/sdd-core-reset-v4/path-map.yaml`.
+
+## 2026-07-25
+
+### Fixed
+- **B-11 review remediation** (Agent Zero remediation directive, 2026-07-25;
+  all 19 validated v3.0.0-rc.1 review findings): constitutional amendment
+  audit trail now cites an opaque directive/proposal identity (SHA-256
+  preserved) instead of a machine-local path; remaining root
+  "Mirror Registry" labels renamed to grounding-registry terminology
+  (`knowledge/instructions.md`, `README.md` — local mirrors remain this
+  workspace's chosen mechanism); all fixture governance links corrected to
+  their real traversal depths and mechanically validated; same-file and
+  dependency-conflicting `[P]` markers removed across templates and fixtures
+  with exact output paths replacing "recorded in this file"; software fixture
+  gains its template-required `research.md`, `data-model.md`, `contracts/`,
+  and `quickstart.md` (ops fixture gains `research.md`); injected-clock
+  contract made explicit end-to-end; execution records consistently
+  class-2-instantiated-from-class-1-template; software-spec no-CLI guidance
+  narrowed to specification authoring (`test-runtime` commands preserved);
+  MD040 language tags added to instructional fences; lifecycle extended to an
+  explicit sixth **Validate** step (README caption, scaffold steps, process-flow
+  SVG); `verify-layout.sh` gains 29 B-11 regression invariants (181 checks).
+
+### Added
+- **WP-T1 template re-baseline** (Agent Zero bounded authorization,
+  2026-07-25; three per-scope commits): governance-framework templates
+  re-baselined to the normative-standard shape and governance-ops templates
+  to the operational-capability shape — three distinct artifacts each, with
+  a declared **Validation Mode** (`file-native` in both governance projects)
+  resolving the TDD-versus-file-only contradiction (D5-1); the
+  software/product template retained at the single canonical home
+  `projects/governance-framework/docs/specs/template-software/` (Validation
+  Mode `test-runtime`, Article II couplings removed, no duplicate);
+  completed banner-marked synthetic fixtures added outside numbered feature
+  folders (`examples/normative-standard-fixture/`,
+  `examples/software-product-fixture/`,
+  `examples/operational-capability-fixture/`); scaffold instructions in both
+  project `docs/specs/README.md` files and the root Feature Lifecycle;
+  `verify-layout.sh` REQUIRED_PATHS +18 and WP-T1 template invariants
+  (mode sentinels, shape sentinels, no-TDD-gate absence checks,
+  single-software-home count, fixture banners).
+
+### Changed
+- Root constitution amended to **v3.0.0** (MAJOR, Agent Zero directive
+  2026-07-25, consolidated R2 amendment proposal): Article I rescoped to
+  workspace-bounded **Inference Governance** (adopter-owned inference;
+  SDD-Core's local-model target retained as project-local only); Article II
+  redefined as **Persistence Governance** (file-native authoritative SDD-Core
+  records; universal PostgreSQL/Qdrant mandate removed; reviewed-spec route
+  for non-authoritative rebuildable indexes/caches; adopter-owned operational
+  persistence; shared-database and cross-project-write prohibitions
+  preserved); Article IV redefined as **Authoritative-Source Grounding**
+  (grounding outcomes mandated, mechanisms project-owned — this workspace
+  retains its local-mirror registries); new **Methodology Core & Adoption**
+  section (source-project role, mandatory local installation, non-waivable
+  core, tailoring classes, adoption manifest, jurisdiction).
+- Same-change propagation (one commit, v2.1.0 propagation exception):
+  project constitutions → governance-framework v3.1.2, governance-ops v1.1.2
+  (PATCH entries); both plan templates (Storage / Complexity Tracking rows,
+  grounding-registry wording); both tasks templates (grounding-check
+  wording); `README.md` (load-order step 1, Authoritative-Source Grounding
+  section, process-flow alt text); `AGENTS.md` (grounding wording);
+  `knowledge/instructions.md` (reframed as the project-owned Article IV
+  mechanism); `docs/assets/process_flow.svg` (grounding-registry label);
+  `verify-layout.sh` (Article IV sentinel replaced; six v3 sentinels added).
+
 ## 2026-07-20
 
 ### Added
