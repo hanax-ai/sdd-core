@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.hana-x.ai/sdd-core/v4/agent-workflow-status.schema.json",
+  "title": "SDD-Core Agent Workflow status",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "integration", "requestedVersion", "release", "readiness", "states", "execution"],
+  "properties": {
+    "schemaVersion": { "const": "4.0.0" },
+    "integration": { "const": "agent-workflow" },
+    "requestedVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "commit", "available", "compatible"],
+      "properties": {
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{40,64}$" },
+        "available": { "type": "boolean" },
+        "compatible": { "type": "boolean" }
+      }
+    },
+    "readiness": { "enum": ["READY", "BLOCKED", "DEGRADED"] },
+    "states": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["registration", "execution", "evidence", "authority"],
+      "properties": {
+        "registration": { "enum": ["REGISTERED", "UNAVAILABLE", "BLOCKED"] },
+        "execution": { "const": "DORMANT" },
+        "evidence": { "const": "REFERENCE_ONLY" },
+        "authority": { "const": "NOT_GRANTED" }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modelCalls", "networkAccess", "hookInvocation", "governedMutation", "agentStarts"],
+      "properties": {
+        "modelCalls": { "const": false },
+        "networkAccess": { "const": false },
+        "hookInvocation": { "const": false },
+        "governedMutation": { "const": false },
+        "agentStarts": { "const": false }
+      }
+    },
+    "outage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adoptedDegradedPolicy", "missionBinding", "reconciliationRequired"],
+      "properties": {
+        "adoptedDegradedPolicy": { "type": "boolean" },
+        "missionBinding": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["missionId", "nonce", "envelopeReference", "envelopeDigest"],
+          "properties": {
+            "missionId": { "type": "string", "pattern": "^mission-[A-Za-z0-9._-]+$" },
+            "nonce": { "type": "string", "minLength": 8 },
+            "envelopeReference": {
+              "type": "string",
+              "pattern": "^(?![A-Za-z]:[\\\\/])(?!/)(?!~[\\\\/])[^\\r\\n]+\\.json$"
+            },
+            "envelopeDigest": {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            }
+          }
+        },
+        "reconciliationRequired": { "const": true }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "readiness": { "const": "READY" } }, "required": ["readiness"] },
+      "then": {
+        "not": { "required": ["outage"] },
+        "properties": {
+          "release": {
+            "properties": {
+              "available": { "const": true },
+              "compatible": { "const": true }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "readiness": { "const": "DEGRADED" } }, "required": ["readiness"] },
+      "then": {
+        "required": ["outage"],
+        "properties": {
+          "release": {
+            "properties": {
+              "available": { "const": false },
+              "compatible": { "const": true }
+            }
+          },
+          "outage": {
+            "required": ["adoptedDegradedPolicy", "missionBinding", "reconciliationRequired"],
+            "properties": {
+              "adoptedDegradedPolicy": { "const": true },
+              "missionBinding": { "type": "object" },
+              "reconciliationRequired": { "const": true }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

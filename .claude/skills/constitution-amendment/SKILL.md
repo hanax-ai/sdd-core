@@ -23,14 +23,14 @@ Compute from the VERIFIED current version — read the footer, do not trust
 memory. Mixed changes take the highest applicable bump; note lower-class
 riders in the report.
 
-## 2. Sync Impact Report (root constitution) / Amendments list (project)
+## 2. Sync Impact Report and subordinate scope documents
 
 - Root: REPLACE the top comment block: version change, bump rationale, the
   changes themselves, impact note listing every affected file, and the
   previous-reports line APPENDED with the outgoing version. Follow-up TODOs
   named or "none".
-- Project constitutions: APPEND a dated entry to the `### Amendments` list —
-  never rewrite prior entries (condensing needs an explicit note).
+- Subordinate domain scope documents: update their root-version binding and
+  affected jurisdiction text in the same change.
 
 ## 3. Footer — same change, exact shape
 
@@ -42,8 +42,8 @@ amendment date.
 
 ## 4. Propagation
 
-Approved amendments propagate IN THE SAME CHANGE to every inheriting project
-constitution and any template referencing the amended text. Per the v2.1.0
+Approved amendments propagate IN THE SAME CHANGE to both subordinate domain
+scope documents and any template referencing the amended text. Per the v2.1.0
 propagation exception, the root amendment plus its mandated propagation is
 ONE root-authority act and lands as one commit (this is not a per-scope
 violation — the constitution itself provides the exception). Where
@@ -53,8 +53,9 @@ v2.1.0).
 
 ## 5. Authority and audit
 
-- Only the Workspace Maintainer approves amendments; agents never self-amend
-  as a side effect of feature work; sub-projects propose upward.
+- Only Agent Zero or an explicitly recognized human authority source approves
+  amendments; agents never self-amend as a side effect of feature work;
+  internal domains propose upward.
 - Audit: the amendment commit IS the record (git history). Install Registry
   rows only if the amendment changes TOOLING (registry-logging scope,
   narrowed 2026-07-20).
@@ -63,4 +64,4 @@ v2.1.0).
 
 - `verify-layout.sh` fully green (footer + invariant content checks).
 - New version cited consistently anywhere the document self-references.
-- Inheriting constitutions propagated or deviation documented.
+- Subordinate scope documents propagated or deviation documented.
