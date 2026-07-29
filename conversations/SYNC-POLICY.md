@@ -1,22 +1,25 @@
-# Sync Policy — Workspace Root (GLOBAL tier)
+# Sync Policy — SDD-Core Source Repository
 
 Plain committed policy file, NOT a skill — read by the machine-tier `conversation-sync`
-skill. Declares the workspace-level sync destination. It may tighten the global skill's
+skill. Declares the repository-level sync destination. It may tighten the global skill's
 rules; it may never loosen them.
 
 ## Declared sync destination
 
-`conversations/` at the workspace root — for **workspace-level records only**:
-decisions, constraints, and outcomes ratified at the GLOBAL tier that belong to no
-single sub-project. Project-scoped records NEVER land here; they go to the owning
-project's `projects/<name>/conversations/` under that project's own policy. No
-cross-project destination exists in either direction.
+`conversations/` at the repository root is the only SDD-Core conversation
+destination. Repository-wide records use `domain: global`. Internal-domain records
+use `domain: framework-definition` or `domain: operational-governance`. The domain
+metadata is mandatory and does not create a separate authority tier.
+
+Adopter and application-project conversation records remain in their independent
+repositories. They never sync into SDD-Core, and SDD-Core records never sync into an
+adopter repository.
 
 ## Who may write (Article III scope)
 
-Only agents explicitly operating at root-level (GLOBAL) scope. Project-scoped agents:
-READ-ONLY. This is the constitution's isolated-scope rule applied to this directory —
-not a new mechanism.
+Only agents or humans operating under explicit SDD-Core repository or internal-domain
+scope may write. Internal-domain scope is limited to its declared domain; it cannot
+write another domain's records or mint GLOBAL authority.
 
 ## Must never sync (restated from the global skill)
 
@@ -39,5 +42,6 @@ future reviewed-script amendment.
 ## Format
 
 Records follow [`TEMPLATE.md`](TEMPLATE.md) and the naming/metadata/indexing/archival
-conventions in [`README.md`](README.md). Records and `_index.md` are git-ignored
-(machine-local); only README, this policy, and the template are committed.
+conventions in [`README.md`](README.md). Every record declares one of the three domain
+values above. Records and `_index.md` are git-ignored (machine-local); only README,
+this policy, and the template are committed.
