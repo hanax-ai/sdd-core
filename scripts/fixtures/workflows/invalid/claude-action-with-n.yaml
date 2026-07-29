@@ -1,0 +1,4 @@
+name: Claude n-assisted Action
+on: workflow_dispatch
+permissions:
+  contents: read

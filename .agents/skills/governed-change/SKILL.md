@@ -53,8 +53,10 @@ this skill is the operational checklist.
   or removed skills, plugins, hooks, policy files, tool installs — per the
   `registry-logging` skill) and for machine-tier file edits (Gate 6 backup BEFORE
   modification, then the entry).
-- Governance-control evidence never enters the registry — it belongs to the
-  governance-ops evidence system (the constitutions' routing tables).
+- Governance-control evidence never enters the tooling registry. Adopter
+  evidence belongs to the adopter-owned evidence system; SDD-Core Gate 1,
+  Gate 2, and governance evidence remains with the governing SDD-Core
+  artifacts.
 
 ## 5. Verify
 

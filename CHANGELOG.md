@@ -5,6 +5,27 @@ Notable changes to the sdd-core template. Format follows
 consumed from `main` (no version tags yet — preservation tags like
 `pre-rescope-sap-exemplar` mark historical states, not releases).
 
+## 2026-07-28 — v4.0.0-rc.1 candidate
+
+### Changed
+
+- Reset SDD-Core from an embedded multi-project workspace to a source-framework
+  repository with FRAMEWORK-DEFINITION and OPERATIONAL-GOVERNANCE internal
+  domains.
+- Replaced project inheritance with explicit adopter-owned contracts,
+  architecture-neutral templates, deterministic operationalization, and
+  versioned Fusion Harness and Agent Workflow compatibility profiles.
+- Preserved the 15-file CentCom Phase 2 planning package byte-for-byte at
+  independent repository commit
+  `201dde50268650e6ad489f483d5c57d3eeef2f3f` (draft PR #20).
+- Removed the live portfolio deliverables register while preserving its base
+  blob and SHA-256 in the reset migration inventory.
+- Added review-only CI/CD policy; autonomous remediation remains disabled.
+
+All `projects/` paths in entries dated before 2026-07-28 are **superseded
+historical references**, not live paths or authority. Their exact dispositions
+are recorded in `docs/migrations/sdd-core-reset-v4/path-map.yaml`.
+
 ## 2026-07-25
 
 ### Fixed

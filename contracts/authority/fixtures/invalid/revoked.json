@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "4.0.0",
+  "missionId": "mission-001",
+  "issuer": {
+    "type": "human",
+    "id": "agent-zero",
+    "initiatingAuthority": "human:agent-zero",
+    "authorityReference": "authority:fixture:gate-2-001",
+    "trigger": {
+      "type": "gate-2",
+      "reference": "fixture-plan-sha256"
+    }
+  },
+  "signature": {
+    "algorithm": "RS256",
+    "keyId": "fixture-agent-zero-2026",
+    "value": "lJ7HK+04xCuvVOn8BuEVicgHBgwvxQPbcvaOWRjohnAtUzzvEn0u4jzD/kGTXDWMv9M1jXCkMxP5jEB9gmUUv7g69RDaV/XKISfBC4vsZJzSyaEmi4Ioc1TNgCntgSk4vTsn4C8jFl9UXs6RwA1JP+l6ePVqoxxIxBIj1070mGy4mAa1dWBGnz86yVMByKwytJy5qeBgct2jBFenO4XSAj7CngJswGZbS0ImDa1o7n4X5aBOfg8L5CSNHAT1a962uy/JsTOLpbCpmYDQp0JP5rqWdprGOwf0gfnMalQ9rmtpMiofzF8ZGC4H2y9n6bChVSmazHn5/Ba+YmTJzbi6hA=="
+  },
+  "nonce": "nonce-001",
+  "issuedAt": "2026-07-28T00:00:00Z",
+  "notBefore": "2026-07-28T00:00:00Z",
+  "expiresAt": "2099-07-28T00:00:00Z",
+  "revocation": {
+    "revoked": true,
+    "checkedAt": "2026-07-28T00:00:00Z",
+    "reference": "revocation-001",
+    "registryReference": "fixture:revocation-registry"
+  },
+  "supersession": {
+    "superseded": false,
+    "checkedAt": "2026-07-28T00:00:00Z",
+    "registryReference": "fixture:supersession-registry"
+  },
+  "replay": {
+    "status": "fresh",
+    "previousUses": 0,
+    "registryReference": "fixture:replay-registry",
+    "checkedAt": "2026-07-28T00:00:00Z"
+  },
+  "authorization": {
+    "repositories": [
+      "https://github.com/example/project.git"
+    ],
+    "paths": [
+      "src/"
+    ],
+    "actions": [
+      "modify",
+      "test"
+    ],
+    "branches": [
+      "main"
+    ],
+    "environments": [
+      "fixture"
+    ],
+    "capabilities": [
+      "file-edit",
+      "validation"
+    ],
+    "tools": [
+      "apply-patch",
+      "validator"
+    ],
+    "mcpOperations": [],
+    "prohibitedActions": [
+      "merge",
+      "release",
+      "deploy"
+    ]
+  },
+  "request": {
+    "repository": "https://github.com/example/project.git",
+    "paths": [
+      "src/"
+    ],
+    "actions": [
+      "modify",
+      "test"
+    ],
+    "branch": "main",
+    "environment": "fixture",
+    "capabilities": [
+      "file-edit",
+      "validation"
+    ],
+    "tools": [
+      "apply-patch",
+      "validator"
+    ],
+    "mcpOperations": []
+  },
+  "frozenPolicy": {
+    "authorizedDigest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "currentDigest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "version": "4.0.0-rc.1"
+  },
+  "base": {
+    "authorizedCommit": "2222222222222222222222222222222222222222222222222222222222222222",
+    "currentCommit": "2222222222222222222222222222222222222222222222222222222222222222",
+    "branch": "main"
+  },
+  "resources": {
+    "modelCalls": false,
+    "networkAccess": false,
+    "secretAccess": false,
+    "timeLimitSeconds": 3600,
+    "attemptLimit": 1,
+    "retryLimit": 0,
+    "modelCostLimitUsd": 0,
+    "memoryLimitMiB": 1024
+  },
+  "validation": {
+    "required": [
+      "unit-tests",
+      "diff-review"
+    ]
+  },
+  "evidence": {
+    "required": true,
+    "projectOwned": true,
+    "contractVersion": "4.0.0"
+  },
+  "nextBoundary": "merge-authorization",
+  "trustProfile": {
+    "id": "sdd-core-fixture-rsa-v1",
+    "digest": "sha256:885d68808cf8bd8e8a2b67ef4d4e6bdc8b20e4faa22d8c8f3f422a9184015733",
+    "keyId": "fixture-agent-zero-2026"
+  },
+  "integrity": {
+    "canonicalization": "sdd-core-canonical-json-v1",
+    "digestAlgorithm": "sha256",
+    "canonicalDigest": "sha256:d6dae87460902301b3706e0fa4c7b73a6d7f15d311bca5d594af4f757007b42b"
+  },
+  "completion": {
+    "conditions": [
+      "required-validation-pass",
+      "evidence-recorded"
+    ],
+    "onExpiration": "stop-and-report"
+  }
+}

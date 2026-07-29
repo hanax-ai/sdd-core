@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "4.0.0",
+  "evidenceId": "evidence-001",
+  "contentDigest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "producer": {
+    "type": "deterministic-validator",
+    "name": "verify-layout"
+  },
+  "observedAt": "2026-07-28T00:00:00Z",
+  "validation": {
+    "status": "passed",
+    "command": "bash verify-layout.sh",
+    "approval": "approved"
+  },
+  "review": {
+    "coverage": "complete",
+    "advisory": true
+  },
+  "integration": {
+    "fusionHarness": "not-invoked",
+    "agentWorkflow": "available"
+  },
+  "workflow": {
+    "status": "recorded",
+    "reference": "workflow-record-001"
+  },
+  "location": {
+    "repository": "https://github.com/example/project.git",
+    "path": "evidence/validation.json",
+    "commit": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "immutableReferences": [
+    "sha256:9999999999999999999999999999999999999999999999999999999999999999"
+  ]
+}
