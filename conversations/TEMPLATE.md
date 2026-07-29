@@ -1,35 +1,29 @@
 ---
 title: <short outcome-oriented title>
-date: <YYYY-MM-DD — date the outcome was ratified>
-scope: workspace
-status: active            # active | superseded | archived
-supersedes: —             # record filename, or —
-superseded-by: —          # record filename, or —
-related: []               # specs, plans, commit SHAs, registry entries, goals
+date: <YYYY-MM-DD>
+scope: repository
+domain: <global | framework-definition | operational-governance>
+status: active
+supersedes: null
+superseded_by: null
+related: []
 ---
 
 # <Title>
 
 ## Context
 
-<Why this conversation happened; what question or problem was on the table. 2–5
-sentences, own words, no transcript.>
+<Summarize why the conversation occurred. Do not include a transcript.>
 
 ## Decisions
 
-<Numbered list. One ratified decision per item, each citing the artifact that ratified
-it (spec, plan, constitution version, commit, registry entry). A decision without a
-ratifying artifact is marked (unratified — discussion only).>
-
-1. …
+<List ratified outcomes with the exact authority artifact. Mark unratified
+discussion explicitly.>
 
 ## Rationale
 
-<Why these decisions over the alternatives considered. Brief.>
+<Why the ratified outcome was selected.>
 
 ## Follow-ups
 
-<Open actions with owners, or "none". Remove items here when done — link the
-completing artifact instead.>
-
-- [ ] …
+<List bounded follow-ups and authority boundaries, or state none.>

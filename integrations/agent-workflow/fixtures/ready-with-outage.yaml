@@ -1,0 +1,24 @@
+schemaVersion: "4.0.0"
+integration: "agent-workflow"
+requestedVersion: "1.0.0"
+release:
+  version: "1.0.0"
+  commit: "6666666666666666666666666666666666666666666666666666666666666666"
+  available: true
+  compatible: true
+readiness: "READY"
+states:
+  registration: "REGISTERED"
+  execution: "DORMANT"
+  evidence: "REFERENCE_ONLY"
+  authority: "NOT_GRANTED"
+execution:
+  modelCalls: false
+  networkAccess: false
+  hookInvocation: false
+  governedMutation: false
+  agentStarts: false
+outage:
+  adoptedDegradedPolicy: false
+  missionBinding: null
+  reconciliationRequired: true

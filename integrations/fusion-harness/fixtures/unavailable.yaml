@@ -1,0 +1,35 @@
+schemaVersion: "4.0.0"
+integration: "fusion-harness"
+source:
+  repository: "https://github.com/hanax-ai/SDD-Core-Fusion-Harness.git"
+requestedVersion: null
+release:
+  version: null
+  commit: null
+  digest: null
+  available: false
+  compatible: false
+sddCompatibility:
+  requiredVersion: "4.0.0-rc.1"
+  verified: false
+installation:
+  mandatory: true
+  verified: false
+capabilityPolicy: &nonMutating
+  modelCalls: false
+  networkAccess: false
+  hookInvocation: false
+  governedMutation: false
+  agentStarts: false
+readiness: "BLOCKED"
+rollback:
+  method: "remove-binding"
+  reference: null
+contracts:
+  adoption: "4.0.0"
+  mission: "4.0.0"
+  evidence: "4.0.0"
+execution: *nonMutating
+mission:
+  required: true
+  verified: false

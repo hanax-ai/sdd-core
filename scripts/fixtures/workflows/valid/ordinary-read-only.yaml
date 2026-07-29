@@ -1,0 +1,4 @@
+name: Ordinary read-only validation
+on: workflow_dispatch
+permissions:
+  contents: read

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.hana-x.ai/sdd-core/v4/fusion-harness-binding.schema.json",
+  "title": "SDD-Core Fusion Harness binding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "integration", "source", "requestedVersion", "release", "sddCompatibility", "installation", "capabilityPolicy", "readiness", "rollback", "contracts", "execution", "mission"],
+  "properties": {
+    "schemaVersion": { "const": "4.0.0" },
+    "integration": { "const": "fusion-harness" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository"],
+      "properties": {
+        "repository": { "const": "https://github.com/hanax-ai/SDD-Core-Fusion-Harness.git" }
+      }
+    },
+    "requestedVersion": { "type": ["string", "null"], "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "commit", "digest", "available", "compatible"],
+      "properties": {
+        "version": { "type": ["string", "null"], "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "commit": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40,64}$" },
+        "digest": { "type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$" },
+        "available": { "type": "boolean" },
+        "compatible": { "type": "boolean" }
+      }
+    },
+    "sddCompatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requiredVersion", "verified"],
+      "properties": {
+        "requiredVersion": { "const": "4.0.0-rc.1" },
+        "verified": { "type": "boolean" }
+      }
+    },
+    "installation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mandatory", "verified"],
+      "properties": {
+        "mandatory": { "const": true },
+        "verified": { "type": "boolean" }
+      }
+    },
+    "capabilityPolicy": { "$ref": "#/$defs/nonMutatingCapabilities" },
+    "readiness": { "enum": ["READY", "BLOCKED"] },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "reference"],
+      "properties": {
+        "method": { "const": "remove-binding" },
+        "reference": { "type": ["string", "null"] }
+      }
+    },
+    "contracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adoption", "mission", "evidence"],
+      "properties": {
+        "adoption": { "const": "4.0.0" },
+        "mission": { "const": "4.0.0" },
+        "evidence": { "const": "4.0.0" }
+      }
+    },
+    "execution": { "$ref": "#/$defs/nonMutatingCapabilities" },
+    "mission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "verified"],
+      "properties": {
+        "required": { "const": true },
+        "verified": { "type": "boolean" }
+      }
+    }
+  },
+  "$defs": {
+    "nonMutatingCapabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modelCalls", "networkAccess", "hookInvocation", "governedMutation", "agentStarts"],
+      "properties": {
+        "modelCalls": { "const": false },
+        "networkAccess": { "const": false },
+        "hookInvocation": { "const": false },
+        "governedMutation": { "const": false },
+        "agentStarts": { "const": false }
+      }
+    }
+  }
+}

@@ -1,53 +1,56 @@
+---
+title: <idea title>
+status: draft
+topic: <one atomic idea>
+scope: <GLOBAL | FRAMEWORK-DEFINITION | OPERATIONAL-GOVERNANCE>
+authority: none
+created: <YYYY-MM-DD>
+last_touched: <YYYY-MM-DD>
+synthesis_lead: <stable unique name>
+active_contributors: []
+approval_state: NOT APPROVED
+promotion_target: null
+---
+
 # <Title>
 
-> **NON-AUTHORITATIVE WIP ITEM — grants no implementation authority.**
-> Status and approval state below govern what may happen next. Silence or praise is
-> not approval; approvals are item-specific and action-specific (see `wip/README.md`).
-
-## Metadata
-
-- **Purpose:** <one sentence — what this idea is for>
-- **Scope:** workspace | proposed project (<name>)
-- **Status:** draft   <!-- draft | exploring | review-ready | approved-for-promotion | rejected | promoted | archived -->
-- **Created:** YYYY-MM-DD · **Last touched:** YYYY-MM-DD
-- **Synthesis lead:** <stable UNIQUE name — humans: GitHub handle; agents: claude-<role>-<assigned-name-or-short-id>. Default: item creator>
-- **Active contributors:** <stable unique names, comma-separated; — if none yet>
-- **Current workstreams:** <claimed workstreams per coordination/claims/; — if none>
-- **Contribution status:** <open-for-contributions | synthesizing | frozen-for-review>
-- **Last synchronized commit:** <short SHA of the main HEAD the lead last integrated against — i.e. the parent of the synthesis commit; the lead updates this at every synthesis. — only before first synthesis>
-- **Approval state:** NOT APPROVED — exploration only
-- **Gate 1 (promotion) evidence:** — <!-- verbatim directive + date + promotion target path, when granted. On promotion, the TARGET artifact carries the committed Provenance section (wip/README.md) -->
-- **Promotion target:** — <!-- path of the formal artifact this item promoted into -->
-- **Target status (mirror, non-authoritative):** — <!-- optional convenience mirror; Gate 2 (implementation) evidence lives ONLY in the target spec/plan, never here -->
+> **NON-AUTHORITATIVE WIP ITEM — grants no promotion or implementation
+> authority.**
 
 ## Problem or opportunity
 
-<What itch this scratches. Facts separate from speculation.>
+<Separate facts from speculation.>
 
 ## Ideas being explored
 
-<The candidate approaches, sketches, non-operational pseudocode, links to
-supporting-materials in this directory.>
+<Candidate approaches and non-operational sketches.>
 
 ## Assumptions
 
-<Explicitly listed — unvalidated until checked against authoritative artifacts.>
+<Unvalidated assumptions.>
 
 ## Alternatives
 
-<Other ways to get the same outcome, including "do nothing".>
+<Include doing nothing.>
 
 ## Risks and constraints
 
-<Constitutional articles, registries, scope boundaries, or operational limits this
-idea touches. A conflict with an authoritative artifact is recorded here — the
-authoritative artifact prevails.>
+<Authority, scope, grounding, security, and operational limits.>
 
 ## Open questions
 
-<Unresolved, kept as questions.>
+<Questions, not implied decisions.>
 
 ## Proposed next step
 
-<What the author suggests happens next — a suggestion, not an authorization. If the
-next step is promotion, name the routing target per wip/README.md.>
+<A suggestion only. If promotion is proposed, name the exact formal target.>
+
+## Approval evidence
+
+- Gate 1 directive (issued only by Agent Zero): none
+- Formal target: none
+- Gate 2 directive (issued only by Agent Zero): belongs only in the approved
+  formal specification or plan
+
+Only Agent Zero may issue Gate 1 or Gate 2. Record Gate 1 on this WIP item;
+record Gate 2 on the formal specification or plan it governs.
