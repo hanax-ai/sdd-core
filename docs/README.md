@@ -1,6 +1,22 @@
-# Global Documentation
+---
+title: SDD-Core Documentation
+status: active
+topic: documentation-routing
+scope: GLOBAL
+---
 
-High-level product documentation and cross-project requirements for the
-Hana-X SDD-Core workspace live here. Anything that spans more than one
-sub-project belongs at this tier; project-specific documentation belongs in
-`projects/<name>/docs/`.
+# SDD-Core Documentation
+
+Repository-wide architecture, proposals, specifications, migrations, and
+release evidence live here.
+
+- Framework-definition specifications:
+  [../governance/framework/docs/specs/](../governance/framework/docs/specs/)
+- Operational-governance specifications:
+  [../governance/operations/docs/specs/](../governance/operations/docs/specs/)
+- Repository-wide specifications: [specs/](specs/)
+- Architecture proposals: [proposals/](proposals/)
+- Reset migration evidence:
+  [migrations/sdd-core-reset-v4/](migrations/sdd-core-reset-v4/)
+
+Application documentation belongs to its independent adopter repository.

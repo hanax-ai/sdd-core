@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.hana-x.ai/sdd-core/v4/evidence-envelope.schema.json",
+  "title": "SDD-Core evidence envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "evidenceId",
+    "contentDigest",
+    "producer",
+    "observedAt",
+    "validation",
+    "review",
+    "integration",
+    "workflow",
+    "location",
+    "immutableReferences"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "4.0.0"
+    },
+    "evidenceId": {
+      "type": "string",
+      "pattern": "^evidence-[A-Za-z0-9._-]+$"
+    },
+    "contentDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": [
+            "deterministic-validator",
+            "review-service",
+            "fusion-harness",
+            "agent-workflow"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "type",
+        "name"
+      ]
+    },
+    "observedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "passed",
+            "failed",
+            "blocked"
+          ]
+        },
+        "command": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "status",
+        "command"
+      ]
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "coverage": {
+          "enum": [
+            "none",
+            "partial",
+            "complete"
+          ]
+        },
+        "advisory": {
+          "const": true
+        }
+      },
+      "required": [
+        "coverage",
+        "advisory"
+      ]
+    },
+    "integration": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fusionHarness": {
+          "enum": [
+            "not-invoked",
+            "ready",
+            "blocked"
+          ]
+        },
+        "agentWorkflow": {
+          "enum": [
+            "unavailable",
+            "available",
+            "degraded"
+          ]
+        }
+      },
+      "required": [
+        "fusionHarness",
+        "agentWorkflow"
+      ]
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "unavailable",
+            "recorded",
+            "degraded"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "status",
+        "reference"
+      ]
+    },
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "repository": {
+          "type": "string",
+          "pattern": "^https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:\\.git)?$"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^(?![A-Za-z]:[\\\\/])(?!/)(?!~[\\\\/])(?!\\.\\.(?:[\\\\/]|$))(?!.*[\\\\/]\\.\\.(?:[\\\\/]|$)).+$"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40,64}$"
+        }
+      },
+      "required": [
+        "repository",
+        "path",
+        "commit"
+      ]
+    },
+    "immutableReferences": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^sha256:[0-9a-f]{64}$"
+      }
+    }
+  }
+}
