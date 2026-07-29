@@ -1085,9 +1085,10 @@ and is not a T021 blocker.
 | External-repository isolation | `docs/migrations/sdd-core-reset-v4/path-map.yaml`; tracked `projects/` paths: 0: **PASS** |
 | All 60 source dispositions | `path-map.yaml`, `artifact-inventory.md`, and static preservation validation: **PASS** |
 
-Every prior R1-R9 blocker remains resolved because the R10 delta is limited to
-the four reviewed remediation paths and the complete deterministic verifier
-remains green.
+Every prior R1-R9 blocker remains resolved because the R10 delta contains only
+the four reviewed implementation-remediation paths plus this reviewer-owned
+`independent-review.md` record edit, five paths total, and the complete
+deterministic verifier remains green.
 
 ### Deterministic verification and frozen authority
 
