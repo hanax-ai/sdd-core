@@ -1,6 +1,6 @@
 ---
 title: SDD-Core Reset v4 Rollback
-status: evidence-closure-prepared
+status: post-merge-active
 topic: reset-rollback
 scope: GLOBAL
 base_commit: d3363238bb2d2f513f09b364926ff4146cc376ff
@@ -8,10 +8,10 @@ base_commit: d3363238bb2d2f513f09b364926ff4146cc376ff
 
 # SDD-Core Reset v4 Rollback
 
-## Before merge
+## Before merge (historical)
 
-The migration is isolated on
-`codex/sdd-core-reset-v4-final-clean-rebuild` in draft
+Before the 2026-07-29 merge, the migration was isolated on
+`codex/sdd-core-reset-v4-final-clean-rebuild` in
 [PR #17](https://github.com/hanax-ai/sdd-core/pull/17). Its exact atomic
 identifier is commit `740a5e3a7623916f97d96f3f0cb0dff9cdcf18d0`,
 tree `50c9ec59e60f3a33b30ada846a240cfce5d58378`, parent
@@ -29,8 +29,8 @@ for legacy blobs, not the immediate parent of the atomic migration.
 A post-merge rollback requires one separate exact human authorization naming
 both the evidence-closure commit and atomic commit
 `740a5e3a7623916f97d96f3f0cb0dff9cdcf18d0`. The evidence-closure commit is
-`SELF` in the closure record because it cannot contain its own SHA; T024 must
-record its exact SHA before any post-merge rollback.
+`2f8d9b523c20f354387bc3a03053071ccc50b283`; the merge commit is
+`98c3c8fdfd77e9361911d97050c5a42dc5adc1b2`.
 
 Apply the reverts newest-first with `--no-commit`: the exact evidence-closure
 commit first, then atomic commit

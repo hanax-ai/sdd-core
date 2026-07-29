@@ -1,6 +1,6 @@
 ---
 title: SDD-Core Reset v4 Migration Evidence
-status: evidence-closure-prepared
+status: merged-release-transition
 topic: reset-migration-provenance
 scope: GLOBAL
 base_commit: d3363238bb2d2f513f09b364926ff4146cc376ff
@@ -26,7 +26,10 @@ source_count: 60
 
 The exact authority record is
 [implementation-authorization.md](../../specs/001-sdd-core-reset/records/implementation-authorization.md).
-Merge, release, adopter update, and external runtime work remain unauthorized.
+At T023 closure, merge, release, adopter update, and external runtime work were
+unauthorized. Agent Zero subsequently authorized those actions; the observed
+merge and remaining release/activation conditions are recorded in the
+[v4.0.0-rc.1 transition record](../../releases/sdd-core-v4.0.0-rc.1-transition.md).
 
 ## Source closure
 
@@ -110,24 +113,26 @@ and write-capable automation, verifies adapter parity, and confirms that
 
 ## Evidence-closure fields
 
-These fields have a defined producer and transition. `SELF` means the
-evidence-closure commit that introduces this closed table; a commit cannot
-contain its own SHA. T024 records that exact SHA after the commit is created.
+These fields have a defined producer and transition. The evidence-closure
+commit originally used `SELF` because a commit cannot contain its own SHA.
+The post-T024 transition resolves that identity and the remote results.
 
 | Field | Current state | Producer |
 |---|---|---|
 | Atomic migration commit SHA | `740a5e3a7623916f97d96f3f0cb0dff9cdcf18d0` | T022 atomic commit |
 | Atomic migration tree SHA | `50c9ec59e60f3a33b30ada846a240cfce5d58378` | Tree of the T022 atomic commit |
 | Atomic migration parent SHA | `cc4f4b17ccca428334689cc5ab381741470168c0` | Planning commit identified by Gate 2 |
-| Draft pull request | [PR #17](https://github.com/hanax-ai/sdd-core/pull/17) — base `release/sdd-core-v3.0.0-rc.1`; head `codex/sdd-core-reset-v4-final-clean-rebuild` | T023 publication |
+| Pull request | [PR #17](https://github.com/hanax-ai/sdd-core/pull/17) — **MERGED** into `release/sdd-core-v3.0.0-rc.1` | T023 publication and subsequent merge authority |
 | Ubuntu CI result/URL | **PASS** — [job 90494370752](https://github.com/hanax-ai/sdd-core/actions/runs/30426623093/job/90494370752) | PR #17 pre-closure matrix |
 | Windows CI result/URL | **PASS** — [job 90494370794](https://github.com/hanax-ai/sdd-core/actions/runs/30426623093/job/90494370794) | PR #17 pre-closure matrix |
 | Independent governance verdict | **ACCEPT** — T021 R10 | Independent reviewer |
 | Local deterministic validation | **PASS** — `122/122` | Atomic committed tree |
 | Advisory CodeRabbit verdict | **PASS** — cumulative chain: PR #7 full-base review; remediation reviews in PRs #10, #12, #14, and #16; final exact-tree one-file [PR #18](https://github.com/hanax-ai/sdd-core/pull/18#issuecomment-5113801614) clean with no actionable finding | T023 remote review |
-| Evidence-closure commit | `SELF` — the commit introducing this closed table; exact SHA is recorded in the T024 handoff after creation | T023 evidence closure |
-| Post-closure PR #17 CI | `PENDING` — verify after `SELF` is pushed; report exact results in T024 | T024 handoff |
-| Post-closure CodeRabbit | `PENDING` — verify after `SELF` is pushed; report exact verdict in T024 | T024 handoff |
+| Evidence-closure commit | `2f8d9b523c20f354387bc3a03053071ccc50b283` | T023 evidence closure, resolved after commit creation |
+| Post-closure PR #17 CI | **PASS** — [Ubuntu job 90496992140](https://github.com/hanax-ai/sdd-core/actions/runs/30427476061/job/90496992140); [Windows job 90496992082](https://github.com/hanax-ai/sdd-core/actions/runs/30427476061/job/90496992082) | T024 handoff |
+| Post-closure CodeRabbit | **PASS** — PR #17 status success; exact-tree implementation PR #18 and evidence-closure [PR #19](https://github.com/hanax-ai/sdd-core/pull/19#issuecomment-5113924149) produced no actionable findings | T024 handoff |
+| Merge commit | `98c3c8fdfd77e9361911d97050c5a42dc5adc1b2`, tree `c68fdc7a43d60272497519005037f729a79dc12b` | Separate Agent Zero merge authority |
+| Post-merge release-branch CI | **PASS** — [run 30428563050](https://github.com/hanax-ai/sdd-core/actions/runs/30428563050) | Post-merge transition |
 
 The path map closes all **60/60** source dispositions. All **39** moved-target
 hashes were recomputed and match this atomic tree. The CentCom preservation
@@ -141,8 +146,8 @@ package remains the separately owned external dependency recorded above.
 - Machine-tier independent-repository conversation routing remains deferred.
 - Agentic remediation, Autofix, scheduling, Harness remediation, automatic
   commit/push/PR/merge, release, and deployment remain disabled.
-- Post-closure PR #17 CI and CodeRabbit review cannot run until `SELF` is
-  created and pushed. They must be verified and reported in T024, not
-  pre-claimed by this file.
+- Release work may proceed under the later authority, but adopter readiness and
+  runtime activation remain `BLOCKED` until compatible immutable Fusion Harness
+  and Agent Workflow releases are verified.
 
 See [rollback.md](rollback.md) for recovery boundaries.
