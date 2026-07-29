@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "4.0.0",
+  "project": {
+    "name": "example-project",
+    "repository": "https://github.com/example/project.git",
+    "commit": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "sddCore": {
+    "repository": "https://github.com/hanax-ai/sdd-core.git",
+    "version": "4.0.0-rc.1",
+    "commit": "1111111111111111111111111111111111111111111111111111111111111111",
+    "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "constitution": {
+    "path": ".specify/memory/constitution.md",
+    "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "authority": {
+    "reference": "human:agent-zero:adoption-001",
+    "effectiveAt": "2026-07-28T00:00:00Z"
+  },
+  "provisions": {
+    "required": [
+      "human-authority",
+      "gate-1",
+      "gate-2",
+      "wip-non-authority",
+      "source-grounding",
+      "no-silent-bypass",
+      "scope-isolation",
+      "cross-repository-boundaries",
+      "adopter-ownership",
+      "tooling-governance"
+    ],
+    "tailored": [],
+    "excluded": [
+      "gate-2"
+    ]
+  },
+  "integrations": {
+    "fusionHarness": {
+      "version": "1.0.0",
+      "commit": "3333333333333333333333333333333333333333333333333333333333333333"
+    },
+    "agentWorkflow": {
+      "version": "1.0.0",
+      "commit": "4444444444444444444444444444444444444444444444444444444444444444"
+    },
+    "ciProfile": "review-only"
+  },
+  "supersedes": []
+}

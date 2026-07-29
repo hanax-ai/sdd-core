@@ -7,23 +7,23 @@
   <text x="480" y="78" text-anchor="middle" fill="#c9d7ea" font-size="13">constitution (.specify/memory) · grounding registry (knowledge/instructions.md) · tooling declaration</text>
   <text x="480" y="98" text-anchor="middle" fill="#c9d7ea" font-size="13">conversations/ · wip/ (Gate 1 / Gate 2) · docs/proposals/</text>
 
-  <!-- arrows from root to projects -->
+  <!-- arrows from root to internal domains -->
   <line x1="300" y1="120" x2="300" y2="168" stroke="#5a6b80" stroke-width="2.5" marker-end="url(#arrow)"/>
   <line x1="660" y1="120" x2="660" y2="168" stroke="#5a6b80" stroke-width="2.5" marker-end="url(#arrow)"/>
-  <text x="480" y="150" text-anchor="middle" fill="#5a6b80" font-size="12" font-style="italic">inherits · read-only from projects (Article III)</text>
+  <text x="480" y="150" text-anchor="middle" fill="#5a6b80" font-size="12" font-style="italic">subordinate internal scopes · neither creates human authority</text>
 
-  <!-- governance-framework -->
+  <!-- FRAMEWORK-DEFINITION -->
   <rect x="80" y="170" width="380" height="170" rx="10" fill="#eef3fa" stroke="#2e5e9e" stroke-width="2"/>
-  <text x="270" y="200" text-anchor="middle" fill="#1f3a5f" font-size="17" font-weight="600">governance-framework</text>
+  <text x="270" y="200" text-anchor="middle" fill="#1f3a5f" font-size="17" font-weight="600">FRAMEWORK-DEFINITION</text>
   <text x="270" y="220" text-anchor="middle" fill="#2e5e9e" font-size="12.5" font-style="italic">the what &amp; why — stable, deliberate</text>
   <text x="270" y="248" text-anchor="middle" fill="#33415c" font-size="12.5">principles · policies · standards · control</text>
   <text x="270" y="266" text-anchor="middle" fill="#33415c" font-size="12.5">objectives · decision-rights/RACI models</text>
   <text x="270" y="284" text-anchor="middle" fill="#33415c" font-size="12.5">maturity models · methodology</text>
   <text x="270" y="312" text-anchor="middle" fill="#2e5e9e" font-size="12" font-weight="600">framework-definition specs (docs/specs/)</text>
 
-  <!-- governance-ops -->
+  <!-- OPERATIONAL-GOVERNANCE -->
   <rect x="500" y="170" width="380" height="170" rx="10" fill="#f2f7f0" stroke="#3e7a3e" stroke-width="2"/>
-  <text x="690" y="200" text-anchor="middle" fill="#24421f" font-size="17" font-weight="600">governance-ops</text>
+  <text x="690" y="200" text-anchor="middle" fill="#24421f" font-size="17" font-weight="600">OPERATIONAL-GOVERNANCE</text>
   <text x="690" y="220" text-anchor="middle" fill="#3e7a3e" font-size="12.5" font-style="italic">the how &amp; when — living, high-churn</text>
   <text x="690" y="248" text-anchor="middle" fill="#33415c" font-size="12.5">runbooks · cadences · checklists · intake</text>
   <text x="690" y="266" text-anchor="middle" fill="#33415c" font-size="12.5">workflows · dashboards · control-execution</text>
@@ -33,12 +33,12 @@
   <!-- one-way dependency arrow -->
   <line x1="460" y1="255" x2="500" y2="255" stroke="#8a5a1f" stroke-width="2.5" marker-end="url(#arrowBrown)"/>
   <text x="480" y="238" text-anchor="middle" fill="#8a5a1f" font-size="11.5" font-weight="600">released standards</text>
-  <text x="480" y="360" text-anchor="middle" fill="#8a5a1f" font-size="11.5">one-way: ops consumes read-only, versioned traceability</text>
+  <text x="480" y="360" text-anchor="middle" fill="#8a5a1f" font-size="11.5">one-way: operations consumes ratified framework definitions</text>
 
   <!-- arrows to lifecycle -->
   <line x1="270" y1="340" x2="270" y2="408" stroke="#5a6b80" stroke-width="2.5" marker-end="url(#arrow)"/>
   <line x1="690" y1="340" x2="690" y2="408" stroke="#5a6b80" stroke-width="2.5" marker-end="url(#arrow)"/>
-  <text x="480" y="392" text-anchor="middle" fill="#5a6b80" font-size="12" font-style="italic">per-project feature lifecycle — spec-first (root Article V)</text>
+  <text x="480" y="392" text-anchor="middle" fill="#5a6b80" font-size="12" font-style="italic">governed change lifecycle — human gates remain separate</text>
 
   <!-- lifecycle strip -->
   <rect x="80" y="410" width="800" height="106" rx="10" fill="#f6f7f9" stroke="#9aa5b1" stroke-width="1.5"/>
