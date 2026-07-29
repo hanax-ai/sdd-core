@@ -1,159 +1,150 @@
-# sdd-core
+# Hana-X SDD-Core
 
-An AI-native Spec-Driven Development (SDD) workspace template optimized for Claude Code.
+![SDD-Core process flow: SDD-Core defines framework and operational governance, adopters own project work, Agent Workflow coordinates, Fusion Harness executes only authorized missions, and evidence never creates authority](docs/assets/process_flow.svg)
 
-## Why This Template Exists
+SDD-Core is the source repository for an AI-native Spec-Driven Development
+framework and its operational-governance contracts. It defines methodology,
+human authority, adoption, compatibility, and evidence boundaries. It is not a
+portfolio workspace, application runtime, project container, or execution
+engine.
 
-*   **Pure File-Driven Architecture:** Eliminates the need for external CLI runtimes, allowing agentic interfaces to read, write, and execute feature lifecycles entirely through structured Markdown.
-*   **Hierarchical Context Separation:** Features a multi-tiered layout separating global governance (`.specify/memory/constitution.md`) from granular subsystem modules.
-*   **Local Repository Mirroring Playbooks:** Includes a dedicated context routing directory (`knowledge/instructions.md`) to guide agents directly to local offline frameworks (e.g., UI component libraries or API schemas), eliminating context hallucinations.
-*   **Modular Sub-Projects:** Pre-scaffolded template modules allowing instant provisioning of independent, isolated backend/frontend services that honor global architectural constraints.
+## Responsibility model
 
-![SDD-Core process flow: root GLOBAL governance (constitution, grounding registry, tooling declaration, conversations, wip gates, proposals) feeds both sub-projects — governance-framework (the what and why: principles, policies, standards, framework-definition specs) and governance-ops (the how and when: runbooks, cadences, evidence, operational-capability specs), with a one-way released-standards dependency from framework to ops — and each project runs the six-step feature lifecycle: 1. Scaffold template → 2. Specify + Clarify spec.md → 3. Plan plan.md → 4. Tasks tasks.md → 5. Execute → 6. Validate](docs/assets/process_flow.svg)
+| Component | Responsibility | Boundary |
+|---|---|---|
+| SDD-Core | Methodology, governance, lifecycle, adoption, compatibility, and evidence contracts | Does not execute project work or store portfolio state |
+| [FRAMEWORK-DEFINITION](governance/framework/constitution.md) | Reusable principles, standards, policy, and decision rights—the what and why | Does not operate controls or missions |
+| [OPERATIONAL-GOVERNANCE](governance/operations/constitution.md) | Reusable procedures, cadences, record shapes, and evidence operations—the how and when | Does not redefine policy or hold live project state |
+| Adopter repository | Requirements, implementation, runtime, persistence, releases, conversations, and evidence | Remains independently owned |
+| Agent Workflow | Durable coordination and scheduling of authorized missions | Does not execute agents or mint authority |
+| Fusion Harness | Execution of verified mission envelopes | Does not own project truth or mint authority |
+| CI and review services | Deterministic and advisory evidence | Evidence is not approval |
+| Agent Zero | Non-delegable directing authority | Approval is item- and action-specific |
 
-## What is Spec-Driven Development
-
-Spec-Driven Development inverts the traditional relationship between specification and code: the specification is the primary artifact, and implementation is derived from it. Every feature begins as a written specification that captures intent, constraints, and acceptance criteria before any planning or task breakdown occurs. This gives AI agents an unambiguous source of truth to work from and gives humans a durable, reviewable record of *why* the system behaves the way it does.
-
-The methodology implemented here is based on [github/spec-kit](https://github.com/github/spec-kit), which defines the Specify → Plan → Tasks progression and the constitution-as-governance model. This workspace adapts that methodology into a pure file-and-agent form: agents read and write structured Markdown directly, and the entire lifecycle runs without any required CLI tooling or runtime.
-
-## Workspace Layout
+## Repository structure
 
 ```text
 sdd-core/
-├── .gitignore
-├── LICENSE                            # Apache License 2.0
-├── AGENTS.md                          # Harness adapter (precedence BENEATH constitution + load order)
-├── README.md                          # This file
-├── CONTRIBUTING.md                    # Contribution flow under the workspace's own governance
-├── SECURITY.md                        # Reporting channel + threat model
-├── CHANGELOG.md                       # Notable template changes
-├── verify-layout.sh                   # Optional human convenience script (structural checks only)
-├── .github/                           # Advisory CI (verify-layout) + issue/PR templates
-├── .claude/                           # Claude Code harness: root governance skills (canonical), advisory hooks, project settings
-├── .agents/                           # Harness-adapter skill mirrors for non-Claude agents (canonical copies live in .claude/skills/)
-├── .codex/                            # Codex CLI harness hooks (advisory skill/record-mining reminders)
-│
-├── .specify/
-│   └── memory/
-│       └── constitution.md            # GLOBAL constitution: root architectural principles
-├── knowledge/
-│   ├── instructions.md                # GLOBAL grounding registry: routes agents to local framework mirrors
-│   └── tooling.md                     # GLOBAL tooling requirement declaration + new-machine bootstrap
+├── .specify/memory/constitution.md
+├── governance/
+│   ├── framework/
+│   └── operations/
+├── contracts/
+│   ├── adoption/
+│   ├── authority/
+│   └── evidence/
+├── integrations/
+│   ├── fusion-harness/
+│   ├── agent-workflow/
+│   └── ci-cd/
+├── bootstrap/
+├── templates/project/
+├── docs/
 ├── conversations/
-│   ├── README.md                      # GLOBAL conversation records: purpose, conventions, index/archival rules
-│   ├── SYNC-POLICY.md                 # Workspace-level sync destination policy (records git-ignored)
-│   └── TEMPLATE.md                    # Standard conversation-record template
-├── wip/
-│   ├── README.md                      # GLOBAL brainstorming space: purpose + two-gate approval policy
-│   ├── COLLABORATION.md               # Multi-agent collaboration protocol
-│   ├── TEMPLATE.md                    # Standard WIP-item template
-│   └── _index.md                      # Committed canonical index of team WIP items
-├── docs/                              # GLOBAL workspace-level documentation
-│   ├── deliverables-index.md          # Navigation-only index to the deliverables standard + register
-│   └── proposals/                     # Gate-1-promoted workspace proposals (with Provenance)
+├── knowledge/
 ├── reference/
-│   └── repos/                         # Git-ignored local mirrors of external frameworks
-│
-└── projects/
-    ├── governance-framework/          # Governance DESIGN layer: principles, policies, standards, specs ("what & why")
-    │   ├── README.md                  # Project structure + methodology
-    │   ├── .claude/
-    │   │   └── skills/
-    │   │       ├── mirror-sync/
-    │   │       │   └── SKILL.md       # Grounding-registry engine, mirror mechanism (Article IV implementation aid)
-    │   │       └── skills-creator/
-    │   │           └── SKILL.md       # Workspace skill-authoring instructions
-    │   ├── .specify/
-    │   │   └── memory/
-    │   │       └── constitution.md    # PER-PROJECT constitution: subsystem scope and rules
-    │   ├── conversations/
-    │   │   └── SYNC-POLICY.md         # Sync destination policy (other contents git-ignored)
-    │   ├── docs/
-    │   │   └── specs/
-    │   │       └── template/          # Copy this folder to start a new feature
-    │   │           ├── spec.md        # What & why (Specify + Clarify)
-    │   │           ├── plan.md        # How (architecture and design decisions)
-    │   │           └── tasks.md       # Ordered, executable task breakdown
-    │   ├── knowledge/
-    │   │   └── instructions.md        # PER-PROJECT grounding registry and agent guidance
-    │   └── reference/                 # PER-PROJECT local reference material
-    │
-    └── governance-ops/                # Governance OPERATIONAL layer: runbooks, cadences, evidence ("how & when")
-        ├── README.md                  # Project structure + methodology
-        ├── .specify/memory/constitution.md
-        ├── conversations/SYNC-POLICY.md
-        ├── docs/specs/template/       # spec.md / plan.md / tasks.md
-        ├── knowledge/instructions.md  # Playbook: runbook register, record conventions
-        ├── records/                   # Evidence policy + class-1 templates (real evidence git-ignored)
-        ├── registers/                 # Living deliverables assignment register
-        └── reference/
+├── wip/
+├── .claude/
+├── .agents/
+├── .codex/
+└── verify-layout.sh
 ```
 
-## How Claude Code Sub-Agents Navigate This Hierarchy
+Application projects do not live inside SDD-Core. Each has its own repository
+and adopts a pinned SDD-Core release through
+[the adoption contract](contracts/adoption/README.md).
 
-This is the **canonical five-step CONTEXT-LOADING order** for the workspace. Agents load context in this strict order, from global governance down to the active feature; every other document that states a load order restates this one:
+## Context loading
 
-1.  **Root constitution** — [.specify/memory/constitution.md](.specify/memory/constitution.md): workspace-wide architectural principles (scope-bounded inference governance — SDD-Core's own deferred local-model target plus maintainer-approved hosted models for development/workspace agents, adopter-owned inference; persistence governance — file-native authoritative records, adopter-owned operational persistence; strict isolated agent scopes).
-2.  **Root grounding registry** — [knowledge/instructions.md](knowledge/instructions.md): the routing table pointing agents to registered grounding sources — this workspace's mechanism: local framework mirrors under [reference/repos/](reference/repos/).
-3.  **Project constitution** — `projects/<name>/.specify/memory/constitution.md`: the sub-project's scope, boundaries, and rules.
-4.  **Project grounding registry** — `projects/<name>/knowledge/instructions.md`: project-specific grounding sources and agent guidance (in governance-framework this file is the project playbook).
-5.  **Active feature folder** — the current `projects/<name>/docs/specs/NNN-feature-name/` directory (`spec.md`, `plan.md`, `tasks.md`).
+Read in this order:
 
-Skills and plugins are **ambient, triggered tooling — not load-order steps**: they load on demand (or per machine configuration) and never displace or reorder the five steps above. Project playbooks may append project-local refinements after step 5 (governance-framework adds manifest-selected reference slices), always labeled as refinements.
+1. [root constitution](.specify/memory/constitution.md);
+2. [global grounding registry](knowledge/instructions.md);
+3. the applicable internal-domain
+   [FRAMEWORK-DEFINITION](governance/framework/constitution.md) or
+   [OPERATIONAL-GOVERNANCE](governance/operations/constitution.md)
+   constitution;
+4. the matching domain grounding registry under `governance/<domain>/knowledge/`;
+5. when operating in an adopter, its constitution and grounding registry;
+6. the active approved specification, plan, and tasks;
+7. the exact grounded sources required by the work.
 
-**Nested-skill activation note:** skills committed under `projects/<name>/.claude/skills/` are directory-scoped — Claude Code (v2.1.178+, refined in v2.1.181) makes them available when the session works with files under that project, even if it started at the workspace root; they are not guaranteed to be listed before any project file is touched. Sessions that need them immediately should start inside the project directory. The same applies one level up: workspace-root skills (`.claude/skills/` — conversation-records, session-capture, governed-change, registry-logging, wip-item-bookkeeping, constitution-amendment) are reliably listed only in sessions started inside the repository — **sessions doing workspace governance work start in the repo root**, not a parent directory.
+This global -> domain -> adopter sequence applies to loading and lookup.
+Narrower sources may refine their scope but never override GLOBAL authority.
 
-### Scope Rules
+Assistant skills and plugins are subordinate tooling. They never displace this
+authority order or create approval.
 
-- An agent assigned to a sub-project operates **only inside that project's tree** (`projects/<name>/`). It never writes outside it.
-- The global tier (root constitution, root `knowledge/instructions.md`, `conversations/`, `wip/`, `docs/`, `reference/`) is **read-only** from within a project.
+## Governed lifecycle
 
-### Work In Progress (non-authoritative, collaborative)
+Substantive change uses distinct artifacts:
 
-Early-stage ideas are brainstormed in the root [`wip/`](wip/) directory — a GLOBAL-tier, **non-authoritative** space that grants no implementation authority. WIP items are Git-tracked and shared through GitHub so authorized root-scoped agents and human contributors can collaborate on them under the protocol in [`wip/COLLABORATION.md`](wip/COLLABORATION.md) (claimed workstreams, contributor-owned files, synthesis-lead integration, no force-pushes). Committing, reviewing, or merging a WIP item grants NO authority: promotion requires Agent Zero's explicit item-specific Gate 1 directive, and execution additionally requires Gate 2 implementation approval of the resulting spec/plan — see [`wip/README.md`](wip/README.md) for the policy, statuses, and routing. Only `wip/.local/` scratch stays machine-local (git-ignored).
+```text
+WIP exploration
+  -> Gate 1 promotion
+  -> spec.md
+  -> plan.md
+  -> tasks.md
+  -> Gate 2 implementation
+  -> execute
+  -> validate
+  -> independent review
+  -> separate merge/release authority
+```
 
-### Conversation Records
+Gate 1 and Gate 2 are issued only by Agent Zero or an explicitly recognized
+human authority source. WIP, discussion, praise, commits, reviews, CI, evidence,
+Workflow state, Harness state, or merge status cannot imply approval.
 
-Durable conversation records have exactly two homes, disambiguated by scope: workspace-level outcomes (governance, cross-project conventions, tooling) go to the root [`conversations/`](conversations/) directory — a GLOBAL-tier resource writable only at root-level scope; project-scoped outcomes go to the owning project's `projects/<name>/conversations/` under its own `SYNC-POLICY.md`. Records follow [`conversations/TEMPLATE.md`](conversations/TEMPLATE.md) and the conventions in [`conversations/README.md`](conversations/README.md); record content stays machine-local (git-ignored) — only the policy, template, and README are template content. The root-scoped [`conversation-records`](.claude/skills/conversation-records/SKILL.md) skill governs the record lifecycle (capture, locate, update, summarize, archive) at the workspace root, and the [`session-capture`](.claude/skills/session-capture/SKILL.md) skill turns the current working session into a validated record at either tier (routing by scope).
+Internal framework work uses
+[governance/framework/docs/specs/](governance/framework/docs/specs/).
+Internal operational-governance work uses
+[governance/operations/docs/specs/](governance/operations/docs/specs/).
+Repository-wide architecture and contract changes use [docs/specs/](docs/specs/).
 
-### Authoritative-Source Grounding
+## Adoption and operationalization
 
-Before proposing any framework-dependent code, an agent **must** consult `knowledge/instructions.md` (project-level first, then root) for a registered grounding source (root constitution Article IV). Grounding mechanisms are project-owned; this workspace's chosen mechanism is local mirrors under `reference/repos/`. If a grounding source is registered, the agent grounds its output in that source at its pin rather than recalled training knowledge; if none is registered, the agent stops and requests registration.
+The architecture-neutral [project template](templates/project/) installs
+governance and adoption records without prescribing an application stack.
+[Operationalization](bootstrap/new-project.md) installs mandatory bindings and
+returns a deterministic readiness state.
 
-**Lookup order is not load order:** "project registry before global" is the GROUNDING-LOOKUP precedence rule — a constitution Article IV *resolution order* applied while working on framework-dependent tasks. It does not compete with the canonical five-step context-loading order above, which reads governance global-tier-first. The `mirror-sync` skill (governance-framework) operationalizes these lookups as an implementation aid; the registries and their pin discipline remain normative.
+Opening an operationalized project may perform read-only metadata inspection
+and context assembly. It performs no code execution, network access, secret
+access, hook invocation, governed mutation, model call, or agent start.
+Execution remains dormant until a valid mission envelope is verified.
 
-## Feature Lifecycle
+## Integration posture
 
-The lifecycle is file-based end to end for `file-native` features (both governance projects' default — no tooling required at any step); features built from the software/product template declare `test-runtime` mode and additionally run their test suite during Execute and Validate:
+During separately authorized operationalization, Fusion Harness installation
+and binding are mandatory and automatic, while execution remains dormant.
+SDD-Core itself defines and validates that contract; it performs no
+machine-tier installation. Agent Workflow registration is automatic and
+read-only. A Workflow outage may yield `DEGRADED` only with an adopted
+degraded policy and valid pre-issued mission envelope; otherwise it is
+`BLOCKED`.
 
-1.  **Scaffold** — Pick the template set matching the artifact class, then copy it to `projects/<name>/docs/specs/001-feature-name/` (increment the numeric prefix for each new feature). Template classes: `projects/governance-framework/docs/specs/template/` (normative-standard shape, Validation Mode `file-native`); `projects/governance-ops/docs/specs/template/` (operational-capability shape, `file-native`); `projects/governance-framework/docs/specs/template-software/` (the single canonical software/product template for future product projects, Validation Mode `test-runtime`). Completed synthetic examples live under each project's `docs/specs/examples/` — banner-marked, outside feature numbering, granting no authority.
-2.  **Specify + Clarify** — Complete `spec.md`. Resolve **every** row in its ambiguity/clarification table before proceeding; an unresolved ambiguity blocks the next phase.
-3.  **Plan** — Complete `plan.md`, deriving architecture and design decisions from the finished spec and the applicable constitutions.
-4.  **Tasks** — Complete `tasks.md`, breaking the plan into small, ordered, independently verifiable tasks.
-5.  **Execute** — Work through the tasks strictly in order, keeping the three documents updated as the source of truth.
-6.  **Validate** — Prove the implemented result against the spec, plan, tasks, and the Validation Mode declared in `plan.md` (mechanical file checks and review gates in `file-native` mode; the full test suite in `test-runtime` mode) before the feature is complete.
+Autonomous remediation is deliberately disabled. CI/CD is review-only.
 
-## Provisioning a New Sub-Project
+## Knowledge formats
 
-1.  Copy the structure of [projects/governance-framework/](projects/governance-framework/) to `projects/<new-name>/` — including the `.claude/skills/` and `conversations/` shape, with a project-specific `conversations/SYNC-POLICY.md` declaring the new project's sync destination.
-2.  Rewrite `projects/<new-name>/.specify/memory/constitution.md` for the new subsystem's scope, keeping it consistent with the root constitution.
-3.  Clear out `docs/specs/` so only the untouched `template/` folder remains, and update `knowledge/instructions.md` and `reference/` for the new project's frameworks.
-
-**Machine-tier items are per-machine, NOT template content:** plugins (caveman, superpowers), the global `conversation-sync` skill, and the `~/.claude/CLAUDE.md` conduct block never ship with this template. A new machine (or template consumer) provisions them by following the bootstrap procedure in [knowledge/tooling.md](knowledge/tooling.md), which reconciles the machine's Install Registry against the declared requirements.
+- Markdown: atomic framework and governance knowledge with strict YAML front
+  matter and relative links.
+- JSON: closed schemas, contract instances, and tool-call payloads.
+- YAML: human-edited adoption, compatibility, and configuration profiles.
 
 ## Verification
 
-An optional convenience script is provided for humans to confirm structural compliance. From the repository root, in a bash shell:
+Install the exact validation dependencies, then run:
 
-```bash
-./verify-layout.sh
+```sh
+python -m pip install --require-hashes -r requirements-validation.txt
+bash verify-layout.sh
 ```
 
-This checks that the directory layout matches the expected structure. It is **not** part of the SDD workflow — agents operate on the files directly and never depend on it.
+The canonical verifier validates structure, contracts, fixtures, authority
+boundaries, links, secret/path exclusions, adapter invariants, and Linux/Windows
+parity. A passing result is evidence, never merge or release authority.
 
-The same script runs in CI (`.github/workflows/verify-layout.yml`) as **advisory feedback** on pushes and pull requests — deliberately not a required merge gate, per the workspace's advisory-by-design governance (maintainer decision, 2026-07-20).
-
-## License
-
-This template is licensed under the [Apache License 2.0](LICENSE).
+See [docs/README.md](docs/README.md), [CONTRIBUTING.md](CONTRIBUTING.md), and
+[SECURITY.md](SECURITY.md).

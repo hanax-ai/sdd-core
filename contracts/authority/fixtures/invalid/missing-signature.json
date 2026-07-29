@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "4.0.0",
+  "missionId": "mission-001",
+  "issuer": {
+    "type": "human",
+    "id": "agent-zero",
+    "initiatingAuthority": "human:agent-zero",
+    "authorityReference": "authority:fixture:gate-2-001",
+    "trigger": {
+      "type": "gate-2",
+      "reference": "fixture-plan-sha256"
+    }
+  },
+  "nonce": "nonce-001",
+  "issuedAt": "2026-07-28T00:00:00Z",
+  "notBefore": "2026-07-28T00:00:00Z",
+  "expiresAt": "2099-07-28T00:00:00Z",
+  "revocation": {
+    "revoked": false,
+    "checkedAt": "2026-07-28T00:00:00Z",
+    "registryReference": "fixture:revocation-registry"
+  },
+  "supersession": {
+    "superseded": false,
+    "checkedAt": "2026-07-28T00:00:00Z",
+    "registryReference": "fixture:supersession-registry"
+  },
+  "replay": {
+    "status": "fresh",
+    "previousUses": 0,
+    "registryReference": "fixture:replay-registry",
+    "checkedAt": "2026-07-28T00:00:00Z"
+  },
+  "authorization": {
+    "repositories": [
+      "https://github.com/example/project.git"
+    ],
+    "paths": [
+      "src/"
+    ],
+    "actions": [
+      "modify",
+      "test"
+    ],
+    "branches": [
+      "main"
+    ],
+    "environments": [
+      "fixture"
+    ],
+    "capabilities": [
+      "file-edit",
+      "validation"
+    ],
+    "tools": [
+      "apply-patch",
+      "validator"
+    ],
+    "mcpOperations": [],
+    "prohibitedActions": [
+      "merge",
+      "release",
+      "deploy"
+    ]
+  },
+  "request": {
+    "repository": "https://github.com/example/project.git",
+    "paths": [
+      "src/"
+    ],
+    "actions": [
+      "modify",
+      "test"
+    ],
+    "branch": "main",
+    "environment": "fixture",
+    "capabilities": [
+      "file-edit",
+      "validation"
+    ],
+    "tools": [
+      "apply-patch",
+      "validator"
+    ],
+    "mcpOperations": []
+  },
+  "frozenPolicy": {
+    "authorizedDigest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "currentDigest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "version": "4.0.0-rc.1"
+  },
+  "base": {
+    "authorizedCommit": "2222222222222222222222222222222222222222222222222222222222222222",
+    "currentCommit": "2222222222222222222222222222222222222222222222222222222222222222",
+    "branch": "main"
+  },
+  "resources": {
+    "modelCalls": false,
+    "networkAccess": false,
+    "secretAccess": false,
+    "timeLimitSeconds": 3600,
+    "attemptLimit": 1,
+    "retryLimit": 0,
+    "modelCostLimitUsd": 0,
+    "memoryLimitMiB": 1024
+  },
+  "validation": {
+    "required": [
+      "unit-tests",
+      "diff-review"
+    ]
+  },
+  "evidence": {
+    "required": true,
+    "projectOwned": true,
+    "contractVersion": "4.0.0"
+  },
+  "nextBoundary": "merge-authorization",
+  "trustProfile": {
+    "id": "sdd-core-fixture-rsa-v1",
+    "digest": "sha256:885d68808cf8bd8e8a2b67ef4d4e6bdc8b20e4faa22d8c8f3f422a9184015733",
+    "keyId": "fixture-agent-zero-2026"
+  },
+  "integrity": {
+    "canonicalization": "sdd-core-canonical-json-v1",
+    "digestAlgorithm": "sha256",
+    "canonicalDigest": "sha256:bc79cc0cf9b35d66b51c83d5657d3dec1e4d2871642b27974057482c2466f676"
+  },
+  "completion": {
+    "conditions": [
+      "required-validation-pass",
+      "evidence-recorded"
+    ],
+    "onExpiration": "stop-and-report"
+  }
+}
