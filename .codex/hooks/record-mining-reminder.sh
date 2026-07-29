@@ -65,7 +65,11 @@ import sys
 candidate = os.path.realpath(sys.argv[1])
 root = os.path.realpath(sys.argv[2])
 conversation_root = os.path.realpath(os.path.join(root, "conversations"))
-if os.path.normcase(os.path.dirname(candidate)) != os.path.normcase(conversation_root):
+try:
+    parent_matches = os.path.samefile(os.path.dirname(candidate), conversation_root)
+except OSError:
+    parent_matches = False
+if not parent_matches:
     raise SystemExit(1)
 sys.stdout.write(os.path.basename(candidate))
 ' "$python_fp" "$python_root"

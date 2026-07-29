@@ -5,7 +5,7 @@ topic: independent-reset-review
 scope: GLOBAL
 reviewed_on: 2026-07-29
 reviewer_role: independent-codex-reviewer
-review_round: R9
+review_round: R10
 verdict: ACCEPT
 base_commit: d3363238bb2d2f513f09b364926ff4146cc376ff
 planning_commit: cc4f4b17ccca428334689cc5ab381741470168c0
@@ -16,8 +16,9 @@ plan_sha256: C83198CE8CDAA85E27696273A2DE13F543D8CB1B45C2AD91FA753ECE4735354D
 
 > **Historical review notice (PR #7 remediation):** R1-R7 below are preserved
 > as the review history of earlier candidate trees. The front matter identifies
-> R9 as the current review. R8 was rejected before a review-record edit; the R9
-> section records verification of its correction. The earlier rounds'
+> R10 as the current review. R8 was rejected before a review-record edit; the
+> R9 section records verification of its correction, and R10 records the
+> independent PR #12 remediation review. The earlier rounds'
 > repository-local `.validation-venv` assessment is superseded and is not a
 > current validation-environment claim. The review-remediation tree uses a
 > private, unpredictable, process-scoped temporary environment outside the
@@ -1000,6 +1001,140 @@ release, or deployment was changed by R9.
 preservation, security, scope, atomicity, or evidence-boundary finding remains
 in the prepared staged tree. T022 may create the one atomic implementation
 commit with exact parent
+`cc4f4b17ccca428334689cc5ab381741470168c0` and rerun verification. Merge,
+release, deployment, adopter changes, external-repository mutation,
+review-thread resolution, and T023 evidence closure remain outside this
+verdict.
+
+## R10 PR #12 remediation review
+
+R10 is a fresh T021 review of the complete staged candidate after the three
+valid PR #12 findings were remediated. The review was performed before this
+review record was edited.
+
+### Candidate identity and scope
+
+```text
+git rev-parse HEAD
+  cc4f4b17ccca428334689cc5ab381741470168c0
+
+git rev-parse HEAD^
+  d3363238bb2d2f513f09b364926ff4146cc376ff
+
+git write-tree
+  5b6e91eda2b1a2636670b1bbcb83f247a31a09f5
+
+git status
+  192 staged paths; zero unstaged paths; zero untracked paths
+```
+
+The delta from the accepted R9 tree
+`da824533304bf9cec9632dbbd7e01872314ba619` contains exactly four paths:
+the Claude and Codex record-mining hooks, the deterministic validator, and
+migration evidence. There is no unrelated or external-repository change.
+
+### PR #12 findings
+
+| Finding | R10 result |
+|---|---|
+| Use filesystem identity for hook containment | **PASS** - both hook mirrors use `os.path.samefile`; `OSError` is a non-match and the shell boundary remains fail-open |
+| Exercise both hook mirrors behaviorally | **PASS** - all seven behavior cases run against each named hook, with mirror-specific failure evidence, while byte equality remains required |
+| Correct the current validation count | **PASS** - current migration evidence reports 122/122; the earlier 118/118 review results remain preserved as historical evidence |
+
+The two hook files are byte-identical and share SHA-256
+`A00BE9946AF516E6178290ABBD224FC587571AA540FD782F2E7AE89E6C4EC62A`.
+
+### Transient exit investigation
+
+The implementer reported one first-GREEN parent-escape exit 1 that did not
+recur. R10 could not reproduce it:
+
+```text
+20 rounds x 2 hook mirrors x 7 behavior cases
+  280 executions
+  0 nonzero exits
+  0 output mismatches
+
+Included rejection paths
+  parent escape
+  nested existing parent
+  nonexistent parent (the OSError path)
+  malformed JSON
+```
+
+Two additional independent validator runs exercised all fourteen registered
+hook/mirror cases and passed. The hook command substitution converts Python
+containment rejection to `exit 0`, including the `OSError` non-match path.
+With 308 independent behavior executions, the focused static validator, the
+full verifier, and shell syntax all green, there is no evidence of a real
+nondeterministic candidate defect. The isolated event remains uncorroborated
+and is not a T021 blocker.
+
+### Required T021 findings
+
+| Required review area | Evidence path and R10 result |
+|---|---|
+| Authority non-inference | `.specify/memory/constitution.md`, `contracts/authority/`, and `integrations/ci-cd/README.md`: **PASS** |
+| Protected provisions | `.specify/memory/constitution.md` and `contracts/adoption/project-adoption.schema.json`: **PASS** |
+| Domain separation | `governance/framework/` and `governance/operations/`: **PASS** |
+| Adopter sovereignty | `templates/project/AGENTS.md` and `templates/project/.sdd-core/adoption.yaml`: **PASS** |
+| Readiness non-mutation | `bootstrap/new-project.md` and `integrations/fusion-harness/`: **PASS** |
+| Degraded mission integrity | `integrations/agent-workflow/status.schema.json` and `contracts/authority/mission-envelope.schema.json`: **PASS** |
+| External-repository isolation | `docs/migrations/sdd-core-reset-v4/path-map.yaml`; tracked `projects/` paths: 0: **PASS** |
+| All 60 source dispositions | `path-map.yaml`, `artifact-inventory.md`, and static preservation validation: **PASS** |
+
+Every prior R1-R9 blocker remains resolved because the R10 delta is limited to
+the four reviewed remediation paths and the complete deterministic verifier
+remains green.
+
+### Deterministic verification and frozen authority
+
+```text
+python scripts/validate-contracts.py --slice static
+  PASS: static contract fixtures
+  exit 0
+
+bash -n verify-layout.sh
+  exit 0
+
+bash verify-layout.sh
+  PASS: adoption, authority, evidence, harness, workflow, template, static contract fixtures
+  RESULT: 100% compliance - all 122 deterministic checks pass.
+  exit 0
+
+git diff --cached --check
+  exit 0
+
+git diff --check
+  exit 0
+```
+
+The approved plan, specification, and tasks remain frozen:
+
+```text
+plan.md
+  blob: e58e7b6d3bc464b9e0012ad5454aacce30189bad
+  SHA-256: C83198CE8CDAA85E27696273A2DE13F543D8CB1B45C2AD91FA753ECE4735354D
+
+spec.md
+  blob: 4e828d515df0ce7884bb178a789e2d46cd0197ad
+  SHA-256: FD879701164A7CA6A2CD1C4502CD8C7B86E4AA9E7EB76535F967A5AA11FC5FF7
+
+tasks.md
+  blob: 9542fbb4217d11aa30b84baf5b5f77f0bf67aa21
+  SHA-256: 5ABADE413453836D49E0FAF80A6E7D3378466479086D329BF29AA8ECA0C6F914
+```
+
+Migration closure still covers all 60 source dispositions and 39 moved-target
+hashes. The atomic migration commit/tree, draft PR, Linux and Windows CI,
+CodeRabbit verdict, independent evidence field, and evidence-closure commit
+remain in their required T023-deferred states. Validation cleanup left no
+repository-local environment or matching process-scoped temporary directory.
+
+**R10 verdict: ACCEPT.** No blocking governance, contract, portability,
+preservation, security, scope, atomicity, nondeterminism, or evidence-boundary
+finding remains in the staged candidate. T022 may create the one atomic
+implementation commit with exact parent
 `cc4f4b17ccca428334689cc5ab381741470168c0` and rerun verification. Merge,
 release, deployment, adopter changes, external-repository mutation,
 review-thread resolution, and T023 evidence closure remain outside this

@@ -96,7 +96,7 @@ domain-identity and link updates.
 
 ## Validation state
 
-Local deterministic verification currently passes **118/118** checks on
+Local deterministic verification currently passes **122/122** checks on
 Windows using Git Bash and Python 3.11. A direct
 `python scripts/validate-contracts.py` invocation creates a private,
 unpredictable, process-scoped temporary environment outside the repository

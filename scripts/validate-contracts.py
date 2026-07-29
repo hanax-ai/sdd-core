@@ -597,9 +597,15 @@ def validate_record_mining_hook() -> list[str]:
         ROOT / ".codex/hooks/record-mining-reminder.sh",
     )
     for hook_path in hook_paths:
-        if "realpath -m" in hook_path.read_text(encoding="utf-8-sig"):
+        hook_text = hook_path.read_text(encoding="utf-8-sig")
+        if "realpath -m" in hook_text:
             failures.append(
                 f"record-mining hook uses GNU-only realpath -m: "
+                f"{hook_path.relative_to(ROOT)}"
+            )
+        if "os.path.samefile(" not in hook_text or "except OSError:" not in hook_text:
+            failures.append(
+                f"record-mining hook lacks fail-open samefile containment: "
                 f"{hook_path.relative_to(ROOT)}"
             )
     bash = shutil.which("bash")
@@ -685,25 +691,29 @@ def validate_record_mining_hook() -> list[str]:
             False,
         ),
     )
-    for name, payload, expected_output in cases:
-        completed = subprocess.run(
-            [bash, str(hook)],
-            cwd=ROOT,
-            input=payload,
-            capture_output=True,
-            text=True,
-            check=False,
-        )
-        if completed.returncode != 0:
-            failures.append(
-                f"record-mining hook {name} exited {completed.returncode}"
+    for hook_path in hook_paths:
+        relative_hook = hook_path.relative_to(ROOT)
+        for name, payload, expected_output in cases:
+            completed = subprocess.run(
+                [bash, str(hook_path)],
+                cwd=ROOT,
+                input=payload,
+                capture_output=True,
+                text=True,
+                check=False,
             )
-            continue
-        if bool(completed.stdout.strip()) != expected_output:
-            expectation = "advisory output" if expected_output else "no output"
-            failures.append(
-                f"record-mining hook {name} expected {expectation}"
-            )
+            if completed.returncode != 0:
+                failures.append(
+                    f"record-mining hook {relative_hook} {name} "
+                    f"exited {completed.returncode}"
+                )
+                continue
+            if bool(completed.stdout.strip()) != expected_output:
+                expectation = "advisory output" if expected_output else "no output"
+                failures.append(
+                    f"record-mining hook {relative_hook} {name} "
+                    f"expected {expectation}"
+                )
     return failures
 
 
