@@ -11,6 +11,7 @@ import hmac
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -379,7 +380,10 @@ def validate_integration_slice(name: str) -> list[str]:
             if name == "harness"
             else workflow_semantic_errors(instance)
         )
-        expected_reject = path.name == "degraded-invalid.yaml"
+        expected_reject = path.name in {
+            "degraded-invalid.yaml",
+            "ready-with-outage.yaml",
+        }
         if expected_reject:
             if not errors and not semantic:
                 failures.append(f"{path.relative_to(ROOT)} expected REJECT but passed")
@@ -558,10 +562,122 @@ def validate_svg_security() -> list[str]:
     ]
 
 
+WORKFLOW_PROHIBITED = re.compile(
+    r"(?:contents|pull-requests|issues|actions|checks|deployments|id-token)"
+    r"\s*:\s*write|claude[^\r\n]*action|autofix",
+    re.I,
+)
+
+
+def workflow_policy_violation(text: str) -> bool:
+    return WORKFLOW_PROHIBITED.search(text) is not None
+
+
+def validate_workflow_policy_fixtures() -> list[str]:
+    failures: list[str] = []
+    fixture_root = ROOT / "scripts/fixtures/workflows"
+    for path in sorted((fixture_root / "invalid").glob("*.yaml")):
+        if not workflow_policy_violation(path.read_text(encoding="utf-8-sig")):
+            failures.append(
+                f"{path.relative_to(ROOT)} expected write-capable rejection but passed"
+            )
+    for path in sorted((fixture_root / "valid").glob("*.yaml")):
+        if workflow_policy_violation(path.read_text(encoding="utf-8-sig")):
+            failures.append(
+                f"{path.relative_to(ROOT)} expected read-only acceptance but rejected"
+            )
+    return failures
+
+
+def validate_record_mining_hook() -> list[str]:
+    failures: list[str] = []
+    hook = ROOT / ".claude/hooks/record-mining-reminder.sh"
+    bash = shutil.which("bash")
+    if os.name == "nt":
+        git_bash = (
+            Path(os.environ.get("ProgramFiles", r"C:\Program Files"))
+            / "Git/bin/bash.exe"
+        )
+        if git_bash.is_file():
+            bash = str(git_bash)
+    if bash is None:
+        return ["record-mining hook validation requires bash"]
+    cases = (
+        (
+            "root-relative-dot-path",
+            json.dumps(
+                {
+                    "tool_input": {
+                        "file_path": "./conversations/new-record.md"
+                    }
+                }
+            ),
+            True,
+        ),
+        (
+            "root-absolute-path",
+            json.dumps(
+                {
+                    "tool_input": {
+                        "file_path": str(
+                            ROOT / "conversations" / "absolute-record.md"
+                        )
+                    }
+                }
+            ),
+            True,
+        ),
+        (
+            "nested-path",
+            json.dumps(
+                {
+                    "tool_input": {
+                        "file_path": "conversations/archive/nested-record.md"
+                    }
+                }
+            ),
+            False,
+        ),
+        (
+            "scaffold-path",
+            json.dumps(
+                {"tool_input": {"file_path": "conversations/README.md"}}
+            ),
+            False,
+        ),
+        (
+            "malformed-json",
+            '{"tool_input":{"file_path":"conversations/malformed-record.md"',
+            False,
+        ),
+    )
+    for name, payload, expected_output in cases:
+        completed = subprocess.run(
+            [bash, str(hook)],
+            cwd=ROOT,
+            input=payload,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if completed.returncode != 0:
+            failures.append(
+                f"record-mining hook {name} exited {completed.returncode}"
+            )
+            continue
+        if bool(completed.stdout.strip()) != expected_output:
+            expectation = "advisory output" if expected_output else "no output"
+            failures.append(
+                f"record-mining hook {name} expected {expectation}"
+            )
+    return failures
+
+
 def validate_repository_safety() -> list[str]:
     failures: list[str] = []
     personal_path = re.compile(
-        r"(?:[A-Za-z]:[\\/]+Users[\\/]+[^\\/\s]+|/home/[^/\s]+)"
+        r"(?:[A-Za-z]:[\\/]+Users[\\/]+[^\\/\s]+|/home/[^/\s]+|/Users/[^/\s]+)",
+        re.I,
     )
     excluded = ROOT / "reference/repos"
     for path in ROOT.rglob("*"):
@@ -589,6 +705,9 @@ def validate_repository_safety() -> list[str]:
         if relative in {
             Path("contracts/adoption/fixtures/invalid/absolute-personal-path.json"),
             Path(
+                "contracts/adoption/fixtures/invalid/bare-macos-personal-path.json"
+            ),
+            Path(
                 "contracts/adoption/fixtures/invalid/nested-personal-path-value.json"
             ),
         }:
@@ -601,13 +720,8 @@ def validate_repository_safety() -> list[str]:
             failures.append(f"{path.relative_to(ROOT)} contains a personal path")
 
     workflow_root = ROOT / ".github/workflows"
-    prohibited = re.compile(
-        r"(?:contents|pull-requests|issues|actions|checks|deployments|id-token)"
-        r"\s*:\s*write|claude[^\\n]*action|autofix",
-        re.I,
-    )
     for path in workflow_root.glob("*.y*ml"):
-        if prohibited.search(path.read_text(encoding="utf-8-sig")):
+        if workflow_policy_violation(path.read_text(encoding="utf-8-sig")):
             failures.append(f"{path.relative_to(ROOT)} enables write-capable automation")
     return failures
 
@@ -761,6 +875,8 @@ def validate_static_repository() -> list[str]:
     failures.extend(validate_markdown_links())
     failures.extend(validate_structured_files())
     failures.extend(validate_svg_security())
+    failures.extend(validate_workflow_policy_fixtures())
+    failures.extend(validate_record_mining_hook())
     failures.extend(validate_repository_safety())
     failures.extend(validate_adapters())
     failures.extend(validate_migration_closure())

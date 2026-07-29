@@ -45,12 +45,20 @@ READY_READ_ONLY
   -> AUTHORIZED_MISSION_REQUIRED
 AUTHORIZED_MISSION_REQUIRED
   -> EXECUTION_ELIGIBLE
+DEGRADED
+  -> EXECUTION_ELIGIBLE
 ```
 
 `EXECUTION_ELIGIBLE` requires independent verification of an authenticated,
 current, unrevoked, unsuperseded, replay-safe mission envelope whose
 repository, paths, actions, policy digest, and base commit match the request.
 Readiness alone never crosses that boundary.
+
+The `DEGRADED -> EXECUTION_ELIGIBLE` transition requires independent
+verification of the same valid pre-issued mission envelope that established
+the degraded state. It is limited to that envelope's already-authorized
+repository, paths, actions, capabilities, tools, policy digest, and base; the
+outage cannot expand or replace the mission.
 
 ## Read-only allowlist
 

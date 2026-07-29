@@ -25,6 +25,7 @@ points. A later validator must reproduce every outcome exactly.
 | CC-005 | `tailored-excluded-overlap` | `contracts/adoption/fixtures/invalid/tailored-excluded-overlap.json` | **REJECT** | Custom provision is both tailored and excluded |
 | CC-005 | `nested-secret-value` | `contracts/adoption/fixtures/invalid/nested-secret-value.json` | **REJECT** | Allowed field contains secret-bearing value |
 | CC-005 | `nested-personal-path-value` | `contracts/adoption/fixtures/invalid/nested-personal-path-value.json` | **REJECT** | Allowed field contains personal machine path |
+| CC-005 | `bare-macos-personal-path` | `contracts/adoption/fixtures/invalid/bare-macos-personal-path.json` | **REJECT** | Allowed field contains a bare macOS user-home personal path |
 | CC-006 | `mission-valid` | `contracts/authority/fixtures/valid/authorized.json` | **PASS** | Structurally and semantically authorized |
 | CC-006 | `missing-signature` | `contracts/authority/fixtures/invalid/missing-signature.json` | **REJECT** | missing signature |
 | CC-006 | `signature-mismatch` | `contracts/authority/fixtures/invalid/signature-mismatch.json` | **REJECT** | signature mismatch |
@@ -47,6 +48,12 @@ points. A later validator must reproduce every outcome exactly.
 | CC-007 | `execution-grants-authority` | `contracts/evidence/fixtures/invalid/execution-grants-authority.json` | **REJECT** | execution grants authority |
 | CC-007 | `parent-traversal-slash` | `contracts/evidence/fixtures/invalid/parent-traversal-slash.json` | **REJECT** | Evidence path contains a slash-style `..` segment |
 | CC-007 | `parent-traversal-backslash` | `contracts/evidence/fixtures/invalid/parent-traversal-backslash.json` | **REJECT** | Evidence path contains a backslash-style `..` segment |
+| CC-007 | `leading-backslash-root` | `contracts/evidence/fixtures/invalid/leading-backslash-root.json` | **REJECT** | Evidence path begins with a rooted backslash |
+| CC-007 | `unc-root` | `contracts/evidence/fixtures/invalid/unc-root.json` | **REJECT** | Evidence path uses a UNC root |
+| CC-007 | `device-root` | `contracts/evidence/fixtures/invalid/device-root.json` | **REJECT** | Evidence path uses a Windows device root |
+| CC-007 | `drive-absolute-backslash` | `contracts/evidence/fixtures/invalid/drive-absolute-backslash.json` | **REJECT** | Evidence path is drive-prefixed with backslashes |
+| CC-007 | `drive-absolute-slash` | `contracts/evidence/fixtures/invalid/drive-absolute-slash.json` | **REJECT** | Evidence path is drive-prefixed with slashes |
+| CC-007 | `drive-relative` | `contracts/evidence/fixtures/invalid/drive-relative.json` | **REJECT** | Evidence path is drive-relative |
 | CC-008 | `harness-compatible` | `integrations/fusion-harness/fixtures/compatible.yaml` | **PASS** | READY without runtime invocation |
 | CC-008 | `harness-incompatible` | `integrations/fusion-harness/fixtures/incompatible.yaml` | **BLOCKED** | Incompatible immutable release |
 | CC-008 | `harness-unavailable` | `integrations/fusion-harness/fixtures/unavailable.yaml` | **BLOCKED** | Required release unavailable |
@@ -55,7 +62,12 @@ points. A later validator must reproduce every outcome exactly.
 | CC-008 | `workflow-unavailable` | `integrations/agent-workflow/fixtures/unavailable-blocked.yaml` | **BLOCKED** | No adopted degradation prerequisites |
 | CC-008 | `workflow-degraded-valid` | `integrations/agent-workflow/fixtures/degraded-valid.yaml` | **DEGRADED** | Adopted policy and immutable signed mission binding validate |
 | CC-008 | `workflow-degraded-invalid` | `integrations/agent-workflow/fixtures/degraded-invalid.yaml` | **BLOCKED** | Mission-envelope content digest does not match binding |
+| CC-008 | `workflow-ready-with-outage` | `integrations/agent-workflow/fixtures/ready-with-outage.yaml` | **REJECT** | READY cannot carry outage state |
 | Security | `svg-dtd-entity` | `scripts/fixtures/invalid/svg-dtd-entity.svg` | **REJECT** | Defused XML parser rejects DTD/entity content without expansion |
+| Security | `claude-action-with-n` | `scripts/fixtures/workflows/invalid/claude-action-with-n.yaml` | **REJECT** | Named Claude Action remains write-capable when intervening text contains `n` |
+| Security | `claude-action-with-backslash` | `scripts/fixtures/workflows/invalid/claude-action-with-backslash.yaml` | **REJECT** | Named Claude Action remains write-capable when intervening text contains a backslash |
+| Security | `ordinary-read-only-workflow` | `scripts/fixtures/workflows/valid/ordinary-read-only.yaml` | **PASS** | Ordinary read-only workflow text is accepted |
+| Adapter | `record-mining-paths` | `.claude/hooks/record-mining-reminder.sh` | **PASS** | Structured JSON decoding and canonical root-relative routing accept only direct root conversation records |
 | CC-009 | `template-neutral` | `templates/project/` | **PASS** | No application technology or runtime layout |
 | CC-010 | `readiness-side-effects` | `bootstrap/new-project.md` | **PASS** | Zero execution, network, secrets, hooks, mutation, models, or agent starts |
 | CC-011 | `remediation-disabled` | `integrations/ci-cd/README.md` | **PASS** | No autonomous mutation permissions or enabled remediation |
@@ -84,3 +96,5 @@ Observed on 2026-07-28: exit `2`, because
 and eight YAML fixtures parsed successfully before that expected failure.
 Review remediation later added six focused negative JSON cases without
 changing any original expected outcome.
+PR #7 remediation adds seven isolated negative JSON cases plus the focused
+Workflow, automation-policy, and record-mining regressions above.

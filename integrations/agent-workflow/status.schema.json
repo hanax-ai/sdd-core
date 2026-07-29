@@ -75,6 +75,7 @@
     {
       "if": { "properties": { "readiness": { "const": "READY" } }, "required": ["readiness"] },
       "then": {
+        "not": { "required": ["outage"] },
         "properties": {
           "release": {
             "properties": {

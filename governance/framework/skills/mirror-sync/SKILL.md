@@ -12,7 +12,8 @@ an implementation aid.
 
 ## 1. Targets
 
-Exactly two mirror locations are recognized by the constitution and registries:
+Inside SDD-Core, exactly two mirror locations are recognized by the
+constitution and registries:
 
 - **Global:** `reference/repos/` (workspace root) — framework source/doc mirrors shared by
   all internal domains and adopters.
@@ -21,6 +22,10 @@ Exactly two mirror locations are recognized by the constitution and registries:
 
 No other directory is a mirror. Never treat ad-hoc clones, node_modules, or files found
 elsewhere on disk as grounding sources.
+
+When operating in an adopter repository, validate its adoption binding first,
+then treat its adopter-owned `knowledge/instructions.md` as a final lookup
+source. That registry is not a third SDD-Core mirror location.
 
 ## 2. Sources of truth
 
@@ -34,6 +39,10 @@ Resolution order per the Lookup Protocol (global playbook §3):
    authority; conflicts stop the lookup.
 3. **Per-document manifests:** the `_index.md` manifest mandated by playbook §2 for every
    sliced document — the only authority on what slices exist and what each covers.
+4. **Adopter registry last, when operating in an adopter:** after validating
+   `.sdd-core/adoption.yaml`, load the adopter-owned
+   `knowledge/instructions.md`. Adopter refinements cannot override GLOBAL or
+   domain authority, identity, pins, or digests; any conflict stops the lookup.
 
 These tables and manifests are the ONLY sources of truth. A mirror directory on disk that
 appears in no registry row does not exist for grounding purposes.

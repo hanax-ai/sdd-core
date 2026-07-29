@@ -14,9 +14,17 @@ access_level: public
 WIP is the repository's collaborative thinking space. Drafts, plans, reviews,
 recommendations, readiness results, and tool output in WIP grant no authority.
 
-Promotion requires an exact human Gate 1 directive naming the artifact and
-revision. Implementation requires a separate exact Gate 2 directive naming the
-reviewed implementation plan. Praise, discussion, review completion, or a
+Promotion requires this exact human Gate 1 shape:
+
+`Approved for promotion: <exact-wip-item-path>@<immutable-revision> -> <exact-target-artifact-path>`
+
+It identifies the exact WIP item, target artifact, and immutable revision.
+Implementation requires this separate exact human Gate 2 shape:
+
+`Approved for implementation: <exact-specification-path> + <exact-reviewed-plan-path>@<immutable-revision-or-digest>`
+
+It identifies the exact approved specification and reviewed plan plus their
+immutable revision or digest. Praise, discussion, review completion, or a
 passing check is not approval.
 
 Follow the [constitution](../.specify/memory/constitution.md) and preserve

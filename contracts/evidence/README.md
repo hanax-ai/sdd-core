@@ -14,4 +14,6 @@ validation, advisory review coverage, integration health, and workflow state.
 Evidence cannot contain approval or authority transitions. Agent Workflow may
 retain an immutable reference, but the independent project owns the durable
 record and location. Evidence paths are repository-relative and reject `..`
-segments in either slash style. A valid envelope proves an observation only.
+segments in either slash style, leading slash or backslash roots, UNC/device
+roots, and every drive-prefixed form (`C:\absolute`, `C:/absolute`, and
+`C:relative`). A valid envelope proves an observation only.

@@ -16,9 +16,11 @@ references in this repository. A conversation record preserves provenance; it
 does not grant authority.
 
 Each record MUST identify its repository, source, date, participants, scope,
-authority state, and related artifact using repository-relative paths. Keep
-machine-tier or cross-repository conversation routing outside this repository
-unless separately authorized.
+authority state, and related artifact using repository-relative paths. For a
+ratified decision or directive, it MUST also record the exact ratifying
+artifact path, that artifact's immutable revision or digest, and the exact
+directive or authority reference. Keep machine-tier or cross-repository
+conversation routing outside this repository unless separately authorized.
 
 Use [WIP](../wip/README.md) for exploratory work, the
 [constitution](../.specify/memory/constitution.md) for authority rules, and

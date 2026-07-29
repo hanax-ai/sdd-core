@@ -65,10 +65,10 @@ governance/operations/docs/specs/examples/operational-capability-fixture/
 governance/operations/
 ├── knowledge/instructions.md                                  # runbook entry (synthetic)
 ├── records/templates/synthetic-glossary-audit.template.md     # created (class-1 synthetic)
-└── registers/synthetic-capability-register.md                 # row updated (synthetic)
+└── records/register-definitions/synthetic-capability-register.md  # definition updated (synthetic)
 ```
 
-**Structure Decision**: runbook joins the domain playbook; record template joins `records/templates/`; register row in the synthetic register — each the established home for its class.
+**Structure Decision**: runbook joins the domain playbook; record template joins `records/templates/`; the synthetic register definition is standardized at `records/register-definitions/synthetic-capability-register.md` — each is the established home for its class.
 
 ## Rollback / Recovery Considerations
 

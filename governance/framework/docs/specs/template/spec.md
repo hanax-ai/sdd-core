@@ -18,9 +18,11 @@
    (Use the next available zero-padded number, e.g., 001, 002, 003.)
 2. Fill in the metadata block above (Feature Folder, Created, Input).
 3. Read the governing context BEFORE writing any content:
-   -> Domain scope constitution: ../../../constitution.md
-   -> Domain instructions: ../../../knowledge/instructions.md
    -> Global constitution: ../../../../../.specify/memory/constitution.md
+   -> Global grounding registry: ../../../../../knowledge/instructions.md
+   -> Domain scope constitution: ../../../constitution.md
+   -> Domain grounding registry: ../../../knowledge/instructions.md
+   -> Active feature folder: ./ (this spec; plan.md/tasks.md only at their stages)
 4. Fill Intent & Scope, Governed Audience & Affected Surfaces, Normative
    Requirements, Conformance Criteria, and Assumptions from the description.
    -> Mark every uncertainty inline with [NEEDS CLARIFICATION: specific question].

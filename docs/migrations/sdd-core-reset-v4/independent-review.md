@@ -5,7 +5,7 @@ topic: independent-reset-review
 scope: GLOBAL
 reviewed_on: 2026-07-28
 reviewer_role: independent-codex-reviewer
-review_round: R5
+review_round: R7
 verdict: ACCEPT
 base_commit: d3363238bb2d2f513f09b364926ff4146cc376ff
 planning_commit: cc4f4b17ccca428334689cc5ab381741470168c0
@@ -14,13 +14,14 @@ plan_sha256: C83198CE8CDAA85E27696273A2DE13F543D8CB1B45C2AD91FA753ECE4735354D
 
 # SDD-Core Reset v4 Independent Governance and Preservation Review
 
-> **Historical review notice (review-remediation rebuild):** R1-R5 below are
-> preserved as the review history of earlier candidate trees. Their
+> **Historical review notice (PR #7 remediation):** R1-R6 below are preserved
+> as the review history of earlier candidate trees. The front matter identifies
+> R7 as the current review, while R6 is the latest historical round. Their
 > repository-local `.validation-venv` assessment is superseded and is not a
 > current validation-environment claim. The review-remediation tree uses a
 > private, unpredictable, process-scoped temporary environment outside the
-> repository and requires a fresh T021 independent review before the atomic
-> commit.
+> repository. The PR #7 remediation tree requires a fresh T021 review whose
+> reviewer appends and owns the final review metadata before the atomic commit.
 
 ## Final verdict
 
@@ -717,3 +718,178 @@ T022 may create the single atomic implementation commit with exact parent
 `cc4f4b17ccca428334689cc5ab381741470168c0` and rerun verification. Merge,
 release, deployment, adopter changes, external-repository mutation, and T023
 evidence closure remain outside this verdict.
+
+## R7 PR #7 finding-remediation review
+
+R7 is a fresh T021 review of the complete staged tree after the 17 valid PR #7
+review findings were remediated. It does not infer acceptance from R1-R6 or
+from the implementation report.
+
+### Exact staged baseline
+
+```text
+git rev-parse HEAD
+  cc4f4b17ccca428334689cc5ab381741470168c0
+
+git write-tree
+  bdbacf53c4bd12424cfabb8082e44c159b9030db
+
+git status --short
+  192 staged paths; zero unstaged paths; zero untracked paths
+```
+
+The exact prepared tree and branch matched the remediation brief before R7
+made its one permitted review-record edit. The focused remediation delta from
+the prior PR #7 head contains 34 paths. R7 inspected the full staged change
+set and the focused delta.
+
+### Finding-remediation results
+
+| Review area | R7 result |
+|---|---|
+| Record-mining hook parsing and routing | **PASS** — structured JSON decoding, root-relative and absolute normalization, direct root-record handling, and project-tier suppression all work in the real hook process |
+| Degraded execution transition | **PASS** — only the same independently verified, valid pre-issued mission and its existing scope can cross to execution eligibility |
+| Evidence path safety | **PASS** — leading backslash, UNC/device, drive-absolute, drive-relative, and both traversal forms reject |
+| Software fixture lookup shape | **PASS** — the plan consistently uses `(month, day)` |
+| Framework context order | **PASS** — root constitution, root registry, domain constitution, domain registry, then active feature folder |
+| Framework reference terminology | **PASS** — the framework reference names `Domain-local Mirror Refinements` |
+| Adopter mirror lookup | **PASS** — validated adopter registry is last and cannot override GLOBAL/domain identity, pins, digests, or authority |
+| Operations synthetic register | **PASS** — the canonical `records/register-definitions/` path is consistent |
+| Workflow outage semantics | **PASS** — `READY` rejects `outage`; the negative fixture is deterministic |
+| Global no-mirror fallback | **PASS** — no-spec state reports to the operator and records only a blocked machine Install Registry event without granting authority |
+| macOS personal-path detection | **PASS** — bare macOS user-home values reject while the isolated negative fixture does not poison the repository scan |
+| Claude Action detector | **PASS** — true CR/LF exclusion rejects the `n` and backslash hostile names while ordinary read-only text passes |
+| Adopter consequential-work gate | **PASS** — matching spec, reviewed plan, tasks, exact mission, and exact Gate 2 identity are required |
+| Conversation provenance | **PASS** — exact ratifying path, immutable revision/digest, and directive/authority reference are required |
+| Adoption-first grounding | **PASS** — adoption binding validates before pinned GLOBAL, domain, and adopter sources load |
+| Adopter WIP gate shapes | **PASS** — Gate 1 and Gate 2 identify exact artifacts and immutable revision/digest identity |
+
+The thread requesting restored legacy project-tier hook routing remains
+correctly rejected because it conflicts with the frozen reset authority.
+Relative-path normalization is independently satisfied by the root-only hook.
+
+### Focused and full executable evidence
+
+Fresh focused validation produced:
+
+```text
+python scripts/validate-contracts.py --slice adoption
+  PASS: adoption contract fixtures
+
+python scripts/validate-contracts.py --slice evidence
+  PASS: evidence contract fixtures
+
+python scripts/validate-contracts.py --slice workflow
+  PASS: workflow contract fixtures
+
+python scripts/validate-contracts.py --slice static
+  PASS: static contract fixtures
+```
+
+Each focused invocation exercised the dependency-missing bootstrap and used an
+exact hash-locked, process-scoped temporary environment outside the repository.
+The static slice includes hostile SVG DTD/entity rejection, Claude Action
+fixtures, ordinary read-only workflow acceptance, real hook execution,
+personal-path/secret scanning, migration hashes, links, structured parsing,
+and adapter equality.
+
+Independent real-process hook cases produced:
+
+```text
+top-level-relative       exit 0; advisory true
+dot-relative-nested-input exit 0; advisory true
+windows-absolute         exit 0; advisory true
+nested-conversation-dir  exit 0; advisory false
+scaffold                 exit 0; advisory false
+legacy-project-tier      exit 0; advisory false
+malformed-json           exit 0; advisory false
+Claude/Codex hook SHA-256 equality true
+```
+
+Fresh full verification produced:
+
+```text
+python scripts/validate-contracts.py
+  PASS: adoption, authority, evidence, harness, workflow, template, static contract fixtures
+  exit 0
+
+bash -n verify-layout.sh
+  exit 0
+
+bash verify-layout.sh
+  RESULT: 100% compliance — all 118 deterministic checks pass.
+  exit 0
+
+git diff --cached --check
+  exit 0
+```
+
+### Frozen authority, preservation, and deferred evidence
+
+```text
+plan.md
+  HEAD/index blob: e58e7b6d3bc464b9e0012ad5454aacce30189bad
+  SHA-256: C83198CE8CDAA85E27696273A2DE13F543D8CB1B45C2AD91FA753ECE4735354D
+
+spec.md
+  HEAD/index blob: 4e828d515df0ce7884bb178a789e2d46cd0197ad
+  SHA-256: FD879701164A7CA6A2CD1C4502CD8C7B86E4AA9E7EB76535F967A5AA11FC5FF7
+
+tasks.md
+  HEAD/index blob: 9542fbb4217d11aa30b84baf5b5f77f0bf67aa21
+  SHA-256: 5ABADE413453836D49E0FAF80A6E7D3378466479086D329BF29AA8ECA0C6F914
+
+base/path-map source rows=60
+unique source rows=60
+base project paths=60
+source sets exact=True
+dispositions=moved 39, merged 3, superseded 16, removed 2
+source blob mismatches=0
+source SHA-256 mismatches=0
+moved-target hash rows=39
+moved-target hash mismatches=0
+tracked projects/ paths=0
+```
+
+The signed `prohibited-action.json` index blob remains exactly
+`1223d827ea00a5977d8c333311552098c2b9303b`, matching the accepted predecessor.
+The T023 migration commit/tree, draft PR, Linux/Windows CI, CodeRabbit,
+independent-verdict, and evidence-closure fields remain in their required
+not-yet-performed states.
+
+Read-only inspection of immutable CentCom commit
+`201dde50268650e6ad489f483d5c57d3eeef2f3f` produced:
+
+```text
+centcom_map_rows=15
+centcom_remote_blob_count=128
+centcom_blob_mismatches=0
+PR #20 state=open
+PR #20 draft=True
+PR #20 head=201dde50268650e6ad489f483d5c57d3eeef2f3f
+```
+
+All six `.agents`/`.claude` skill pairs and the `.claude`/`.codex`
+record-mining hook pair are byte-identical. No repository-local
+`.validation-venv` or `sdd-core-validation-*` temporary directory remains.
+The safety validator reports no non-fixture personal path, private key, token,
+or secret-assignment payload. The only current user-name match is a negative
+validator sentinel that forbids that historical path from the constitution;
+it is not a stored personal path.
+
+### External isolation and verdict
+
+Read-only checks found the Fusion Harness checkout clean at
+`5170938c9858bebbe40c2360875bb6cd7d1422b0` and the Agent Workflow checkout at
+`dd46eb827aeae5051133f946479ae9af7696be6d` with the same 16 pre-existing
+working-tree entries recorded by R6. R7 made no external repository,
+machine-tier, pull-request, review-thread, merge, release, or deployment
+change.
+
+**R7 verdict: ACCEPT.** No blocking governance, contract, preservation,
+security, atomicity, or external-isolation finding remains in the prepared
+staged tree. T022 may create the single atomic implementation commit with
+exact parent `cc4f4b17ccca428334689cc5ab381741470168c0` and rerun
+verification. Merge, release, deployment, adopter changes, external-repository
+mutation, review-thread resolution, and T023 evidence closure remain outside
+this verdict.

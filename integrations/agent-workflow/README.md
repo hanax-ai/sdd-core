@@ -22,9 +22,10 @@ work-order, evidence, outbox, and reconciliation references. Workflow stores
 references to adopter-owned evidence; it does not own that evidence.
 
 The [status schema](status.schema.json) separates registration/readiness,
-execution, evidence, and human-authority state. Workflow cannot call models,
-access project networks, invoke hooks, mutate governed state, start agents, or
-mint authority.
+execution, evidence, and human-authority state. `READY` rejects an `outage`
+object; outage metadata belongs only to bounded non-ready states. Workflow
+cannot call models, access project networks, invoke hooks, mutate governed
+state, start agents, or mint authority.
 
 A Workflow outage normally produces `BLOCKED`. `DEGRADED` is valid only when
 the adopter already has an adopted degraded-mode policy and the status binds a

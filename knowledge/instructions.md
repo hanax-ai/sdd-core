@@ -85,6 +85,11 @@ Follow these rules **in order** whenever a task involves an external framework:
    registry, do not guess or reconstruct its API. Record `[NO MIRROR]` in the
    active specification under `docs/specs/` or the applicable
    `governance/<domain>/docs/specs/` path, naming the blocked decision.
+   If no active feature specification exists, report the blocked decision to
+   the operator and preserve the existing machine Install Registry Event Log
+   boundary by recording only a blocked event there until a specification
+   exists. That event grants no installation, tooling, mutation, or approval
+   authority and cannot substitute for the missing specification.
 6. **Respect the pin.** Verify behavior against the pinned commit listed in
    the registry, not against newer upstream knowledge. If the pinned version
    genuinely lacks something the task needs, surface that as a spec ambiguity

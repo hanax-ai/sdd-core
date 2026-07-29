@@ -54,7 +54,7 @@ domain-identity and link updates.
 
 | Target | SHA-256 |
 |---|---|
-| `governance/framework/skills/mirror-sync/SKILL.md` | `a2142fbc6811615fdba4da90d4d734ab32c0da8e7aef66eab806c3be98d7ea31` |
+| `governance/framework/skills/mirror-sync/SKILL.md` | `460cdd60b4ae71fb3ec88ac0aeec8b7701d3bd968634fca107501fa58564308f` |
 | `governance/framework/skills/skills-creator/SKILL.md` | `d15d206442eb9c67c7c2a6d7b24e86439673c251ce9ea12128d640044edb888e` |
 | `governance/framework/constitution.md` | `3b3a311b5f29662cf1b8721aa2cb164fb64548a1f3e6d93620a951120fca7216` |
 | `governance/framework/README.md` | `fecab625c90546e169d884072cd64c5cacdd873ffff324ba43bd643467b4e714` |
@@ -64,7 +64,7 @@ domain-identity and link updates.
 | `governance/framework/docs/specs/examples/normative-standard-fixture/tasks.md` | `0d41a7e59ddfae87551a4014d6d17e4190a04a57d8406183fe1c9b0cf3d1b244` |
 | `governance/framework/docs/specs/examples/software-product-fixture/contracts/message-of-the-day-api.md` | `a554df1454a78ad88c41be2495c193922e3f833ef6de247498dc0b47fc417519` |
 | `governance/framework/docs/specs/examples/software-product-fixture/data-model.md` | `bb9cca46f8b67ac09d1a08ffbd6dbde87773e685bff5442b07deac956b139ae4` |
-| `governance/framework/docs/specs/examples/software-product-fixture/plan.md` | `45adb7968559c3dbad189e2c4c2facc240437006592ea3bdef9e2f0f8adc6b9a` |
+| `governance/framework/docs/specs/examples/software-product-fixture/plan.md` | `a3f2c7405fbbdb0de522593f6b22d578a6eec64453a0b82230b8bd55f2948013` |
 | `governance/framework/docs/specs/examples/software-product-fixture/quickstart.md` | `81e51d70362666f73939ac1682e44466f0450e2da4ac874abab0d269bcba6fba` |
 | `governance/framework/docs/specs/examples/software-product-fixture/research.md` | `87be3abe388bef3edd4f232fb94b548380a6cb840595185da9dfc129d89153da` |
 | `governance/framework/docs/specs/examples/software-product-fixture/spec.md` | `59ccaf8e7dc868f08c22b9d40b9ade359d9c8a6ecb98fb0e39c3fc125393fc51` |
@@ -73,15 +73,15 @@ domain-identity and link updates.
 | `governance/framework/docs/specs/template-software/spec.md` | `66997d6991925b1282a9fab783f786a76fe3ff59edab6ad103905073bc03de2e` |
 | `governance/framework/docs/specs/template-software/tasks.md` | `981d9962ef65d584fc4e474b27a66ef9ef82e288150e40dee5a9fbfc20c75954` |
 | `governance/framework/docs/specs/template/plan.md` | `38b450ec2113383d4d93cda4a9e29579d188703b16b433fb698eb3996d521d6e` |
-| `governance/framework/docs/specs/template/spec.md` | `03b8a2a01b18d175efd35849a568927efd9a0d06af5d45c8d35b0fa5aad0b139` |
+| `governance/framework/docs/specs/template/spec.md` | `bcc93f2912d7d905d60aa6384b983d0ae98cc9371d5f92ed1b1f4f31ba37f184` |
 | `governance/framework/docs/specs/template/tasks.md` | `95ec7dc57bc08d9637164a104ff69241ecd57907e750ba77e2a1ff522489efd0` |
 | `governance/framework/knowledge/instructions.md` | `0a6b4c68816b4ed50ada5e02eb5ca292717cb877bee83275e6f3460e97df3347` |
-| `governance/framework/reference/README.md` | `35741acf31336b930c06b50d1687b90056017d4c49eaa8491f4d1a324bf110c0` |
+| `governance/framework/reference/README.md` | `b093d9bad6509fd789183febef38302eb2bc16fafec74f9a57de66ce5c886642` |
 | `governance/framework/standards/deliverables-ownership.md` | `96081c79068ec8cc6a27d67e1c6be21a5793017d281bd144edfd9a0a1a31f51e` |
 | `governance/operations/constitution.md` | `042bb938f1a55576ef4fc41ee85c3175cb820af111bc436c1812f7d30d5f07b6` |
 | `governance/operations/README.md` | `a2a219d4a5df439ac4354ca9fd15b0eccb555872c8c71aaa63edb265ac235bb1` |
 | `governance/operations/docs/specs/README.md` | `f35b789dc49dbb823797fe59299dc7911ba1311b907d8e6d98783202c4fd6dd5` |
-| `governance/operations/docs/specs/examples/operational-capability-fixture/plan.md` | `ad5d838f5503d2748c9ff1e12e6d240b0ad0b5a302ea324f0cb2dd0a60b919c0` |
+| `governance/operations/docs/specs/examples/operational-capability-fixture/plan.md` | `e8eedf5ce248bc677d4821c08846a00db3c53abc9e192972da7dca4679fba110` |
 | `governance/operations/docs/specs/examples/operational-capability-fixture/research.md` | `179a4831261b0afdb0487127a337869060e0d4149fd5cb0843c5bca0380e7973` |
 | `governance/operations/docs/specs/examples/operational-capability-fixture/spec.md` | `44b19fb941f46ef6de107a8df94f097e077d4718deb0065489b13b4b2d7e2958` |
 | `governance/operations/docs/specs/examples/operational-capability-fixture/tasks.md` | `7a58b3ab8c8e00e8cebe52f3a5a241328085425285475a2d2b3ceeed194ea54b` |
@@ -92,7 +92,7 @@ domain-identity and link updates.
 | `governance/operations/records/README.md` | `6d204f3010443c4bbfcbed16e3e7cc51b759afb050d8c034b8b3d38bdce13266` |
 | `governance/operations/records/templates/README.md` | `272abdd6ca92c7ca9f92fcab86a5e5ee205ddaeb12481a20e43629284aa5c819` |
 | `governance/operations/records/templates/control-execution.template.md` | `cfc40cbd4e4aa35bbd04e7b3eed9d0c31946589df3509b9f06db4e1425879630` |
-| `governance/operations/reference/README.md` | `f5d3ea4069f24062c94ad559c123a80a7ead562006def08f5b35421cec0b99c1` |
+| `governance/operations/reference/README.md` | `2856983462f0cec3baf9c48175bdaa287881ed1f47eb9861a9266542c53faf0b` |
 
 ## Validation state
 
