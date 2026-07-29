@@ -26,8 +26,7 @@ presumption. It is NOT a general governance audit log (see §2 scope).
   reviews and tooling sign-offs; drift findings. Repository governed changes are
   audited by GIT HISTORY (the atomic commit and its message) — routine repo commits
   get NO registry row. Governance-control evidence, including evidence pruning,
-  lives in the governance-ops evidence system, never here (the project
-  constitutions' routing tables). Gate 1/Gate 2 evidence lives with the artifacts
+  lives in the adopter-owned evidence system, never here. Gate 1/Gate 2 evidence lives with the artifacts
   it governs (WIP item, promoted artifact, spec/plan).
 - **At write time, not later.** In-scope events get their Event Log entry in the
   same work step that performed them.

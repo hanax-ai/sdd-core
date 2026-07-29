@@ -1,0 +1,333 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.hana-x.ai/sdd-core/v4/project-adoption.schema.json",
+  "title": "SDD-Core project adoption contract",
+  "type": "object",
+  "additionalProperties": false,
+  "propertyNames": {
+    "not": {
+      "pattern": "(?i)(secret|token|password|connectionstring|api[_-]?key)"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "project",
+    "sddCore",
+    "constitution",
+    "authority",
+    "provisions",
+    "integrations",
+    "supersedes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "4.0.0"
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{1,62}$"
+        },
+        "repository": {
+          "type": "string",
+          "pattern": "^https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:\\.git)?$"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40,64}$"
+        }
+      },
+      "required": [
+        "name",
+        "repository",
+        "commit"
+      ]
+    },
+    "sddCore": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "repository": {
+          "const": "https://github.com/hanax-ai/sdd-core.git"
+        },
+        "version": {
+          "const": "4.0.0-rc.1"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40,64}$"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "repository",
+        "version",
+        "commit",
+        "digest"
+      ]
+    },
+    "constitution": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^(?![A-Za-z]:[\\\\/])(?!/)(?!~[\\\\/])[^\\r\\n]+$"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "path",
+        "digest"
+      ]
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "type": "string",
+          "pattern": "^(human|authority):[A-Za-z0-9:._-]+$"
+        },
+        "effectiveAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "reference",
+        "effectiveAt"
+      ]
+    },
+    "provisions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "tailored",
+        "excluded"
+      ],
+      "properties": {
+        "required": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 10,
+          "maxItems": 10,
+          "items": {
+            "enum": [
+              "human-authority",
+              "gate-1",
+              "gate-2",
+              "wip-non-authority",
+              "source-grounding",
+              "no-silent-bypass",
+              "scope-isolation",
+              "cross-repository-boundaries",
+              "adopter-ownership",
+              "tooling-governance"
+            ]
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": "human-authority"
+              }
+            },
+            {
+              "contains": {
+                "const": "gate-1"
+              }
+            },
+            {
+              "contains": {
+                "const": "gate-2"
+              }
+            },
+            {
+              "contains": {
+                "const": "wip-non-authority"
+              }
+            },
+            {
+              "contains": {
+                "const": "source-grounding"
+              }
+            },
+            {
+              "contains": {
+                "const": "no-silent-bypass"
+              }
+            },
+            {
+              "contains": {
+                "const": "scope-isolation"
+              }
+            },
+            {
+              "contains": {
+                "const": "cross-repository-boundaries"
+              }
+            },
+            {
+              "contains": {
+                "const": "adopter-ownership"
+              }
+            },
+            {
+              "contains": {
+                "const": "tooling-governance"
+              }
+            }
+          ]
+        },
+        "tailored": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "treatment",
+              "rationale",
+              "authorityReference"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "not": {
+                  "enum": [
+                    "human-authority",
+                    "gate-1",
+                    "gate-2",
+                    "wip-non-authority",
+                    "source-grounding",
+                    "no-silent-bypass",
+                    "scope-isolation",
+                    "cross-repository-boundaries",
+                    "adopter-ownership",
+                    "tooling-governance"
+                  ]
+                }
+              },
+              "treatment": {
+                "$ref": "#/$defs/safeText"
+              },
+              "rationale": {
+                "$ref": "#/$defs/safeText"
+              },
+              "authorityReference": {
+                "type": "string",
+                "pattern": "^(human|authority):[A-Za-z0-9:._-]+$"
+              }
+            }
+          }
+        },
+        "excluded": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "not": {
+              "enum": [
+                "human-authority",
+                "gate-1",
+                "gate-2",
+                "wip-non-authority",
+                "source-grounding",
+                "no-silent-bypass",
+                "scope-isolation",
+                "cross-repository-boundaries",
+                "adopter-ownership",
+                "tooling-governance"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "integrations": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fusionHarness": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "version": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            },
+            "commit": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40,64}$"
+            }
+          },
+          "required": [
+            "version",
+            "commit"
+          ]
+        },
+        "agentWorkflow": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "version": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            },
+            "commit": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40,64}$"
+            }
+          },
+          "required": [
+            "version",
+            "commit"
+          ]
+        },
+        "ciProfile": {
+          "const": "review-only"
+        }
+      },
+      "required": [
+        "fusionHarness",
+        "agentWorkflow",
+        "ciProfile"
+      ]
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/safeText"
+      },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "safeText": {
+      "type": "string",
+      "minLength": 1,
+      "allOf": [
+        {
+          "not": {
+            "pattern": "(?i)(?:password|token|api[_-]?key|connection[_-]?string)\\s*[:=]\\s*\\S+"
+          }
+        },
+        {
+          "not": {
+            "pattern": "(?i)(?:[a-z]:[\\\\/]+users[\\\\/]+[^\\\\/\\s]+|/home/[^/\\s]+)"
+          }
+        }
+      ]
+    }
+  }
+}

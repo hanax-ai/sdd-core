@@ -137,8 +137,11 @@ content on the strength of WIP text alone; a WIP item MAY track such work
 
 | WIP idea kind | Promotes into |
 |---------------|---------------|
-| Feature idea | `projects/<name>/docs/specs/NNN-feature/` (spec-first lifecycle) |
-| Global process change | Formal workspace proposal (maintainer review) |
+| Framework-definition idea | `governance/framework/docs/specs/NNN-feature/` |
+| Operational-governance idea | `governance/operations/docs/specs/NNN-feature/` |
+| Repository architecture, contract, integration, or bootstrap idea | `docs/specs/NNN-feature/` |
+| Adopter/application idea | The independent adopter repository's governed specification path |
+| Global process change | Formal repository proposal (maintainer review) |
 | Constitutional change | The constitution's Amendment Procedure |
 | New skill or tool | Governed skill/tooling workflow (`skills-creator` part 4 + `knowledge/tooling.md` + Install Registry) |
 | Website idea | The applicable project's specification |
@@ -181,9 +184,9 @@ still `NOT APPROVED` until Gate 1. The index never implies approval.
 
 ## Scope (constitution Article III)
 
-`wip/` is a GLOBAL-tier resource: project-scoped agents may READ it but must not write
-to it, create branches that modify it, or merge WIP changes. Root WIP changes require
-a root-scoped session.
+`wip/` is a GLOBAL-tier resource. Internal-domain agents may read it but require
+explicit GLOBAL scope to modify it. Adopter/application work remains in the
+independent repository that owns it.
 
 ## Validation scenarios (expected behavior)
 

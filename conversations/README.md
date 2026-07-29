@@ -1,72 +1,44 @@
-# Workspace Conversation Records — `conversations/` (GLOBAL tier)
+---
+title: SDD-Core Conversation Records
+status: active
+topic: conversation-routing
+scope: GLOBAL
+---
 
-The canonical location for durable, workspace-relevant conversation records: decisions,
-constraints, and outcomes ratified at the GLOBAL tier that belong to no single
-sub-project (governance changes, cross-project conventions, plan completions, tooling
-decisions).
+# SDD-Core Conversation Records
 
-## Where records belong (unambiguous rule)
+This is the single repository conversation-record home for ratified SDD-Core
+outcomes. Application and adopter conversations remain in their independent
+repositories.
 
-- **Workspace-level record** (governance, cross-project convention, tooling, anything
-  spanning projects) → HERE, `conversations/` at the workspace root.
-- **Project-scoped record** (one sub-project's decisions, constraints, status) →
-  that project's `projects/<name>/conversations/`, per its `SYNC-POLICY.md`.
-- Never both; never another project's directory. When scope is unclear, it is a
-  workspace-level record only if a GLOBAL-tier artifact (root constitution, root
-  registries, README) is affected — otherwise it is project-scoped.
+## Domain routing
 
-## Scope rule (constitution Article III)
+Every record declares exactly one `domain` value:
 
-This directory is a **GLOBAL-tier resource**. Agents scoped to a sub-project treat it
-as READ-ONLY — same rule as every other root-level path. Only an agent explicitly
-operating at root-level (GLOBAL) scope may create or modify records here. A
-project-scoped write into this directory is a constitution violation: revert it, never
-rationalize it.
+- `global` for repository-wide authority and architecture;
+- `framework-definition` for principles, standards, and framework design; or
+- `operational-governance` for procedures, cadences, and evidence operations.
+
+A domain value routes the record; it does not create authority. Cross-domain
+writes require the scope granted by the governing artifact.
 
 ## Usage
 
-1. Read [`SYNC-POLICY.md`](SYNC-POLICY.md) first — it governs what may and must never
-   be recorded.
-2. Copy [`TEMPLATE.md`](TEMPLATE.md) to a new file named per the convention below.
-3. Fill every frontmatter field; summarize — never paste transcripts.
-4. Add one line to the local `_index.md` (create it from the template in this file if
-   absent).
-5. Modifying an existing record: show the diff, get explicit user confirmation first
-   (advisory rule, per policy).
+1. Read [SYNC-POLICY.md](SYNC-POLICY.md).
+2. Copy [TEMPLATE.md](TEMPLATE.md) to
+   `YYYY-MM-DD-<kebab-case-topic>.md`.
+3. Fill every front-matter field and summarize outcomes; never paste a
+   transcript.
+4. Mark discussion without a ratifying artifact as unratified.
+5. Before modifying an existing record, show the exact diff and obtain explicit
+   confirmation.
 
-## Naming convention
+Records and `_index.md` remain machine-local and Git-ignored. Committed
+governance consists only of this README, the policy, and the template.
 
-`YYYY-MM-DD-<kebab-case-topic>.md` — e.g. `2026-07-19-canonical-plan-v3-completion.md`.
-One record per decision/session outcome. Date = the date the recorded outcome was
-ratified, not the writing date.
+## Lifecycle
 
-## Metadata
-
-Every record carries the TEMPLATE.md frontmatter: `title`, `date`, `scope`
-(`workspace`), `status` (`active` | `superseded` | `archived`), `supersedes` /
-`superseded-by` (record filenames or `—`), `related` (specs, plans, commits, registry
-entries). Searchable by plain grep over frontmatter keys.
-
-## Indexing
-
-A local `_index.md` in this directory lists every record, one line each, newest first:
-
-```markdown
-# Index: workspace conversation records
-
-| Record | Date | Status | One-line summary |
-|--------|------|--------|------------------|
-| 2026-07-19-example.md | 2026-07-19 | active | What was decided |
-```
-
-The index and the records are **local to each machine** (git-ignored); only this
-README, `SYNC-POLICY.md`, and `TEMPLATE.md` are committed template content.
-
-## Archival
-
-- A record is never deleted. Supersede it: set `status: superseded` and
-  `superseded-by:` on the old record, `supersedes:` on the new one.
-- Records with no live relevance move to `status: archived` (file stays in place;
-  index row updated).
-- Pruning physical files is a maintainer-only action, recorded in the machine's
-  Install Registry Event Log.
+Records are not deleted. A replacement marks the prior record
+`status: superseded` and cross-links both records. Material with no live
+relevance becomes `archived`. Conversation state never grants Gate, merge,
+release, or implementation authority.
