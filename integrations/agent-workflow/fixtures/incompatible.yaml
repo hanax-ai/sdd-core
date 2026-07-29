@@ -1,0 +1,20 @@
+schemaVersion: "4.0.0"
+integration: "agent-workflow"
+requestedVersion: "1.0.0"
+release:
+  version: "2.0.0"
+  commit: "6666666666666666666666666666666666666666666666666666666666666666"
+  available: true
+  compatible: false
+readiness: "BLOCKED"
+states:
+  registration: "BLOCKED"
+  execution: "DORMANT"
+  evidence: "REFERENCE_ONLY"
+  authority: "NOT_GRANTED"
+execution:
+  modelCalls: false
+  networkAccess: false
+  hookInvocation: false
+  governedMutation: false
+  agentStarts: false
