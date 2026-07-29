@@ -54,7 +54,7 @@ this skill is the operational checklist.
   `registry-logging` skill) and for machine-tier file edits (Gate 6 backup BEFORE
   modification, then the entry).
 - Governance-control evidence never enters the registry — it belongs to the
-  governance-ops evidence system (the constitutions' routing tables).
+  adopter-owned evidence system.
 
 ## 5. Verify
 

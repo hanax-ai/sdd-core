@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.hana-x.ai/sdd-core/v4/agent-workflow-registration.schema.json",
+  "title": "SDD-Core Agent Workflow registration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "registrationId",
+    "repository",
+    "sddCore",
+    "fusionHarness",
+    "compatibility",
+    "authorityReference",
+    "missionReference",
+    "workOrderReference",
+    "evidenceReferences",
+    "outbox",
+    "reconciliation"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "4.0.0" },
+    "registrationId": { "type": "string", "pattern": "^[A-Za-z0-9:._-]+$" },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "commit"],
+      "properties": {
+        "url": { "type": "string", "pattern": "^https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:\\.git)?$" },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{40,64}$" }
+      }
+    },
+    "sddCore": { "$ref": "#/$defs/pinnedComponent" },
+    "fusionHarness": { "$ref": "#/$defs/pinnedComponent" },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verified", "evidenceDigest"],
+      "properties": {
+        "verified": { "type": "boolean" },
+        "evidenceDigest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+      }
+    },
+    "authorityReference": { "type": ["string", "null"] },
+    "missionReference": { "type": ["string", "null"] },
+    "workOrderReference": { "type": ["string", "null"] },
+    "evidenceReferences": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string" }
+    },
+    "outbox": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "pending"],
+      "properties": {
+        "mode": { "const": "reference-only" },
+        "pending": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "reconciliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "lastEvidenceDigest"],
+      "properties": {
+        "state": { "enum": ["CURRENT", "PENDING", "BLOCKED"] },
+        "lastEvidenceDigest": {
+          "type": ["string", "null"],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "pinnedComponent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "commit"],
+      "properties": {
+        "version": { "type": "string" },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{40,64}$" }
+      }
+    }
+  }
+}

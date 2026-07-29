@@ -1,14 +1,17 @@
-# Deliverables — Navigation Index
+---
+title: Deliverables Definition Index
+status: active
+topic: deliverables-ownership
+scope: FRAMEWORK-DEFINITION
+---
 
-Navigation only — this file holds NO authority (paired-model decision, Agent
-Zero, 2026-07-20).
+# Deliverables Definition Index
 
-- **Definitions, roles, decision rights, maintenance rules:**
-  [`projects/governance-framework/standards/deliverables-ownership.md`](../projects/governance-framework/standards/deliverables-ownership.md)
-  (standard ST-001 — the authoritative side).
-- **Actual owners, status, review dates, exceptions:**
-  [`projects/governance-ops/registers/deliverables.md`](../projects/governance-ops/registers/deliverables.md)
-  (the living register).
+Navigation only; this file grants no authority.
 
-Disagreement between the two? The standard governs definitions; the register
-governs assignments; neither is overridden from here.
+The reusable definitions, roles, decision rights, and maintenance rules are in
+[ST-001 Deliverables and Ownership](../governance/framework/standards/deliverables-ownership.md).
+
+Live owners, assignments, status, review dates, exceptions, and portfolio
+deliverables are intentionally absent from SDD-Core. Each independent project or
+authorized coordination system owns that operational state.

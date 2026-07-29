@@ -1,5 +1,8 @@
 # --- Dependencies ---
 node_modules/
+__pycache__/
+*.py[cod]
+.validation-venv/
 
 # --- Logs ---
 *.log
@@ -36,9 +39,9 @@ wip/**/generated/
 # Class 1 (committed): records/README.md (policy), records/templates/** (synthetic only).
 # Class 2 (machine-local): everything else under records/ stays ignored by default.
 # Class 3 (external): only safe references appear in committed files.
-projects/governance-ops/records/*
-!projects/governance-ops/records/README.md
-!projects/governance-ops/records/templates/
-projects/governance-ops/records/templates/*
-!projects/governance-ops/records/templates/README.md
-!projects/governance-ops/records/templates/*.template.md
+governance/operations/records/*
+!governance/operations/records/README.md
+!governance/operations/records/templates/
+governance/operations/records/templates/*
+!governance/operations/records/templates/README.md
+!governance/operations/records/templates/*.template.md

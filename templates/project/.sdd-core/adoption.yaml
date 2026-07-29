@@ -1,0 +1,39 @@
+schemaVersion: "4.0.0"
+project:
+  name: "example-adopter"
+  repository: "https://github.com/example/example-adopter.git"
+  commit: "0000000000000000000000000000000000000000"
+sddCore:
+  repository: "https://github.com/hanax-ai/sdd-core.git"
+  version: "4.0.0-rc.1"
+  commit: "0000000000000000000000000000000000000000"
+  digest: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+constitution:
+  path: ".specify/memory/constitution.md"
+  digest: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+authority:
+  reference: "human:replace-before-adoption"
+  effectiveAt: "1970-01-01T00:00:00Z"
+provisions:
+  required:
+    - "human-authority"
+    - "gate-1"
+    - "gate-2"
+    - "wip-non-authority"
+    - "source-grounding"
+    - "no-silent-bypass"
+    - "scope-isolation"
+    - "cross-repository-boundaries"
+    - "adopter-ownership"
+    - "tooling-governance"
+  tailored: []
+  excluded: []
+integrations:
+  fusionHarness:
+    version: "0.0.0"
+    commit: "0000000000000000000000000000000000000000"
+  agentWorkflow:
+    version: "0.0.0"
+    commit: "0000000000000000000000000000000000000000"
+  ciProfile: "review-only"
+supersedes: []
