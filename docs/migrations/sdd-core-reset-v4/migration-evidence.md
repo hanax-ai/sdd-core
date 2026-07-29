@@ -1,6 +1,6 @@
 ---
 title: SDD-Core Reset v4 Migration Evidence
-status: merged-release-transition
+status: released-activation-blocked
 topic: reset-migration-provenance
 scope: GLOBAL
 base_commit: d3363238bb2d2f513f09b364926ff4146cc376ff
@@ -133,6 +133,8 @@ The post-T024 transition resolves that identity and the remote results.
 | Post-closure CodeRabbit | **PASS** — PR #17 status success; exact-tree implementation PR #18 and evidence-closure [PR #19](https://github.com/hanax-ai/sdd-core/pull/19#issuecomment-5113924149) produced no actionable findings | T024 handoff |
 | Merge commit | `98c3c8fdfd77e9361911d97050c5a42dc5adc1b2`, tree `c68fdc7a43d60272497519005037f729a79dc12b` | Separate Agent Zero merge authority |
 | Post-merge release-branch CI | **PASS** — [run 30428563050](https://github.com/hanax-ai/sdd-core/actions/runs/30428563050) | Post-merge transition |
+| Release | [v4.0.0-rc.1](https://github.com/hanax-ai/sdd-core/releases/tag/v4.0.0-rc.1) — commit `61d51a7f8f3d43397678073e9ba6dc21770c2c27`, tree `2e93ff1415a97bf0dd17c16ccca5bb259a90962a` | Separate Agent Zero release authority |
+| Post-release main CI | **PASS** — [run 30429349490](https://github.com/hanax-ai/sdd-core/actions/runs/30429349490) | Release verification |
 
 The path map closes all **60/60** source dispositions. All **39** moved-target
 hashes were recomputed and match this atomic tree. The CentCom preservation
@@ -146,8 +148,8 @@ package remains the separately owned external dependency recorded above.
 - Machine-tier independent-repository conversation routing remains deferred.
 - Agentic remediation, Autofix, scheduling, Harness remediation, automatic
   commit/push/PR/merge, release, and deployment remain disabled.
-- Release work may proceed under the later authority, but adopter readiness and
-  runtime activation remain `BLOCKED` until compatible immutable Fusion Harness
-  and Agent Workflow releases are verified.
+- SDD-Core `v4.0.0-rc.1` is published. Adopter readiness and runtime activation
+  remain `BLOCKED` until compatible immutable Fusion Harness and Agent Workflow
+  releases are verified.
 
 See [rollback.md](rollback.md) for recovery boundaries.
