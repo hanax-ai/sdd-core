@@ -1028,10 +1028,12 @@ git status
   192 staged paths; zero unstaged paths; zero untracked paths
 ```
 
-The delta from the accepted R9 tree
-`da824533304bf9cec9632dbbd7e01872314ba619` contains exactly four paths:
-the Claude and Codex record-mining hooks, the deterministic validator, and
-migration evidence. There is no unrelated or external-repository change.
+Before the reviewer-owned R10 record edit, the candidate delta from the
+accepted R9 tree `da824533304bf9cec9632dbbd7e01872314ba619` contained exactly
+four remediation paths: the Claude and Codex record-mining hooks, the
+deterministic validator, and migration evidence. The review edit adds only
+this `independent-review.md` as the fifth path. There is no unrelated or
+external-repository change.
 
 ### PR #12 findings
 
