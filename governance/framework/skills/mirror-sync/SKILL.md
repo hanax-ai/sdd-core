@@ -12,16 +12,22 @@ an implementation aid.
 
 ## 1. Targets
 
-Inside SDD-Core, exactly two mirror locations are recognized by the
-constitution and registries:
+Within the FRAMEWORK-DEFINITION scope, exactly two mirror locations are
+recognized by the constitution and registries:
 
 - **Global:** `reference/repos/` (workspace root) — framework source/doc mirrors shared by
   all internal domains and adopters.
 - **Domain:** `governance/framework/reference/` — domain-specific mirrors (e.g.
   pinned exports of external standards or framework documents).
 
-No other directory is a mirror. Never treat ad-hoc clones, node_modules, or files found
-elsewhere on disk as grounding sources.
+For OPERATIONAL-GOVERNANCE lookups, resolve the GLOBAL registry first, then
+use its registered operations registry and reference tree:
+`governance/operations/knowledge/instructions.md` and
+`governance/operations/reference/`. That operations tree is not a third
+FRAMEWORK-DEFINITION mirror location.
+
+No other directory within the applicable scope is a mirror. Never treat ad-hoc
+clones, node_modules, or files found elsewhere on disk as grounding sources.
 
 When operating in an adopter repository, validate its adoption binding first,
 then treat its adopter-owned `knowledge/instructions.md` as a final lookup
@@ -33,10 +39,13 @@ Resolution order per the Lookup Protocol (global playbook §3):
 
 1. **Global registry first:** the Mirror Registry table in
    `knowledge/instructions.md` §1.
-2. **Domain refinements next:** the Markdown registry table in
-   `governance/framework/knowledge/instructions.md` §4. Its rows may refine
-   domain-local use but never override GLOBAL identity, pin, digest, or
-   authority; conflicts stop the lookup.
+2. **Applicable domain refinements next:** the Markdown registry table in
+   `governance/framework/knowledge/instructions.md` §4 for
+   FRAMEWORK-DEFINITION or
+   `governance/operations/knowledge/instructions.md` §4 for
+   OPERATIONAL-GOVERNANCE. Its rows may refine domain-local use but never
+   override GLOBAL identity, pin, digest, or authority; conflicts stop the
+   lookup.
 3. **Per-document manifests:** the `_index.md` manifest mandated by playbook §2 for every
    sliced document — the only authority on what slices exist and what each covers.
 4. **Adopter registry last, when operating in an adopter:** after validating
@@ -63,9 +72,12 @@ Run these checks during every lookup. On failure: report precisely, stop
 framework-dependent work. Never reconstruct an API from memory, never silently continue.
 
 - **(a) Framework absent from every applicable registry** (global §1 then domain §4):
-  record a `[NO MIRROR]` entry in the ambiguities block of the active feature spec
-  (`governance/framework/docs/specs/<NNN>-<feature>/spec.md`), naming the missing framework
-  and the blocked decision. If no feature folder exists yet, report to the operator and
+  record a `[NO MIRROR]` entry in the ambiguities block of the active feature spec for
+  the applicable scope: `governance/framework/docs/specs/<NNN>-<feature>/spec.md`
+  for FRAMEWORK-DEFINITION or
+  `governance/operations/docs/specs/<NNN>-<feature>/spec.md` for
+  OPERATIONAL-GOVERNANCE, naming the missing framework and the blocked decision.
+  If no feature folder exists yet, report to the operator and
   log to the machine Install Registry's Event Log (`~/.sdd-core-ops/INSTALL-REGISTRY.md`)
   until a spec exists to carry the entry.
 - **(b) Registry row whose Local Mirror Path is missing on disk:** the row is unusable —

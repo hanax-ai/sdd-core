@@ -19,11 +19,13 @@ Before consequential implementation, validate the
 [adoption record](.sdd-core/adoption.yaml), then load the constitution,
 [knowledge instructions](knowledge/instructions.md), and
 [conversation policy](conversations/SYNC-POLICY.md). Require the matching
-approved specification, its reviewed plan, the derived tasks, the exact
-mission envelope, and the Gate 2 directive that identifies those same
-artifacts and immutable revision or digest. Stop on any identity, revision,
-digest, scope, authority, Gate 2, or policy mismatch.
+approved specification, its reviewed plan, and the derived tasks. Require the
+Gate 2 directive that identifies the reviewed plan and its immutable revision
+or digest, then independently verify the exact mission envelope as the execution boundary.
+Stop on any identity, revision, digest, scope, authority, Gate 2, mission, or
+policy mismatch.
 
 Treat WIP, readiness, validation, review, CI, Workflow, and Harness state as
 non-authoritative. Make only the changes jointly permitted by the matching
-specification, reviewed plan, tasks, exact mission, and exact Gate 2 identity.
+specification, reviewed plan, tasks, exact mission envelope, and plan-bound
+Gate 2 identity.

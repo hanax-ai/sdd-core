@@ -592,6 +592,16 @@ def validate_workflow_policy_fixtures() -> list[str]:
 def validate_record_mining_hook() -> list[str]:
     failures: list[str] = []
     hook = ROOT / ".claude/hooks/record-mining-reminder.sh"
+    hook_paths = (
+        hook,
+        ROOT / ".codex/hooks/record-mining-reminder.sh",
+    )
+    for hook_path in hook_paths:
+        if "realpath -m" in hook_path.read_text(encoding="utf-8-sig"):
+            failures.append(
+                f"record-mining hook uses GNU-only realpath -m: "
+                f"{hook_path.relative_to(ROOT)}"
+            )
     bash = shutil.which("bash")
     if os.name == "nt":
         git_bash = (
@@ -626,6 +636,30 @@ def validate_record_mining_hook() -> list[str]:
                 }
             ),
             True,
+        ),
+        (
+            "parent-normalized-root-path",
+            json.dumps(
+                {
+                    "tool_input": {
+                        "file_path": (
+                            "conversations/archive/../parent-record.md"
+                        )
+                    }
+                }
+            ),
+            True,
+        ),
+        (
+            "parent-escape-path",
+            json.dumps(
+                {
+                    "tool_input": {
+                        "file_path": "conversations/../outside-record.md"
+                    }
+                }
+            ),
+            False,
         ),
         (
             "nested-path",
@@ -866,6 +900,45 @@ def validate_domain_guidance() -> list[str]:
     ):
         if prohibited in combined:
             failures.append(f"domain guidance retains stale identity/path: {prohibited}")
+
+    mirror_sync = (
+        ROOT / "governance/framework/skills/mirror-sync/SKILL.md"
+    ).read_text(encoding="utf-8-sig")
+    for required in (
+        "Within the FRAMEWORK-DEFINITION scope",
+        "governance/operations/knowledge/instructions.md",
+        "governance/operations/reference/",
+        "governance/framework/docs/specs/<NNN>-<feature>/spec.md",
+        "governance/operations/docs/specs/<NNN>-<feature>/spec.md",
+    ):
+        if required not in mirror_sync:
+            failures.append(
+                f"mirror-sync lacks scoped operations routing: {required}"
+            )
+
+    wip_policy = (ROOT / "templates/project/wip/README.md").read_text(
+        encoding="utf-8-sig"
+    )
+    gate_2_shape = (
+        "`Approved for implementation: "
+        "<exact-reviewed-plan-path>@<immutable-revision-or-digest>`"
+    )
+    if gate_2_shape not in wip_policy:
+        failures.append("adopter WIP Gate 2 does not identify only the reviewed plan")
+    if "<exact-specification-path> + <exact-reviewed-plan-path>" in wip_policy:
+        failures.append("adopter WIP Gate 2 improperly includes the specification")
+
+    adopter_agents = (ROOT / "templates/project/AGENTS.md").read_text(
+        encoding="utf-8-sig"
+    )
+    for required in (
+        "Gate 2 directive that identifies the reviewed plan and its immutable",
+        "independently verify the exact mission envelope as the execution boundary",
+    ):
+        if required not in adopter_agents:
+            failures.append(
+                f"adopter adapter lacks Gate 2/mission separation: {required}"
+            )
     return failures
 
 

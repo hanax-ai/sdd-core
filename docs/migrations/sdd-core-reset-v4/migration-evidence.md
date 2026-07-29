@@ -54,7 +54,7 @@ domain-identity and link updates.
 
 | Target | SHA-256 |
 |---|---|
-| `governance/framework/skills/mirror-sync/SKILL.md` | `460cdd60b4ae71fb3ec88ac0aeec8b7701d3bd968634fca107501fa58564308f` |
+| `governance/framework/skills/mirror-sync/SKILL.md` | `bc959b9b0fac7f64676f259fd1af4317b24a9469508c9a7ae1450a9224ba2084` |
 | `governance/framework/skills/skills-creator/SKILL.md` | `d15d206442eb9c67c7c2a6d7b24e86439673c251ce9ea12128d640044edb888e` |
 | `governance/framework/constitution.md` | `3b3a311b5f29662cf1b8721aa2cb164fb64548a1f3e6d93620a951120fca7216` |
 | `governance/framework/README.md` | `fecab625c90546e169d884072cd64c5cacdd873ffff324ba43bd643467b4e714` |

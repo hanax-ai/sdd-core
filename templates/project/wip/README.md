@@ -21,11 +21,12 @@ Promotion requires this exact human Gate 1 shape:
 It identifies the exact WIP item, target artifact, and immutable revision.
 Implementation requires this separate exact human Gate 2 shape:
 
-`Approved for implementation: <exact-specification-path> + <exact-reviewed-plan-path>@<immutable-revision-or-digest>`
+`Approved for implementation: <exact-reviewed-plan-path>@<immutable-revision-or-digest>`
 
-It identifies the exact approved specification and reviewed plan plus their
-immutable revision or digest. Praise, discussion, review completion, or a
-passing check is not approval.
+It identifies the exact reviewed implementation plan plus its immutable
+revision or digest. The approved specification and derived tasks remain
+required lifecycle inputs but are not added to the Gate 2 directive. Praise,
+discussion, review completion, or a passing check is not approval.
 
 Follow the [constitution](../.specify/memory/constitution.md) and preserve
 durable context under the [conversation policy](../conversations/SYNC-POLICY.md).

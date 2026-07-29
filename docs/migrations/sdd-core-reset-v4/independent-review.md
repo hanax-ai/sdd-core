@@ -3,9 +3,9 @@ title: SDD-Core Reset v4 Independent Governance and Preservation Review
 status: completed
 topic: independent-reset-review
 scope: GLOBAL
-reviewed_on: 2026-07-28
+reviewed_on: 2026-07-29
 reviewer_role: independent-codex-reviewer
-review_round: R7
+review_round: R9
 verdict: ACCEPT
 base_commit: d3363238bb2d2f513f09b364926ff4146cc376ff
 planning_commit: cc4f4b17ccca428334689cc5ab381741470168c0
@@ -14,9 +14,10 @@ plan_sha256: C83198CE8CDAA85E27696273A2DE13F543D8CB1B45C2AD91FA753ECE4735354D
 
 # SDD-Core Reset v4 Independent Governance and Preservation Review
 
-> **Historical review notice (PR #7 remediation):** R1-R6 below are preserved
+> **Historical review notice (PR #7 remediation):** R1-R7 below are preserved
 > as the review history of earlier candidate trees. The front matter identifies
-> R7 as the current review, while R6 is the latest historical round. Their
+> R9 as the current review. R8 was rejected before a review-record edit; the R9
+> section records verification of its correction. The earlier rounds'
 > repository-local `.validation-venv` assessment is superseded and is not a
 > current validation-environment claim. The review-remediation tree uses a
 > private, unpredictable, process-scoped temporary environment outside the
@@ -893,3 +894,113 @@ exact parent `cc4f4b17ccca428334689cc5ab381741470168c0` and rerun
 verification. Merge, release, deployment, adopter changes, external-repository
 mutation, review-thread resolution, and T023 evidence closure remain outside
 this verdict.
+
+## R9 final atomic-tree review
+
+R9 is a fresh T021 review of the complete staged atomic candidate after the R8
+mirror-routing blocker was remediated. It does not infer acceptance from prior
+reviews or from deterministic checks alone.
+
+### Exact pre-review baseline
+
+```text
+git rev-parse HEAD
+  cc4f4b17ccca428334689cc5ab381741470168c0
+
+git rev-parse HEAD^
+  d3363238bb2d2f513f09b364926ff4146cc376ff
+
+git write-tree
+  53efc9e6f776e18a88ab8baddb4cfe17a64c5409
+
+git status
+  192 staged paths; zero unstaged paths; zero untracked paths
+```
+
+The staged candidate is based directly on the exact planning commit. Its final
+remediation delta from the accepted R7 implementation tree contains exactly
+eight paths: the two record-mining hooks, mirror-sync skill, adopter AGENTS and
+WIP templates, deterministic validator, verifier, and migration evidence.
+
+### R8 blocker and PR #10 findings
+
+| Review area | R9 result |
+|---|---|
+| Applicable-domain no-mirror routing | **PASS** — failure evidence routes to the active FRAMEWORK-DEFINITION or OPERATIONAL-GOVERNANCE feature specification |
+| Mirror scope | **PASS** — the two-location rule is scoped to FRAMEWORK-DEFINITION while the registered operations registry and reference tree remain valid |
+| Portable hook normalization | **PASS** — both hooks use Python canonicalization, contain no GNU-only `realpath -m`, and remain byte-identical |
+| Hook containment and routing | **PASS** — root-relative, absolute, parent-normalized, parent-escape, nested, legacy-project, and malformed-input cases produce the required outcomes |
+| Gate 2 identity | **PASS** — the adopter directive binds the exact reviewed plan and immutable identity |
+| Mission separation | **PASS** — specification and tasks remain lifecycle inputs while the exact mission envelope is independently verified as the execution boundary |
+
+The R8 blocker is fully resolved. Mirror-sync names both applicable feature
+specification paths, and deterministic validation requires both. No prior PR
+#10 correction regressed.
+
+### Deterministic verification
+
+Fresh focused and full verification produced:
+
+```text
+python scripts/validate-contracts.py --slice static
+  PASS: static contract fixtures
+  exit 0
+
+bash -n verify-layout.sh
+  exit 0
+
+bash verify-layout.sh
+  PASS: adoption, authority, evidence, harness, workflow, template, static contract fixtures
+  RESULT: 100% compliance — all 122 deterministic checks pass.
+  exit 0
+
+git diff --cached --check
+  exit 0
+
+git diff --check
+  exit 0
+```
+
+The dependency-missing path used only the exact hash-locked requirements in an
+unpredictable process-scoped temporary environment outside the repository.
+Automatic cleanup left zero matching temporary directories and no
+repository-local validation environment.
+
+### Frozen authority, evidence, and atomic scope
+
+```text
+plan.md
+  HEAD/index blob: e58e7b6d3bc464b9e0012ad5454aacce30189bad
+  SHA-256: C83198CE8CDAA85E27696273A2DE13F543D8CB1B45C2AD91FA753ECE4735354D
+
+spec.md
+  HEAD/index blob: 4e828d515df0ce7884bb178a789e2d46cd0197ad
+  SHA-256: FD879701164A7CA6A2CD1C4502CD8C7B86E4AA9E7EB76535F967A5AA11FC5FF7
+
+tasks.md
+  HEAD/index blob: 9542fbb4217d11aa30b84baf5b5f77f0bf67aa21
+  SHA-256: 5ABADE413453836D49E0FAF80A6E7D3378466479086D329BF29AA8ECA0C6F914
+
+mirror-sync actual and recorded SHA-256
+  bc959b9b0fac7f64676f259fd1af4317b24a9469508c9a7ae1450a9224ba2084
+
+tracked projects/ paths
+  0
+```
+
+The complete migration-closure validation remains successful, including all
+60 source dispositions and 39 moved-target hashes. The atomic migration
+commit/tree, draft PR, Linux/Windows CI, CodeRabbit verdict, independent
+verdict, and evidence-closure fields remain in their required T023-deferred
+states. No implementation file outside the eight-path final remediation delta,
+external repository, machine-tier state, pull request, review thread, merge,
+release, or deployment was changed by R9.
+
+**R9 verdict: ACCEPT.** No blocking governance, contract, portability,
+preservation, security, scope, atomicity, or evidence-boundary finding remains
+in the prepared staged tree. T022 may create the one atomic implementation
+commit with exact parent
+`cc4f4b17ccca428334689cc5ab381741470168c0` and rerun verification. Merge,
+release, deployment, adopter changes, external-repository mutation,
+review-thread resolution, and T023 evidence closure remain outside this
+verdict.

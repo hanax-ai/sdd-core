@@ -46,14 +46,30 @@ case "$fp" in
   /*) ;;
   *) fp="$root/$fp" ;;
 esac
-command -v realpath >/dev/null 2>&1 || exit 0
-fp=$(realpath -m -- "$fp" 2>/dev/null) || exit 0
-parent=${fp%/*}
-base=${fp##*/}
-case "$parent" in
-  "$root/conversations") ;;
-  *) exit 0 ;;
+python_root=$root
+python_fp=$fp
+case "$(uname -s 2>/dev/null)" in
+  MINGW* | MSYS*)
+    python_root=$(cygpath -m -- "$root" 2>/dev/null) || exit 0
+    case "$fp" in
+      "$root"/*) python_fp="$python_root/${fp#"$root"/}" ;;
+      *) python_fp=$(cygpath -m -- "$fp" 2>/dev/null) || exit 0 ;;
+    esac
+    ;;
 esac
+base=$(
+  "$json_python" -c '
+import os
+import sys
+
+candidate = os.path.realpath(sys.argv[1])
+root = os.path.realpath(sys.argv[2])
+conversation_root = os.path.realpath(os.path.join(root, "conversations"))
+if os.path.normcase(os.path.dirname(candidate)) != os.path.normcase(conversation_root):
+    raise SystemExit(1)
+sys.stdout.write(os.path.basename(candidate))
+' "$python_fp" "$python_root"
+) || exit 0
 case "$base" in
   README.md | SYNC-POLICY.md | TEMPLATE.md | _index.md) exit 0 ;;
 esac
