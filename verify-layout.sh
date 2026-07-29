@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-# verify-layout.sh — validate the sdd-core SDD workspace structure.
-# Prints [OK] / [MISSING] for every required path, a compliance summary,
-# then a directory tree visualization.
+# Deterministic SDD-Core v4 structure and contract verifier.
 set -u
 cd "$(dirname "$0")" || exit 1
 
@@ -10,278 +8,223 @@ REQUIRED_PATHS=(
   "LICENSE"
   "AGENTS.md"
   "README.md"
-  "verify-layout.sh"
+  "CONTRIBUTING.md"
+  "SECURITY.md"
+  "CHANGELOG.md"
   ".specify/memory/constitution.md"
   "knowledge/instructions.md"
-  "docs"
-  "docs/proposals"
-  "docs/proposals/evidence-based-skill-lifecycle.md"
-  "docs/deliverables-index.md"
-  "reference"
-  "reference/repos"
-  "projects"
-  "projects/governance-framework/README.md"
-  "projects/governance-framework/.specify/memory/constitution.md"
-  "projects/governance-framework/docs/specs"
-  "projects/governance-framework/docs/specs/template/spec.md"
-  "projects/governance-framework/docs/specs/template/plan.md"
-  "projects/governance-framework/docs/specs/template/tasks.md"
-  "projects/governance-framework/docs/specs/template-software/spec.md"
-  "projects/governance-framework/docs/specs/template-software/plan.md"
-  "projects/governance-framework/docs/specs/template-software/tasks.md"
-  "projects/governance-framework/docs/specs/examples/normative-standard-fixture/spec.md"
-  "projects/governance-framework/docs/specs/examples/normative-standard-fixture/plan.md"
-  "projects/governance-framework/docs/specs/examples/normative-standard-fixture/tasks.md"
-  "projects/governance-framework/docs/specs/examples/software-product-fixture/spec.md"
-  "projects/governance-framework/docs/specs/examples/software-product-fixture/plan.md"
-  "projects/governance-framework/docs/specs/examples/software-product-fixture/tasks.md"
-  "projects/governance-framework/docs/specs/examples/software-product-fixture/research.md"
-  "projects/governance-framework/docs/specs/examples/software-product-fixture/data-model.md"
-  "projects/governance-framework/docs/specs/examples/software-product-fixture/contracts/message-of-the-day-api.md"
-  "projects/governance-framework/docs/specs/examples/software-product-fixture/quickstart.md"
-  "projects/governance-framework/knowledge/instructions.md"
-  "projects/governance-framework/reference"
-  "projects/governance-framework/standards/deliverables-ownership.md"
-  "projects/governance-framework/.claude/skills/mirror-sync/SKILL.md"
-  "projects/governance-framework/.claude/skills/skills-creator/SKILL.md"
-  "projects/governance-framework/conversations/SYNC-POLICY.md"
-  "projects/governance-framework/conversations"
   "knowledge/tooling.md"
-  "conversations"
   "conversations/README.md"
   "conversations/SYNC-POLICY.md"
   "conversations/TEMPLATE.md"
-  "wip"
   "wip/README.md"
   "wip/TEMPLATE.md"
   "wip/COLLABORATION.md"
   "wip/_index.md"
-  ".claude/skills/conversation-records/SKILL.md"
-  ".claude/skills/session-capture/SKILL.md"
-  ".claude/skills/governed-change/SKILL.md"
-  ".claude/skills/governed-change/scripts/commit-governed.sh"
-  ".claude/skills/registry-logging/SKILL.md"
-  ".claude/skills/wip-item-bookkeeping/SKILL.md"
-  ".claude/skills/constitution-amendment/SKILL.md"
-  ".claude/hooks/skill-reminder.sh"
-  ".claude/hooks/record-mining-reminder.sh"
+  "governance/framework/README.md"
+  "governance/framework/constitution.md"
+  "governance/framework/ownership.md"
+  "governance/framework/docs/specs/template/spec.md"
+  "governance/framework/docs/specs/template/plan.md"
+  "governance/framework/docs/specs/template/tasks.md"
+  "governance/framework/docs/specs/template-software/spec.md"
+  "governance/framework/docs/specs/template-software/plan.md"
+  "governance/framework/docs/specs/template-software/tasks.md"
+  "governance/framework/knowledge/instructions.md"
+  "governance/framework/standards/deliverables-ownership.md"
+  "governance/framework/skills/mirror-sync/SKILL.md"
+  "governance/framework/skills/skills-creator/SKILL.md"
+  "governance/operations/README.md"
+  "governance/operations/constitution.md"
+  "governance/operations/ownership.md"
+  "governance/operations/docs/specs/template/spec.md"
+  "governance/operations/docs/specs/template/plan.md"
+  "governance/operations/docs/specs/template/tasks.md"
+  "governance/operations/knowledge/instructions.md"
+  "governance/operations/records/README.md"
+  "governance/operations/records/templates/control-execution.template.md"
+  "contracts/adoption/README.md"
+  "contracts/adoption/project-adoption.schema.json"
+  "contracts/adoption/fixtures/valid"
+  "contracts/adoption/fixtures/invalid"
+  "contracts/authority/README.md"
+  "contracts/authority/mission-envelope.schema.json"
+  "contracts/authority/trust-profiles.json"
+  "contracts/authority/fixtures/valid"
+  "contracts/authority/fixtures/invalid"
+  "contracts/evidence/README.md"
+  "contracts/evidence/evidence-envelope.schema.json"
+  "contracts/evidence/fixtures/valid"
+  "contracts/evidence/fixtures/invalid"
+  "templates/project/.sdd-core/adoption.yaml"
+  "templates/project/.specify/memory/constitution.md"
+  "templates/project/conversations/SYNC-POLICY.md"
+  "templates/project/knowledge/instructions.md"
+  "templates/project/wip/README.md"
+  "templates/project/AGENTS.md"
+  "templates/project/CLAUDE.md"
+  "templates/project/README.md"
+  "bootstrap/new-project.md"
+  "integrations/fusion-harness/README.md"
+  "integrations/fusion-harness/binding.schema.json"
+  "integrations/fusion-harness/compatibility.yaml"
+  "integrations/fusion-harness/fixtures"
+  "integrations/agent-workflow/README.md"
+  "integrations/agent-workflow/registration.schema.json"
+  "integrations/agent-workflow/status.schema.json"
+  "integrations/agent-workflow/fixtures"
+  "integrations/ci-cd/README.md"
+  "docs/migrations/sdd-core-reset-v4/path-map.yaml"
+  "docs/migrations/sdd-core-reset-v4/artifact-inventory.md"
+  "docs/migrations/sdd-core-reset-v4/validation-catalog.md"
+  "docs/migrations/sdd-core-reset-v4/adapter-comparison.md"
+  "docs/migrations/sdd-core-reset-v4/migration-evidence.md"
+  "docs/migrations/sdd-core-reset-v4/rollback.md"
+  "docs/specs/001-sdd-core-reset/records/implementation-authorization.md"
+  "requirements-validation.txt"
+  "scripts/validate-contracts.py"
   ".claude/settings.json"
-  ".agents/skills/conversation-records/SKILL.md"
-  ".agents/skills/session-capture/SKILL.md"
-  ".agents/skills/governed-change/SKILL.md"
-  ".agents/skills/governed-change/scripts/commit-governed.sh"
-  ".agents/skills/registry-logging/SKILL.md"
-  ".agents/skills/wip-item-bookkeeping/SKILL.md"
-  ".agents/skills/constitution-amendment/SKILL.md"
   ".codex/hooks.json"
-  ".codex/hooks/skill-reminder.sh"
-  ".codex/hooks/record-mining-reminder.sh"
   ".github/workflows/verify-layout.yml"
   ".github/pull_request_template.md"
   ".github/ISSUE_TEMPLATE/bug-report.md"
   ".github/ISSUE_TEMPLATE/idea.md"
-  "CONTRIBUTING.md"
-  "SECURITY.md"
-  "CHANGELOG.md"
-  "projects/governance-ops/README.md"
-  "projects/governance-ops/.specify/memory/constitution.md"
-  "projects/governance-ops/docs/specs"
-  "projects/governance-ops/docs/specs/template/spec.md"
-  "projects/governance-ops/docs/specs/template/plan.md"
-  "projects/governance-ops/docs/specs/template/tasks.md"
-  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/spec.md"
-  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/plan.md"
-  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/tasks.md"
-  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/research.md"
-  "projects/governance-ops/knowledge/instructions.md"
-  "projects/governance-ops/reference"
-  "projects/governance-ops/conversations"
-  "projects/governance-ops/conversations/SYNC-POLICY.md"
-  "projects/governance-ops/registers/README.md"
-  "projects/governance-ops/registers/deliverables.md"
-  "projects/governance-ops/records/README.md"
-  "projects/governance-ops/records/templates/README.md"
-  "projects/governance-ops/records/templates/control-execution.template.md"
 )
 
 missing=0
-total=${#REQUIRED_PATHS[@]}
-echo "Verifying sdd-core workspace layout..."
-echo
-for p in "${REQUIRED_PATHS[@]}"; do
-  if [ -e "$p" ]; then
-    printf '[OK]      %s\n' "$p"
+total=0
+
+pass_check() {
+  total=$((total + 1))
+  printf '[OK]      %s\n' "$1"
+}
+
+fail_check() {
+  total=$((total + 1))
+  missing=$((missing + 1))
+  printf '[FAIL]    %s\n' "$1"
+}
+
+check_content() {
+  if [ -f "$1" ] && grep -Eq "$2" "$1"; then
+    pass_check "$1: $3"
   else
-    printf '[MISSING] %s\n' "$p"
-    missing=$((missing + 1))
+    fail_check "$1: $3"
+  fi
+}
+
+check_absent() {
+  if [ -f "$1" ] && ! grep -Eq "$2" "$1"; then
+    pass_check "$1: $3"
+  else
+    fail_check "$1: $3"
+  fi
+}
+
+echo "Verifying SDD-Core v4 target layout..."
+for path in "${REQUIRED_PATHS[@]}"; do
+  if [ -e "$path" ]; then
+    pass_check "$path"
+  else
+    fail_check "$path"
   fi
 done
 
 echo
-echo "Verifying collaborative WIP items..."
-echo
+echo "Verifying WIP package shape..."
 ITEM_REQUIRED=("README.md" "contributions/README.md" "coordination/README.md" "coordination/claims/README.md" "supporting-materials")
 for item in wip/[0-9]*/; do
   [ -d "$item" ] || continue
   name=$(basename "$item")
-  for req in "${ITEM_REQUIRED[@]}"; do
-    total=$((total + 1))
-    if [ -e "$item$req" ]; then
-      printf '[OK]      %s%s\n' "$item" "$req"
+  for required in "${ITEM_REQUIRED[@]}"; do
+    if [ -e "$item$required" ]; then
+      pass_check "$item$required"
     else
-      printf '[MISSING] %s%s\n' "$item" "$req"
-      missing=$((missing + 1))
+      fail_check "$item$required"
     fi
   done
-  total=$((total + 1))
   if grep -q "^| $name " wip/_index.md 2>/dev/null; then
-    printf '[OK]      %s indexed in wip/_index.md\n' "$name"
+    pass_check "$name indexed in wip/_index.md"
   else
-    printf '[MISSING] %s row in wip/_index.md\n' "$name"
-    missing=$((missing + 1))
+    fail_check "$name indexed in wip/_index.md"
   fi
 done
 
 echo
-echo "Verifying constitutional invariants (content checks)..."
-echo
-ROOT_CONST=".specify/memory/constitution.md"
-FW_CONST="projects/governance-framework/.specify/memory/constitution.md"
-OPS_CONST="projects/governance-ops/.specify/memory/constitution.md"
-
-check_content() {
-  # $1 = file, $2 = grep -E pattern, $3 = label
-  total=$((total + 1))
-  if [ -f "$1" ] && grep -Eq "$2" "$1"; then
-    printf '[OK]      %s: %s\n' "$1" "$3"
+echo "Verifying migration boundaries..."
+if tracked_projects=$(git ls-files projects 2>/dev/null); then
+  if [ -z "$tracked_projects" ]; then
+    pass_check "no tracked projects/ artifacts"
   else
-    printf '[MISSING] %s: %s\n' "$1" "$3"
-    missing=$((missing + 1))
+    fail_check "tracked projects/ artifacts remain"
+    printf '%s\n' "$tracked_projects"
   fi
-}
-
-# Version footers (pattern, not pinned number — amendments must keep the shape)
-for c in "$ROOT_CONST" "$FW_CONST" "$OPS_CONST"; do
-  check_content "$c" '^\*\*Version\*\*: [0-9]+\.[0-9]+\.[0-9]+ \| \*\*Ratified\*\*: [0-9]{4}-[0-9]{2}-[0-9]{2} \| \*\*Last Amended\*\*: [0-9]{4}-[0-9]{2}-[0-9]{2}$' 'SemVer version footer'
-done
-# Root GLOBAL supremacy + non-delegable gates + inheritance strictness (both projects)
-for c in "$FW_CONST" "$OPS_CONST"; do
-  check_content "$c" 'Root GLOBAL supremacy' 'Root GLOBAL supremacy statement'
-  check_content "$c" 'cannot be delegated' 'non-delegable gate authority'
-  check_content "$c" 'stricter rule' 'stricter-rule inheritance clause'
-  check_content "$c" '\| Root constitution, WIP policy, tooling declaration, workspace proposals \| Root GLOBAL \|' 'three-way routing table sentinel row'
-done
-# Layer boundary tests
-check_content "$FW_CONST" 'Definitional-Artifact Test' 'framework boundary test article'
-check_content "$OPS_CONST" 'Execution-Evidence Test' 'ops boundary test article'
-check_content "$OPS_CONST" 'Evidence classes' 'evidence-class definitions'
-check_content "$OPS_CONST" 'One-way dependency contract' 'one-way dependency contract'
-# Root constitution load-bearing articles
-check_content "$ROOT_CONST" 'Isolated Agent Scopes' 'Article III present'
-check_content "$ROOT_CONST" 'Authoritative-Source Grounding' 'Article IV present'
-check_content "$ROOT_CONST" 'Inference Governance'   'Article I present'
-check_content "$ROOT_CONST" 'Persistence Governance' 'Article II present'
-check_content "$ROOT_CONST" 'Methodology Core & Adoption' 'methodology-core section present'
-check_content "$ROOT_CONST" 'adoption manifest' 'adoption-manifest definition present'
-check_content "$ROOT_CONST" 'silently omitted, renamed away, collapsed, or bypassed' 'no-silent-bypass rule present'
-check_content "$ROOT_CONST" 'No shared operational database' 'shared-database prohibition present'
-# Gate directive formats (wip policy)
-check_content "wip/README.md" 'Approved for promotion:' 'Gate 1 directive format'
-check_content "wip/README.md" 'Approved for implementation:' 'Gate 2 directive format'
-# Paired deliverables model wired both ways
-check_content "projects/governance-ops/registers/deliverables.md" 'ST-001' 'register cites its standard'
-check_content "projects/governance-framework/standards/deliverables-ownership.md" 'registers/deliverables\.md' 'standard cites its register'
-# Portability adapter smoke checks (item 7): precedence beneath governance + canonical order anchor
-check_content "AGENTS.md" 'BENEATH the governance' 'adapter precedence statement'
-check_content "AGENTS.md" 'canonical five-step CONTEXT-LOADING order' 'adapter cites canonical load order'
-check_content "AGENTS.md" '\.specify/memory/constitution\.md' 'adapter points to root constitution'
-
-# WP-T1 template invariants
-check_absent() {
-  # $1 = file, $2 = grep -E pattern that must NOT match, $3 = label
-  total=$((total + 1))
-  if [ -f "$1" ] && ! grep -Eq "$2" "$1"; then
-    printf '[OK]      %s: %s\n' "$1" "$3"
-  else
-    printf '[MISSING] %s: %s\n' "$1" "$3"
-    missing=$((missing + 1))
-  fi
-}
-
-FW_TPL="projects/governance-framework/docs/specs/template"
-OPS_TPL="projects/governance-ops/docs/specs/template"
-SW_TPL="projects/governance-framework/docs/specs/template-software"
-
-check_absent "$FW_TPL/tasks.md" 'MUST FAIL' 'no unconditional TDD gate (framework governance set)'
-check_absent "$OPS_TPL/tasks.md" 'MUST FAIL' 'no unconditional TDD gate (ops governance set)'
-check_content "$FW_TPL/tasks.md" 'Validation Mode' 'framework tasks reference Validation Mode'
-check_content "$OPS_TPL/tasks.md" 'Validation Mode' 'ops tasks reference Validation Mode'
-check_content "$FW_TPL/plan.md" 'Validation Mode.*file-native' 'framework plan declares file-native mode'
-check_content "$OPS_TPL/plan.md" 'Validation Mode.*file-native' 'ops plan declares file-native mode'
-check_content "$SW_TPL/plan.md" 'Validation Mode.*test-runtime' 'software plan declares test-runtime mode'
-check_content "$FW_TPL/spec.md" 'Normative Requirements' 'framework spec carries the normative-standard shape'
-check_content "$OPS_TPL/spec.md" 'Evidence & Records' 'ops spec carries the operational-capability shape'
-
-total=$((total + 1))
-sw_homes=$(ls -d projects/*/docs/specs/template-software 2>/dev/null | wc -l)
-if [ "$sw_homes" -eq 1 ]; then
-  printf '[OK]      single canonical software/product template home (%s found)\n' "$sw_homes"
 else
-  printf '[MISSING] single canonical software/product template home (%s found, expected exactly 1)\n' "$sw_homes"
-  missing=$((missing + 1))
+  fail_check "Git repository identity is unavailable"
 fi
 
-for fixture_file in \
-  "projects/governance-framework/docs/specs/examples/normative-standard-fixture/spec.md" \
-  "projects/governance-framework/docs/specs/examples/normative-standard-fixture/plan.md" \
-  "projects/governance-framework/docs/specs/examples/normative-standard-fixture/tasks.md" \
-  "projects/governance-framework/docs/specs/examples/software-product-fixture/spec.md" \
-  "projects/governance-framework/docs/specs/examples/software-product-fixture/plan.md" \
-  "projects/governance-framework/docs/specs/examples/software-product-fixture/tasks.md" \
-  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/spec.md" \
-  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/plan.md" \
-  "projects/governance-ops/docs/specs/examples/operational-capability-fixture/tasks.md"; do
-  check_content "$fixture_file" 'SYNTHETIC EXAMPLE.*grants no authority' 'synthetic banner present'
-done
+legacy_refs=$(
+  grep -RInE 'projects/(governance-framework|governance-ops)' . \
+    --exclude-dir=.git --exclude-dir=repos 2>/dev/null \
+  | grep -vE '^\./(CHANGELOG\.md|docs/(migrations/|specs/001-sdd-core-reset/|proposals/sdd-core-reset-architecture\.md)|wip/|conversations/)' \
+  || true
+)
+if [ -z "$legacy_refs" ]; then
+  pass_check "no live legacy projects/ references"
+else
+  fail_check "live legacy projects/ references remain"
+  printf '%s\n' "$legacy_refs"
+fi
 
-# B-11 review-remediation invariants
-FW_FIX="projects/governance-framework/docs/specs/examples/normative-standard-fixture"
-SW_FIX="projects/governance-framework/docs/specs/examples/software-product-fixture"
-OPS_FIX="projects/governance-ops/docs/specs/examples/operational-capability-fixture"
+echo
+echo "Verifying authority and integration sentinels..."
+check_content ".specify/memory/constitution.md" '^\*\*Version\*\*: 4\.0\.0 ' "v4 constitution footer"
+check_content ".specify/memory/constitution.md" 'GLOBAL' "GLOBAL authority scope"
+check_content ".specify/memory/constitution.md" 'FRAMEWORK-DEFINITION' "framework-definition scope"
+check_content ".specify/memory/constitution.md" 'OPERATIONAL-GOVERNANCE' "operational-governance scope"
+check_content "wip/README.md" 'Approved for promotion:' "exact Gate 1 format"
+check_content "wip/README.md" 'Approved for implementation:' "exact Gate 2 format"
+check_content "templates/project/wip/README.md" '^`Approved for implementation: <exact-reviewed-plan-path>@<immutable-revision-or-digest>`$' "adopter Gate 2 binds reviewed plan identity"
+check_absent "templates/project/wip/README.md" '<exact-specification-path> \+ <exact-reviewed-plan-path>' "adopter Gate 2 does not expand to specification"
+check_content "templates/project/AGENTS.md" 'Gate 2 directive that identifies the reviewed plan and its immutable' "adopter Gate 2 identity is plan-only"
+check_content "templates/project/AGENTS.md" 'independently verify the exact mission envelope as the execution boundary' "mission envelope remains an independent execution boundary"
+check_content "bootstrap/new-project.md" 'AUTHORIZED_MISSION_REQUIRED' "mission-required readiness boundary"
+check_content "integrations/fusion-harness/compatibility.yaml" 'readiness: "BLOCKED"' "unavailable Harness is BLOCKED"
+check_content "integrations/agent-workflow/README.md" '`DEGRADED`' "bounded degraded mode"
+check_content "integrations/ci-cd/README.md" 'explicitly disabled and deferred' "remediation disabled"
+check_content "contracts/authority/mission-envelope.schema.json" '"canonicalDigest"' "canonical mission digest required"
+check_content "contracts/authority/mission-envelope.schema.json" '"prohibitedActions"' "mission prohibitions required"
+check_absent "contracts/authority/mission-envelope.schema.json" '"verified"' "no trusted verification boolean"
+check_content "integrations/agent-workflow/status.schema.json" '"envelopeDigest"' "DEGRADED binds immutable mission"
+check_absent "governance/framework/README.md" 'This project|neither project|├── \.specify/|├── \.claude/|├── conversations/' "no stale project identity or structure"
+check_absent "governance/operations/README.md" 'This project|neither project|├── \.specify/|├── conversations/|├── registers/' "no stale project identity or structure"
+check_absent ".github/workflows/verify-layout.yml" '(contents|pull-requests|issues|actions|checks|deployments|id-token):[[:space:]]*write' "no write permission"
 
-check_absent "$ROOT_CONST" 'Users.JarvisRichardson' 'no machine-local provenance path in constitution'
-check_absent "knowledge/instructions.md" '[Mm]irror [Rr]egistry' 'no obsolete mirror-registry label (instructions)'
-check_absent "README.md" '[Mm]irror [Rr]egistry' 'no obsolete mirror-registry label (README)'
-for fx in "$FW_FIX" "$SW_FIX" "$OPS_FIX"; do
-  check_content "$fx/spec.md" '(\.\./){6}\.specify/memory/constitution\.md' "root-constitution link uses six parents ($fx)"
-  check_content "$fx/spec.md" '`(\.\./){4}\.specify/memory/constitution\.md' "project-constitution link uses four parents ($fx)"
-  check_content "$fx/spec.md" '`(\.\./){4}knowledge/instructions\.md' "project-instructions link uses four parents ($fx)"
-  check_absent "$fx/spec.md" '`(\.\./){3}\.specify' "no three-parent constitution link ($fx)"
-done
-check_absent "$FW_TPL/tasks.md" 'T00[3-5] \[P\]|recorded in this file' 'no same-file [P] or vague outputs (framework template)'
-check_absent "$OPS_TPL/tasks.md" 'T00[3-5] \[P\]|recorded in this file' 'no same-file [P] or vague outputs (ops template)'
-check_absent "$FW_FIX/tasks.md" 'T00[3-5] \[P\]|recorded in this file' 'no same-file [P] or vague outputs (normative fixture)'
-check_absent "$OPS_FIX/tasks.md" 'T00[3-5] \[P\]|recorded in this file' 'no same-file [P] or vague outputs (ops fixture)'
-check_absent "$SW_FIX/tasks.md" 'T003 \[P\]|T004 \[P\]|T005 \[P\]|T006 \[P\]|T008 \[P\]|T012 \[P\]' 'no same-file or dependency-conflicting [P] (software fixture)'
-check_content "$OPS_FIX/spec.md" 'class-2 execution record' 'execution records classified class-2 (ops fixture)'
-check_absent "$OPS_FIX/spec.md" 'produce one class-1-conformant record' 'no class-1 execution-record wording (ops fixture)'
-check_absent "$SW_TPL/spec.md" 'no command-line tools or scripts are required at any step' 'no blanket no-CLI rule in software spec'
-check_content "README.md" '\*\*Validate\*\*' 'lifecycle ends with an explicit Validate step (README)'
+architecture_findings=$(
+  grep -RInEi '(language|framework|database|cloud|deployment|ui/|services/|database/)' templates/project \
+    --include='*.md' --include='*.yaml' 2>/dev/null || true
+)
+if [ -z "$architecture_findings" ]; then
+  pass_check "adopter template is architecture-neutral"
+else
+  fail_check "adopter template contains architecture prescriptions"
+  printf '%s\n' "$architecture_findings"
+fi
+
+echo
+echo "Running contract, metadata, link, parser, safety, and adapter validation..."
+PYTHON_BIN="${PYTHON:-python}"
+if "$PYTHON_BIN" scripts/validate-contracts.py; then
+  pass_check "scripts/validate-contracts.py"
+else
+  fail_check "scripts/validate-contracts.py"
+fi
 
 echo
 if [ "$missing" -eq 0 ]; then
-  echo "RESULT: 100% compliance — all $total required checks pass (paths + content invariants)."
+  echo "RESULT: 100% compliance — all $total deterministic checks pass."
 else
-  echo "RESULT: $missing of $total required checks failing."
-fi
-
-echo
-echo "Directory tree:"
-if command -v tree >/dev/null 2>&1; then
-  tree -a -I '.git' .
-else
-  find . -path ./.git -prune -o -print | sort \
-    | sed -e 's|^\./||' -e '/^\.$/d' -e 's|[^/]*/|    |g'
+  echo "RESULT: $missing of $total deterministic checks failing."
 fi
 
 [ "$missing" -eq 0 ]
