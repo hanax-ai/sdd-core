@@ -8,14 +8,14 @@
 
 - **Purpose:** track the maintainer-identified repository maturity gaps (legal foundation, automation, demonstrable content, OSS hygiene, portability, evidence operationalization) as bounded, decision-gated work items.
 - **Scope:** workspace
-- **Status:** exploring
-- **Created:** 2026-07-20 · **Last touched:** 2026-07-20
+- **Status:** archived
+- **Created:** 2026-07-20 · **Last touched:** 2026-08-01
 - **Synthesis lead:** claude-root-alpha (item creator, per default rule)
-- **Active contributors:** claude-root-alpha
+- **Active contributors:** —
 - **Current workstreams:** — (none claimed)
-- **Contribution status:** open-for-contributions
-- **Last synchronized commit:** 7fa33c0 (main HEAD this synthesis integrated against)
-- **Approval state:** NOT APPROVED — exploration only
+- **Contribution status:** frozen-for-review
+- **Last synchronized commit:** ca29ff4 (main HEAD this archival synthesis integrated against)
+- **Approval state:** NOT APPROVED — archived without promotion
 - **Gate 1 (promotion) evidence:** —
 - **Promotion target:** —
 - **Target status (mirror, non-authoritative):** —
@@ -126,12 +126,19 @@ scope here.
 - ~~Item 6 shape?~~ — RESOLVED: paired model (framework definitions + ops
   living register + root navigation index only; maintainer, 2026-07-20).
 
-## Proposed next step
+## Closure
 
 **Backlog complete except item 3.** Items 1, 2, 4, 5, 6, 7, 8 all executed
 (maintainer verified 1/2/4 read-only, 2026-07-20; decisions and commits cited
 per item above). Item 3 (demonstrator = lifecycle normative-standard spec)
 stays UNTOUCHED until Agent Zero intentionally authorizes lifecycle
 specification authoring; it is tracked in the lifecycle WIP item's
-spec-authoring riders, not here. This item is a candidate for `archived`
-status once Agent Zero confirms no further maturity work rides it.
+spec-authoring riders, not here.
+
+**Archived by Agent Zero directive, 2026-08-01:**
+
+> Confirmed: no further maturity work rides on wip/2026-07-20-repo-maturity-backlog; archive it, update wip/_index.md, and make no other repository changes.
+
+Archiving closes this exploratory wrapper; it does not complete or authorize
+item 3, which continues under the promoted evidence-based skill lifecycle
+proposal and its own gates.
